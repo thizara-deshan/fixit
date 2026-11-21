@@ -3106,7 +3106,7 @@ boot(rootEl).catch((e: unknown) => {
 **Commit:** `git commit -m "feat(web): enableMocks, boot order and dev:mock script (M02-T33)"`
 
 ### T34 — DevPanel: shell, session and "Sign in as"
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/components/ui/sheet.tsx`, `apps/web/src/components/ui/button.tsx` (shadcn), `apps/web/src/mocks/dev/DevPanel.tsx`
 **Context:** ARCH §4.5 (floating 44×44 button bottom-left, sheet, persona list, works with mocked or real `auth` via `POST /auth/login`); D-b (Admin uses `/auth/login`); AC1. Tokens only; touch targets ≥ 44px; visible focus ring (shadcn button has it). 390px: sheet is full width; 1440px: `sm:max-w-sm`.
 **Do:**
