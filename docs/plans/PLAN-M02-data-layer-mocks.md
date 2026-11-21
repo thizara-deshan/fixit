@@ -925,7 +925,7 @@ Add `export * from './providers';` to `index.ts`.
 **Commit:** `git commit -m "feat(fixtures): localised providers, LKR services, areas, p02 submission (M02-T11)"`
 
 ### T12 — Fixture request builder and the 8 prototype requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/requests.ts`, `src/index.ts`
 **Context:** ARCH §8.3 Requests (pending now + 3–6 days; accepted one today, one +2; completed one inside the 30-day window, no review); `expiresAt()` from contracts; D-c (FX-2046 → Olivia). Request ids `r-<ref>`. Prototype notes copied ("40-gal tank" localised).
 **Do:**
