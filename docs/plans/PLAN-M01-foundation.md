@@ -1359,7 +1359,7 @@ it('exports every Should/Could flag, all off', () => {
 **Commit:** `git commit -m "feat(web): Should/Could feature flags, all off (M01-T14)"`
 
 ### T15 — Placeholder page
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/app/placeholder-page.tsx`
 **Context:** milestone AC4 and AC7. Not a SPEC screen; replaced by the router in M03. Imports `RequestRef` from contracts to prove the `source` condition works without building contracts.
 **Do:**
