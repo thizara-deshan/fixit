@@ -369,7 +369,7 @@ describe('RequestRef', () => {
 **Commit:** `git commit -m "feat(contracts): primitives and MobileInput normalisation (M01-T5)"`
 
 ### T6 — Pagination and error envelope
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/common/pagination.ts`, `packages/contracts/src/common/errors.ts`, `index.ts`
 **Context:** ARCHITECTURE §2.4.
 **Do:**
