@@ -2438,7 +2438,7 @@ describe('authStore', () => {
 **Commit:** `git commit -m "feat(web): auth store (M02-T27)"`
 
 ### T28 — `http()` client with refresh single-flight (AC3, AC7)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/lib/http.ts`, `apps/web/src/test/sign-in.ts`, `apps/web/src/lib/http.test.ts`
 **Context:** ARCH §4.1 snippet with planner decisions **D-a** (which 401s refresh) and **D-f** (absolute URL). Sign-out reason `suspended` when the refresh failed with `ACCOUNT_SUSPENDED`, else `expired`. `signInAs(persona)` from ARCH §9.4.
 **Do:**
