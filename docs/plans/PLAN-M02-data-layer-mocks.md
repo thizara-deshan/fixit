@@ -3335,7 +3335,7 @@ function MockControlsSections() {
 **Commit:** `git commit -m "feat(web): DevPanel latency, forced errors, reset and mocked domains (M02-T35)"`
 
 ### T36 — Placeholder page shows the session
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/app/placeholder-page.tsx`
 **Context:** AC1 exact copy `Signed in as olivia@fixit.test, roles: customer`; AC3 manual (`/auth/me` call). Keep the existing M01 content; add one status block under the subtitle.
 **Do:** Add imports `import { useAuth } from '@/lib/auth-store'; import { useMe } from '@/features/auth/hooks'; import { ApiError } from '@/lib/http';` and inside `PlaceholderPage` before `return`:
