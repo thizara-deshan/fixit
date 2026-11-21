@@ -216,7 +216,7 @@ describe('displayNameOf', () => {
 **Commit:** `git commit -m "feat(contracts): displayNameOf (M02-T3)"`
 
 ### T4 — `ratingFrom()`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/reviews/rules.ts`, `rules.test.ts`, `index.ts`
 **Context:** PRODUCT BR-27; ARCH §2.9, §7.7 (1 dp).
 **Do:**

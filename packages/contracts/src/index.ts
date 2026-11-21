@@ -9,3 +9,4 @@ export * from './endpoints';
 export * from './auth/schemas';
 export * from './auth/roles';
 export * from './auth/names';
+export * from './reviews/rules';
