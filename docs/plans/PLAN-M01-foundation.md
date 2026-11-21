@@ -893,7 +893,7 @@ export type EndpointId = keyof typeof ENDPOINTS;
 **Commit:** `git commit -m "feat(contracts): endpoint registry type and empty ENDPOINTS (M01-T10)"`
 
 ### T11 — Web app scaffold (Vite + React + TS strict + Vitest)
-- [ ] done
+- [x] done
 **Files:** `apps/web/package.json`, `apps/web/tsconfig.json`, `apps/web/vite.config.ts`, `apps/web/vitest.config.ts`, `apps/web/index.html`, `apps/web/src/main.tsx`, `apps/web/src/vite-env.d.ts`, `apps/web/src/styles/globals.css` (stub), `apps/web/src/app/placeholder-page.tsx` (stub)
 **Context:** ARCHITECTURE §1 (web tree), D19 (`source` condition), §10.1 web scripts.
 **Do:**
