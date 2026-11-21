@@ -1,0 +1,7 @@
+pnpm-lock.yaml
+**/dist
+coverage
+reference
+docs
+*.md
+apps/web/public/mockServiceWorker.js
