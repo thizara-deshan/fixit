@@ -1,5 +1,6 @@
 import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest';
 import { resetDemoData } from '@/mocks/db/store';
+import { setLatency } from '@/mocks/lib/controls';
 import { server } from '@/mocks/node';
 import { FIXED_NOW } from './fixed-now';
 
@@ -9,6 +10,7 @@ beforeAll(() => {
 beforeEach(() => {
   localStorage.clear();
   resetDemoData(FIXED_NOW);
+  setLatency('zero');
 });
 afterEach(() => {
   server.resetHandlers();

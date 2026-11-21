@@ -1720,7 +1720,7 @@ test: {
 **Commit:** `git commit -m "feat(web): mock error envelope, handler index, MSW node server and test setup (M02-T20)"`
 
 ### T21 — Mock controls (latency, forced errors)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/controls.ts`, `apps/web/src/mocks/lib/controls.test.ts`, `apps/web/src/test/setup.ts`
 **Context:** ARCH §4.3 `controls.ts` (localStorage `fixit.mock.controls`, default 300–800 ms, 0 in tests), §4.5 Latency / Force next error (500 / 409 INVALID_TRANSITION / 401 / network). Forced errors are keyed by endpoint id or `*` (any request) and are consumed once.
 **Do:**
