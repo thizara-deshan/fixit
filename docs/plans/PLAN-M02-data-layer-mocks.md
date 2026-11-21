@@ -1198,7 +1198,7 @@ export * from './build';
 **Commit:** `git commit -m "feat(fixtures): buildWorld with computed rating and starting price (M02-T14)"`
 
 ### T15 — Fixture invariants test (AC6)
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/build.test.ts`
 **Context:** Milestone AC6; ARCH §9.1 fixtures row; BR-24 (30-day window).
 **Do / Test:**
