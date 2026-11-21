@@ -320,7 +320,7 @@ describe('computeStartingPrice', () => {
 **Commit:** `git commit -m "feat(contracts): computeStartingPrice (M02-T5)"`
 
 ### T6 — `RequestRecord` shape
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`, `packages/contracts/src/requests/record.ts`, `record.test.ts`, `index.ts`
 **Context:** ARCH §2.5 `ServiceSnapshot`, §2.9 (projections take a plain `RequestRecord`), §8.1 `ServiceRequest` + `RequestStatusEvent`; D-d (events embedded). Existing `MachineRequest` in `requests/state-machine.ts`.
 **Do:**
