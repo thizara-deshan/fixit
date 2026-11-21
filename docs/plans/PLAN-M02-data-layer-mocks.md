@@ -2966,7 +2966,7 @@ describe('useMe', () => {
 **Commit:** `git commit -m "feat(web): useMe hook and test render helpers (M02-T31)"`
 
 ### T32 — `expireDue(db, now)`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/db/expire.ts`, `apps/web/src/mocks/db/expire.test.ts`
 **Context:** ARCH §4.3 "Expiry: the `requests` handlers run `expireDue(db, now)`" (called from M08 on); PRODUCT §6.1 (pending → expired by system); `assertTransition`, `toMachineRequest` (T6).
 **Do:**
