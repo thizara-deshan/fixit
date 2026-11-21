@@ -324,7 +324,7 @@ export default defineConfig({
 **Commit:** `git commit -m "chore(contracts): scaffold @fixit/contracts with tsup and source condition (M01-T3)"`
 
 ### T4 — Shared enums
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/common/enums.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCHITECTURE §2.2.
 **Do:**
