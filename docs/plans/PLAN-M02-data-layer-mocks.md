@@ -254,7 +254,7 @@ describe('ratingFrom', () => {
 **Commit:** `git commit -m "feat(contracts): ratingFrom (M02-T4)"`
 
 ### T5 — `computeStartingPrice()`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/pricing.ts`, `pricing.test.ts`, `index.ts`
 **Context:** PRODUCT BR-10; ARCH §2.9 (ties → per_hour < per_visit < fixed). `priceLabel()` is **not** in this milestone.
 **Do:**

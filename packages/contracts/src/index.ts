@@ -10,3 +10,4 @@ export * from './auth/schemas';
 export * from './auth/roles';
 export * from './auth/names';
 export * from './reviews/rules';
+export * from './providers/pricing';
