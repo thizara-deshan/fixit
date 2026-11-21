@@ -2341,7 +2341,7 @@ describe('GET /auth/me', () => {
 **Commit:** `git commit -m "feat(web): auth mock handlers login, refresh, logout, me (M02-T26)"`
 
 ### T27 — Auth store
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/lib/auth-store.ts`, `apps/web/src/lib/auth-store.test.ts`, `apps/web/src/test/setup.ts`
 **Context:** ARCH §4.1 paragraph after the snippet (`{ accessToken, me, status: 'booting'|'guest'|'signed-in', signOutReason }`, `useSyncExternalStore`); §6.2 (access token in memory only). Query-cache clearing is wired in T29 by subscribing to this store (no import cycle). Router redirects are M03.
 **Do:**
