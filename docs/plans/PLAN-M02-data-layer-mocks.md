@@ -181,7 +181,7 @@ describe('deriveRoles', () => {
 **Commit:** `git commit -m "feat(contracts): deriveRoles (M02-T2)"`
 
 ### T3 — `displayNameOf()`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/auth/names.ts`, `names.test.ts`, `index.ts`
 **Context:** SPEC data model "User … displayName (derived: first name + last initial)"; PublicReview `authorDisplayName: "Sarah K."`.
 **Do:**
