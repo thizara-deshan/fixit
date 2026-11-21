@@ -3373,7 +3373,7 @@ States: guest → `Guest`; after forced sign-out → `Guest (signed out: expired
 **Commit:** `git commit -m "feat(web): placeholder shows session and reloads profile (M02-T36)"`
 
 ### T37 — Acceptance walk-through
-- [ ] done
+- [x] done
 **Files:** this plan (tick boxes), `docs/milestones/M00-index.md` only if the milestone status is tracked there.
 **Do:** check each criterion; any failure → fix in a `fix(web|contracts|fixtures): …` commit with a failing test first, or STOP with a blocker.
 1. **AC1** `pnpm dev:mock`, browser at 1440×900 and 390×844 (DevTools device mode): open DevPanel (44×44 bottom-left) → `Customer (Olivia Martinez)` → page shows `Signed in as olivia@fixit.test, roles: customer`. Repeat: `Provider, verified (Marcus Bell / Bell & Sons)` → `roles: customer, provider`; `Provider draft (Kasun Silva, onboarding step 3)` → `roles: customer`; `Admin` → `roles: admin`. No horizontal scroll at 390 (`document.documentElement.scrollWidth <= innerWidth` in console → `true`).

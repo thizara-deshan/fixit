@@ -20,6 +20,7 @@ export default tseslint.config(
       '**/dist/**',
       '**/node_modules/**',
       '**/coverage/**',
+      '**/.vite/**',
       'reference/**',
       'docs/**',
       'apps/web/public/mockServiceWorker.js',
