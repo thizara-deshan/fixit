@@ -380,7 +380,7 @@ describe('RequestRef', () => {
 **Commit:** `git commit -m "feat(contracts): pagination and error envelope (M01-T6)"`
 
 ### T7 — Colombo date helpers
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/common/dates.ts`, `packages/contracts/src/common/dates.test.ts`, `index.ts`
 **Context:** ARCHITECTURE §2.9 (`colomboToday`, `colomboStartOfDay`, `addDays`, wrappers on `@date-fns/tz`); CLAUDE.md "never `new Date()` in contracts". Asia/Colombo is UTC+05:30 with no DST: 00:00 Colombo = 18:30 UTC the previous day.
 **Do:**

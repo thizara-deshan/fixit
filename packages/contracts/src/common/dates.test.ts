@@ -1,0 +1,28 @@
+import { describe, expect, it } from 'vitest';
+import { addDays, colomboStartOfDay, colomboToday } from './dates';
+
+describe('colomboToday', () => {
+  it('is still the 10th at 23:59:59 Colombo (18:29:59 UTC)', () => {
+    expect(colomboToday(new Date('2026-03-10T18:29:59.000Z'))).toBe('2026-03-10');
+  });
+  it('is the 11th at 00:00 Colombo (18:30 UTC the day before)', () => {
+    expect(colomboToday(new Date('2026-03-10T18:30:00.000Z'))).toBe('2026-03-11');
+  });
+});
+
+describe('colomboStartOfDay', () => {
+  it('is 18:30 UTC on the previous day', () => {
+    expect(colomboStartOfDay('2026-03-11').toISOString()).toBe('2026-03-10T18:30:00.000Z');
+  });
+  it('rejects a non-ISO date', () => {
+    expect(() => colomboStartOfDay('11/03/2026')).toThrow();
+  });
+});
+
+describe('addDays', () => {
+  it('crosses month, year and adds 60', () => {
+    expect(addDays('2026-02-28', 1)).toBe('2026-03-01');
+    expect(addDays('2026-12-31', 1)).toBe('2027-01-01');
+    expect(addDays('2026-03-10', 60)).toBe('2026-05-09');
+  });
+});
