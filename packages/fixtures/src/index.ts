@@ -4,3 +4,4 @@ export * from './prototype-reviews';
 export * from './users';
 export * from './providers';
 export * from './requests';
+export * from './reviews';

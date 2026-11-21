@@ -1043,7 +1043,7 @@ Add `export * from './requests';` to `index.ts`.
 **Commit:** `git commit -m "feat(fixtures): request builder and the 8 prototype requests (M02-T12)"`
 
 ### T13 — Fixture reviews with their completed requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/reviews.ts`, `src/index.ts`
 **Context:** ARCH §8.3 Reviews (prototype 3 written newest + deterministic filler so count = prototype and average ±0.05; every review has its own completed request by its author); D-e (refs FX-0001…). Uses `makeRequest` (T12), `mulberry32`/`shuffle` (T8), author ids (T10).
 **Do:**
