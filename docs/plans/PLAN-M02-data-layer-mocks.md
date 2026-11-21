@@ -1938,7 +1938,7 @@ describe('mock tokens', () => {
 **Commit:** `git commit -m "feat(web): mock JWT-shaped tokens and refresh entry (M02-T22)"`
 
 ### T23 — `resolveActor` (identity)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/identity.ts`
 **Context:** ARCH §4.3 `identity.ts`, D2 (works with real JWT payloads; unknown user → shadow actor from claims), D5 (roles derived fresh), suspension → 401 `ACCOUNT_SUSPENDED`. Tested through the handlers in T26.
 **Do:**
