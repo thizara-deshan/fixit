@@ -66,7 +66,7 @@ Planner's decisions the executor must follow (they resolve gaps between mileston
 ## Tasks
 
 ### T1 — Auth contract schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/auth/schemas.ts`, `packages/contracts/src/auth/schemas.test.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCH §2.5 auth excerpt; SPEC S5 field table (`Enter your email address.`, `Enter your password.`); existing `Email`, `Id`, `Mobile` in `common/primitives.ts`, enums in `common/enums.ts`.
 **Do:**
