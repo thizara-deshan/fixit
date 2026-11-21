@@ -819,7 +819,7 @@ export type PersonaKey = (typeof DEMO_PERSONAS)[number]['key'];
 **Commit:** `git commit -m "feat(fixtures): demo users, personas and prototype review data (M02-T10)"`
 
 ### T11 — Fixture providers, services, areas, submission
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/providers.ts`, `src/index.ts`
 **Context:** ARCH §8.3 Providers/Services (USD × 30, rounded to 500; `hr` → per_hour, `visit` → per_visit; "call-out" → per_visit; items ≥ USD 300 → fixed), location table; PRODUCT F-15 step order (1 business details, 2 category, 3 services, 4 towns, 5 photo); ARCH §8.3 "p02 has a pending_review submission". Bios kept, "Austin"/"Texas" localised. Aggregates are filled in T14 (left `null`/`0` here).
 **Do:**
