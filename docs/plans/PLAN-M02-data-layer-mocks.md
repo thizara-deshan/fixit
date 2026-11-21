@@ -1317,7 +1317,7 @@ describe('users and providers', () => {
 **Commit:** `git commit -m "test(fixtures): buildWorld invariants (M02-T15)"`
 
 ### T16 — Web dependencies, MSW worker, Vite proxy, worker stripped from build
-- [ ] done
+- [x] done
 **Files:** `apps/web/package.json`, `apps/web/public/mockServiceWorker.js`, `apps/web/vite.config.ts`, `apps/web/vitest.config.ts`, `.gitignore`, `.prettierignore`
 **Context:** ARCH §4.3, §4.4 (proxy excerpt), D23, AC5. `.prettierignore` already lists `apps/web/public/mockServiceWorker.js`.
 **Do:**

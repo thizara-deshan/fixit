@@ -14,11 +14,14 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.5",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
     "@types/node": "^22.20.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^5.2.0",
     "jsdom": "^26.1.0",
+    "msw": "^2.15.0",
     "tailwindcss": "^4.3.5",
     "typescript": "~5.9.3",
     "vite": "^7.3.8",
@@ -26,8 +29,10 @@
   },
   "dependencies": {
     "@fixit/contracts": "workspace:*",
+    "@fixit/fixtures": "workspace:*",
     "@fontsource/jetbrains-mono": "^5.3.0",
     "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "@tanstack/react-query": "^5.108.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.77.0",
@@ -35,5 +40,10 @@
     "react-dom": "^19.3.1",
     "tailwind-merge": "^3.7.1",
     "tw-animate-css": "^1.4.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
