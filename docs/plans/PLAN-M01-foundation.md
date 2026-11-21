@@ -268,7 +268,7 @@ export default tseslint.config(
 **Commit:** `git add -A && git commit -m "chore: root workspace, prettier and eslint rules (M01-T1, M01-T2)"`
 
 ### T3 — `@fixit/contracts` package scaffold
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/package.json`, `packages/contracts/tsconfig.json`, `packages/contracts/tsup.config.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCHITECTURE §2 rules (zod v4, deps), D19 (tsup + `source`).
 **Do:**
