@@ -452,7 +452,7 @@ describe('addDays', () => {
 **Commit:** `git commit -m "feat(contracts): Asia/Colombo date helpers (M01-T7)"`
 
 ### T8 — Request date rules (BR-30, BR-31, BR-32, BR-34)
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/rules.ts`, `packages/contracts/src/requests/rules.test.ts`, `index.ts`
 **Context:** PRODUCT BR-30/31/32/34, BR-33 (constants only); ARCHITECTURE §2.8 `rules.ts` signatures. `checkCreateRequest` is **out of scope** (M08).
 **Do:**
