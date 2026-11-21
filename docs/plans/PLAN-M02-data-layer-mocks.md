@@ -1429,7 +1429,7 @@ describe('parseMockDomains', () => {
 **Commit:** `git commit -m "feat(web): parseMockDomains (M02-T17)"`
 
 ### T18 — Mock db schema and seed
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/db/schema.ts`, `apps/web/src/mocks/db/seed.ts`
 **Context:** ARCH §4.3 `db/` (MockDb tables), D-d; CLAUDE.md "mock db is seeded only from `@fixit/fixtures`", version key starts at `v1`.
 **Do:**
