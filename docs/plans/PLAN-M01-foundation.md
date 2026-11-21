@@ -1315,7 +1315,7 @@ describe('cn', () => {
 **Commit:** `git commit -m "feat(web): shadcn config and token-aware cn() (M01-T13)"`
 
 ### T14 — Feature flags
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/lib/features.ts`, `apps/web/src/lib/features.test.ts`
 **Context:** ARCHITECTURE §5.1 (flag names → F-10, F-21, F-22, F-23, F-24, F-34, F-35, F-36); milestone AC6. Typed as `boolean` (not `as const`) so later `if (features.x)` doesn't trip `no-unnecessary-condition`.
 **Do:**
