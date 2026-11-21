@@ -1,0 +1,540 @@
+<sc-if value="{{ isCustomer }}" hint-placeholder-val="{{ true }}">
+<div>
+<nav>
+  <div>
+    <a href="#/home"><div>F</div><span>Fixit</span></a>
+    <div>
+      <a href="#/home" style-hover="color:#1A1D24">Home</a>
+      <a href="#/discover?q=&amp;loc=" style-hover="color:#1A1D24">Find Providers</a>
+      <a href="#/dashboard" style-hover="color:#1A1D24">For Providers</a>
+    </div>
+    <div>
+      <button sc-camel-on-click="{{ soon }}" style-hover="background:#F6F7F9">Log in</button>
+      <button sc-camel-on-click="{{ soon }}" style-hover="background:#163C7E">Sign up</button>
+    </div>
+  </div>
+</nav>
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<section>
+  <div>
+    <div>
+      <span><span>verified</span>Verified pros across the Austin metro</span>
+      <h1>Trusted local help, <span>right when you need it.</span></h1>
+      <p>Find reviewed plumbers, electricians, cleaners and more near you — compare them side by side and send a request in minutes.</p>
+      <form sc-camel-on-submit="{{ onSearch }}">
+        <label>
+          <span>search</span>
+          <span>
+            <span>Service</span>
+            <input value="{{ query }}" sc-camel-on-change="{{ onQuery }}" placeholder="What service do you need?">
+          </span>
+        </label>
+        <label>
+          <span>location_on</span>
+          <span>
+            <span>Location</span>
+            <sc-raw-select value="{{ loc }}" sc-camel-on-change="{{ onLoc }}">
+              <option value="">All locations</option>
+              <option value="austin">Austin, TX</option><option value="round-rock">Round Rock, TX</option><option value="cedar-park">Cedar Park, TX</option><option value="pflugerville">Pflugerville, TX</option>
+            </sc-raw-select>
+          </span>
+        </label>
+        <button type="submit" style-hover="background:#163C7E"><span>search</span>Search</button>
+      </form>
+      <div>
+        <span>Popular:</span>
+        <sc-for list="{{ quick }}" as="q" hint-placeholder-count="4">
+          <button sc-camel-on-click="{{ q.pick }}" style-hover="border-color:#1E4FA3;color:#1E4FA3">{{ q.label }}</button>
+        </sc-for>
+      </div>
+      <sc-if value="{{ searchMsg }}" hint-placeholder-val="{{ false }}"><div>{{ searchMsg }}</div></sc-if>
+    </div>
+    <div>
+      <div>hero photo — friendly pro at a customer's door</div>
+      <div>
+        <div></div>
+        <div>
+          <div>Bell &amp; Sons Plumbing</div>
+          <div><span>★★★★★</span><span>4.9</span><span>(212)</span></div>
+        </div>
+        <span>verified</span>
+      </div>
+      <div>
+        <span><span></span>Accepted</span>
+        Your request was accepted
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div>
+    <div>
+      <h2>Popular services</h2>
+      <p>Pick a category to see pros available near you.</p>
+    </div>
+    <a href="#/discover?q=&amp;loc=">All services<span>arrow_forward</span></a>
+  </div>
+  <div>
+    <sc-for list="{{ categories }}" as="c" hint-placeholder-count="8">
+      <a href="{{ c.href }}" style-hover="border-color:#1E4FA3;box-shadow:0 8px 24px rgba(20,24,36,.08);transform:translateY(-2px)">
+        <div><span>{{ c.icon }}</span></div>
+        <div>
+          <div>{{ c.name }}</div>
+          <div>{{ c.blurb }}</div>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+<section>
+  <div>
+    <div>
+      <h2>Featured providers near you</h2>
+      <p>Highly rated, verified pros in the Austin metro.</p>
+    </div>
+    <a href="#/discover?q=&amp;loc=">See all providers<span>arrow_forward</span></a>
+  </div>
+  <div>
+    <sc-for list="{{ featured }}" as="p" hint-placeholder-count="4">
+      <div style-hover="box-shadow:0 8px 24px rgba(20,24,36,.08)">
+        <div>provider photo
+          <sc-if value="{{ p.verified }}" hint-placeholder-val="{{ true }}">
+            <span><span>✓</span>Verified</span>
+          </sc-if>
+        </div>
+        <div>
+          <div>
+            <a href="{{ p.href }}">{{ p.name }}</a>
+            <div><span>{{ p.catName }} ·</span><span>location_on</span><span>{{ p.locName }}</span></div>
+          </div>
+          <div>
+            <span><span>★★★★★</span><span>★★★★★</span></span>
+            <span>{{ p.ratingStr }}</span><span>({{ p.reviewCount }})</span>
+          </div>
+          <div>
+            <div><span>From</span><span>{{ p.priceLabel }}</span></div>
+            <a href="{{ p.href }}" style-hover="background:#EAF0FA;color:#1E4FA3">View profile</a>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+<section id="how-it-works">
+  <div>
+    <h2>How it works</h2>
+    <p>Get the job done in three simple steps.</p>
+  </div>
+  <div>
+    <div>
+      <div><div><span>search</span></div><span>01</span></div>
+      <div>Search</div>
+      <div>Tell us what you need and where. We'll show local pros who do exactly that.</div>
+    </div>
+    <div>
+      <div><div><span>compare_arrows</span></div><span>02</span></div>
+      <div>Compare</div>
+      <div>Check ratings, reviews, prices and Verified badges to pick the right fit.</div>
+    </div>
+    <div>
+      <div><div><span>send</span></div><span>03</span></div>
+      <div>Request</div>
+      <div>Send a service request with your details. The provider accepts and you're booked.</div>
+    </div>
+  </div>
+</section>
+<section>
+  <div>
+    <div>
+      <h2>Are you a service provider? Join us.</h2>
+      <p>List your business, get verified and receive requests from customers in your area — free to join.</p>
+    </div>
+    <div>
+      <a href="#/dashboard" style-hover="background:#E0722A;color:#1A1D24">Join as a provider<span>arrow_forward</span></a>
+      <a href="#/dashboard" style-hover="background:#163C7E;color:#fff">Learn more</a>
+    </div>
+  </div>
+</section>
+</sc-if>
+<sc-if value="{{ isDiscover }}" hint-placeholder-val="{{ false }}">
+<section>
+  <div>
+    <form sc-camel-on-submit="{{ onSearch }}">
+      <label>
+        <span>search</span>
+        <span>
+          <span>Service</span>
+          <input value="{{ query }}" sc-camel-on-change="{{ onQuery }}" placeholder="What service do you need?">
+        </span>
+      </label>
+      <label>
+        <span>location_on</span>
+        <span>
+          <span>Location</span>
+          <sc-raw-select value="{{ loc }}" sc-camel-on-change="{{ onLoc }}">
+            <option value="">All locations</option>
+            <option value="austin">Austin, TX</option><option value="round-rock">Round Rock, TX</option><option value="cedar-park">Cedar Park, TX</option><option value="pflugerville">Pflugerville, TX</option>
+          </sc-raw-select>
+        </span>
+      </label>
+      <button type="submit" style-hover="background:#163C7E"><span>search</span>Search</button>
+    </form>
+  </div>
+</section>
+<main>
+  <aside>
+    <div>
+      <div>Filters</div>
+      <button sc-camel-on-click="{{ clearAll }}">Clear all</button>
+    </div>
+    <div>
+      <div>Service category</div>
+      <div>
+        <sc-for list="{{ catOptions }}" as="c" hint-placeholder-count="8">
+          <button sc-camel-on-click="{{ c.toggle }}">
+            <span>{{ c.mark }}</span>
+            <span>{{ c.name }}</span>
+            <span>{{ c.count }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <div></div>
+    <label>
+      <span>Location</span>
+      <sc-raw-select value="{{ loc }}" sc-camel-on-change="{{ onLoc }}">
+        <option value="">All locations</option>
+        <option value="austin">Austin, TX</option><option value="round-rock">Round Rock, TX</option><option value="cedar-park">Cedar Park, TX</option><option value="pflugerville">Pflugerville, TX</option>
+      </sc-raw-select>
+    </label>
+    <div></div>
+    <div>
+      <div>Minimum rating</div>
+      <sc-for list="{{ ratingOptions }}" as="r" hint-placeholder-count="4">
+        <button sc-camel-on-click="{{ r.pick }}">
+          <span>{{ r.stars }}</span><span>{{ r.empty }}</span>
+          <span>{{ r.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div></div>
+    <button sc-camel-on-click="{{ toggleVerified }}">
+      <span>
+        <span>Verified providers only</span>
+        <span>ID &amp; licence checked by Fixit</span>
+      </span>
+      <span><span></span></span>
+    </button>
+    <div></div>
+    <div>
+      <div><span>Starting price</span><span>{{ priceLabel }}</span></div>
+      <input type="range" min="40" max="100" step="5" value="{{ maxPrice }}" sc-camel-on-change="{{ onPrice }}">
+      <div><span>$40</span><span>$100+</span></div>
+    </div>
+  </aside>
+  <div>
+    <div>
+      <div>
+        <h1>{{ countLabel }}</h1>
+        <div>{{ contextLabel }}</div>
+      </div>
+      <label>Sort by
+        <sc-raw-select value="{{ sort }}" sc-camel-on-change="{{ onSort }}">
+          <option value="rating">Top rated</option>
+          <option value="reviews">Most reviews</option>
+          <option value="nearest">Nearest</option>
+        </sc-raw-select>
+      </label>
+    </div>
+    <sc-for list="{{ results }}" as="p" hint-placeholder-count="4">
+      <div style-hover="box-shadow:0 8px 24px rgba(20,24,36,.08);border-color:#D3D8E0">
+        <div>photo</div>
+        <div>
+          <div>
+            <a href="{{ p.href }}">{{ p.name }}</a>
+            <sc-if value="{{ p.verified }}" hint-placeholder-val="{{ true }}">
+              <span><span>✓</span>Verified</span>
+            </sc-if>
+          </div>
+          <div>
+            <span><span>★★★★★</span><span>★★★★★</span></span>
+            <span>{{ p.ratingStr }}</span><span>({{ p.reviewCount }} reviews)</span>
+          </div>
+          <div>
+            <span><span>{{ p.icon }}</span>{{ p.catName }}</span>
+            <span><span>location_on</span><span>{{ p.locName }} · {{ p.distLabel }}</span></span>
+            <span><span>workspace_premium</span><span>{{ p.yearsExperience }} yrs experience</span></span>
+          </div>
+          <div>{{ p.bio }}</div>
+        </div>
+        <div>
+          <div><span>Starting at</span><span>{{ p.price }}<span>{{ p.unit }}</span></span></div>
+          <a href="{{ p.href }}" style-hover="background:#1E4FA3;color:#fff">View profile</a>
+        </div>
+      </div>
+    </sc-for>
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div><span>search_off</span></div>
+        <div>No providers match your filters</div>
+        <div>Try another location or loosen the rating and price filters.</div>
+        <button sc-camel-on-click="{{ clearAll }}">Clear filters</button>
+      </div>
+    </sc-if>
+  </div>
+</main>
+</sc-if>
+<sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+<main>
+  <a href="{{ backHref }}" style-hover="color:#1E4FA3"><span>arrow_back</span>Back to results</a>
+  <section>
+    <div>provider photo</div>
+    <div>
+      <div><span>{{ p.icon }}</span>{{ p.catName }}</div>
+      <h1>{{ p.name }}</h1>
+      <div>Owned &amp; run by {{ p.owner }}</div>
+      <div>
+        <span>
+          <span><span>★★★★★</span><span>★★★★★</span></span>
+          <span>{{ p.ratingStr }}</span><a href="#" sc-camel-on-click="{{ toReviews }}">{{ p.reviewCount }} reviews</a>
+        </span>
+        <span><span>location_on</span><span>{{ p.locName }}, TX</span></span>
+        <span><span>workspace_premium</span><span>{{ p.yearsExperience }} years experience</span></span>
+      </div>
+      <div>
+        <sc-if value="{{ p.verified }}" hint-placeholder-val="{{ true }}">
+          <span sc-camel-on-mouse-enter="{{ showTip }}" sc-camel-on-mouse-leave="{{ hideTip }}" sc-camel-on-focus="{{ showTip }}" sc-camel-on-blur="{{ hideTip }}" sc-camel-tab-index="0">
+            <span>✓</span>Verified
+            <span>info</span>
+            <sc-if value="{{ tipOpen }}" hint-placeholder-val="{{ false }}">
+              <span>
+                <span>What does Verified mean?</span>
+                Fixit has checked this provider's photo ID, trade licence and insurance, and confirmed their business address.
+              </span>
+            </sc-if>
+          </span>
+        </sc-if>
+        <sc-if value="{{ p.notVerified }}" hint-placeholder-val="{{ false }}">
+          <span>Not yet verified</span>
+        </sc-if>
+      </div>
+    </div>
+    <div>
+      <div><span>Starting at</span><span>{{ p.price }}<span>{{ p.unit }}</span></span></div>
+      <button sc-camel-on-click="{{ onRequest }}" style-hover="background:#163C7E"><span>send</span>Request Service</button>
+      <button sc-camel-on-click="{{ toggleSave }}"><span>favorite</span>{{ saveLabel }}</button>
+      <sc-if value="{{ requestMsg }}" hint-placeholder-val="{{ false }}"><div>{{ requestMsg }}</div></sc-if>
+    </div>
+  </section>
+  <div>
+    <div>
+      <section>
+        <h2>About</h2>
+        <p>{{ p.bio }}</p>
+      </section>
+      <section>
+        <h2>Services offered</h2>
+        <div>
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+            <div>
+              <span>check_circle</span>
+              <span>{{ s.name }}</span>
+              <span>from</span>
+              <span>{{ s.price }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div>Final price is confirmed by the provider after reviewing your request.</div>
+      </section>
+      <section id="reviews">
+        <div>
+          <h2>Reviews</h2>
+          <div><span>★</span><span>{{ p.ratingStr }}</span><span>· {{ p.reviewCount }} reviews</span></div>
+        </div>
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div>
+            <div>{{ r.initials }}</div>
+            <div>
+              <div>
+                <span>{{ r.author }}</span>
+                <span>{{ r.dateLabel }}</span>
+              </div>
+              <div><span>{{ r.stars }}</span><span>{{ r.empty }}</span></div>
+              <div>{{ r.text }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+    <aside>
+      <h2>Service area</h2>
+      <div>map — Austin metro coverage</div>
+      <div>
+        <sc-for list="{{ areas }}" as="a" hint-placeholder-count="3">
+          <div>
+            <span>location_on</span>
+            <span><span>{{ a.name }}, TX</span></span>
+            <span>{{ a.note }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </aside>
+  </div>
+  <sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
+    <div>This provider couldn't be found. <a href="#/discover?q=&amp;loc=">Browse all providers</a></div>
+  </sc-if>
+</main>
+</sc-if>
+<footer>
+  <div>
+    <div>
+      <div>
+        <div><div>F</div><span>Fixit</span></div>
+        <div>Home service booking marketplace.</div>
+      </div>
+      <div><div>Customers</div><a href="#/discover?q=&amp;loc=">Find Providers</a><a href="#/home/how">How it works</a><a href="#" sc-camel-on-click="{{ soon }}">My requests</a></div>
+      <div><div>Providers</div><a href="#/dashboard">For Providers</a><a href="#/dashboard">Get verified</a><a href="#/dashboard">Dashboard</a></div>
+      <div><div>Company</div><a href="#" sc-camel-on-click="{{ soon }}">About</a><a href="#" sc-camel-on-click="{{ soon }}">Contact</a><a href="#" sc-camel-on-click="{{ soon }}">Privacy</a></div>
+    </div>
+    <div>© 2026 Fixit · University project prototype</div>
+  </div>
+</footer>
+</div>
+</sc-if>
+<sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ false }}">
+<div>
+<aside>
+  <a href="#/home"><div>F</div><span>Fixit</span><span>Pro</span></a>
+  <div>
+    <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+      <a href="#" sc-camel-on-click="{{ n.go }}" style-hover="background:#F6F7F9">
+        <span>{{ n.icon }}</span><span>{{ n.label }}</span>
+        <sc-if value="{{ n.badge }}" hint-placeholder-val="{{ false }}"><span>{{ n.badge }}</span></sc-if>
+      </a>
+    </sc-for>
+  </div>
+  <div>
+    <div></div>
+    <div>
+      <span>{{ p.name }}</span>
+      <span>{{ p.owner }}</span>
+    </div>
+  </div>
+  <a href="#/home" style-hover="color:#B23A3A"><span>logout</span>Log out</a>
+</aside>
+<main>
+  <header>
+    <div>
+      <span>Friday, October 9, 2026</span>
+      <h1>Good morning, {{ firstName }}</h1>
+      <span>{{ greetingSub }}</span>
+    </div>
+    <div>
+      <a href="{{ profileHref }}" style-hover="background:#EAF0FA;color:#1E4FA3"><span>visibility</span>View public profile</a>
+    </div>
+  </header>
+  <div>
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+      <div>
+        <div>
+          <span>{{ s.label }}</span>
+          <span><span>{{ s.icon }}</span></span>
+        </div>
+        <div><span>{{ s.value }}</span><span>{{ s.sub }}</span></div>
+      </div>
+    </sc-for>
+  </div>
+  <div>
+    <section>
+      <div>
+        <div>
+          <h2>Incoming service requests</h2>
+          <span><span>science</span>Sample requests — prototype</span>
+        </div>
+        <div>
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+            <button sc-camel-on-click="{{ t.pick }}">{{ t.label }}<span>{{ t.count }}</span></button>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <span>Customer</span><span>Service</span><span>Date</span><span>Area</span><span>Status</span>
+      </div>
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
+        <div>
+          <div>
+            <div>{{ r.initials }}</div>
+            <div>
+              <span>{{ r.customer }}</span>
+              <span>{{ r.id }}</span>
+            </div>
+          </div>
+          <div>
+            <span>{{ r.service }}</span>
+            <span>{{ r.note }}</span>
+          </div>
+          <div><span>{{ r.dateLabel }}</span><span>{{ r.slot }}</span></div>
+          <span>{{ r.areaName }}</span>
+          <div>
+            <sc-if value="{{ r.isPending }}" hint-placeholder-val="{{ false }}">
+              <button sc-camel-on-click="{{ r.accept }}" style-hover="background:#163C7E"><span>check</span>Accept</button>
+              <button sc-camel-on-click="{{ r.decline }}" style-hover="border-color:#D64545;color:#B23A3A">Decline</button>
+            </sc-if>
+            <span><span></span>{{ r.status }}</span>
+          </div>
+        </div>
+      </sc-for>
+      <sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}">
+        <div>No requests with this status.</div>
+      </sc-if>
+    </section>
+    <div>
+      <section>
+        <div>
+          <h2>Profile completeness</h2>
+          <span>{{ completePct }}</span>
+        </div>
+        <div><div></div></div>
+        <div>
+          <sc-for list="{{ checklist }}" as="c" hint-placeholder-count="5">
+            <div><span>{{ c.icon }}</span><span>{{ c.label }}</span><sc-if value="{{ c.todo }}" hint-placeholder-val="{{ false }}"><a href="#" sc-camel-on-click="{{ soon }}" data-soon="Profile photo upload">Add</a></sc-if></div>
+          </sc-for>
+        </div>
+      </section>
+      <section>
+        <div>
+          <h2>My Services</h2>
+          <button sc-camel-on-click="{{ soon }}" data-soon="Editing services" style-hover="background:#EAF0FA"><span>edit</span>Edit</button>
+        </div>
+        <div>
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+            <div>
+              <span>{{ s.name }}</span>
+              <span>{{ s.price }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ editMsg }}" hint-placeholder-val="{{ false }}"><div>{{ editMsg }}</div></sc-if>
+      </section>
+    </div>
+  </div>
+</main>
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <span>{{ toast }}</span>
+    <button sc-camel-on-click="{{ undo }}">Undo</button>
+  </div>
+</sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true">
+    <div sc-camel-on-click="{{ closeModal }}"></div>
+    <div>
+      <div><span>construction</span></div>
+      <div>{{ modalTitle }}</div>
+      <div>{{ modalBody }}</div>
+      <button sc-camel-on-click="{{ closeModal }}" style-hover="background:#163C7E">Close</button>
+    </div>
+  </div>
+</sc-if>

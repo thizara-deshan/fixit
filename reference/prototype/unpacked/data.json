@@ -1,0 +1,697 @@
+{
+  "app": {
+    "name": "Fixit",
+    "tagline": "Home service booking marketplace.",
+    "currency": "USD",
+    "region": "Austin metro, TX"
+  },
+  "categories": [
+    {
+      "id": "plumbing",
+      "name": "Plumbing",
+      "blurb": "Leaks, drains, water heaters"
+    },
+    {
+      "id": "electrical",
+      "name": "Electrical",
+      "blurb": "Wiring, lighting, panels"
+    },
+    {
+      "id": "cleaning",
+      "name": "Cleaning",
+      "blurb": "Regular, deep & move-out cleans"
+    },
+    {
+      "id": "gardening",
+      "name": "Gardening",
+      "blurb": "Lawns, hedges, planting"
+    },
+    {
+      "id": "painting",
+      "name": "Painting & Decorating",
+      "blurb": "Interior, exterior, wallpaper"
+    },
+    {
+      "id": "carpentry",
+      "name": "Carpentry",
+      "blurb": "Custom builds, doors, decks"
+    },
+    {
+      "id": "handyman",
+      "name": "Handyman",
+      "blurb": "Small jobs, mounting, repairs"
+    },
+    {
+      "id": "appliance",
+      "name": "Appliance Repair",
+      "blurb": "Washers, fridges, ovens"
+    }
+  ],
+  "locations": [
+    {
+      "id": "austin",
+      "name": "Austin",
+      "state": "TX"
+    },
+    {
+      "id": "round-rock",
+      "name": "Round Rock",
+      "state": "TX"
+    },
+    {
+      "id": "cedar-park",
+      "name": "Cedar Park",
+      "state": "TX"
+    },
+    {
+      "id": "pflugerville",
+      "name": "Pflugerville",
+      "state": "TX"
+    }
+  ],
+  "providers": [
+    {
+      "id": "p01",
+      "name": "Bell & Sons Plumbing",
+      "owner": "Marcus Bell",
+      "photo": null,
+      "category": "plumbing",
+      "location": "austin",
+      "rating": 4.9,
+      "reviewCount": 212,
+      "yearsExperience": 14,
+      "startingPrice": 85,
+      "priceUnit": "hr",
+      "verified": true,
+      "bio": "Family-run plumbing business serving Austin for over a decade. Upfront pricing, same-day call-outs and tidy work.",
+      "services": [
+        "Leak repair",
+        "Drain unclogging",
+        "Water heater install",
+        "Fixture replacement",
+        "Emergency call-outs"
+      ],
+      "reviews": [
+        {
+          "author": "Sarah K.",
+          "rating": 5,
+          "date": "2026-09-12",
+          "text": "Arrived within two hours and fixed our burst pipe. Super professional."
+        },
+        {
+          "author": "David L.",
+          "rating": 5,
+          "date": "2026-08-30",
+          "text": "Clear quote before starting, no surprises on the bill."
+        },
+        {
+          "author": "Monica R.",
+          "rating": 4,
+          "date": "2026-07-18",
+          "text": "Great work on the water heater. Slightly late but called ahead."
+        }
+      ],
+      "servicePrices": [
+        85,
+        95,
+        450,
+        110,
+        150
+      ],
+      "serviceAreas": [
+        "austin",
+        "pflugerville",
+        "round-rock"
+      ]
+    },
+    {
+      "id": "p02",
+      "name": "FlowRight Plumbing",
+      "owner": "Dana Ortiz",
+      "photo": null,
+      "category": "plumbing",
+      "location": "round-rock",
+      "rating": 4.3,
+      "reviewCount": 64,
+      "yearsExperience": 6,
+      "startingPrice": 70,
+      "priceUnit": "hr",
+      "verified": false,
+      "bio": "Independent plumber focused on residential repairs and bathroom refits. Friendly, careful and affordable.",
+      "services": [
+        "Toilet repair",
+        "Faucet install",
+        "Garbage disposal",
+        "Bathroom refits"
+      ],
+      "reviews": [
+        {
+          "author": "Chris P.",
+          "rating": 5,
+          "date": "2026-09-02",
+          "text": "Fixed a running toilet in 20 minutes. Fair price."
+        },
+        {
+          "author": "Hannah W.",
+          "rating": 4,
+          "date": "2026-08-11",
+          "text": "Good job on our new faucet, would book again."
+        },
+        {
+          "author": "Leo M.",
+          "rating": 4,
+          "date": "2026-06-25",
+          "text": "Had to come back for a second visit but sorted it."
+        }
+      ],
+      "servicePrices": [
+        70,
+        120,
+        160,
+        1800
+      ],
+      "serviceAreas": [
+        "round-rock",
+        "pflugerville",
+        "cedar-park"
+      ]
+    },
+    {
+      "id": "p03",
+      "name": "BrightSpark Electric",
+      "owner": "Priya Nair",
+      "photo": null,
+      "category": "electrical",
+      "location": "cedar-park",
+      "rating": 4.8,
+      "reviewCount": 138,
+      "yearsExperience": 11,
+      "startingPrice": 95,
+      "priceUnit": "hr",
+      "verified": true,
+      "bio": "Licensed master electrician. From a single outlet to full panel upgrades, done safely and to code.",
+      "services": [
+        "Outlet & switch install",
+        "Lighting fixtures",
+        "Panel upgrades",
+        "EV charger install",
+        "Safety inspections"
+      ],
+      "reviews": [
+        {
+          "author": "Jason T.",
+          "rating": 5,
+          "date": "2026-09-20",
+          "text": "Installed our EV charger quickly and explained everything."
+        },
+        {
+          "author": "Amy G.",
+          "rating": 5,
+          "date": "2026-08-14",
+          "text": "Very knowledgeable, spotted an issue the last guy missed."
+        },
+        {
+          "author": "Robert F.",
+          "rating": 4,
+          "date": "2026-07-03",
+          "text": "Pricey but worth it for peace of mind."
+        }
+      ],
+      "servicePrices": [
+        95,
+        120,
+        1400,
+        650,
+        140
+      ],
+      "serviceAreas": [
+        "cedar-park",
+        "round-rock",
+        "austin"
+      ]
+    },
+    {
+      "id": "p04",
+      "name": "Fresh Nest Cleaning",
+      "owner": "Alicia Gomez",
+      "photo": null,
+      "category": "cleaning",
+      "location": "austin",
+      "rating": 4.7,
+      "reviewCount": 301,
+      "yearsExperience": 8,
+      "startingPrice": 60,
+      "priceUnit": "visit",
+      "verified": true,
+      "bio": "A small, trusted team offering eco-friendly home cleaning. Weekly, bi-weekly or one-off deep cleans.",
+      "services": [
+        "Regular cleaning",
+        "Deep cleaning",
+        "Move-in / move-out",
+        "Oven & fridge cleaning"
+      ],
+      "reviews": [
+        {
+          "author": "Emily S.",
+          "rating": 5,
+          "date": "2026-09-25",
+          "text": "House has never looked better. Lovely team."
+        },
+        {
+          "author": "Marco D.",
+          "rating": 5,
+          "date": "2026-09-01",
+          "text": "Reliable every two weeks for six months now."
+        },
+        {
+          "author": "Tina B.",
+          "rating": 4,
+          "date": "2026-08-08",
+          "text": "Thorough clean, missed one window but fixed it next visit."
+        }
+      ],
+      "servicePrices": [
+        60,
+        140,
+        220,
+        45
+      ],
+      "serviceAreas": [
+        "austin",
+        "pflugerville"
+      ]
+    },
+    {
+      "id": "p05",
+      "name": "GreenLeaf Gardens",
+      "owner": "Tom Whitaker",
+      "photo": null,
+      "category": "gardening",
+      "location": "pflugerville",
+      "rating": 4.5,
+      "reviewCount": 89,
+      "yearsExperience": 9,
+      "startingPrice": 45,
+      "priceUnit": "hr",
+      "verified": true,
+      "bio": "Garden care and landscaping for Texas climates. Drought-friendly planting is our specialty.",
+      "services": [
+        "Lawn mowing",
+        "Hedge trimming",
+        "Planting & mulching",
+        "Seasonal clean-ups",
+        "Irrigation checks"
+      ],
+      "reviews": [
+        {
+          "author": "Nina J.",
+          "rating": 5,
+          "date": "2026-09-15",
+          "text": "Transformed our backyard with native plants."
+        },
+        {
+          "author": "Paul H.",
+          "rating": 4,
+          "date": "2026-08-21",
+          "text": "Dependable weekly mowing, good communication."
+        },
+        {
+          "author": "Grace O.",
+          "rating": 4,
+          "date": "2026-07-09",
+          "text": "Nice work, booking took a few days."
+        }
+      ],
+      "servicePrices": [
+        45,
+        60,
+        80,
+        150,
+        55
+      ],
+      "serviceAreas": [
+        "pflugerville",
+        "round-rock",
+        "austin"
+      ]
+    },
+    {
+      "id": "p06",
+      "name": "True Coat Painting",
+      "owner": "Jamal Carter",
+      "photo": null,
+      "category": "painting",
+      "location": "round-rock",
+      "rating": 4.6,
+      "reviewCount": 117,
+      "yearsExperience": 12,
+      "startingPrice": 55,
+      "priceUnit": "hr",
+      "verified": true,
+      "bio": "Interior and exterior painting with clean lines and careful prep. Furniture covered, floors protected.",
+      "services": [
+        "Interior painting",
+        "Exterior painting",
+        "Cabinet refinishing",
+        "Wallpaper removal"
+      ],
+      "reviews": [
+        {
+          "author": "Laura V.",
+          "rating": 5,
+          "date": "2026-09-18",
+          "text": "Crisp edges and they cleaned up perfectly."
+        },
+        {
+          "author": "Sam E.",
+          "rating": 4,
+          "date": "2026-08-27",
+          "text": "Kitchen cabinets look brand new."
+        },
+        {
+          "author": "Ivy C.",
+          "rating": 5,
+          "date": "2026-07-30",
+          "text": "Finished a day early. Highly recommend."
+        }
+      ],
+      "servicePrices": [
+        55,
+        65,
+        900,
+        50
+      ],
+      "serviceAreas": [
+        "round-rock",
+        "cedar-park",
+        "pflugerville",
+        "austin"
+      ]
+    },
+    {
+      "id": "p07",
+      "name": "Oak & Iron Carpentry",
+      "owner": "Lena Fischer",
+      "photo": null,
+      "category": "carpentry",
+      "location": "cedar-park",
+      "rating": 4.9,
+      "reviewCount": 76,
+      "yearsExperience": 17,
+      "startingPrice": 75,
+      "priceUnit": "hr",
+      "verified": true,
+      "bio": "Custom woodwork and repairs by a craftsperson with 17 years at the bench. Built to last.",
+      "services": [
+        "Custom shelving",
+        "Door hanging & repair",
+        "Deck building",
+        "Trim & molding",
+        "Furniture repair"
+      ],
+      "reviews": [
+        {
+          "author": "Owen R.",
+          "rating": 5,
+          "date": "2026-09-10",
+          "text": "Built-in bookshelves are stunning. True craftsmanship."
+        },
+        {
+          "author": "Rachel N.",
+          "rating": 5,
+          "date": "2026-08-05",
+          "text": "Fixed three sticking doors in one visit."
+        },
+        {
+          "author": "Ben A.",
+          "rating": 5,
+          "date": "2026-07-14",
+          "text": "Our new deck is solid and beautiful."
+        }
+      ],
+      "servicePrices": [
+        75,
+        85,
+        2500,
+        80,
+        90
+      ],
+      "serviceAreas": [
+        "cedar-park",
+        "austin"
+      ]
+    },
+    {
+      "id": "p08",
+      "name": "HandyHank Home Repairs",
+      "owner": "Hank Morales",
+      "photo": null,
+      "category": "handyman",
+      "location": "austin",
+      "rating": 3.8,
+      "reviewCount": 41,
+      "yearsExperience": 4,
+      "startingPrice": 50,
+      "priceUnit": "hr",
+      "verified": false,
+      "bio": "No job too small. TV mounting, flat-pack assembly, minor repairs and odd jobs around the house.",
+      "services": [
+        "TV mounting",
+        "Furniture assembly",
+        "Drywall patching",
+        "Picture hanging",
+        "Minor repairs"
+      ],
+      "reviews": [
+        {
+          "author": "Kate Y.",
+          "rating": 4,
+          "date": "2026-09-08",
+          "text": "Mounted our TV neatly, good value."
+        },
+        {
+          "author": "Mike Z.",
+          "rating": 3,
+          "date": "2026-08-16",
+          "text": "Job done but arrived an hour late."
+        },
+        {
+          "author": "Sofia L.",
+          "rating": 4,
+          "date": "2026-07-22",
+          "text": "Assembled a whole bedroom set quickly."
+        }
+      ],
+      "servicePrices": [
+        50,
+        50,
+        65,
+        50,
+        50
+      ],
+      "serviceAreas": [
+        "austin"
+      ]
+    },
+    {
+      "id": "p09",
+      "name": "ApplianceDoc",
+      "owner": "Kevin Tran",
+      "photo": null,
+      "category": "appliance",
+      "location": "pflugerville",
+      "rating": 4.4,
+      "reviewCount": 158,
+      "yearsExperience": 10,
+      "startingPrice": 89,
+      "priceUnit": "visit",
+      "verified": true,
+      "bio": "Factory-trained technician repairing all major brands. Most parts carried in the van for first-visit fixes.",
+      "services": [
+        "Washer & dryer repair",
+        "Refrigerator repair",
+        "Oven & stove repair",
+        "Dishwasher repair"
+      ],
+      "reviews": [
+        {
+          "author": "Alan W.",
+          "rating": 5,
+          "date": "2026-09-22",
+          "text": "Fridge fixed on the first visit, part was in the van."
+        },
+        {
+          "author": "Joy P.",
+          "rating": 4,
+          "date": "2026-08-19",
+          "text": "Honest diagnosis, saved us buying a new washer."
+        },
+        {
+          "author": "Dev S.",
+          "rating": 4,
+          "date": "2026-07-11",
+          "text": "Good service, call-out fee a little high."
+        }
+      ],
+      "servicePrices": [
+        89,
+        99,
+        99,
+        89
+      ],
+      "serviceAreas": [
+        "pflugerville",
+        "round-rock",
+        "austin",
+        "cedar-park"
+      ]
+    },
+    {
+      "id": "p10",
+      "name": "Sparkle & Shine Cleaners",
+      "owner": "Grace Kim",
+      "photo": null,
+      "category": "cleaning",
+      "location": "cedar-park",
+      "rating": 4.1,
+      "reviewCount": 52,
+      "yearsExperience": 3,
+      "startingPrice": 55,
+      "priceUnit": "visit",
+      "verified": false,
+      "bio": "New, energetic cleaning service with flexible evening and weekend slots.",
+      "services": [
+        "Regular cleaning",
+        "Apartment cleaning",
+        "Post-party clean-up",
+        "Laundry & ironing"
+      ],
+      "reviews": [
+        {
+          "author": "Tyler B.",
+          "rating": 4,
+          "date": "2026-09-14",
+          "text": "Flexible weekend booking was a lifesaver."
+        },
+        {
+          "author": "Megan F.",
+          "rating": 5,
+          "date": "2026-08-24",
+          "text": "Friendly and detailed, apartment sparkled."
+        },
+        {
+          "author": "Luis G.",
+          "rating": 3,
+          "date": "2026-07-28",
+          "text": "Decent clean, a few spots missed."
+        }
+      ],
+      "servicePrices": [
+        55,
+        50,
+        90,
+        40
+      ],
+      "serviceAreas": [
+        "cedar-park",
+        "round-rock"
+      ]
+    }
+  ],
+  "requestStatuses": [
+    "Pending",
+    "Accepted",
+    "Completed",
+    "Declined"
+  ],
+  "sampleRequests": [
+    {
+      "id": "FX-2061",
+      "providerId": "p01",
+      "customer": "Olivia Martinez",
+      "service": "Leak repair",
+      "date": "2026-10-11",
+      "slot": "Morning",
+      "area": "austin",
+      "status": "Pending",
+      "note": "Water dripping under the kitchen sink cabinet."
+    },
+    {
+      "id": "FX-2059",
+      "providerId": "p01",
+      "customer": "James Carter",
+      "service": "Water heater install",
+      "date": "2026-10-14",
+      "slot": "Afternoon",
+      "area": "pflugerville",
+      "status": "Pending",
+      "note": "Old 40-gal tank failed, need a replacement quote."
+    },
+    {
+      "id": "FX-2058",
+      "providerId": "p01",
+      "customer": "Aisha Rahman",
+      "service": "Drain unclogging",
+      "date": "2026-10-12",
+      "slot": "Evening",
+      "area": "round-rock",
+      "status": "Pending",
+      "note": "Shower drains very slowly."
+    },
+    {
+      "id": "FX-2054",
+      "providerId": "p01",
+      "customer": "Ethan Brooks",
+      "service": "Fixture replacement",
+      "date": "2026-10-10",
+      "slot": "Morning",
+      "area": "austin",
+      "status": "Accepted",
+      "note": "Swap two bathroom faucets."
+    },
+    {
+      "id": "FX-2050",
+      "providerId": "p01",
+      "customer": "Sophia Nguyen",
+      "service": "Emergency call-outs",
+      "date": "2026-10-09",
+      "slot": "Evening",
+      "area": "austin",
+      "status": "Accepted",
+      "note": "Burst pipe in garage."
+    },
+    {
+      "id": "FX-2046",
+      "providerId": "p01",
+      "customer": "Daniel Kim",
+      "service": "Leak repair",
+      "date": "2026-10-03",
+      "slot": "Afternoon",
+      "area": "round-rock",
+      "status": "Completed",
+      "note": "Toilet base leaking."
+    },
+    {
+      "id": "FX-2041",
+      "providerId": "p01",
+      "customer": "Rachel Owens",
+      "service": "Drain unclogging",
+      "date": "2026-10-01",
+      "slot": "Morning",
+      "area": "pflugerville",
+      "status": "Completed",
+      "note": "Kitchen sink fully blocked."
+    },
+    {
+      "id": "FX-2037",
+      "providerId": "p01",
+      "customer": "Marcus Lee",
+      "service": "Water heater install",
+      "date": "2026-09-28",
+      "slot": "Morning",
+      "area": "cedar-park",
+      "status": "Declined",
+      "note": "Outside service area."
+    }
+  ]
+}

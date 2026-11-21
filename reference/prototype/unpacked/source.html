@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixit – Prototype</title>
+
+
+
+<script src="daba50fc-8f85-4a34-ac77-a53826864a51"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style></style>
+<style>.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+</style>
+<style>
+body{margin:0;background:#F6F7F9;color:#1A1D24;font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font-family:inherit}
+a{color:#1E4FA3;text-decoration:none}a:hover{color:#163C7E}
+*{box-sizing:border-box}
+.ms{font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;direction:ltr;font-feature-settings:'liga'}
+</style>
+</helmet>
+<sc-if value="{{ isCustomer }}" hint-placeholder-val="{{ true }}">
+<div style="min-height:100vh;display:flex;flex-direction:column">
+<nav style="background:#fff;border-bottom:1px solid #E3E6EB;position:sticky;top:0;z-index:10">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;gap:48px">
+    <a href="#/home" style="display:flex;align-items:center;gap:10px;color:#1A1D24"><div style="width:34px;height:34px;border-radius:10px;background:#1E4FA3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px">F</div><span style="font-size:21px;font-weight:800;letter-spacing:-0.02em">Fixit</span></a>
+    <div style="display:flex;gap:32px;font-size:15px;font-weight:600;flex:1">
+      <a href="#/home" style="color:{{ navHomeColor }};box-shadow:{{ navHomeLine }};padding:25px 0" style-hover="color:#1A1D24">Home</a>
+      <a href="#/discover?q=&amp;loc=" style="color:{{ navFindColor }};box-shadow:{{ navFindLine }};padding:25px 0" style-hover="color:#1A1D24">Find Providers</a>
+      <a href="#/dashboard" style="color:#545B68;padding:25px 0" style-hover="color:#1A1D24">For Providers</a>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button sc-camel-on-click="{{ soon }}" style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E6EB;background:#fff;color:#1A1D24;font:600 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer" style-hover="background:#F6F7F9">Log in</button>
+      <button sc-camel-on-click="{{ soon }}" style="height:40px;padding:0 18px;border-radius:12px;border:none;background:#1E4FA3;color:#fff;font:600 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer" style-hover="background:#163C7E">Sign up</button>
+    </div>
+  </div>
+</nav>
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+
+<section style="background:#fff;border-bottom:1px solid #E3E6EB">
+  <div style="max-width:1240px;margin:0 auto;padding:72px 32px 88px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;border-radius:999px;background:#E7F5EC;color:#1F8A4C;font-size:13px;font-weight:700"><span class="ms" style="font-size:18px">verified</span>Verified pros across the Austin metro</span>
+      <h1 style="margin:0;font-size:56px;line-height:64px;font-weight:800;letter-spacing:-0.03em;text-wrap:balance">Trusted local help, <span style="color:#1E4FA3">right when you need it.</span></h1>
+      <p style="margin:0;font-size:18px;line-height:28px;color:#545B68;max-width:520px;text-wrap:pretty">Find reviewed plumbers, electricians, cleaners and more near you — compare them side by side and send a request in minutes.</p>
+      <form sc-camel-on-submit="{{ onSearch }}" style="margin-top:8px;background:#fff;border:1.5px solid #E3E6EB;border-radius:20px;padding:8px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) auto;align-items:center;box-shadow:0 12px 32px rgba(20,24,36,.08)">
+        <label style="display:flex;align-items:center;gap:12px;padding:0 16px;height:60px;border-right:1px solid #E3E6EB">
+          <span class="ms" style="font-size:24px;color:#8A909C">search</span>
+          <span style="display:flex;flex-direction:column;flex:1;min-width:0">
+            <span style="font-size:12px;font-weight:700;color:#1A1D24">Service</span>
+            <input value="{{ query }}" sc-camel-on-change="{{ onQuery }}" placeholder="What service do you need?" style="border:none;outline:none;padding:0;font:500 15px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#1A1D24;background:transparent;width:100%">
+          </span>
+        </label>
+        <label style="display:flex;align-items:center;gap:12px;padding:0 16px;height:60px">
+          <span class="ms" style="font-size:24px;color:#8A909C">location_on</span>
+          <span style="display:flex;flex-direction:column;flex:1;min-width:0">
+            <span style="font-size:12px;font-weight:700;color:#1A1D24">Location</span>
+            <sc-raw-select value="{{ loc }}" sc-camel-on-change="{{ onLoc }}" style="border:none;outline:none;padding:0;margin-left:-3px;font:500 15px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#1A1D24;background:transparent;width:100%;cursor:pointer">
+              <option value="">All locations</option>
+              <option value="austin">Austin, TX</option><option value="round-rock">Round Rock, TX</option><option value="cedar-park">Cedar Park, TX</option><option value="pflugerville">Pflugerville, TX</option>
+            </sc-raw-select>
+          </span>
+        </label>
+        <button type="submit" style="height:60px;padding:0 28px;border-radius:14px;border:none;background:#1E4FA3;color:#fff;font:700 16px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer;display:flex;align-items:center;gap:8px" style-hover="background:#163C7E"><span class="ms" style="font-size:20px">search</span>Search</button>
+      </form>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:#8A909C">
+        <span>Popular:</span>
+        <sc-for list="{{ quick }}" as="q" hint-placeholder-count="4">
+          <button sc-camel-on-click="{{ q.pick }}" style="height:32px;padding:0 12px;border-radius:999px;border:1px solid #E3E6EB;background:#fff;color:#545B68;font:600 13px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer" style-hover="border-color:#1E4FA3;color:#1E4FA3">{{ q.label }}</button>
+        </sc-for>
+      </div>
+      <sc-if value="{{ searchMsg }}" hint-placeholder-val="{{ false }}"><div style="font-size:14px;color:#1E4FA3;font-weight:600">{{ searchMsg }}</div></sc-if>
+    </div>
+    <div style="position:relative;height:520px">
+      <div style="position:absolute;inset:0 0 0 40px;border-radius:28px;background:repeating-linear-gradient(135deg,#EEF0F3 0 10px,#E6E9EE 10px 20px);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A909C">hero photo — friendly pro at a customer's door</div>
+      <div style="position:absolute;left:0;bottom:40px;background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 16px 40px rgba(20,24,36,.14);display:flex;gap:14px;align-items:center;width:300px">
+        <div style="width:48px;height:48px;flex:none;border-radius:12px;background:repeating-linear-gradient(135deg,#EEF0F3 0 5px,#E3E6EB 5px 10px)"></div>
+        <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+          <div style="font-size:14px;font-weight:700">Bell &amp; Sons Plumbing</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:13px"><span style="color:#F2843A;letter-spacing:1px">★★★★★</span><span style="font-weight:700">4.9</span><span style="color:#8A909C">(212)</span></div>
+        </div>
+        <span class="ms" style="margin-left:auto;font-size:22px;color:#1F8A4C;font-variation-settings:'FILL' 1">verified</span>
+      </div>
+      <div style="position:absolute;right:24px;top:32px;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 16px 40px rgba(20,24,36,.12);display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600">
+        <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:#EAF0FA;color:#1E4FA3;font-size:12px;font-weight:700"><span style="width:6px;height:6px;border-radius:50%;background:#1E4FA3"></span>Accepted</span>
+        Your request was accepted
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1240px;width:100%;margin:0 auto;padding:88px 32px 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <h2 style="margin:0;font-size:28px;line-height:36px;font-weight:700;letter-spacing:-0.01em;">Popular services</h2>
+      <p style="margin:0;font-size:16px;color:#545B68">Pick a category to see pros available near you.</p>
+    </div>
+    <a href="#/discover?q=&amp;loc=" style="font-size:15px;font-weight:700;display:flex;align-items:center;gap:4px">All services<span class="ms" style="font-size:20px">arrow_forward</span></a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+    <sc-for list="{{ categories }}" as="c" hint-placeholder-count="8">
+      <a href="{{ c.href }}" style="background:#fff;border:1px solid #E3E6EB;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px;color:#1A1D24;transition:border-color .15s,box-shadow .15s,transform .15s" style-hover="border-color:#1E4FA3;box-shadow:0 8px 24px rgba(20,24,36,.08);transform:translateY(-2px)">
+        <div style="width:52px;height:48px;border-radius:14px;background:#EAF0FA;color:#1E4FA3;display:flex;align-items:center;justify-content:center"><span class="ms" style="font-size:28px">{{ c.icon }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div style="font-size:17px;font-weight:700">{{ c.name }}</div>
+          <div style="font-size:14px;color:#8A909C;line-height:20px">{{ c.blurb }}</div>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section style="max-width:1240px;width:100%;margin:0 auto;padding:88px 32px 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <h2 style="margin:0;font-size:28px;line-height:36px;font-weight:700;letter-spacing:-0.01em;">Featured providers near you</h2>
+      <p style="margin:0;font-size:16px;color:#545B68">Highly rated, verified pros in the Austin metro.</p>
+    </div>
+    <a href="#/discover?q=&amp;loc=" style="font-size:15px;font-weight:700;display:flex;align-items:center;gap:4px">See all providers<span class="ms" style="font-size:20px">arrow_forward</span></a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+    <sc-for list="{{ featured }}" as="p" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E3E6EB;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s" style-hover="box-shadow:0 8px 24px rgba(20,24,36,.08)">
+        <div style="position:relative;height:180px;background:repeating-linear-gradient(135deg,#EEF0F3 0 8px,#E6E9EE 8px 16px);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A909C">provider photo
+          <sc-if value="{{ p.verified }}" hint-placeholder-val="{{ true }}">
+            <span style="position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px 0 4px;border-radius:999px;background:#fff;color:#1F8A4C;font:700 12px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;box-shadow:0 2px 8px rgba(20,24,36,.08)"><span style="width:16px;height:16px;border-radius:50%;background:#1F8A4C;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center">✓</span>Verified</span>
+          </sc-if>
+        </div>
+        <div style="padding:18px 18px 20px;display:flex;flex-direction:column;gap:12px;flex:1">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <a href="{{ p.href }}" style="font-size:17px;font-weight:700;line-height:22px;color:#1A1D24">{{ p.name }}</a>
+            <div style="font-size:13px;color:#8A909C;display:flex;align-items:center;gap:4px"><span>{{ p.catName }} ·</span><span class="ms" style="font-size:15px">location_on</span><span>{{ p.locName }}</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="position:relative;display:inline-block;font-size:15px;letter-spacing:1px;line-height:1"><span style="color:#E3E6EB">★★★★★</span><span style="position:absolute;left:0;top:0;width:{{ p.starPct }};overflow:hidden;white-space:nowrap;color:#F2843A">★★★★★</span></span>
+            <span style="font-weight:700;font-size:14px">{{ p.ratingStr }}</span><span style="font-size:13px;color:#8A909C">({{ p.reviewCount }})</span>
+          </div>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;border-top:1px solid #E3E6EB">
+            <div style="display:flex;flex-direction:column"><span style="font-size:12px;color:#8A909C">From</span><span style="font-size:16px;font-weight:800">{{ p.priceLabel }}</span></div>
+            <a href="{{ p.href }}" style="height:40px;padding:0 16px;border-radius:12px;border:1.5px solid #1E4FA3;background:#fff;color:#1E4FA3;font:600 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;display:flex;align-items:center;white-space:nowrap;flex:none" style-hover="background:#EAF0FA;color:#1E4FA3">View profile</a>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="how-it-works" style="max-width:1240px;width:100%;margin:0 auto;padding:88px 32px 0;display:flex;flex-direction:column;gap:40px;scroll-margin-top:72px">
+  <div style="display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center">
+    <h2 style="margin:0;font-size:28px;line-height:36px;font-weight:700;letter-spacing:-0.01em;">How it works</h2>
+    <p style="margin:0;font-size:16px;color:#545B68">Get the job done in three simple steps.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;position:relative">
+    <div style="background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;justify-content:space-between"><div style="width:56px;height:56px;border-radius:16px;background:#1E4FA3;color:#fff;display:flex;align-items:center;justify-content:center"><span class="ms" style="font-size:28px">search</span></div><span style="font-size:40px;font-weight:800;color:#E3E6EB">01</span></div>
+      <div style="font-size:20px;font-weight:700">Search</div>
+      <div style="font-size:15px;line-height:23px;color:#545B68">Tell us what you need and where. We'll show local pros who do exactly that.</div>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;justify-content:space-between"><div style="width:56px;height:56px;border-radius:16px;background:#1E4FA3;color:#fff;display:flex;align-items:center;justify-content:center"><span class="ms" style="font-size:28px">compare_arrows</span></div><span style="font-size:40px;font-weight:800;color:#E3E6EB">02</span></div>
+      <div style="font-size:20px;font-weight:700">Compare</div>
+      <div style="font-size:15px;line-height:23px;color:#545B68">Check ratings, reviews, prices and Verified badges to pick the right fit.</div>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;justify-content:space-between"><div style="width:56px;height:56px;border-radius:16px;background:#F2843A;color:#1A1D24;display:flex;align-items:center;justify-content:center"><span class="ms" style="font-size:28px">send</span></div><span style="font-size:40px;font-weight:800;color:#E3E6EB">03</span></div>
+      <div style="font-size:20px;font-weight:700">Request</div>
+      <div style="font-size:15px;line-height:23px;color:#545B68">Send a service request with your details. The provider accepts and you're booked.</div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1240px;width:100%;margin:0 auto;padding:88px 32px">
+  <div style="background:#1E4FA3;border-radius:24px;padding:48px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:640px">
+      <h2 style="margin:0;font-size:28px;line-height:36px;font-weight:700;letter-spacing:-0.01em;color:#fff;letter-spacing:-0.02em">Are you a service provider? Join us.</h2>
+      <p style="margin:0;font-size:16px;line-height:24px;color:#D6E0F3">List your business, get verified and receive requests from customers in your area — free to join.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex:none">
+      <a href="#/dashboard" style="height:48px;padding:0 24px;border-radius:12px;background:#F2843A;color:#1A1D24;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px" style-hover="background:#E0722A;color:#1A1D24">Join as a provider<span class="ms" style="font-size:20px">arrow_forward</span></a>
+      <a href="#/dashboard" style="height:48px;padding:0 22px;border-radius:12px;border:1.5px solid #6E8FCB;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center" style-hover="background:#163C7E;color:#fff">Learn more</a>
+    </div>
+  </div>
+</section>
+
+</sc-if>
+<sc-if value="{{ isDiscover }}" hint-placeholder-val="{{ false }}">
+
+<section style="background:#fff;border-bottom:1px solid #E3E6EB">
+  <div style="max-width:1240px;margin:0 auto;padding:28px 32px">
+    <form sc-camel-on-submit="{{ onSearch }}" style="background:#fff;border:1.5px solid #E3E6EB;border-radius:16px;padding:6px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) auto;align-items:center;box-shadow:0 6px 20px rgba(20,24,36,.05)">
+      <label style="display:flex;align-items:center;gap:12px;padding:0 16px;height:56px;border-right:1px solid #E3E6EB">
+        <span class="ms" style="font-size:24px;color:#8A909C">search</span>
+        <span style="display:flex;flex-direction:column;flex:1;min-width:0">
+          <span style="font-size:12px;font-weight:700">Service</span>
+          <input value="{{ query }}" sc-camel-on-change="{{ onQuery }}" placeholder="What service do you need?" style="border:none;outline:none;padding:0;font:500 15px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#1A1D24;background:transparent;width:100%">
+        </span>
+      </label>
+      <label style="display:flex;align-items:center;gap:12px;padding:0 16px;height:56px">
+        <span class="ms" style="font-size:24px;color:#8A909C">location_on</span>
+        <span style="display:flex;flex-direction:column;flex:1;min-width:0">
+          <span style="font-size:12px;font-weight:700">Location</span>
+          <sc-raw-select value="{{ loc }}" sc-camel-on-change="{{ onLoc }}" style="border:none;outline:none;padding:0;margin-left:-3px;font:500 15px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#1A1D24;background:transparent;width:100%;cursor:pointer">
+            <option value="">All locations</option>
+            <option value="austin">Austin, TX</option><option value="round-rock">Round Rock, TX</option><option value="cedar-park">Cedar Park, TX</option><option value="pflugerville">Pflugerville, TX</option>
+          </sc-raw-select>
+        </span>
+      </label>
+      <button type="submit" style="height:56px;padding:0 28px;border-radius:13px;border:none;background:#1E4FA3;color:#fff;font:700 16px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer;display:flex;align-items:center;gap:8px" style-hover="background:#163C7E"><span class="ms" style="font-size:20px">search</span>Search</button>
+    </form>
+  </div>
+</section>
+
+<main style="max-width:1240px;width:100%;margin:0 auto;padding:32px 32px 88px;display:grid;grid-template-columns:280px minmax(0,1fr);gap:32px;align-items:start">
+
+  <aside style="position:sticky;top:96px;background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div style="font-size:18px;font-weight:800">Filters</div>
+      <button sc-camel-on-click="{{ clearAll }}" style="border:none;background:none;padding:0;font:600 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#1E4FA3;cursor:pointer">Clear all</button>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:14px;font-weight:700">Service category</div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <sc-for list="{{ catOptions }}" as="c" hint-placeholder-count="8">
+          <button sc-camel-on-click="{{ c.toggle }}" style="display:flex;align-items:center;gap:10px;padding:6px 0;border:none;background:none;font:500 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#1A1D24;cursor:pointer;text-align:left">
+            <span style="width:20px;height:20px;flex:none;border-radius:6px;border:1.5px solid {{ c.boxBorder }};background:{{ c.boxBg }};color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">{{ c.mark }}</span>
+            <span style="flex:1">{{ c.name }}</span>
+            <span style="font-size:13px;color:#8A909C">{{ c.count }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="height:1px;background:#E3E6EB"></div>
+
+    <label style="display:flex;flex-direction:column;gap:10px">
+      <span style="font-size:14px;font-weight:700">Location</span>
+      <sc-raw-select value="{{ loc }}" sc-camel-on-change="{{ onLoc }}" style="height:48px;padding:0 12px;border-radius:12px;border:1.5px solid #E3E6EB;font:500 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#1A1D24;background:#fff;cursor:pointer">
+        <option value="">All locations</option>
+        <option value="austin">Austin, TX</option><option value="round-rock">Round Rock, TX</option><option value="cedar-park">Cedar Park, TX</option><option value="pflugerville">Pflugerville, TX</option>
+      </sc-raw-select>
+    </label>
+
+    <div style="height:1px;background:#E3E6EB"></div>
+
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:14px;font-weight:700">Minimum rating</div>
+      <sc-for list="{{ ratingOptions }}" as="r" hint-placeholder-count="4">
+        <button sc-camel-on-click="{{ r.pick }}" style="display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border-radius:10px;border:1.5px solid {{ r.border }};background:{{ r.bg }};font:600 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#1A1D24;cursor:pointer">
+          <span style="color:#F2843A;letter-spacing:1px;font-size:15px">{{ r.stars }}</span><span style="color:#E3E6EB;letter-spacing:1px;font-size:15px;margin-left:-10px">{{ r.empty }}</span>
+          <span style="margin-left:auto;font-size:13px;color:#545B68">{{ r.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="height:1px;background:#E3E6EB"></div>
+
+    <button sc-camel-on-click="{{ toggleVerified }}" style="display:flex;align-items:center;gap:12px;border:none;background:none;padding:0;cursor:pointer;text-align:left;font:inherit;color:inherit">
+      <span style="display:flex;flex-direction:column;gap:2px;flex:1">
+        <span style="font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px">Verified providers only</span>
+        <span style="font-size:13px;color:#8A909C">ID &amp; licence checked by Fixit</span>
+      </span>
+      <span style="width:44px;height:26px;flex:none;border-radius:999px;background:{{ toggleBg }};position:relative;transition:background .15s"><span style="position:absolute;top:3px;left:{{ knobLeft }};width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .15s"></span></span>
+    </button>
+
+    <div style="height:1px;background:#E3E6EB"></div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:14px;font-weight:700">Starting price</span><span style="font-size:14px;font-weight:600;color:#1E4FA3">{{ priceLabel }}</span></div>
+      <input type="range" min="40" max="100" step="5" value="{{ maxPrice }}" sc-camel-on-change="{{ onPrice }}" style="width:100%;accent-color:#1E4FA3;cursor:pointer">
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:#8A909C"><span>$40</span><span>$100+</span></div>
+    </div>
+  </aside>
+
+  <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <h1 style="margin:0;font-size:28px;line-height:36px;font-weight:700;letter-spacing:-0.01em">{{ countLabel }}</h1>
+        <div style="font-size:15px;color:#545B68">{{ contextLabel }}</div>
+      </div>
+      <label style="display:flex;align-items:center;gap:10px;font-size:14px;color:#545B68;font-weight:600">Sort by
+        <sc-raw-select value="{{ sort }}" sc-camel-on-change="{{ onSort }}" style="height:40px;padding:0 12px;border-radius:12px;border:1.5px solid #E3E6EB;font:600 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#1A1D24;background:#fff;cursor:pointer">
+          <option value="rating">Top rated</option>
+          <option value="reviews">Most reviews</option>
+          <option value="nearest">Nearest</option>
+        </sc-raw-select>
+      </label>
+    </div>
+
+    <sc-for list="{{ results }}" as="p" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E3E6EB;border-radius:16px;padding:20px;display:grid;grid-template-columns:132px minmax(0,1fr) auto;gap:24px;align-items:center;transition:box-shadow .15s,border-color .15s" style-hover="box-shadow:0 8px 24px rgba(20,24,36,.08);border-color:#D3D8E0">
+        <div style="width:132px;height:132px;border-radius:14px;background:repeating-linear-gradient(135deg,#EEF0F3 0 7px,#E6E9EE 7px 14px);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A909C">photo</div>
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <a href="{{ p.href }}" style="font-size:19px;font-weight:700;line-height:26px;color:#1A1D24">{{ p.name }}</a>
+            <sc-if value="{{ p.verified }}" hint-placeholder-val="{{ true }}">
+              <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px 0 4px;border-radius:999px;background:#E7F5EC;color:#1F8A4C;font-size:12px;font-weight:700"><span style="width:16px;height:16px;border-radius:50%;background:#1F8A4C;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center">✓</span>Verified</span>
+            </sc-if>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="position:relative;display:inline-block;font-size:15px;letter-spacing:1px;line-height:1"><span style="color:#E3E6EB">★★★★★</span><span style="position:absolute;left:0;top:0;width:{{ p.starPct }};overflow:hidden;white-space:nowrap;color:#F2843A">★★★★★</span></span>
+            <span style="font-weight:700;font-size:14px">{{ p.ratingStr }}</span><span style="font-size:14px;color:#8A909C">({{ p.reviewCount }} reviews)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:14px;color:#545B68">
+            <span style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:18px;color:#8A909C">{{ p.icon }}</span>{{ p.catName }}</span>
+            <span style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:18px;color:#8A909C">location_on</span><span>{{ p.locName }} · {{ p.distLabel }}</span></span>
+            <span style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:18px;color:#8A909C">workspace_premium</span><span>{{ p.yearsExperience }} yrs experience</span></span>
+          </div>
+          <div style="font-size:14px;line-height:20px;color:#8A909C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.bio }}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:14px;padding-left:24px;border-left:1px solid #E3E6EB;align-self:stretch;justify-content:center">
+          <div style="display:flex;flex-direction:column;align-items:flex-end"><span style="font-size:12px;color:#8A909C">Starting at</span><span style="font-size:22px;font-weight:800">{{ p.price }}<span style="font-size:14px;font-weight:600;color:#8A909C">{{ p.unit }}</span></span></div>
+          <a href="{{ p.href }}" style="height:40px;padding:0 18px;border-radius:12px;border:1.5px solid #1E4FA3;background:#fff;color:#1E4FA3;font:600 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;white-space:nowrap;display:flex;align-items:center" style-hover="background:#1E4FA3;color:#fff">View profile</a>
+        </div>
+      </div>
+    </sc-for>
+
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px dashed #D3D8E0;border-radius:16px;padding:56px 24px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
+        <div style="width:56px;height:56px;border-radius:16px;background:#EAF0FA;color:#1E4FA3;display:flex;align-items:center;justify-content:center"><span class="ms" style="font-size:28px">search_off</span></div>
+        <div style="font-size:18px;font-weight:700">No providers match your filters</div>
+        <div style="font-size:15px;color:#545B68">Try another location or loosen the rating and price filters.</div>
+        <button sc-camel-on-click="{{ clearAll }}" style="margin-top:8px;height:48px;padding:0 20px;border-radius:12px;border:none;background:#1E4FA3;color:#fff;font:600 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer">Clear filters</button>
+      </div>
+    </sc-if>
+  </div>
+</main>
+
+</sc-if>
+<sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+
+<main style="max-width:1240px;width:100%;margin:0 auto;padding:24px 32px 88px;display:flex;flex-direction:column;gap:24px">
+  <a href="{{ backHref }}" style="align-self:flex-start;display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:#545B68" style-hover="color:#1E4FA3"><span class="ms" style="font-size:20px">arrow_back</span>Back to results</a>
+
+  <section style="background:#fff;border:1px solid #E3E6EB;border-radius:24px;padding:28px;display:grid;grid-template-columns:220px minmax(0,1fr) auto;gap:32px;align-items:center">
+    <div style="width:220px;height:220px;border-radius:20px;background:repeating-linear-gradient(135deg,#EEF0F3 0 10px,#E6E9EE 10px 20px);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A909C">provider photo</div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#1E4FA3"><span class="ms" style="font-size:20px">{{ p.icon }}</span>{{ p.catName }}</div>
+      <h1 style="margin:0;font-size:40px;line-height:48px;font-weight:800;letter-spacing:-0.02em">{{ p.name }}</h1>
+      <div style="font-size:15px;color:#545B68">Owned &amp; run by {{ p.owner }}</div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;font-size:15px">
+        <span style="display:flex;align-items:center;gap:8px">
+          <span style="position:relative;display:inline-block;font-size:18px;letter-spacing:1px;line-height:1"><span style="color:#E3E6EB">★★★★★</span><span style="position:absolute;left:0;top:0;width:{{ p.starPct }};overflow:hidden;white-space:nowrap;color:#F2843A">★★★★★</span></span>
+          <span style="font-weight:800">{{ p.ratingStr }}</span><a href="#" sc-camel-on-click="{{ toReviews }}" style="color:#545B68;text-decoration:underline;text-underline-offset:3px">{{ p.reviewCount }} reviews</a>
+        </span>
+        <span style="display:flex;align-items:center;gap:6px;color:#545B68"><span class="ms" style="font-size:20px;color:#8A909C">location_on</span><span>{{ p.locName }}, TX</span></span>
+        <span style="display:flex;align-items:center;gap:6px;color:#545B68"><span class="ms" style="font-size:20px;color:#8A909C">workspace_premium</span><span>{{ p.yearsExperience }} years experience</span></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <sc-if value="{{ p.verified }}" hint-placeholder-val="{{ true }}">
+          <span sc-camel-on-mouse-enter="{{ showTip }}" sc-camel-on-mouse-leave="{{ hideTip }}" sc-camel-on-focus="{{ showTip }}" sc-camel-on-blur="{{ hideTip }}" sc-camel-tab-index="0" style="position:relative;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px 0 6px;border-radius:999px;background:#E7F5EC;color:#1F8A4C;font-size:13px;font-weight:700;cursor:help;outline:none">
+            <span style="width:18px;height:18px;border-radius:50%;background:#1F8A4C;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center">✓</span>Verified
+            <span class="ms" style="font-size:16px;color:#1F8A4C">info</span>
+            <sc-if value="{{ tipOpen }}" hint-placeholder-val="{{ false }}">
+              <span style="position:absolute;left:0;top:40px;width:280px;background:#1A1D24;color:#fff;border-radius:12px;padding:12px 14px;font-size:13px;line-height:19px;font-weight:500;box-shadow:0 12px 32px rgba(20,24,36,.2);z-index:5;white-space:normal">
+                <span style="display:block;font-weight:700;margin-bottom:4px">What does Verified mean?</span>
+                Fixit has checked this provider's photo ID, trade licence and insurance, and confirmed their business address.
+              </span>
+            </sc-if>
+          </span>
+        </sc-if>
+        <sc-if value="{{ p.notVerified }}" hint-placeholder-val="{{ false }}">
+          <span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:999px;background:#F1F2F4;color:#545B68;font-size:13px;font-weight:600">Not yet verified</span>
+        </sc-if>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;align-self:stretch;justify-content:center;padding-left:32px;border-left:1px solid #E3E6EB;min-width:240px">
+      <div style="display:flex;flex-direction:column"><span style="font-size:13px;color:#8A909C">Starting at</span><span style="font-size:30px;font-weight:800;line-height:38px">{{ p.price }}<span style="font-size:16px;font-weight:600;color:#8A909C">{{ p.unit }}</span></span></div>
+      <button sc-camel-on-click="{{ onRequest }}" style="height:48px;border-radius:12px;border:none;background:#1E4FA3;color:#fff;font:700 16px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px" style-hover="background:#163C7E"><span class="ms" style="font-size:20px">send</span>Request Service</button>
+      <button sc-camel-on-click="{{ toggleSave }}" style="height:48px;border-radius:12px;border:1.5px solid {{ saveBorder }};background:{{ saveBg }};color:#1E4FA3;font:600 15px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><span class="ms" style="font-size:20px;font-variation-settings:'FILL' {{ saveFill }}">favorite</span>{{ saveLabel }}</button>
+      <sc-if value="{{ requestMsg }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:#1E4FA3;font-weight:600;max-width:240px">{{ requestMsg }}</div></sc-if>
+    </div>
+  </section>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+      <section style="background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px">
+        <h2 style="margin:0;font-size:20px;line-height:28px;font-weight:700;">About</h2>
+        <p style="margin:0;font-size:16px;line-height:26px;color:#545B68;text-wrap:pretty">{{ p.bio }}</p>
+      </section>
+
+      <section style="background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px">
+        <h2 style="margin:0;font-size:20px;line-height:28px;font-weight:700;">Services offered</h2>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #E3E6EB">
+              <span class="ms" style="font-size:20px;color:#1F8A4C">check_circle</span>
+              <span style="flex:1;font-size:15px;font-weight:600">{{ s.name }}</span>
+              <span style="font-size:13px;color:#8A909C">from</span>
+              <span style="font-size:16px;font-weight:800;min-width:80px;text-align:right">{{ s.price }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:13px;color:#8A909C">Final price is confirmed by the provider after reviewing your request.</div>
+      </section>
+
+      <section id="reviews" style="background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:20px;scroll-margin-top:96px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+          <h2 style="margin:0;font-size:20px;line-height:28px;font-weight:700;">Reviews</h2>
+          <div style="display:flex;align-items:center;gap:8px;font-size:15px"><span style="color:#F2843A;font-size:18px">★</span><span style="font-weight:800">{{ p.ratingStr }}</span><span style="color:#8A909C">· {{ p.reviewCount }} reviews</span></div>
+        </div>
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div style="display:flex;gap:14px;padding-bottom:20px;border-bottom:1px solid #E3E6EB">
+            <div style="width:44px;height:48px;flex:none;border-radius:50%;background:#EAF0FA;color:#1E4FA3;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px">{{ r.initials }}</div>
+            <div style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:0">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <span style="font-size:15px;font-weight:700">{{ r.author }}</span>
+                <span style="font-size:13px;color:#8A909C">{{ r.dateLabel }}</span>
+              </div>
+              <div style="font-size:15px;letter-spacing:1px"><span style="color:#F2843A">{{ r.stars }}</span><span style="color:#E3E6EB">{{ r.empty }}</span></div>
+              <div style="font-size:15px;line-height:23px;color:#545B68">{{ r.text }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+
+    <aside style="position:sticky;top:96px;background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:16px">
+      <h2 style="margin:0;font-size:20px;line-height:28px;font-weight:700;">Service area</h2>
+      <div style="height:200px;border-radius:14px;background:repeating-linear-gradient(135deg,#EEF0F3 0 8px,#E6E9EE 8px 16px);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A909C">map — Austin metro coverage</div>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <sc-for list="{{ areas }}" as="a" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #E3E6EB;font-size:15px">
+            <span class="ms" style="font-size:20px;color:#1E4FA3">location_on</span>
+            <span style="flex:1;font-weight:600"><span>{{ a.name }}, TX</span></span>
+            <span style="font-size:13px;color:#8A909C">{{ a.note }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </aside>
+  </div>
+
+  <sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#fff;border:1px dashed #D3D8E0;border-radius:16px;padding:40px;text-align:center;font-size:16px;color:#545B68">This provider couldn't be found. <a href="#/discover?q=&amp;loc=">Browse all providers</a></div>
+  </sc-if>
+</main>
+
+</sc-if>
+<footer style="margin-top:auto;background:#14254A;color:#C9D3E6">
+  <div style="max-width:1240px;margin:0 auto;padding:56px 32px 28px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:10px;background:#fff;color:#1E4FA3;display:flex;align-items:center;justify-content:center;font-weight:800">F</div><span style="font-size:21px;font-weight:800;color:#fff">Fixit</span></div>
+        <div style="font-size:14px;line-height:20px">Home service booking marketplace.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px"><div style="color:#fff;font-weight:700">Customers</div><a href="#/discover?q=&amp;loc=" style="color:#C9D3E6">Find Providers</a><a href="#/home/how" style="color:#C9D3E6">How it works</a><a href="#" sc-camel-on-click="{{ soon }}" style="color:#C9D3E6">My requests</a></div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px"><div style="color:#fff;font-weight:700">Providers</div><a href="#/dashboard" style="color:#C9D3E6">For Providers</a><a href="#/dashboard" style="color:#C9D3E6">Get verified</a><a href="#/dashboard" style="color:#C9D3E6">Dashboard</a></div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px"><div style="color:#fff;font-weight:700">Company</div><a href="#" sc-camel-on-click="{{ soon }}" style="color:#C9D3E6">About</a><a href="#" sc-camel-on-click="{{ soon }}" style="color:#C9D3E6">Contact</a><a href="#" sc-camel-on-click="{{ soon }}" style="color:#C9D3E6">Privacy</a></div>
+    </div>
+    <div style="border-top:1px solid #2A3D66;padding-top:20px;font-size:13px;color:#8FA0C2">© 2026 Fixit · University project prototype</div>
+  </div>
+</footer>
+</div>
+</sc-if>
+<sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ false }}">
+<div style="min-height:100vh;display:grid;grid-template-columns:256px minmax(0,1fr)">
+
+<aside style="position:sticky;top:0;height:100vh;background:#fff;border-right:1px solid #E3E6EB;padding:24px 16px;display:flex;flex-direction:column;gap:28px">
+  <a href="#/home" style="display:flex;align-items:center;gap:10px;color:#1A1D24;padding:0 8px"><div style="width:34px;height:34px;border-radius:10px;background:#1E4FA3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px">F</div><span style="font-size:21px;font-weight:800;letter-spacing:-0.02em">Fixit</span><span style="margin-left:2px;height:22px;padding:0 8px;border-radius:999px;background:#FDF0E6;color:#A44E12;font-size:11px;font-weight:700;display:flex;align-items:center">Pro</span></a>
+  <div style="display:flex;flex-direction:column;gap:4px">
+    <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+      <a href="#" sc-camel-on-click="{{ n.go }}" style="height:44px;padding:0 12px;border-radius:12px;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:600;color:{{ n.color }};background:{{ n.bg }}" style-hover="background:#F6F7F9">
+        <span class="ms" style="font-size:22px">{{ n.icon }}</span><span style="flex:1">{{ n.label }}</span>
+        <sc-if value="{{ n.badge }}" hint-placeholder-val="{{ false }}"><span style="min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:#F2843A;color:#1A1D24;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center">{{ n.badge }}</span></sc-if>
+      </a>
+    </sc-for>
+  </div>
+  <div style="margin-top:auto;display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #E3E6EB;border-radius:14px">
+    <div style="width:40px;height:40px;flex:none;border-radius:10px;background:repeating-linear-gradient(135deg,#EEF0F3 0 5px,#E3E6EB 5px 10px)"></div>
+    <div style="display:flex;flex-direction:column;min-width:0">
+      <span style="font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.name }}</span>
+      <span style="font-size:12px;color:#8A909C">{{ p.owner }}</span>
+    </div>
+  </div>
+  <a href="#/home" style="display:flex;align-items:center;gap:10px;padding:0 12px;font-size:14px;font-weight:600;color:#545B68" style-hover="color:#B23A3A"><span class="ms" style="font-size:20px">logout</span>Log out</a>
+</aside>
+
+<main style="padding:32px 40px 64px;display:flex;flex-direction:column;gap:28px;min-width:0;max-width:1240px">
+  <header style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-size:14px;font-weight:600;color:#8A909C">Friday, October 9, 2026</span>
+      <h1 style="margin:0;font-size:40px;line-height:48px;font-weight:800;letter-spacing:-0.02em">Good morning, {{ firstName }}</h1>
+      <span style="font-size:16px;color:#545B68">{{ greetingSub }}</span>
+    </div>
+    <div style="display:flex;gap:10px">
+      <a href="{{ profileHref }}" style="height:40px;padding:0 18px;border-radius:12px;border:1.5px solid #1E4FA3;background:#fff;color:#1E4FA3;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px" style-hover="background:#EAF0FA;color:#1E4FA3"><span class="ms" style="font-size:20px">visibility</span>View public profile</a>
+    </div>
+  </header>
+
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E3E6EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:14px;font-weight:600;color:#545B68">{{ s.label }}</span>
+          <span style="width:40px;height:40px;border-radius:12px;background:{{ s.tint }};color:{{ s.color }};display:flex;align-items:center;justify-content:center"><span class="ms" style="font-size:22px">{{ s.icon }}</span></span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:34px;line-height:40px;font-weight:800;letter-spacing:-0.02em">{{ s.value }}</span><span style="font-size:13px;color:#8A909C">{{ s.sub }}</span></div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <section style="background:#fff;border:1px solid #E3E6EB;border-radius:20px;overflow:hidden;min-width:0">
+      <div style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid #E3E6EB">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <h2 style="margin:0;font-size:20px;line-height:28px;font-weight:700;">Incoming service requests</h2>
+          <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;border:1px dashed #F2843A;background:#FDF0E6;color:#8A4310;font-size:12px;font-weight:700"><span class="ms" style="font-size:15px">science</span>Sample requests — prototype</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;background:#F6F7F9;border-radius:12px;padding:4px">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+            <button sc-camel-on-click="{{ t.pick }}" style="height:34px;padding:0 12px;border-radius:9px;border:none;background:{{ t.bg }};color:{{ t.color }};box-shadow:{{ t.shadow }};font:600 13px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer;display:flex;align-items:center;gap:6px">{{ t.label }}<span style="font-size:12px;color:#8A909C">{{ t.count }}</span></button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,.9fr) 288px;gap:16px;padding:10px 24px;background:#F6F7F9;font-size:12px;font-weight:700;color:#8A909C;text-transform:uppercase;letter-spacing:.05em">
+        <span>Customer</span><span>Service</span><span>Date</span><span>Area</span><span>Status</span>
+      </div>
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,.9fr) 288px;gap:16px;padding:16px 24px;align-items:center;border-top:1px solid #E3E6EB;background:{{ r.rowBg }};transition:background .3s">
+          <div style="display:flex;align-items:center;gap:12px;min-width:0">
+            <div style="width:36px;height:36px;flex:none;border-radius:50%;background:#EAF0FA;color:#1E4FA3;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">{{ r.initials }}</div>
+            <div style="display:flex;flex-direction:column;min-width:0">
+              <span style="font-size:15px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.customer }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A909C">{{ r.id }}</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+            <span style="font-size:14px;font-weight:600">{{ r.service }}</span>
+            <span style="font-size:13px;color:#8A909C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.note }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:600">{{ r.dateLabel }}</span><span style="font-size:13px;color:#8A909C">{{ r.slot }}</span></div>
+          <span style="font-size:14px;color:#545B68;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.areaName }}</span>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <sc-if value="{{ r.isPending }}" hint-placeholder-val="{{ false }}">
+              <button sc-camel-on-click="{{ r.accept }}" style="height:34px;padding:0 12px;border-radius:10px;border:none;background:#1E4FA3;color:#fff;font:600 13px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer;display:flex;align-items:center;gap:4px" style-hover="background:#163C7E"><span class="ms" style="font-size:16px">check</span>Accept</button>
+              <button sc-camel-on-click="{{ r.decline }}" style="height:34px;padding:0 12px;border-radius:10px;border:1.5px solid #E3E6EB;background:#fff;color:#1A1D24;font:600 13px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer" style-hover="border-color:#D64545;color:#B23A3A">Decline</button>
+            </sc-if>
+            <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:999px;background:{{ r.pillBg }};color:{{ r.pillColor }};font-size:13px;font-weight:700;white-space:nowrap"><span style="width:6px;height:6px;border-radius:50%;background:{{ r.pillDot }}"></span>{{ r.status }}</span>
+          </div>
+        </div>
+      </sc-for>
+      <sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:40px 24px;text-align:center;font-size:15px;color:#8A909C;border-top:1px solid #E3E6EB">No requests with this status.</div>
+      </sc-if>
+    </section>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
+      <section style="background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <h2 style="margin:0;font-size:20px;line-height:28px;font-weight:700;">Profile completeness</h2>
+          <span style="font-size:18px;font-weight:800;color:#1E4FA3">{{ completePct }}</span>
+        </div>
+        <div style="height:10px;border-radius:999px;background:#EAF0FA;overflow:hidden"><div style="height:100%;width:{{ completePct }};border-radius:999px;background:#1E4FA3"></div></div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ checklist }}" as="c" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:{{ c.color }}"><span class="ms" style="font-size:19px;color:{{ c.iconColor }};font-variation-settings:'FILL' 1">{{ c.icon }}</span><span style="flex:1">{{ c.label }}</span><sc-if value="{{ c.todo }}" hint-placeholder-val="{{ false }}"><a href="#" sc-camel-on-click="{{ soon }}" data-soon="Profile photo upload" style="font-size:13px;font-weight:700">Add</a></sc-if></div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="background:#fff;border:1px solid #E3E6EB;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <h2 style="margin:0;font-size:20px;line-height:28px;font-weight:700;">My Services</h2>
+          <button sc-camel-on-click="{{ soon }}" data-soon="Editing services" style="height:34px;padding:0 12px;border-radius:10px;border:1.5px solid #1E4FA3;background:#fff;color:#1E4FA3;font:600 13px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer;display:flex;align-items:center;gap:6px" style-hover="background:#EAF0FA"><span class="ms" style="font-size:16px">edit</span>Edit</button>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #EEF0F3;font-size:14px">
+              <span style="flex:1;font-weight:600">{{ s.name }}</span>
+              <span style="color:#545B68;font-weight:600">{{ s.price }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ editMsg }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:#8A909C">{{ editMsg }}</div></sc-if>
+      </section>
+    </div>
+  </div>
+</main>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1A1D24;color:#fff;border-radius:14px;padding:12px 16px 12px 18px;display:flex;align-items:center;gap:14px;font-size:14px;font-weight:600;box-shadow:0 16px 40px rgba(20,24,36,.25);z-index:20">
+    <span>{{ toast }}</span>
+    <button sc-camel-on-click="{{ undo }}" style="border:none;background:none;color:#9DB8EA;font:700 14px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer;padding:0">Undo</button>
+  </div>
+</sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" style="position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:24px">
+    <div sc-camel-on-click="{{ closeModal }}" style="position:absolute;inset:0;background:rgba(20,24,36,.5)"></div>
+    <div style="position:relative;background:#fff;border-radius:20px;padding:32px;max-width:440px;width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;box-shadow:0 24px 64px rgba(20,24,36,.25)">
+      <div style="width:56px;height:56px;border-radius:16px;background:#FDF0E6;color:#A44E12;display:flex;align-items:center;justify-content:center"><span class="ms" style="font-size:28px">construction</span></div>
+      <div style="font-size:20px;line-height:28px;font-weight:700;text-wrap:balance">{{ modalTitle }}</div>
+      <div style="font-size:15px;line-height:22px;color:#545B68">{{ modalBody }}</div>
+      <button sc-camel-on-click="{{ closeModal }}" style="margin-top:8px;height:48px;padding:0 28px;border-radius:12px;border:none;background:#1E4FA3;color:#fff;font:700 15px 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;cursor:pointer" style-hover="background:#163C7E">Close</button>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  static DATA = {"app":{"name":"Fixit","tagline":"Home service booking marketplace.","currency":"USD","region":"Austin metro, TX"},"categories":[{"id":"plumbing","name":"Plumbing","blurb":"Leaks, drains, water heaters"},{"id":"electrical","name":"Electrical","blurb":"Wiring, lighting, panels"},{"id":"cleaning","name":"Cleaning","blurb":"Regular, deep & move-out cleans"},{"id":"gardening","name":"Gardening","blurb":"Lawns, hedges, planting"},{"id":"painting","name":"Painting & Decorating","blurb":"Interior, exterior, wallpaper"},{"id":"carpentry","name":"Carpentry","blurb":"Custom builds, doors, decks"},{"id":"handyman","name":"Handyman","blurb":"Small jobs, mounting, repairs"},{"id":"appliance","name":"Appliance Repair","blurb":"Washers, fridges, ovens"}],"locations":[{"id":"austin","name":"Austin","state":"TX"},{"id":"round-rock","name":"Round Rock","state":"TX"},{"id":"cedar-park","name":"Cedar Park","state":"TX"},{"id":"pflugerville","name":"Pflugerville","state":"TX"}],"providers":[{"id":"p01","name":"Bell & Sons Plumbing","owner":"Marcus Bell","photo":null,"category":"plumbing","location":"austin","rating":4.9,"reviewCount":212,"yearsExperience":14,"startingPrice":85,"priceUnit":"hr","verified":true,"bio":"Family-run plumbing business serving Austin for over a decade. Upfront pricing, same-day call-outs and tidy work.","services":["Leak repair","Drain unclogging","Water heater install","Fixture replacement","Emergency call-outs"],"reviews":[{"author":"Sarah K.","rating":5,"date":"2026-09-12","text":"Arrived within two hours and fixed our burst pipe. Super professional."},{"author":"David L.","rating":5,"date":"2026-08-30","text":"Clear quote before starting, no surprises on the bill."},{"author":"Monica R.","rating":4,"date":"2026-07-18","text":"Great work on the water heater. Slightly late but called ahead."}],"servicePrices":[85,95,450,110,150],"serviceAreas":["austin","pflugerville","round-rock"]},{"id":"p02","name":"FlowRight Plumbing","owner":"Dana Ortiz","photo":null,"category":"plumbing","location":"round-rock","rating":4.3,"reviewCount":64,"yearsExperience":6,"startingPrice":70,"priceUnit":"hr","verified":false,"bio":"Independent plumber focused on residential repairs and bathroom refits. Friendly, careful and affordable.","services":["Toilet repair","Faucet install","Garbage disposal","Bathroom refits"],"reviews":[{"author":"Chris P.","rating":5,"date":"2026-09-02","text":"Fixed a running toilet in 20 minutes. Fair price."},{"author":"Hannah W.","rating":4,"date":"2026-08-11","text":"Good job on our new faucet, would book again."},{"author":"Leo M.","rating":4,"date":"2026-06-25","text":"Had to come back for a second visit but sorted it."}],"servicePrices":[70,120,160,1800],"serviceAreas":["round-rock","pflugerville","cedar-park"]},{"id":"p03","name":"BrightSpark Electric","owner":"Priya Nair","photo":null,"category":"electrical","location":"cedar-park","rating":4.8,"reviewCount":138,"yearsExperience":11,"startingPrice":95,"priceUnit":"hr","verified":true,"bio":"Licensed master electrician. From a single outlet to full panel upgrades, done safely and to code.","services":["Outlet & switch install","Lighting fixtures","Panel upgrades","EV charger install","Safety inspections"],"reviews":[{"author":"Jason T.","rating":5,"date":"2026-09-20","text":"Installed our EV charger quickly and explained everything."},{"author":"Amy G.","rating":5,"date":"2026-08-14","text":"Very knowledgeable, spotted an issue the last guy missed."},{"author":"Robert F.","rating":4,"date":"2026-07-03","text":"Pricey but worth it for peace of mind."}],"servicePrices":[95,120,1400,650,140],"serviceAreas":["cedar-park","round-rock","austin"]},{"id":"p04","name":"Fresh Nest Cleaning","owner":"Alicia Gomez","photo":null,"category":"cleaning","location":"austin","rating":4.7,"reviewCount":301,"yearsExperience":8,"startingPrice":60,"priceUnit":"visit","verified":true,"bio":"A small, trusted team offering eco-friendly home cleaning. Weekly, bi-weekly or one-off deep cleans.","services":["Regular cleaning","Deep cleaning","Move-in / move-out","Oven & fridge cleaning"],"reviews":[{"author":"Emily S.","rating":5,"date":"2026-09-25","text":"House has never looked better. Lovely team."},{"author":"Marco D.","rating":5,"date":"2026-09-01","text":"Reliable every two weeks for six months now."},{"author":"Tina B.","rating":4,"date":"2026-08-08","text":"Thorough clean, missed one window but fixed it next visit."}],"servicePrices":[60,140,220,45],"serviceAreas":["austin","pflugerville"]},{"id":"p05","name":"GreenLeaf Gardens","owner":"Tom Whitaker","photo":null,"category":"gardening","location":"pflugerville","rating":4.5,"reviewCount":89,"yearsExperience":9,"startingPrice":45,"priceUnit":"hr","verified":true,"bio":"Garden care and landscaping for Texas climates. Drought-friendly planting is our specialty.","services":["Lawn mowing","Hedge trimming","Planting & mulching","Seasonal clean-ups","Irrigation checks"],"reviews":[{"author":"Nina J.","rating":5,"date":"2026-09-15","text":"Transformed our backyard with native plants."},{"author":"Paul H.","rating":4,"date":"2026-08-21","text":"Dependable weekly mowing, good communication."},{"author":"Grace O.","rating":4,"date":"2026-07-09","text":"Nice work, booking took a few days."}],"servicePrices":[45,60,80,150,55],"serviceAreas":["pflugerville","round-rock","austin"]},{"id":"p06","name":"True Coat Painting","owner":"Jamal Carter","photo":null,"category":"painting","location":"round-rock","rating":4.6,"reviewCount":117,"yearsExperience":12,"startingPrice":55,"priceUnit":"hr","verified":true,"bio":"Interior and exterior painting with clean lines and careful prep. Furniture covered, floors protected.","services":["Interior painting","Exterior painting","Cabinet refinishing","Wallpaper removal"],"reviews":[{"author":"Laura V.","rating":5,"date":"2026-09-18","text":"Crisp edges and they cleaned up perfectly."},{"author":"Sam E.","rating":4,"date":"2026-08-27","text":"Kitchen cabinets look brand new."},{"author":"Ivy C.","rating":5,"date":"2026-07-30","text":"Finished a day early. Highly recommend."}],"servicePrices":[55,65,900,50],"serviceAreas":["round-rock","cedar-park","pflugerville","austin"]},{"id":"p07","name":"Oak & Iron Carpentry","owner":"Lena Fischer","photo":null,"category":"carpentry","location":"cedar-park","rating":4.9,"reviewCount":76,"yearsExperience":17,"startingPrice":75,"priceUnit":"hr","verified":true,"bio":"Custom woodwork and repairs by a craftsperson with 17 years at the bench. Built to last.","services":["Custom shelving","Door hanging & repair","Deck building","Trim & molding","Furniture repair"],"reviews":[{"author":"Owen R.","rating":5,"date":"2026-09-10","text":"Built-in bookshelves are stunning. True craftsmanship."},{"author":"Rachel N.","rating":5,"date":"2026-08-05","text":"Fixed three sticking doors in one visit."},{"author":"Ben A.","rating":5,"date":"2026-07-14","text":"Our new deck is solid and beautiful."}],"servicePrices":[75,85,2500,80,90],"serviceAreas":["cedar-park","austin"]},{"id":"p08","name":"HandyHank Home Repairs","owner":"Hank Morales","photo":null,"category":"handyman","location":"austin","rating":3.8,"reviewCount":41,"yearsExperience":4,"startingPrice":50,"priceUnit":"hr","verified":false,"bio":"No job too small. TV mounting, flat-pack assembly, minor repairs and odd jobs around the house.","services":["TV mounting","Furniture assembly","Drywall patching","Picture hanging","Minor repairs"],"reviews":[{"author":"Kate Y.","rating":4,"date":"2026-09-08","text":"Mounted our TV neatly, good value."},{"author":"Mike Z.","rating":3,"date":"2026-08-16","text":"Job done but arrived an hour late."},{"author":"Sofia L.","rating":4,"date":"2026-07-22","text":"Assembled a whole bedroom set quickly."}],"servicePrices":[50,50,65,50,50],"serviceAreas":["austin"]},{"id":"p09","name":"ApplianceDoc","owner":"Kevin Tran","photo":null,"category":"appliance","location":"pflugerville","rating":4.4,"reviewCount":158,"yearsExperience":10,"startingPrice":89,"priceUnit":"visit","verified":true,"bio":"Factory-trained technician repairing all major brands. Most parts carried in the van for first-visit fixes.","services":["Washer & dryer repair","Refrigerator repair","Oven & stove repair","Dishwasher repair"],"reviews":[{"author":"Alan W.","rating":5,"date":"2026-09-22","text":"Fridge fixed on the first visit, part was in the van."},{"author":"Joy P.","rating":4,"date":"2026-08-19","text":"Honest diagnosis, saved us buying a new washer."},{"author":"Dev S.","rating":4,"date":"2026-07-11","text":"Good service, call-out fee a little high."}],"servicePrices":[89,99,99,89],"serviceAreas":["pflugerville","round-rock","austin","cedar-park"]},{"id":"p10","name":"Sparkle & Shine Cleaners","owner":"Grace Kim","photo":null,"category":"cleaning","location":"cedar-park","rating":4.1,"reviewCount":52,"yearsExperience":3,"startingPrice":55,"priceUnit":"visit","verified":false,"bio":"New, energetic cleaning service with flexible evening and weekend slots.","services":["Regular cleaning","Apartment cleaning","Post-party clean-up","Laundry & ironing"],"reviews":[{"author":"Tyler B.","rating":4,"date":"2026-09-14","text":"Flexible weekend booking was a lifesaver."},{"author":"Megan F.","rating":5,"date":"2026-08-24","text":"Friendly and detailed, apartment sparkled."},{"author":"Luis G.","rating":3,"date":"2026-07-28","text":"Decent clean, a few spots missed."}],"servicePrices":[55,50,90,40],"serviceAreas":["cedar-park","round-rock"]}],"requestStatuses":["Pending","Accepted","Completed","Declined"],"sampleRequests":[{"id":"FX-2061","providerId":"p01","customer":"Olivia Martinez","service":"Leak repair","date":"2026-10-11","slot":"Morning","area":"austin","status":"Pending","note":"Water dripping under the kitchen sink cabinet."},{"id":"FX-2059","providerId":"p01","customer":"James Carter","service":"Water heater install","date":"2026-10-14","slot":"Afternoon","area":"pflugerville","status":"Pending","note":"Old 40-gal tank failed, need a replacement quote."},{"id":"FX-2058","providerId":"p01","customer":"Aisha Rahman","service":"Drain unclogging","date":"2026-10-12","slot":"Evening","area":"round-rock","status":"Pending","note":"Shower drains very slowly."},{"id":"FX-2054","providerId":"p01","customer":"Ethan Brooks","service":"Fixture replacement","date":"2026-10-10","slot":"Morning","area":"austin","status":"Accepted","note":"Swap two bathroom faucets."},{"id":"FX-2050","providerId":"p01","customer":"Sophia Nguyen","service":"Emergency call-outs","date":"2026-10-09","slot":"Evening","area":"austin","status":"Accepted","note":"Burst pipe in garage."},{"id":"FX-2046","providerId":"p01","customer":"Daniel Kim","service":"Leak repair","date":"2026-10-03","slot":"Afternoon","area":"round-rock","status":"Completed","note":"Toilet base leaking."},{"id":"FX-2041","providerId":"p01","customer":"Rachel Owens","service":"Drain unclogging","date":"2026-10-01","slot":"Morning","area":"pflugerville","status":"Completed","note":"Kitchen sink fully blocked."},{"id":"FX-2037","providerId":"p01","customer":"Marcus Lee","service":"Water heater install","date":"2026-09-28","slot":"Morning","area":"cedar-park","status":"Declined","note":"Outside service area."}]};
+  constructor(props) {
+    super(props);
+    const D = Component.DATA;
+    let saved = [];
+    try { saved = JSON.parse(localStorage.getItem("fixit:saved") || "[]"); } catch (e) {}
+    const route = this.parse();
+    this.state = {
+      route, hq: "", hloc: "",
+      dq: "", dloc: "", cats: [], minRating: 0, verifiedOnly: false, maxPrice: 100, sort: "rating",
+      discKey: "", lastResults: "#/discover?q=&loc=",
+      saved, tipOpen: false, modal: null,
+      statuses: Object.fromEntries(D.sampleRequests.map(r => [r.id, r.status])), filter: "All", toast: "", last: null, flash: null
+    };
+    if (route.page === "discover") Object.assign(this.state, this.discoverFromRoute(route), { discKey: route.key, lastResults: "#" + route.key });
+  }
+  componentDidMount() {
+    if (!location.hash) history.replaceState(null, "", "#/home");
+    try { history.scrollRestoration = "manual"; } catch (e) {}
+    this.onHash = () => {
+      const r = this.parse();
+      const st = { route: r, tipOpen: false, modal: null };
+      if (r.page === "discover") {
+        if (r.key !== this.state.discKey) Object.assign(st, this.discoverFromRoute(r));
+        st.discKey = r.key; st.lastResults = "#" + r.key;
+      }
+      this.setState(st, () => this.scrollForRoute(r));
+    };
+    this.onKey = e => { if (e.key === "Escape" && this.state.modal) this.setState({ modal: null }); };
+    window.addEventListener("hashchange", this.onHash);
+    window.addEventListener("keydown", this.onKey);
+    this.scrollForRoute(this.state.route);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this.onHash);
+    window.removeEventListener("keydown", this.onKey);
+    clearTimeout(this.t); clearTimeout(this.f);
+  }
+  scrollForRoute(r) {
+    if (r.page === "home" && r.arg === "how") {
+      setTimeout(() => { const el = document.getElementById("how-it-works"); window.scrollTo(0, el ? el.getBoundingClientRect().top + window.scrollY - 80 : 0); }, 30);
+    } else { window.scrollTo(0, 0); requestAnimationFrame(() => window.scrollTo(0, 0)); }
+  }
+  parse() {
+    const h = (location.hash || "#/home").slice(1);
+    const [path, qs] = h.split("?");
+    const parts = path.split("/").filter(Boolean);
+    const page = ["home", "discover", "provider", "dashboard"].includes(parts[0]) ? parts[0] : "home";
+    return { page, arg: parts[1] || "", params: new URLSearchParams(qs || ""), key: h };
+  }
+  matchCat(q) {
+    q = (q || "").trim().toLowerCase(); if (!q) return null;
+    return Component.DATA.categories.find(c => c.name.toLowerCase() === q || c.id === q || (c.name.toLowerCase().startsWith(q) && q.length >= 4)) || null;
+  }
+  discoverFromRoute(r) {
+    const D = Component.DATA, p = r.params;
+    const has = p.has("q") || p.has("loc") || p.has("cat");
+    let dq = has ? (p.get("q") || "") : "Plumbing";
+    const dloc = has ? (p.get("loc") || "") : "austin";
+    let cats = [];
+    if (p.has("cat")) {
+      cats = (p.get("cat") || "").split(",").filter(id => D.categories.some(c => c.id === id));
+      if (!dq && cats.length === 1) dq = D.categories.find(c => c.id === cats[0]).name;
+    } else { const m = this.matchCat(dq); if (m) cats = [m.id]; }
+    return { dq, dloc, cats, minRating: 0, verifiedOnly: false, maxPrice: 100 };
+  }
+  syncHash() {
+    const s = this.state;
+    const key = "/discover?" + new URLSearchParams({ q: s.dq, loc: s.dloc, cat: s.cats.join(",") }).toString();
+    history.replaceState(null, "", "#" + key);
+    this.setState({ discKey: key, lastResults: "#" + key });
+  }
+  openModal(title, body) { this.setState({ modal: { title, body } }); }
+  setStatus(r, status) {
+    clearTimeout(this.t); clearTimeout(this.f);
+    this.setState(st => ({ statuses: { ...st.statuses, [r.id]: status }, last: { id: r.id, prev: st.statuses[r.id] }, flash: r.id,
+      toast: (status === "Accepted" ? "Accepted " : "Declined ") + r.customer.split(" ")[0] + "'s request" }));
+    this.t = setTimeout(() => this.setState({ toast: "", last: null }), 4000);
+    this.f = setTimeout(() => this.setState({ flash: null }), 900);
+  }
+  renderVals() {
+    const D = Component.DATA, s = this.state, page = s.route.page;
+    const icons = { plumbing: "plumbing", electrical: "electrical_services", cleaning: "cleaning_services", gardening: "yard", painting: "format_paint", carpentry: "carpenter", handyman: "handyman", appliance: "local_laundry_service" };
+    const cat = Object.fromEntries(D.categories.map(c => [c.id, c.name]));
+    const locN = Object.fromEntries(D.locations.map(l => [l.id, l.name]));
+    const decorate = p => ({ ...p, catName: cat[p.category], locName: locN[p.location], icon: icons[p.category], ratingStr: p.rating.toFixed(1), starPct: (p.rating / 5 * 100) + "%", priceLabel: "$" + p.startingPrice + "/" + p.priceUnit, href: "#/provider/" + p.id });
+    const common = {
+      isCustomer: page !== "dashboard", isHome: page === "home", isDiscover: page === "discover", isProfile: page === "provider", isDashboard: page === "dashboard",
+      navHomeColor: page === "home" ? "#1E4FA3" : "#545B68", navHomeLine: page === "home" ? "inset 0 -2px 0 #1E4FA3" : "none",
+      navFindColor: page === "discover" || page === "provider" ? "#1E4FA3" : "#545B68", navFindLine: page === "discover" || page === "provider" ? "inset 0 -2px 0 #1E4FA3" : "none",
+      modalOpen: !!s.modal, modalTitle: s.modal ? s.modal.title : "", modalBody: s.modal ? s.modal.body : "",
+      closeModal: () => this.setState({ modal: null }),
+      soon: e => {
+        e.preventDefault();
+        const el = e.currentTarget;
+        const label = (el.dataset && el.dataset.soon) || (el.innerText || "This feature").trim().split("\n")[0];
+        this.openModal(label + " – coming in the next milestone", "This part of Fixit isn't built yet in this prototype.");
+      }
+    };
+
+    if (page === "home") {
+      return {
+        ...common, query: s.hq, loc: s.hloc,
+        onQuery: e => this.setState({ hq: e.target.value }),
+        onLoc: e => this.setState({ hloc: e.target.value }),
+        onSearch: e => { e.preventDefault(); location.hash = "#/discover?" + new URLSearchParams({ q: s.hq.trim(), loc: s.hloc }).toString(); },
+        quick: ["Plumbing", "Cleaning", "Electrical", "Handyman"].map(label => ({ label, pick: () => this.setState({ hq: label }) })),
+        categories: D.categories.map(c => ({ ...c, icon: icons[c.id], href: "#/discover?q=&loc=&cat=" + c.id })),
+        featured: ["p01", "p03", "p07", "p04"].map(id => decorate(D.providers.find(p => p.id === id)))
+      };
+    }
+
+    if (page === "discover") {
+      const dist = { austin: { austin: 0, "round-rock": 19, "cedar-park": 18, pflugerville: 15 }, "round-rock": { austin: 19, "round-rock": 0, "cedar-park": 12, pflugerville: 9 }, "cedar-park": { austin: 18, "round-rock": 12, "cedar-park": 0, pflugerville: 18 }, pflugerville: { austin: 15, "round-rock": 9, "cedar-park": 18, pflugerville: 0 } };
+      const ref = s.dloc || "austin";
+      const text = this.matchCat(s.dq) ? "" : s.dq.trim().toLowerCase();
+      const passText = p => !text || p.name.toLowerCase().includes(text) || cat[p.category].toLowerCase().includes(text) || p.services.some(x => x.toLowerCase().includes(text));
+      const passOther = p => (!s.dloc || p.location === s.dloc) && p.rating >= s.minRating && (!s.verifiedOnly || p.verified) && (s.maxPrice >= 100 || p.startingPrice <= s.maxPrice) && passText(p);
+      const passCat = p => !s.cats.length || s.cats.includes(p.category);
+      const results = D.providers.filter(p => passOther(p) && passCat(p)).map(p => {
+        const mi = dist[ref][p.location] + 1 + (parseInt(p.id.slice(1)) * 1.7) % 4;
+        return { ...decorate(p), price: "$" + p.startingPrice, unit: "/" + p.priceUnit, mi, distLabel: mi.toFixed(1) + " mi away" };
+      });
+      const sorters = { rating: (a, b) => b.rating - a.rating || b.reviewCount - a.reviewCount, reviews: (a, b) => b.reviewCount - a.reviewCount, nearest: (a, b) => a.mi - b.mi };
+      results.sort(sorters[s.sort]);
+      const n = results.length;
+      const catLabel = s.cats.length === 1 ? cat[s.cats[0]] : s.cats.length > 1 ? s.cats.length + " categories" : (text ? "“" + s.dq.trim() + "”" : "all services");
+      return {
+        ...common, query: s.dq, loc: s.dloc, sort: s.sort, maxPrice: s.maxPrice,
+        onQuery: e => this.setState({ dq: e.target.value }),
+        onSort: e => this.setState({ sort: e.target.value }),
+        onPrice: e => this.setState({ maxPrice: +e.target.value }),
+        onLoc: e => this.setState({ dloc: e.target.value }, () => this.syncHash()),
+        toggleVerified: () => this.setState({ verifiedOnly: !s.verifiedOnly }),
+        toggleBg: s.verifiedOnly ? "#1F8A4C" : "#D3D8E0", knobLeft: s.verifiedOnly ? "21px" : "3px",
+        priceLabel: s.maxPrice >= 100 ? "Any price" : "Up to $" + s.maxPrice,
+        clearAll: () => this.setState({ cats: [], dloc: "", minRating: 0, verifiedOnly: false, maxPrice: 100, dq: "" }, () => this.syncHash()),
+        ratingOptions: [[0, "Any"], [3.5, "3.5+"], [4, "4.0+"], [4.5, "4.5+"]].map(([v, label]) => {
+          const k = Math.floor(v) || 0;
+          return { label, stars: "★".repeat(k), empty: k ? "★".repeat(5 - k) : "★★★★★", bg: s.minRating === v ? "#EAF0FA" : "#fff", border: s.minRating === v ? "#1E4FA3" : "#E3E6EB", pick: () => this.setState({ minRating: v }) };
+        }),
+        catOptions: D.categories.map(c => {
+          const on = s.cats.includes(c.id);
+          return { ...c, count: D.providers.filter(p => p.category === c.id && passOther(p)).length, boxBg: on ? "#1E4FA3" : "#fff", boxBorder: on ? "#1E4FA3" : "#C5CBD5", mark: on ? "✓" : "",
+            toggle: () => this.setState(st => ({ cats: on ? st.cats.filter(x => x !== c.id) : [...st.cats, c.id], dq: this.matchCat(st.dq) ? "" : st.dq }), () => this.syncHash()) };
+        }),
+        results, isEmpty: n === 0,
+        countLabel: n + (n === 1 ? " provider found" : " providers found"),
+        contextLabel: "Showing " + catLabel + " in " + (s.dloc ? locN[s.dloc] + ", TX" : "all locations"),
+        onSearch: e => { e.preventDefault(); const m = this.matchCat(s.dq); this.setState({ cats: m ? [m.id] : [] }, () => this.syncHash()); }
+      };
+    }
+
+    if (page === "provider") {
+      const raw = D.providers.find(x => x.id === s.route.arg);
+      const isSaved = raw && s.saved.includes(raw.id);
+      const base = {
+        ...common, backHref: s.lastResults, tipOpen: s.tipOpen,
+        showTip: () => this.setState({ tipOpen: true }), hideTip: () => this.setState({ tipOpen: false }),
+        toReviews: e => { e.preventDefault(); const el = document.getElementById("reviews"); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 88, behavior: "smooth" }); },
+        onRequest: () => this.openModal("Service request form – coming in the next milestone", "You'll be able to send " + (raw ? raw.name : "this provider") + " a request with your job details, date and address."),
+        saveLabel: isSaved ? "Saved" : "Save", saveFill: isSaved ? 1 : 0, saveBg: isSaved ? "#EAF0FA" : "#fff", saveBorder: isSaved ? "#1E4FA3" : "#C9D6EE",
+        toggleSave: () => {
+          if (!raw) return;
+          const saved = isSaved ? s.saved.filter(x => x !== raw.id) : [...s.saved, raw.id];
+          try { localStorage.setItem("fixit:saved", JSON.stringify(saved)); } catch (e) {}
+          this.setState({ saved });
+        }
+      };
+      if (!raw) return { ...base, p: {}, notFound: true };
+      const unit = "/" + raw.priceUnit;
+      const fmt = iso => new Date(iso + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+      return {
+        ...base,
+        p: { ...decorate(raw), price: "$" + raw.startingPrice, unit, notVerified: !raw.verified },
+        services: raw.services.map((name, i) => { const v = raw.servicePrices[i]; return { name, price: "$" + v.toLocaleString("en-US") + (v >= 300 ? "" : unit) }; }),
+        areas: raw.serviceAreas.map((id, i) => ({ name: locN[id], note: i === 0 ? "Based here" : "" })),
+        reviews: raw.reviews.map(r => ({ ...r, initials: r.author.split(/\s+/).map(w => w[0]).join(""), stars: "★".repeat(r.rating), empty: "★".repeat(5 - r.rating), dateLabel: fmt(r.date) }))
+      };
+    }
+
+    // dashboard
+    const p = D.providers.find(x => x.id === "p01");
+    const all = D.sampleRequests.map(r => ({ ...r, status: s.statuses[r.id] }));
+    const count = st => all.filter(r => r.status === st).length;
+    const pending = count("Pending");
+    const pill = { Pending: ["#FDF0E6", "#A44E12", "#F2843A"], Accepted: ["#EAF0FA", "#1E4FA3", "#1E4FA3"], Completed: ["#E7F5EC", "#1F8A4C", "#1F8A4C"], Declined: ["#FBECEC", "#B23A3A", "#D64545"] };
+    const navDefs = [["Dashboard", "space_dashboard"], ["Requests", "inbox"], ["My Services", "home_repair_service"], ["Profile", "person"], ["Reviews", "star"], ["Settings", "settings"]];
+    const rows = all.filter(r => s.filter === "All" || r.status === s.filter).map(r => {
+      const [pillBg, pillColor, pillDot] = pill[r.status];
+      return { ...r, pillBg, pillColor, pillDot, isPending: r.status === "Pending",
+        initials: r.customer.split(" ").map(w => w[0]).join(""), areaName: locN[r.area],
+        dateLabel: new Date(r.date + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }),
+        rowBg: s.flash === r.id ? "#F3F7FD" : "#fff",
+        accept: () => this.setStatus(r, "Accepted"), decline: () => this.setStatus(r, "Declined") };
+    });
+    const unit = "/" + p.priceUnit;
+    const checks = [["Business details", true], ["Services & prices", true], ["Service area", true], ["ID & licence verified", p.verified], ["Profile photo", !!p.photo]];
+    const done = checks.filter(c => c[1]).length;
+    return {
+      ...common, p, firstName: p.owner.split(" ")[0], profileHref: "#/provider/" + p.id,
+      toast: s.toast,
+      undo: () => { if (s.last) this.setState(st => ({ statuses: { ...st.statuses, [s.last.id]: s.last.prev }, toast: "", last: null })); },
+      nav: navDefs.map(([label, icon], i) => ({ label, icon, color: i === 0 ? "#1E4FA3" : "#545B68", bg: i === 0 ? "#EAF0FA" : "transparent", badge: label === "Requests" && pending ? String(pending) : "",
+        go: e => { e.preventDefault(); if (i > 0) this.openModal(label + " – coming in the next milestone", "This part of the provider dashboard isn't built yet in this prototype."); } })),
+      greetingSub: pending ? "You have " + pending + " new request" + (pending === 1 ? "" : "s") + " waiting for a reply." : "You're all caught up.",
+      stats: [
+        { label: "New requests", value: String(pending), sub: "awaiting reply", icon: "inbox", tint: "#FDF0E6", color: "#A44E12" },
+        { label: "Accepted", value: String(count("Accepted")), sub: "upcoming jobs", icon: "event_available", tint: "#EAF0FA", color: "#1E4FA3" },
+        { label: "Completed this month", value: String(all.filter(r => r.status === "Completed" && r.date.startsWith("2026-10")).length), sub: "in October", icon: "task_alt", tint: "#E7F5EC", color: "#1F8A4C" },
+        { label: "Average rating", value: p.rating.toFixed(1), sub: "★ " + p.reviewCount + " reviews", icon: "star", tint: "#FDF0E6", color: "#A44E12" }
+      ],
+      tabs: ["All", "Pending", "Accepted", "Completed", "Declined"].map(t => {
+        const on = s.filter === t;
+        return { label: t, count: t === "All" ? all.length : count(t), bg: on ? "#fff" : "transparent", color: on ? "#1A1D24" : "#545B68", shadow: on ? "0 1px 3px rgba(20,24,36,.1)" : "none", pick: () => this.setState({ filter: t }) };
+      }),
+      rows, noRows: rows.length === 0,
+      services: p.services.map((name, i) => { const v = p.servicePrices[i]; return { name, price: "from $" + v.toLocaleString("en-US") + (v >= 300 ? "" : unit) }; }),
+      completePct: Math.round(done / checks.length * 100) + "%",
+      checklist: checks.map(([label, ok]) => ({ label, todo: !ok, icon: ok ? "check_circle" : "radio_button_unchecked", iconColor: ok ? "#1F8A4C" : "#C5CBD5", color: ok ? "#545B68" : "#1A1D24" }))
+    };
+  }
+}
+
+</script>
+
+
+</body></html>
