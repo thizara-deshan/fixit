@@ -636,7 +636,7 @@ Add `export * from './catalog';` to `src/index.ts`.
 **Commit:** `git commit -m "feat(fixtures): catalog categories, districts, towns (M02-T9)"`
 
 ### T10 — Prototype reviews data and users
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/prototype-reviews.ts`, `packages/fixtures/src/users.ts`, `src/index.ts`
 **Context:** ARCH §8.3 Users table, §4.5 persona labels; prototype `data.json` ratings / review counts / written reviews (copied below). Written-review authors become users whose `displayNameOf(fullName)` equals the prototype author (e.g. "Sarah K." → "Sarah Karunaratne").
 **Do:**
