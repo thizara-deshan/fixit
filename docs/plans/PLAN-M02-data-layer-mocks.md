@@ -1841,7 +1841,7 @@ describe('mock controls', () => {
 **Commit:** `git commit -m "feat(web): mock latency and forced-error controls (M02-T21)"`
 
 ### T22 — Mock tokens and refresh "cookie"
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/tokens.ts`, `apps/web/src/mocks/lib/tokens.test.ts`
 **Context:** ARCH §4.3 (unsigned JWT-shaped `…mock`, 15-minute `exp`, refresh key `fixit.mock.refresh`), §6.2 (TTL 900). A random `jti` makes two tokens issued in the same second differ.
 **Do:**
