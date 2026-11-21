@@ -585,7 +585,7 @@ export function shuffle<T>(items: readonly T[], rand: () => number): T[] {
 **Commit:** `git commit -m "chore(fixtures): @fixit/fixtures package and entity types (M02-T8)"`
 
 ### T9 — Fixture catalog
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/catalog.ts`
 **Context:** PRODUCT §2 (categories, 3 districts, 18 towns); ARCH §8.3 (ids kept, kebab town ids, location map); SPEC §2.10 / `CategoryIcon` enum order; prototype `data.json` blurbs (copied — never import `reference/`).
 **Do:**
