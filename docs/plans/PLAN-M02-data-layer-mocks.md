@@ -1990,7 +1990,7 @@ export function tryResolveActor(request: Request): MockActor | null {
 **Commit:** `git commit -m "feat(web): mock identity resolveActor (M02-T23)"`
 
 ### T24 — `mockEndpoint` wrapper and `assertAccess`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/endpoint.ts`, `apps/web/src/mocks/lib/endpoint.test.ts`
 **Context:** ARCH §4.3 `endpoint.ts` + mock rules; §3 header (anon on non-Pub → 401; wrong role → 403; admin on U/P → 403; U on A → 403). Ownership (404) stays in each `impl`. A response that breaks its contract is a handler bug → 500 (logged), not 400.
 **Do:**
