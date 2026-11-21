@@ -2122,7 +2122,7 @@ describe('assertAccess', () => {
 **Commit:** `git commit -m "feat(web): mockEndpoint wrapper with registry access checks (M02-T24)"`
 
 ### T25 — `buildMe()`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/me.ts`
 **Context:** ARCH §2.5 `Me`; §6.1 "Me … roles derived fresh"; `displayNameOf` (T3), `rolesOf` (T23). Counts: `openRequestCount` = customer's pending+accepted; `pendingRequestCount` = provider's pending. `rejectionReason` only when status is `rejected` (latest rejected submission). Tested in T26.
 **Do:**
