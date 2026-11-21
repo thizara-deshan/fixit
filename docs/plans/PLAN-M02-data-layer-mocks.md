@@ -3026,7 +3026,7 @@ describe('expireDue', () => {
 **Commit:** `git commit -m "feat(web): mock expireDue helper (M02-T32)"`
 
 ### T33 — `enableMocks()`, `main.tsx` boot order, `dev:mock` script
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/enable.ts`, `apps/web/src/vite-env.d.ts`, `apps/web/src/main.tsx`, `apps/web/.env.mock`, `apps/web/package.json`, `package.json`
 **Context:** ARCH §4.4 (`enableMocks`, boot order), D23 (never in production — everything msw-related sits behind `if (import.meta.env.DEV)` so Rollup drops it), milestone "Scripts `dev:mock` (`VITE_MOCK_DOMAINS=all`)". `activeMockDomains` is exposed as a function (a mutable `export let` is avoided).
 **Do:**
