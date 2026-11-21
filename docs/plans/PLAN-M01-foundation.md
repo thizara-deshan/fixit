@@ -1397,7 +1397,7 @@ States: static page only (no data → no loading/empty/error states). Phone (390
 **Commit:** `git commit -m "feat(web): M01 placeholder page using tokens and contracts (M01-T15)"`
 
 ### T16 — Acceptance walk-through
-- [ ] done
+- [x] done
 **Files:** none (temporary probe files are deleted before commit); tick the boxes in this plan.
 **Do / Verify:** run each check; all must pass. If any fails, fix within the owning task's files only, or write a blocker.
 1. **AC1** — `git stash -u` nothing pending; `rm -rf node_modules apps/*/node_modules packages/*/node_modules packages/contracts/dist && pnpm install && pnpm verify` → exit 0.
