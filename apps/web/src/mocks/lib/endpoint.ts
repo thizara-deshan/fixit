@@ -11,7 +11,9 @@ import { resolveActor, tryResolveActor, type MockActor } from './identity';
 type SchemaOut<S> = S extends z.ZodType ? z.output<S> : undefined;
 type BodyOf<E> = E extends { body: infer S } ? SchemaOut<S> : undefined;
 type QueryOf<E> = E extends { query: infer S } ? SchemaOut<S> : undefined;
-type ResultOf<E> = E extends { response: infer S extends z.ZodType } ? z.input<S> : undefined;
+// 204 endpoints return nothing, so their impl returns void.
+// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+type ResultOf<E> = E extends { response: infer S extends z.ZodType } ? z.input<S> : void;
 
 export interface MockCtx<E extends EndpointDef> {
   actor: MockActor | null;
@@ -67,7 +69,7 @@ export function mockEndpoint<E extends EndpointDef>(
       const query = (
         def.query ? def.query.parse(Object.fromEntries(new URL(request.url).searchParams)) : undefined
       ) as QueryOf<E>;
-      // ResultOf<E> is `undefined` for 204 endpoints; the rule can't tell that from void for a generic E.
+      // ResultOf<E> is void for 204 endpoints.
       // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
       const result = await impl({
         actor,

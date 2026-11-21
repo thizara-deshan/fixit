@@ -1,8 +1,9 @@
 import type { RequestHandler } from 'msw';
+import { authHandlers } from './auth';
 import { MOCK_DOMAINS, type MockDomain } from '../domains';
 
 export const handlersByDomain: Record<MockDomain, RequestHandler[]> = {
-  auth: [],
+  auth: authHandlers,
   catalog: [],
   providers: [],
   requests: [],

@@ -2173,7 +2173,7 @@ export function buildMe(d: MockDb, userId: string): Me {
 **Commit:** `git commit -m "feat(web): mock buildMe (M02-T25)"`
 
 ### T26 — Auth mock handlers (login, refresh, logout, me)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/handlers/auth.ts`, `apps/web/src/mocks/handlers/auth.test.ts`, `apps/web/src/mocks/handlers/index.ts`
 **Context:** ARCH §3.1 rows, §6.1 Login (missing user / wrong password → 401 `invalid_credentials`; suspended checked after the password → 401 `ACCOUNT_SUSPENDED`), Refresh (user must be active), Logout (204); §4.3 refresh entry. Login sets the refresh entry; logout clears it.
 **Do:**
