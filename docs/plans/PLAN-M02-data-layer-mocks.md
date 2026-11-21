@@ -1381,7 +1381,7 @@ export default defineConfig({
 **Commit:** `git commit -m "chore(web): msw, tanstack query, testing-library; api proxy; strip msw worker from build (M02-T16)"`
 
 ### T17 — `parseMockDomains()`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/domains.ts`, `apps/web/src/mocks/domains.test.ts`
 **Context:** ARCH §4.4 exact code; AC5, AC8.
 **Do:** `apps/web/src/mocks/domains.ts` was created in T16 with this exact content (check it matches):
