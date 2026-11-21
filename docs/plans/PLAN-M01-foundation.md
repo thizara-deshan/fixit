@@ -541,7 +541,7 @@ describe('canComplete (BR-32)', () => {
 **Commit:** `git commit -m "feat(contracts): request date rules for expiry, cancel, complete, booking window (M01-T8)"`
 
 ### T9 — Booking state machine
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/state-machine.ts`, `packages/contracts/src/requests/state-machine.test.ts`, `index.ts`
 **Context:** PRODUCT §6.1, BR-30/31/32; ARCHITECTURE §2.8 code + test table (cases 1–33, 26b, table-driven 31).
 **Do:**
