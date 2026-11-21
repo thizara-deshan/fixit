@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "pnpm --parallel --filter @fixit/contracts --filter @fixit/web dev",
-    "dev:mock": "pnpm --filter @fixit/web dev",
+    "dev:mock": "pnpm --filter @fixit/web dev:mock",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck",
     "lint": "eslint .",

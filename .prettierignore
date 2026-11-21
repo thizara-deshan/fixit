@@ -5,3 +5,4 @@ reference
 docs
 *.md
 apps/web/public/mockServiceWorker.js
+**/.vite

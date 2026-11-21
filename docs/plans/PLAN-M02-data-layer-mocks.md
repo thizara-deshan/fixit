@@ -66,7 +66,7 @@ Planner's decisions the executor must follow (they resolve gaps between mileston
 ## Tasks
 
 ### T1 — Auth contract schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/auth/schemas.ts`, `packages/contracts/src/auth/schemas.test.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCH §2.5 auth excerpt; SPEC S5 field table (`Enter your email address.`, `Enter your password.`); existing `Email`, `Id`, `Mobile` in `common/primitives.ts`, enums in `common/enums.ts`.
 **Do:**
@@ -146,7 +146,7 @@ describe('LoginBody', () => {
 **Commit:** `git commit -m "feat(contracts): auth schemas LoginBody, Me, AuthSession, AccessTokenClaims (M02-T1)"`
 
 ### T2 — `deriveRoles()`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/auth/roles.ts`, `roles.test.ts`, `index.ts`
 **Context:** ARCH §2.9, §6.2 "Roles", D11; PRODUCT BR-35.
 **Do:**
@@ -181,7 +181,7 @@ describe('deriveRoles', () => {
 **Commit:** `git commit -m "feat(contracts): deriveRoles (M02-T2)"`
 
 ### T3 — `displayNameOf()`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/auth/names.ts`, `names.test.ts`, `index.ts`
 **Context:** SPEC data model "User … displayName (derived: first name + last initial)"; PublicReview `authorDisplayName: "Sarah K."`.
 **Do:**
@@ -216,7 +216,7 @@ describe('displayNameOf', () => {
 **Commit:** `git commit -m "feat(contracts): displayNameOf (M02-T3)"`
 
 ### T4 — `ratingFrom()`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/reviews/rules.ts`, `rules.test.ts`, `index.ts`
 **Context:** PRODUCT BR-27; ARCH §2.9, §7.7 (1 dp).
 **Do:**
@@ -254,7 +254,7 @@ describe('ratingFrom', () => {
 **Commit:** `git commit -m "feat(contracts): ratingFrom (M02-T4)"`
 
 ### T5 — `computeStartingPrice()`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/pricing.ts`, `pricing.test.ts`, `index.ts`
 **Context:** PRODUCT BR-10; ARCH §2.9 (ties → per_hour < per_visit < fixed). `priceLabel()` is **not** in this milestone.
 **Do:**
@@ -320,7 +320,7 @@ describe('computeStartingPrice', () => {
 **Commit:** `git commit -m "feat(contracts): computeStartingPrice (M02-T5)"`
 
 ### T6 — `RequestRecord` shape
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`, `packages/contracts/src/requests/record.ts`, `record.test.ts`, `index.ts`
 **Context:** ARCH §2.5 `ServiceSnapshot`, §2.9 (projections take a plain `RequestRecord`), §8.1 `ServiceRequest` + `RequestStatusEvent`; D-d (events embedded). Existing `MachineRequest` in `requests/state-machine.ts`.
 **Do:**
@@ -422,7 +422,7 @@ describe('RequestRecord', () => {
 **Commit:** `git commit -m "feat(contracts): RequestRecord and toMachineRequest (M02-T6)"`
 
 ### T7 — Auth `ENDPOINTS` entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.1 rows login/refresh/logout/me; §2.7. Ids follow the `<domain>_<action>` pattern of §2.7 (`requests_accept`).
 **Do:** in `endpoints.ts` add `import { AuthSession, LoginBody, Me } from './auth/schemas';` at the top and replace the `ENDPOINTS` line with:
@@ -474,7 +474,7 @@ describe('ENDPOINTS', () => {
 **Commit:** `git commit -m "feat(contracts): auth endpoint registry entries (M02-T7)"`
 
 ### T8 — `@fixit/fixtures` package skeleton and types
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/package.json`, `tsconfig.json`, `tsup.config.ts`, `src/types.ts`, `src/prng.ts`, `src/index.ts`
 **Context:** ARCH §1 (`fixtures/src/ catalog.ts users.ts providers.ts requests.ts reviews.ts build.ts index.ts`), §8.1 field names, D1, D19. Copy the contracts package layout.
 **Do:**
@@ -585,7 +585,7 @@ export function shuffle<T>(items: readonly T[], rand: () => number): T[] {
 **Commit:** `git commit -m "chore(fixtures): @fixit/fixtures package and entity types (M02-T8)"`
 
 ### T9 — Fixture catalog
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/catalog.ts`
 **Context:** PRODUCT §2 (categories, 3 districts, 18 towns); ARCH §8.3 (ids kept, kebab town ids, location map); SPEC §2.10 / `CategoryIcon` enum order; prototype `data.json` blurbs (copied — never import `reference/`).
 **Do:**
@@ -636,7 +636,7 @@ Add `export * from './catalog';` to `src/index.ts`.
 **Commit:** `git commit -m "feat(fixtures): catalog categories, districts, towns (M02-T9)"`
 
 ### T10 — Prototype reviews data and users
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/prototype-reviews.ts`, `packages/fixtures/src/users.ts`, `src/index.ts`
 **Context:** ARCH §8.3 Users table, §4.5 persona labels; prototype `data.json` ratings / review counts / written reviews (copied below). Written-review authors become users whose `displayNameOf(fullName)` equals the prototype author (e.g. "Sarah K." → "Sarah Karunaratne").
 **Do:**
@@ -819,7 +819,7 @@ export type PersonaKey = (typeof DEMO_PERSONAS)[number]['key'];
 **Commit:** `git commit -m "feat(fixtures): demo users, personas and prototype review data (M02-T10)"`
 
 ### T11 — Fixture providers, services, areas, submission
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/providers.ts`, `src/index.ts`
 **Context:** ARCH §8.3 Providers/Services (USD × 30, rounded to 500; `hr` → per_hour, `visit` → per_visit; "call-out" → per_visit; items ≥ USD 300 → fixed), location table; PRODUCT F-15 step order (1 business details, 2 category, 3 services, 4 towns, 5 photo); ARCH §8.3 "p02 has a pending_review submission". Bios kept, "Austin"/"Texas" localised. Aggregates are filled in T14 (left `null`/`0` here).
 **Do:**
@@ -925,7 +925,7 @@ Add `export * from './providers';` to `index.ts`.
 **Commit:** `git commit -m "feat(fixtures): localised providers, LKR services, areas, p02 submission (M02-T11)"`
 
 ### T12 — Fixture request builder and the 8 prototype requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/requests.ts`, `src/index.ts`
 **Context:** ARCH §8.3 Requests (pending now + 3–6 days; accepted one today, one +2; completed one inside the 30-day window, no review); `expiresAt()` from contracts; D-c (FX-2046 → Olivia). Request ids `r-<ref>`. Prototype notes copied ("40-gal tank" localised).
 **Do:**
@@ -1043,7 +1043,7 @@ Add `export * from './requests';` to `index.ts`.
 **Commit:** `git commit -m "feat(fixtures): request builder and the 8 prototype requests (M02-T12)"`
 
 ### T13 — Fixture reviews with their completed requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/reviews.ts`, `src/index.ts`
 **Context:** ARCH §8.3 Reviews (prototype 3 written newest + deterministic filler so count = prototype and average ±0.05; every review has its own completed request by its author); D-e (refs FX-0001…). Uses `makeRequest` (T12), `mulberry32`/`shuffle` (T8), author ids (T10).
 **Do:**
@@ -1143,7 +1143,7 @@ Add `export * from './reviews';` to `index.ts`.
 **Commit:** `git commit -m "feat(fixtures): written and filler reviews with completed requests (M02-T13)"`
 
 ### T14 — `buildWorld(now)` with computed aggregates
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/build.ts`, `src/index.ts`
 **Context:** ARCH §8.3 ("Aggregates are computed with `ratingFrom()`, never copied"), §7.7; `computeStartingPrice` (T5).
 **Do:**
@@ -1198,7 +1198,7 @@ export * from './build';
 **Commit:** `git commit -m "feat(fixtures): buildWorld with computed rating and starting price (M02-T14)"`
 
 ### T15 — Fixture invariants test (AC6)
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/build.test.ts`
 **Context:** Milestone AC6; ARCH §9.1 fixtures row; BR-24 (30-day window).
 **Do / Test:**
@@ -1317,7 +1317,7 @@ describe('users and providers', () => {
 **Commit:** `git commit -m "test(fixtures): buildWorld invariants (M02-T15)"`
 
 ### T16 — Web dependencies, MSW worker, Vite proxy, worker stripped from build
-- [ ] done
+- [x] done
 **Files:** `apps/web/package.json`, `apps/web/public/mockServiceWorker.js`, `apps/web/vite.config.ts`, `apps/web/vitest.config.ts`, `.gitignore`, `.prettierignore`
 **Context:** ARCH §4.3, §4.4 (proxy excerpt), D23, AC5. `.prettierignore` already lists `apps/web/public/mockServiceWorker.js`.
 **Do:**
@@ -1381,7 +1381,7 @@ export default defineConfig({
 **Commit:** `git commit -m "chore(web): msw, tanstack query, testing-library; api proxy; strip msw worker from build (M02-T16)"`
 
 ### T17 — `parseMockDomains()`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/domains.ts`, `apps/web/src/mocks/domains.test.ts`
 **Context:** ARCH §4.4 exact code; AC5, AC8.
 **Do:** `apps/web/src/mocks/domains.ts` was created in T16 with this exact content (check it matches):
@@ -1429,7 +1429,7 @@ describe('parseMockDomains', () => {
 **Commit:** `git commit -m "feat(web): parseMockDomains (M02-T17)"`
 
 ### T18 — Mock db schema and seed
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/db/schema.ts`, `apps/web/src/mocks/db/seed.ts`
 **Context:** ARCH §4.3 `db/` (MockDb tables), D-d; CLAUDE.md "mock db is seeded only from `@fixit/fixtures`", version key starts at `v1`.
 **Do:**
@@ -1513,7 +1513,7 @@ export function seedDb(now: Date): MockDb {
 **Commit:** `git commit -m "feat(web): mock db schema and seed from fixtures (M02-T18)"`
 
 ### T19 — Mock db store (`db`, `commit`, `resetDemoData`)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/db/store.ts`, `apps/web/src/mocks/db/store.test.ts`
 **Context:** ARCH §4.3 `store.ts`; localStorage key `fixit.mockdb.v1`. The store survives quota errors (≈2 MB of JSON) by staying in memory.
 **Do:**
@@ -1611,7 +1611,7 @@ describe('mock db store', () => {
 **Commit:** `git commit -m "feat(web): mock db store with persistence and reset (M02-T19)"`
 
 ### T20 — Mock errors, empty handler index, node server, test harness setup
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/errors.ts`, `apps/web/src/mocks/handlers/index.ts`, `apps/web/src/mocks/node.ts`, `apps/web/src/test/fixed-now.ts`, `apps/web/src/test/setup.ts`, `apps/web/vitest.config.ts`
 **Context:** ARCH §4.3 `errors.ts`, `handlers/index.ts`, `node.ts`; §9.4 harness; contracts `ErrorEnvelope`, `TransitionError`. `setLatency` arrives in T21 — this task's setup does not call it yet.
 **Do:**
@@ -1720,7 +1720,7 @@ test: {
 **Commit:** `git commit -m "feat(web): mock error envelope, handler index, MSW node server and test setup (M02-T20)"`
 
 ### T21 — Mock controls (latency, forced errors)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/controls.ts`, `apps/web/src/mocks/lib/controls.test.ts`, `apps/web/src/test/setup.ts`
 **Context:** ARCH §4.3 `controls.ts` (localStorage `fixit.mock.controls`, default 300–800 ms, 0 in tests), §4.5 Latency / Force next error (500 / 409 INVALID_TRANSITION / 401 / network). Forced errors are keyed by endpoint id or `*` (any request) and are consumed once.
 **Do:**
@@ -1841,7 +1841,7 @@ describe('mock controls', () => {
 **Commit:** `git commit -m "feat(web): mock latency and forced-error controls (M02-T21)"`
 
 ### T22 — Mock tokens and refresh "cookie"
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/tokens.ts`, `apps/web/src/mocks/lib/tokens.test.ts`
 **Context:** ARCH §4.3 (unsigned JWT-shaped `…mock`, 15-minute `exp`, refresh key `fixit.mock.refresh`), §6.2 (TTL 900). A random `jti` makes two tokens issued in the same second differ.
 **Do:**
@@ -1938,7 +1938,7 @@ describe('mock tokens', () => {
 **Commit:** `git commit -m "feat(web): mock JWT-shaped tokens and refresh entry (M02-T22)"`
 
 ### T23 — `resolveActor` (identity)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/identity.ts`
 **Context:** ARCH §4.3 `identity.ts`, D2 (works with real JWT payloads; unknown user → shadow actor from claims), D5 (roles derived fresh), suspension → 401 `ACCOUNT_SUSPENDED`. Tested through the handlers in T26.
 **Do:**
@@ -1990,7 +1990,7 @@ export function tryResolveActor(request: Request): MockActor | null {
 **Commit:** `git commit -m "feat(web): mock identity resolveActor (M02-T23)"`
 
 ### T24 — `mockEndpoint` wrapper and `assertAccess`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/endpoint.ts`, `apps/web/src/mocks/lib/endpoint.test.ts`
 **Context:** ARCH §4.3 `endpoint.ts` + mock rules; §3 header (anon on non-Pub → 401; wrong role → 403; admin on U/P → 403; U on A → 403). Ownership (404) stays in each `impl`. A response that breaks its contract is a handler bug → 500 (logged), not 400.
 **Do:**
@@ -2122,7 +2122,7 @@ describe('assertAccess', () => {
 **Commit:** `git commit -m "feat(web): mockEndpoint wrapper with registry access checks (M02-T24)"`
 
 ### T25 — `buildMe()`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/me.ts`
 **Context:** ARCH §2.5 `Me`; §6.1 "Me … roles derived fresh"; `displayNameOf` (T3), `rolesOf` (T23). Counts: `openRequestCount` = customer's pending+accepted; `pendingRequestCount` = provider's pending. `rejectionReason` only when status is `rejected` (latest rejected submission). Tested in T26.
 **Do:**
@@ -2173,7 +2173,7 @@ export function buildMe(d: MockDb, userId: string): Me {
 **Commit:** `git commit -m "feat(web): mock buildMe (M02-T25)"`
 
 ### T26 — Auth mock handlers (login, refresh, logout, me)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/handlers/auth.ts`, `apps/web/src/mocks/handlers/auth.test.ts`, `apps/web/src/mocks/handlers/index.ts`
 **Context:** ARCH §3.1 rows, §6.1 Login (missing user / wrong password → 401 `invalid_credentials`; suspended checked after the password → 401 `ACCOUNT_SUSPENDED`), Refresh (user must be active), Logout (204); §4.3 refresh entry. Login sets the refresh entry; logout clears it.
 **Do:**
@@ -2341,7 +2341,7 @@ describe('GET /auth/me', () => {
 **Commit:** `git commit -m "feat(web): auth mock handlers login, refresh, logout, me (M02-T26)"`
 
 ### T27 — Auth store
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/lib/auth-store.ts`, `apps/web/src/lib/auth-store.test.ts`, `apps/web/src/test/setup.ts`
 **Context:** ARCH §4.1 paragraph after the snippet (`{ accessToken, me, status: 'booting'|'guest'|'signed-in', signOutReason }`, `useSyncExternalStore`); §6.2 (access token in memory only). Query-cache clearing is wired in T29 by subscribing to this store (no import cycle). Router redirects are M03.
 **Do:**
@@ -2438,7 +2438,7 @@ describe('authStore', () => {
 **Commit:** `git commit -m "feat(web): auth store (M02-T27)"`
 
 ### T28 — `http()` client with refresh single-flight (AC3, AC7)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/lib/http.ts`, `apps/web/src/test/sign-in.ts`, `apps/web/src/lib/http.test.ts`
 **Context:** ARCH §4.1 snippet with planner decisions **D-a** (which 401s refresh) and **D-f** (absolute URL). Sign-out reason `suspended` when the refresh failed with `ACCOUNT_SUSPENDED`, else `expired`. `signInAs(persona)` from ARCH §9.4.
 **Do:**
@@ -2722,7 +2722,7 @@ describe('pathOf', () => {
 **Commit:** `git commit -m "feat(web): http client with ApiError and single-flight refresh (M02-T28)"`
 
 ### T29 — Query keys, QueryClient defaults, AppProviders
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/lib/query-keys.ts`, `apps/web/src/app/query-client.ts`, `apps/web/src/app/query-client.test.ts`, `apps/web/src/app/providers.tsx`
 **Context:** ARCH §4.2 (`qk`, first segment = domain; defaults `staleTime 30_000`, retry rule, `refetchOnWindowFocus: false`, mutations never retry); §4.1 (`signOut` clears the query cache). Only `qk.me` now — later milestones add their keys. `providers.tsx` gets Toaster/Tooltip in M03.
 **Do:**
@@ -2799,7 +2799,7 @@ describe('query client', () => {
 **Commit:** `git commit -m "feat(web): query keys, QueryClient defaults and AppProviders (M02-T29)"`
 
 ### T30 — Auth API calls and `bootstrapAuth`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/features/auth/api.ts`, `apps/web/src/features/auth/api.test.ts`, `apps/web/src/lib/bootstrap-auth.ts`, `apps/web/src/lib/bootstrap-auth.test.ts`
 **Context:** ARCH §4.2 (api.ts uses `ENDPOINTS` path + schemas), §4.1 ("Logout calls `POST /auth/logout` first"), §4.4 main.tsx (`bootstrapAuth`: refreshOnce → me, or guest). AC2.
 **Do:**
@@ -2891,7 +2891,7 @@ describe('bootstrapAuth', () => {
 **Commit:** `git commit -m "feat(web): auth api calls and bootstrapAuth (M02-T30)"`
 
 ### T31 — `useMe` hook and test render helpers
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/features/auth/hooks.ts`, `apps/web/src/features/auth/hooks.test.tsx`, `apps/web/src/test/render.tsx`
 **Context:** ARCH §4.2 hooks pattern; §9.4 `render.tsx` (fresh QueryClient, retry off; the memory router is added in M03).
 **Do:**
@@ -2966,7 +2966,7 @@ describe('useMe', () => {
 **Commit:** `git commit -m "feat(web): useMe hook and test render helpers (M02-T31)"`
 
 ### T32 — `expireDue(db, now)`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/db/expire.ts`, `apps/web/src/mocks/db/expire.test.ts`
 **Context:** ARCH §4.3 "Expiry: the `requests` handlers run `expireDue(db, now)`" (called from M08 on); PRODUCT §6.1 (pending → expired by system); `assertTransition`, `toMachineRequest` (T6).
 **Do:**
@@ -3026,7 +3026,7 @@ describe('expireDue', () => {
 **Commit:** `git commit -m "feat(web): mock expireDue helper (M02-T32)"`
 
 ### T33 — `enableMocks()`, `main.tsx` boot order, `dev:mock` script
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/enable.ts`, `apps/web/src/vite-env.d.ts`, `apps/web/src/main.tsx`, `apps/web/.env.mock`, `apps/web/package.json`, `package.json`
 **Context:** ARCH §4.4 (`enableMocks`, boot order), D23 (never in production — everything msw-related sits behind `if (import.meta.env.DEV)` so Rollup drops it), milestone "Scripts `dev:mock` (`VITE_MOCK_DOMAINS=all`)". `activeMockDomains` is exposed as a function (a mutable `export let` is avoided).
 **Do:**
@@ -3106,7 +3106,7 @@ boot(rootEl).catch((e: unknown) => {
 **Commit:** `git commit -m "feat(web): enableMocks, boot order and dev:mock script (M02-T33)"`
 
 ### T34 — DevPanel: shell, session and "Sign in as"
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/components/ui/sheet.tsx`, `apps/web/src/components/ui/button.tsx` (shadcn), `apps/web/src/mocks/dev/DevPanel.tsx`
 **Context:** ARCH §4.5 (floating 44×44 button bottom-left, sheet, persona list, works with mocked or real `auth` via `POST /auth/login`); D-b (Admin uses `/auth/login`); AC1. Tokens only; touch targets ≥ 44px; visible focus ring (shadcn button has it). 390px: sheet is full width; 1440px: `sm:max-w-sm`.
 **Do:**
@@ -3219,7 +3219,7 @@ States: guest → "Guest", Log out disabled; signing in → that button reads `S
 **Commit:** `git commit -m "feat(web): DevPanel with persona sign-in and logout (M02-T34)"`
 
 ### T35 — DevPanel: mocked domains, reset, latency, forced errors, last email link
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/dev/DevPanel.tsx`
 **Context:** ARCH §4.5 remaining sections; AC3 (manual part), AC4. "Reset demo data" is disabled when no domain is mocked. "Last email link" is read from the mock db only when `auth` is mocked; it is filled in M04.
 **Do:**
@@ -3335,7 +3335,7 @@ function MockControlsSections() {
 **Commit:** `git commit -m "feat(web): DevPanel latency, forced errors, reset and mocked domains (M02-T35)"`
 
 ### T36 — Placeholder page shows the session
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/app/placeholder-page.tsx`
 **Context:** AC1 exact copy `Signed in as olivia@fixit.test, roles: customer`; AC3 manual (`/auth/me` call). Keep the existing M01 content; add one status block under the subtitle.
 **Do:** Add imports `import { useAuth } from '@/lib/auth-store'; import { useMe } from '@/features/auth/hooks'; import { ApiError } from '@/lib/http';` and inside `PlaceholderPage` before `return`:
@@ -3373,7 +3373,7 @@ States: guest → `Guest`; after forced sign-out → `Guest (signed out: expired
 **Commit:** `git commit -m "feat(web): placeholder shows session and reloads profile (M02-T36)"`
 
 ### T37 — Acceptance walk-through
-- [ ] done
+- [x] done
 **Files:** this plan (tick boxes), `docs/milestones/M00-index.md` only if the milestone status is tracked there.
 **Do:** check each criterion; any failure → fix in a `fix(web|contracts|fixtures): …` commit with a failing test first, or STOP with a blocker.
 1. **AC1** `pnpm dev:mock`, browser at 1440×900 and 390×844 (DevTools device mode): open DevPanel (44×44 bottom-left) → `Customer (Olivia Martinez)` → page shows `Signed in as olivia@fixit.test, roles: customer`. Repeat: `Provider, verified (Marcus Bell / Bell & Sons)` → `roles: customer, provider`; `Provider draft (Kasun Silva, onboarding step 3)` → `roles: customer`; `Admin` → `roles: admin`. No horizontal scroll at 390 (`document.documentElement.scrollWidth <= innerWidth` in console → `true`).
@@ -3393,7 +3393,12 @@ States: guest → `Guest`; after forced sign-out → `Guest (signed out: expired
 - After T36: "Human: run `pnpm dev:mock`, open http://localhost:5173 at 1440 and 390, use the DevPanel to sign in as each persona, reload, force a 401, log out (AC1–AC4)."
 
 ## Blockers
-(executor writes here; leave empty)
+- **T34 — `shadcn@latest add sheet button` output differs from the plan's assumption.**
+  - What happened: shadcn 4.23.0 generated `src/components/ui/button.tsx` and `sheet.tsx` with `import { cn } from "cn"` (not `@/lib/utils`, which `components.json` configures and where M01-T13's token-aware `cn()` lives), and added two new dependencies to `apps/web/package.json`: `cn@^0.5.2` (an unrelated npm package) and `radix-ui@^1.8.1`. The generated classes (`bg-primary/90`, `ring-ring/50`, `bg-background`, `dark:bg-input/30`, …) are also unchecked against the project's tokens.
+  - Why I stopped: the plan says "do not edit" the generated files and to STOP if shadcn output differs. Using them as generated would import the wrong `cn` package.
+  - Options: (a) approve rewriting the generated import to `@/lib/utils` (and not adding the `cn` package) — a one-line edit per file; (b) pin an older shadcn version whose output uses `@/lib/utils`; (c) hand-write the DevPanel sheet with Radix Dialog and no shadcn.
+  - **Resolved:** user chose (a). `cn` import rewritten to `@/lib/utils` in `button.tsx` and `sheet.tsx`; the `cn` package was not added (`radix-ui` kept).
+  - State at the time: generated files and the dependency changes were reverted; T34 not started. T32 and T33 are done and committed.
 
 ## Notes for review (not tasks)
 - ARCH §4.1 snippet skips refresh for every `/auth/*` path, which contradicts AC3 (`/auth/me` must refresh). Plan uses D-a; consider recording it in `docs/decisions/` and fixing the snippet.
