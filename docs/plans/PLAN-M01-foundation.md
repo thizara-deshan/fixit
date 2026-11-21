@@ -1242,7 +1242,7 @@ createRoot(rootEl).render(
 **Commit:** `git commit -m "feat(web): SPEC design tokens, fonts and shadcn variables in globals.css (M01-T12)"`
 
 ### T13 — shadcn init and `cn()` aware of token names
-- [ ] done
+- [x] done
 **Files:** `apps/web/components.json`, `apps/web/src/components/ui/.gitkeep`, `apps/web/src/lib/utils.ts`, `apps/web/src/lib/utils.test.ts`
 **Context:** CLAUDE.md (shadcn primitives only in `components/ui/`); ARCHITECTURE §5.3. Do **not** run `shadcn init` interactively and do **not** add any primitive in M01 (its generated `globals.css` edits would overwrite our tokens). Our `text-<size>` names (`text-label`) collide with `text-<colour>` (`text-text`) in tailwind-merge unless registered — without this, `cn('text-text', 'text-label')` drops one class.
 **Do:**
