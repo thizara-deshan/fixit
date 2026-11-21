@@ -2891,7 +2891,7 @@ describe('bootstrapAuth', () => {
 **Commit:** `git commit -m "feat(web): auth api calls and bootstrapAuth (M02-T30)"`
 
 ### T31 — `useMe` hook and test render helpers
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/features/auth/hooks.ts`, `apps/web/src/features/auth/hooks.test.tsx`, `apps/web/src/test/render.tsx`
 **Context:** ARCH §4.2 hooks pattern; §9.4 `render.tsx` (fresh QueryClient, retry off; the memory router is added in M03).
 **Do:**
