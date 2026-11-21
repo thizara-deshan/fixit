@@ -849,7 +849,7 @@ describe('assertTransition', () => {
 **Commit:** `git commit -m "feat(contracts): booking state machine with full transition table (M01-T9)"`
 
 ### T10 — Endpoint registry type
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `index.ts`
 **Context:** ARCHITECTURE §2.7; milestone scope (empty registry; entries come with the milestone that needs them).
 **Do:**
