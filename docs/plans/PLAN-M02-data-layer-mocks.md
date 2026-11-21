@@ -1513,7 +1513,7 @@ export function seedDb(now: Date): MockDb {
 **Commit:** `git commit -m "feat(web): mock db schema and seed from fixtures (M02-T18)"`
 
 ### T19 — Mock db store (`db`, `commit`, `resetDemoData`)
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/db/store.ts`, `apps/web/src/mocks/db/store.test.ts`
 **Context:** ARCH §4.3 `store.ts`; localStorage key `fixit.mockdb.v1`. The store survives quota errors (≈2 MB of JSON) by staying in memory.
 **Do:**
