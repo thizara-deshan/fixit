@@ -3219,7 +3219,7 @@ States: guest → "Guest", Log out disabled; signing in → that button reads `S
 **Commit:** `git commit -m "feat(web): DevPanel with persona sign-in and logout (M02-T34)"`
 
 ### T35 — DevPanel: mocked domains, reset, latency, forced errors, last email link
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/dev/DevPanel.tsx`
 **Context:** ARCH §4.5 remaining sections; AC3 (manual part), AC4. "Reset demo data" is disabled when no domain is mocked. "Last email link" is read from the mock db only when `auth` is mocked; it is filled in M04.
 **Do:**

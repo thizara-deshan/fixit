@@ -13,6 +13,20 @@ import {
 import { logout, signIn } from '@/features/auth/api';
 import { useAuth } from '@/lib/auth-store';
 import { ApiError } from '@/lib/http';
+import { ENDPOINTS } from '@fixit/contracts';
+import { db, resetDemoData } from '../db/store';
+import { activeMockDomains, isMocked } from '../enable';
+import {
+  ANY_ENDPOINT,
+  armForcedError,
+  clearForcedErrors,
+  FORCED_KINDS,
+  getControls,
+  LATENCIES,
+  setLatency,
+  type ForcedKind,
+  type Latency,
+} from '../lib/controls';
 
 export function DevSection({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -84,6 +98,148 @@ function SessionSection() {
   );
 }
 
+const LATENCY_LABEL: Record<Latency, string> = {
+  zero: '0',
+  normal: 'normal (300–800 ms)',
+  slow: 'slow (2 s)',
+};
+const FORCED_LABEL: Record<ForcedKind, string> = {
+  '500': '500 Internal error',
+  '409': '409 INVALID_TRANSITION',
+  '401': '401 Unauthenticated',
+  network: 'Network failure',
+};
+const selectClass =
+  'border-border-control bg-surface text-body text-text focus-visible:ring-ring h-11 w-full rounded-md border px-3 focus-visible:ring-2 focus-visible:outline-none';
+
+function MockControlsSections() {
+  const [controls, setControls] = useState(getControls);
+  const [target, setTarget] = useState<string>(ANY_ENDPOINT);
+  const [kind, setKind] = useState<ForcedKind>('500');
+  const refresh = () => {
+    setControls(getControls());
+  };
+  const domains = activeMockDomains();
+  const armed = Object.entries(controls.forced);
+
+  return (
+    <>
+      <DevSection title="Mocked domains">
+        <p className="text-body-sm text-text-muted">
+          {domains.length > 0 ? domains.join(', ') : 'none (all real)'}
+        </p>
+      </DevSection>
+      <DevSection title="Reset demo data">
+        <Button
+          variant="outline"
+          className="h-11"
+          disabled={domains.length === 0}
+          onClick={() => {
+            resetDemoData();
+            window.location.reload();
+          }}
+        >
+          Reset demo data
+        </Button>
+      </DevSection>
+      <DevSection title="Latency">
+        <div className="grid grid-cols-3 gap-2">
+          {LATENCIES.map((l) => (
+            <Button
+              key={l}
+              variant={controls.latency === l ? 'default' : 'outline'}
+              className="h-auto min-h-11 whitespace-normal"
+              aria-pressed={controls.latency === l}
+              onClick={() => {
+                setLatency(l);
+                refresh();
+              }}
+            >
+              {LATENCY_LABEL[l]}
+            </Button>
+          ))}
+        </div>
+      </DevSection>
+      <DevSection title="Force next error">
+        <label className="text-body-sm text-text-muted flex flex-col gap-1">
+          Endpoint
+          <select
+            className={selectClass}
+            value={target}
+            onChange={(e) => {
+              setTarget(e.target.value);
+            }}
+          >
+            <option value={ANY_ENDPOINT}>Any request</option>
+            {Object.keys(ENDPOINTS).map((id) => (
+              <option key={id} value={id}>
+                {id}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="text-body-sm text-text-muted flex flex-col gap-1">
+          Error
+          <select
+            className={selectClass}
+            value={kind}
+            onChange={(e) => {
+              setKind(e.target.value as ForcedKind);
+            }}
+          >
+            {FORCED_KINDS.map((k) => (
+              <option key={k} value={k}>
+                {FORCED_LABEL[k]}
+              </option>
+            ))}
+          </select>
+        </label>
+        <div className="flex gap-2">
+          <Button
+            className="h-11 flex-1"
+            onClick={() => {
+              armForcedError(target, kind);
+              refresh();
+            }}
+          >
+            Arm
+          </Button>
+          <Button
+            variant="outline"
+            className="h-11 flex-1"
+            disabled={armed.length === 0}
+            onClick={() => {
+              clearForcedErrors();
+              refresh();
+            }}
+          >
+            Clear
+          </Button>
+        </div>
+        <ul className="text-body-sm text-text-muted">
+          {armed.length === 0 ? (
+            <li>Nothing armed</li>
+          ) : (
+            armed.map(([t, k]) => (
+              <li key={t}>
+                {t === ANY_ENDPOINT ? 'Any request' : t} → {FORCED_LABEL[k]}
+              </li>
+            ))
+          )}
+        </ul>
+        <p className="text-caption text-text-subtle">
+          Each armed error fires once. Reopen the panel to see what is left.
+        </p>
+      </DevSection>
+      <DevSection title="Last email link">
+        <p className="text-body-sm text-text-muted break-all">
+          {isMocked('auth') ? (db().lastEmailLink ?? 'None yet') : 'Only available when auth is mocked'}
+        </p>
+      </DevSection>
+    </>
+  );
+}
+
 /** Dev only (ARCH §4.5). Rendered from main.tsx behind import.meta.env.DEV. */
 export function DevPanel() {
   return (
@@ -104,6 +260,7 @@ export function DevPanel() {
         </SheetHeader>
         <div className="flex flex-col gap-4 px-4 pb-6">
           <SessionSection />
+          <MockControlsSections />
         </div>
       </SheetContent>
     </Sheet>
