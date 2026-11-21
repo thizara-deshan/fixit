@@ -2799,7 +2799,7 @@ describe('query client', () => {
 **Commit:** `git commit -m "feat(web): query keys, QueryClient defaults and AppProviders (M02-T29)"`
 
 ### T30 — Auth API calls and `bootstrapAuth`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/features/auth/api.ts`, `apps/web/src/features/auth/api.test.ts`, `apps/web/src/lib/bootstrap-auth.ts`, `apps/web/src/lib/bootstrap-auth.test.ts`
 **Context:** ARCH §4.2 (api.ts uses `ENDPOINTS` path + schemas), §4.1 ("Logout calls `POST /auth/logout` first"), §4.4 main.tsx (`bootstrapAuth`: refreshOnce → me, or guest). AC2.
 **Do:**
