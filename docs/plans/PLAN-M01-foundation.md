@@ -1004,7 +1004,7 @@ createRoot(rootEl).render(
 **Commit:** `git commit -m "chore(web): scaffold Vite React app with strict TS and Vitest (M01-T11)"`
 
 ### T12 — Design tokens in `globals.css`
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/styles/globals.css`, `.prettierrc`
 **Context:** SPEC §2.1–§2.8; ARCHITECTURE §5.3 (full block), D17 (`cta`); milestone notes (`sm` = 641px; `md`/`xl`/`2xl` disabled; fonts via `@fontsource`).
 **Do:**

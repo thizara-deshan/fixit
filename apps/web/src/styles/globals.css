@@ -1,1 +1,225 @@
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+@import '@fontsource/plus-jakarta-sans/800.css';
+@import '@fontsource/jetbrains-mono/400.css';
 @import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme {
+  --breakpoint-sm: 40.0625rem; /* 641px: tablet+ */
+  --breakpoint-md: initial;
+  --breakpoint-xl: initial;
+  --breakpoint-2xl: initial; /* lg = 1024 kept */
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* SPEC §2.1 colour roles (names = SPEC token minus "color-"; color-accent → cta, D17) */
+  --color-primary: #1e4fa3;
+  --color-primary-hover: #163c7e;
+  --color-primary-soft: #eaf0fa;
+  --color-primary-soft-border: #c9d6ee;
+  --color-primary-flash: #f3f7fd;
+  --color-page: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1f2f4;
+  --color-placeholder-a: #eef0f3;
+  --color-placeholder-b: #e6e9ee;
+  --color-divider-subtle: #eef0f3;
+  --color-border: #e3e6eb;
+  --color-border-strong: #d3d8e0;
+  --color-border-control: #c5cbd5;
+  --color-text: #1a1d24;
+  --color-text-muted: #545b68;
+  --color-text-subtle: #6e7482;
+  --color-icon-subtle: #8a909c;
+  --color-success: #1f8a4c;
+  --color-success-soft: #e7f5ec;
+  --color-success-text: #17703d;
+  --color-warning: #f2843a;
+  --color-warning-soft: #fdf0e6;
+  --color-warning-text: #a44e12;
+  --color-warning-text-strong: #8a4310;
+  --color-danger: #d64545;
+  --color-danger-soft: #fbecec;
+  --color-danger-text: #b23a3a;
+  --color-cta: #f2843a;
+  --color-cta-hover: #e0722a;
+  --color-on-cta: #1a1d24;
+  --color-star: #f2843a;
+  --color-star-empty: #e3e6eb;
+  --color-on-primary-muted: #d6e0f3;
+  --color-cta-outline: #6e8fcb;
+  --color-footer-bg: #14254a;
+  --color-footer-text: #c9d3e6;
+  --color-footer-divider: #2a3d66;
+  --color-footer-meta: #8fa0c2;
+  --color-tooltip-bg: #1a1d24;
+  --color-toast-action: #9db8ea;
+  --color-overlay: rgb(20 24 36 / 0.5);
+
+  /* SPEC §2.3 type scale */
+  --text-display: 3.5rem;
+  --text-display--line-height: 4rem;
+  --text-display--font-weight: 800;
+  --text-display--letter-spacing: -0.03em;
+  --text-title-xl: 2.5rem;
+  --text-title-xl--line-height: 3rem;
+  --text-title-xl--font-weight: 800;
+  --text-title-xl--letter-spacing: -0.02em;
+  --text-stat: 2.125rem;
+  --text-stat--line-height: 2.5rem;
+  --text-stat--font-weight: 800;
+  --text-stat--letter-spacing: -0.02em;
+  --text-price-xl: 1.875rem;
+  --text-price-xl--line-height: 2.375rem;
+  --text-price-xl--font-weight: 800;
+  --text-title-lg: 1.75rem;
+  --text-title-lg--line-height: 2.25rem;
+  --text-title-lg--font-weight: 700;
+  --text-title-lg--letter-spacing: -0.01em;
+  --text-price-lg: 1.375rem;
+  --text-price-lg--line-height: 1.75rem;
+  --text-price-lg--font-weight: 800;
+  --text-logo: 1.3125rem;
+  --text-logo--line-height: 1.2;
+  --text-logo--font-weight: 800;
+  --text-logo--letter-spacing: -0.02em;
+  --text-title-md: 1.25rem;
+  --text-title-md--line-height: 1.75rem;
+  --text-title-md--font-weight: 700;
+  --text-title-sm: 1.1875rem;
+  --text-title-sm--line-height: 1.625rem;
+  --text-title-sm--font-weight: 700;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.75rem;
+  --text-title-xs: 1.0625rem;
+  --text-title-xs--line-height: 1.375rem;
+  --text-title-xs--font-weight: 700;
+  --text-body: 1rem;
+  --text-body--line-height: 1.5rem;
+  --text-body-sm: 0.9375rem;
+  --text-body-sm--line-height: 1.4375rem;
+  --text-label: 0.875rem;
+  --text-label--line-height: 1.25rem;
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.1875rem;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+  --text-caption--font-weight: 700;
+  --text-mono: 0.6875rem;
+  --text-mono--line-height: 1rem;
+
+  /* SPEC §2.4 radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-4xl: 28px;
+
+  /* SPEC §2.5 shadows */
+  --shadow-xs: 0 1px 3px rgb(20 24 36 / 0.1);
+  --shadow-knob: 0 1px 3px rgb(0 0 0 / 0.2);
+  --shadow-badge: 0 2px 8px rgb(20 24 36 / 0.08);
+  --shadow-search-sm: 0 6px 20px rgb(20 24 36 / 0.05);
+  --shadow-hover: 0 8px 24px rgb(20 24 36 / 0.08);
+  --shadow-search: 0 12px 32px rgb(20 24 36 / 0.08);
+  --shadow-tooltip: 0 12px 32px rgb(20 24 36 / 0.2);
+  --shadow-float: 0 16px 40px rgb(20 24 36 / 0.14);
+  --shadow-toast: 0 16px 40px rgb(20 24 36 / 0.25);
+  --shadow-modal: 0 24px 64px rgb(20 24 36 / 0.25);
+
+  /* SPEC §2.6 layout */
+  --container-content: 1240px;
+  --container-form: 720px;
+  --container-auth: 440px;
+  --spacing-nav: 72px;
+  --spacing-topbar: 56px;
+  --spacing-sidebar: 256px;
+  --spacing-filters: 280px;
+  --spacing-aside: 380px;
+
+  /* SPEC §2.8 motion */
+  --default-transition-duration: 150ms;
+}
+
+/* Phone overrides (SPEC §2.3, §2.6) */
+@media (max-width: 640px) {
+  :root {
+    --text-display: 2.25rem;
+    --text-display--line-height: 2.75rem;
+    --text-title-xl: 1.75rem;
+    --text-title-xl--line-height: 2.25rem;
+    --text-title-lg: 1.375rem;
+    --text-title-lg--line-height: 1.875rem;
+    --text-stat: 1.75rem;
+    --text-stat--line-height: 2.25rem;
+    --text-price-xl: 1.5rem;
+    --text-price-xl--line-height: 2rem;
+    --spacing-nav: 64px;
+  }
+}
+
+/* shadcn semantic variables → our tokens */
+:root {
+  --background: var(--color-page);
+  --foreground: var(--color-text);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-text);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-surface);
+  --secondary-foreground: var(--color-text);
+  --muted: var(--color-page);
+  --muted-foreground: var(--color-text-muted);
+  --accent: var(--color-primary-soft);
+  --accent-foreground: var(--color-primary);
+  --destructive: var(--color-danger-text);
+  --input: var(--color-border);
+  --ring: var(--color-primary);
+  --radius: 12px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  body {
+    @apply bg-page text-text font-sans antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
