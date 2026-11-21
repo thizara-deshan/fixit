@@ -1143,7 +1143,7 @@ Add `export * from './reviews';` to `index.ts`.
 **Commit:** `git commit -m "feat(fixtures): written and filler reviews with completed requests (M02-T13)"`
 
 ### T14 — `buildWorld(now)` with computed aggregates
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/build.ts`, `src/index.ts`
 **Context:** ARCH §8.3 ("Aggregates are computed with `ratingFrom()`, never copied"), §7.7; `computeStartingPrice` (T5).
 **Do:**
