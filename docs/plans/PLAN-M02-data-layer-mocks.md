@@ -1611,7 +1611,7 @@ describe('mock db store', () => {
 **Commit:** `git commit -m "feat(web): mock db store with persistence and reset (M02-T19)"`
 
 ### T20 — Mock errors, empty handler index, node server, test harness setup
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/mocks/lib/errors.ts`, `apps/web/src/mocks/handlers/index.ts`, `apps/web/src/mocks/node.ts`, `apps/web/src/test/fixed-now.ts`, `apps/web/src/test/setup.ts`, `apps/web/vitest.config.ts`
 **Context:** ARCH §4.3 `errors.ts`, `handlers/index.ts`, `node.ts`; §9.4 harness; contracts `ErrorEnvelope`, `TransitionError`. `setLatency` arrives in T21 — this task's setup does not call it yet.
 **Do:**
