@@ -422,7 +422,7 @@ describe('RequestRecord', () => {
 **Commit:** `git commit -m "feat(contracts): RequestRecord and toMachineRequest (M02-T6)"`
 
 ### T7 — Auth `ENDPOINTS` entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.1 rows login/refresh/logout/me; §2.7. Ids follow the `<domain>_<action>` pattern of §2.7 (`requests_accept`).
 **Do:** in `endpoints.ts` add `import { AuthSession, LoginBody, Me } from './auth/schemas';` at the top and replace the `ENDPOINTS` line with:
