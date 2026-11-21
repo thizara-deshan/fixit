@@ -7,3 +7,4 @@ export * from './requests/rules';
 export * from './requests/state-machine';
 export * from './endpoints';
 export * from './auth/schemas';
+export * from './auth/roles';

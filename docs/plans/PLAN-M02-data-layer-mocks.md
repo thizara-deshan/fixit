@@ -146,7 +146,7 @@ describe('LoginBody', () => {
 **Commit:** `git commit -m "feat(contracts): auth schemas LoginBody, Me, AuthSession, AccessTokenClaims (M02-T1)"`
 
 ### T2 — `deriveRoles()`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/auth/roles.ts`, `roles.test.ts`, `index.ts`
 **Context:** ARCH §2.9, §6.2 "Roles", D11; PRODUCT BR-35.
 **Do:**
