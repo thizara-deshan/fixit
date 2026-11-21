@@ -3393,7 +3393,11 @@ States: guest → `Guest`; after forced sign-out → `Guest (signed out: expired
 - After T36: "Human: run `pnpm dev:mock`, open http://localhost:5173 at 1440 and 390, use the DevPanel to sign in as each persona, reload, force a 401, log out (AC1–AC4)."
 
 ## Blockers
-(executor writes here; leave empty)
+- **T34 — `shadcn@latest add sheet button` output differs from the plan's assumption.**
+  - What happened: shadcn 4.23.0 generated `src/components/ui/button.tsx` and `sheet.tsx` with `import { cn } from "cn"` (not `@/lib/utils`, which `components.json` configures and where M01-T13's token-aware `cn()` lives), and added two new dependencies to `apps/web/package.json`: `cn@^0.5.2` (an unrelated npm package) and `radix-ui@^1.8.1`. The generated classes (`bg-primary/90`, `ring-ring/50`, `bg-background`, `dark:bg-input/30`, …) are also unchecked against the project's tokens.
+  - Why I stopped: the plan says "do not edit" the generated files and to STOP if shadcn output differs. Using them as generated would import the wrong `cn` package.
+  - Options: (a) approve rewriting the generated import to `@/lib/utils` (and not adding the `cn` package) — a one-line edit per file; (b) pin an older shadcn version whose output uses `@/lib/utils`; (c) hand-write the DevPanel sheet with Radix Dialog and no shadcn.
+  - State: generated files and the dependency changes were reverted; T34 not started. T32 and T33 are done and committed.
 
 ## Notes for review (not tasks)
 - ARCH §4.1 snippet skips refresh for every `/auth/*` path, which contradicts AC3 (`/auth/me` must refresh). Plan uses D-a; consider recording it in `docs/decisions/` and fixing the snippet.
