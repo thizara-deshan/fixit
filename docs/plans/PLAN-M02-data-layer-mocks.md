@@ -2722,7 +2722,7 @@ describe('pathOf', () => {
 **Commit:** `git commit -m "feat(web): http client with ApiError and single-flight refresh (M02-T28)"`
 
 ### T29 — Query keys, QueryClient defaults, AppProviders
-- [ ] done
+- [x] done
 **Files:** `apps/web/src/lib/query-keys.ts`, `apps/web/src/app/query-client.ts`, `apps/web/src/app/query-client.test.ts`, `apps/web/src/app/providers.tsx`
 **Context:** ARCH §4.2 (`qk`, first segment = domain; defaults `staleTime 30_000`, retry rule, `refetchOnWindowFocus: false`, mutations never retry); §4.1 (`signOut` clears the query cache). Only `qk.me` now — later milestones add their keys. `providers.tsx` gets Toaster/Tooltip in M03.
 **Do:**
