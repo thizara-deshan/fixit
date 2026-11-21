@@ -334,7 +334,7 @@ export default defineConfig({
 **Commit:** `git commit -m "feat(contracts): shared enums (M01-T4)"`
 
 ### T5 — Primitives incl. `MobileInput`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/common/primitives.ts`, `packages/contracts/src/common/primitives.test.ts`, `index.ts`
 **Context:** ARCHITECTURE §2.3; milestone AC3; SPEC copy is in the schema messages.
 **Do:**
