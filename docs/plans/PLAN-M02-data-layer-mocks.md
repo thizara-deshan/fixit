@@ -474,7 +474,7 @@ describe('ENDPOINTS', () => {
 **Commit:** `git commit -m "feat(contracts): auth endpoint registry entries (M02-T7)"`
 
 ### T8 — `@fixit/fixtures` package skeleton and types
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/package.json`, `tsconfig.json`, `tsup.config.ts`, `src/types.ts`, `src/prng.ts`, `src/index.ts`
 **Context:** ARCH §1 (`fixtures/src/ catalog.ts users.ts providers.ts requests.ts reviews.ts build.ts index.ts`), §8.1 field names, D1, D19. Copy the contracts package layout.
 **Do:**
