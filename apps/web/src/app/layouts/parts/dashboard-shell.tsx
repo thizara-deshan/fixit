@@ -9,6 +9,7 @@ import { Logo } from './logo';
 import { OfflineBanner } from './offline-banner';
 import { SidebarNav } from './sidebar-nav';
 import { SkipLink } from './skip-link';
+import { useAccountBanners } from './use-account-banners';
 
 export interface TopBarAction {
   to: string;
@@ -37,6 +38,7 @@ export function DashboardShell({
   children,
 }: DashboardShellProps) {
   const [open, setOpen] = useState(false);
+  const banners = useAccountBanners(); // [] for admins
   const close = () => {
     setOpen(false);
   };
@@ -112,7 +114,7 @@ export function DashboardShell({
           tabIndex={-1}
           className="max-w-content mx-auto flex w-full min-w-0 flex-col gap-5 px-4 pb-14 pt-5 sm:px-6 sm:pb-16 sm:pt-6 lg:gap-7 lg:px-10 lg:pt-8"
         >
-          <BannerSlot banners={[]} placement="main" />
+          <BannerSlot banners={banners} placement="main" />
           {children}
         </main>
       </div>

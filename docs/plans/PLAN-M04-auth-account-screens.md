@@ -2100,7 +2100,7 @@ it('no session → /login?error=google_cancelled', async () => {
 **Commit:** `git commit -m "feat(web): Google done route (M04-T30)"`
 
 ### T31 — Unconfirmed-email banner (§6.8 #6)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/components/unconfirmed-email-banner.tsx`, `src/app/layouts/parts/use-account-banners.tsx`, `src/app/layouts/public-layout.tsx`, `src/app/layouts/parts/dashboard-shell.tsx`, `src/app/layouts/public-layout.test.tsx` (create)
 **Context:** SPEC §6.8 row 6 (warning; L1/L2 strip under the nav, L3 main slot; phone: action on its own line, 44 target — already in `NoticeBanner`); AC3.
