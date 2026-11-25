@@ -133,7 +133,7 @@ describe('ProviderPublicProfile', () => {
 **Commit:** `git commit -m "feat(contracts): public profile and review schemas (M07-T2)"`
 
 ### T3 — `orderAreas` and `reviewsWindow`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/catalog/profile.ts`, `packages/contracts/src/catalog/profile.test.ts`, `index.ts`
 **Context:** S3.E13 (base first, rest alphabetical), D-1.
 **Do:** create
