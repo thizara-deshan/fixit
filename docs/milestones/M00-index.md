@@ -204,6 +204,7 @@ Nothing in v1 Must/Should scope is unassigned. Only F-10, F-39, F-40 (all Could)
 
 ## Ideas inbox
 <!-- One-liners captured during builds. Format: - YYYY-MM-DD (Mxx): idea -->
+- 2026-11-25 (M06): add ≥ 1 more listed fixture provider so Discover pagination is visible in the browser (check M05 featured tests).
 
 ## Backlog
 <!-- LATER items from reviews and deferred scope. -->
