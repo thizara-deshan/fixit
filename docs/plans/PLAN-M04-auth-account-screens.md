@@ -1149,7 +1149,7 @@ it('googleStartUrl keeps next and intent', () => {
 **Commit:** `git commit -m "feat(web): auth API calls (M04-T17)"`
 
 ### T18 — Auth feature: hooks
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/hooks.ts`, `src/features/auth/hooks.test.tsx`
 **Context:** ARCH §4.2 hooks; SPEC A1–A8; D-1, D-3, D-9.
