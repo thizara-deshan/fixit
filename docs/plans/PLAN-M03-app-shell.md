@@ -3011,7 +3011,7 @@ export function DashboardShell({ navLabel, badge, items, footer, topBarAction, c
 ---
 
 ### T31 — `ProviderLayout` (L3) and `AdminLayout` (L4)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/provider-layout.tsx`, `src/app/layouts/admin-layout.tsx`
 **Context:** SPEC L3 (Pro badge 22 high, padding 0 8, `warning-soft`/`warning-text` 11/700; business card padding 12, 1px `border`, r14, 40×40 r10 tile, business name 14/700 ellipsis + owner 12 subtle; **Switch to booking** `ArrowLeftRight` 20, 14/600 muted → `/`; **Log out** `LogOut` 14/600 muted hover `danger-text`; top-bar action Requests with the count), L4 (Admin badge `footer-bg` + white 11/700; admin card: initials avatar, name 14/700, "Super admin" 12 subtle; Log out; no Switch to booking; top-bar action Verification). D-d, D-e. AC3.
