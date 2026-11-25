@@ -1,8 +1,11 @@
 import { PROTOTYPE_PROVIDER_IDS, WRITTEN_REVIEWS } from './prototype-reviews';
+import type { AccountStatus, AuthMethod } from '@fixit/contracts';
 import type { FxUser } from './types';
 
 /** Dev/test seeds only (ARCH §8.3). */
 export const DEMO_PASSWORD = 'demo1234';
+/** M04: the mock "Continue with Google" always signs in as this Google-only user. */
+export const GOOGLE_MOCK_USER_ID = 'u-sanduni';
 export const FILLER_CUSTOMER_COUNT = 40;
 const DAY = 86_400_000;
 
@@ -56,6 +59,8 @@ interface UserSeed {
   mobile: string | null;
   isAdmin?: boolean;
   confirmed?: boolean;
+  status?: AccountStatus;
+  authMethods?: AuthMethod[];
 }
 
 const CORE_USERS: readonly UserSeed[] = [
@@ -63,6 +68,21 @@ const CORE_USERS: readonly UserSeed[] = [
   { id: 'u-olivia', email: 'olivia@fixit.test', fullName: 'Olivia Martinez', mobile: mobileNo(1001) },
   { id: 'u-nimal', email: 'nimal@fixit.test', fullName: 'Nimal Perera', mobile: null, confirmed: false },
   { id: 'u-kasun', email: 'kasun@fixit.test', fullName: 'Kasun Silva', mobile: mobileNo(1002) },
+  // M04: Google-only account (mock "Continue with Google" signs in here) and a suspended account
+  {
+    id: 'u-sanduni',
+    email: 'sanduni@fixit.test',
+    fullName: 'Sanduni Wijesinghe',
+    mobile: mobileNo(1003),
+    authMethods: ['google'],
+  },
+  {
+    id: 'u-ruwan',
+    email: 'ruwan@fixit.test',
+    fullName: 'Ruwan Jayasekara',
+    mobile: mobileNo(1004),
+    status: 'suspended',
+  },
   // provider owners (p01–p10)
   { id: 'u-marcus', email: 'marcus@fixit.test', fullName: 'Marcus Bell', mobile: mobileNo(1101) },
   { id: 'u-dana', email: 'dana@fixit.test', fullName: 'Dana Ortiz', mobile: mobileNo(1102) },
@@ -142,10 +162,10 @@ export function buildUsers(now: Date): FxUser[] {
     email: s.email,
     fullName: s.fullName,
     isAdmin: s.isAdmin ?? false,
-    status: 'active',
+    status: s.status ?? 'active',
     emailConfirmedAt: s.confirmed === false ? null : createdAt,
     mobile: s.mobile,
-    authMethods: ['password'],
+    authMethods: s.authMethods ?? ['password'],
     createdAt,
   }));
 }

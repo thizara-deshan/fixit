@@ -109,6 +109,11 @@ describe('users and providers', () => {
     const emails = world.users.map((u) => u.email);
     expect(new Set(emails).size).toBe(emails.length);
   });
+  it('has a Google-only user and a suspended user (M04)', () => {
+    const byId = (id: string) => world.users.find((u) => u.id === id);
+    expect(byId('u-sanduni')?.authMethods).toEqual(['google']);
+    expect(byId('u-ruwan')?.status).toBe('suspended');
+  });
   it('Kasun is a draft on step 3; p02 is pending review with a pending submission; Hank not submitted', () => {
     const kasun = world.providers.find((p) => p.userId === 'u-kasun');
     expect([kasun?.onboardingStep, kasun?.onboardingComplete]).toEqual([3, false]);

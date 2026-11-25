@@ -301,7 +301,7 @@ it('M04 auth rows match ARCHITECTURE §3.1', () => {
 **Commit:** `git commit -m "feat(contracts): M04 auth endpoint rows (M04-T4)"`
 
 ### T5 — Fixtures: Google-only and suspended users
-- [ ] done
+- [x] done
 
 **Files:** `packages/fixtures/src/users.ts`, `packages/fixtures/src/build.test.ts`
 **Context:** AC4, AC6, D-5. `FxUser` already has `status` and `authMethods`.
