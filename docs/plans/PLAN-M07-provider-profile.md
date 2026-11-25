@@ -1129,7 +1129,7 @@ Because the block renders twice (header + phone bar, one of them `hidden` by CSS
 **Commit:** `git commit -m "feat(web): provider profile header card (M07-T16)"`
 
 ### T17 — About, Services, Service area sections
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-profile/components/profile-sections.tsx`
 **Context:** S3.E9, E10 (BR-09, BR-11), E13; screenshot section cards (r20, padding 28 desktop).
 **Do:** export `SectionCard({ title, id?, aside?, children, className })`:
