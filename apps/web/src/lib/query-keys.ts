@@ -6,5 +6,8 @@ export const qk = {
   catalog: ['catalog', 'catalog'] as const,
   featured: ['catalog', 'featured'] as const,
   discover: (q: DiscoverQuery) => ['catalog', 'discover', q] as const,
+  provider: (id: string) => ['catalog', 'provider', id] as const,
+  providerReviews: (id: string) => ['catalog', 'provider-reviews', id] as const,
+  eligibility: (providerId: string) => ['requests', 'eligibility', providerId] as const,
   confirmEmail: (token: string) => ['auth', 'confirm', token] as const,
 };

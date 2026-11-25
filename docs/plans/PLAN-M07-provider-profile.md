@@ -738,7 +738,7 @@ describe('GET /me/request-eligibility/:providerId', () => {
 **Commit:** `git commit -m "feat(web): mock request eligibility endpoint (M07-T9)"`
 
 ### T10 — Query keys, review date format, api functions
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/lib/format.ts`, `src/lib/format.test.ts`, `src/features/provider-profile/api.ts`
 **Do:**
 1. `qk` add:

@@ -5,6 +5,7 @@ import {
   formatDateTime,
   formatLkr,
   formatPhone,
+  formatReviewDate,
   formatRating,
   formatServicePrice,
   initialsOf,
@@ -55,5 +56,11 @@ describe('priceParts lead', () => {
   it('From for per_hour, null for fixed', () => {
     expect(priceParts(2500, 'per_hour')).toEqual({ lead: 'From', amount: 'LKR 2,500', suffix: ' / hour' });
     expect(priceParts(15000, 'fixed')).toEqual({ lead: null, amount: 'LKR 15,000', suffix: ' fixed' });
+  });
+});
+
+describe('formatReviewDate', () => {
+  it('formats in Colombo time', () => {
+    expect(formatReviewDate('2026-09-11T20:00:00Z')).toBe('12 Sep 2026');
   });
 });
