@@ -1158,7 +1158,7 @@ Phone: padding 28/24 (`px-6 py-7`), radius 20, text stacks over full-width 48 bu
 **Commit:** `git commit -m "feat(web): provider CTA band (M05-T18)"`
 
 ### T19 — Home page assembly + wiring
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/pages/home-page.tsx`, `src/features/site/pages/home-page.test.tsx`, `src/app/chunks/home.tsx`
 **Context:** S1 desktop/phone order, section-gap 88/56, AC1–AC6, AC7 (hash). Reuses all of T12–T18, `useFeatured`, `useScrollToHash`.

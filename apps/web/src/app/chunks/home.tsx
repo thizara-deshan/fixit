@@ -1,5 +1,1 @@
-import { PlaceholderScreen } from '../placeholder-screen';
-
-export function HomePage() {
-  return <PlaceholderScreen title="Home" />;
-}
+export { HomePage } from '@/features/site/pages/home-page';
