@@ -1977,7 +1977,16 @@ Write any failing check under `## Blockers` and stop.
 - After T27: "Human: send a request and look at S13 at 1440 and 390."
 
 ## Blockers
-(executor writes here; leave empty)
+### T29 — `pnpm verify` red from cold-load timeouts (not a logic failure)
+- **State:** the T29 test file (`request-sent-page.test.tsx`) is written and its 3 tests pass. T29's checkbox is **not ticked** because `pnpm verify` is not green.
+- **Problem:** under default Vitest parallelism on this machine (load average 6–12 from other processes), two tests time out at the 1000 ms `findBy*` default while cold-loading the lazy `customer` chunk: `guards (SPEC §8.4, AC4) > guest on /requests → /login?next=%2Frequests` and `RequestFormPage (S12) > AC1`. Reproduced on 3 consecutive `pnpm verify` runs. The same suite passes (390/390) with `vitest run --maxWorkers=2`, and each file passes alone. M08-T26/T27 made that chunk heavier (it now statically re-exports the form, `@hookform/resolvers` and the sent page), so first-render cost rose. The T28 commit passed `pnpm verify` only on a rerun after load dropped.
+- **Why I stopped:** every fix touches shared test configuration (`apps/web/src/test/setup.ts` or `vitest.config`), which no M08 task covers, and it affects every test.
+- **Options:**
+  1. Raise the Testing Library `asyncUtilTimeout` (for example to 4000 ms) in `src/test/setup.ts`.
+  2. Cap workers in `apps/web/vitest.config.ts` (`maxWorkers` / `poolOptions`).
+  3. Split the `customer` chunk so the S12 and S13 pages load lazily as their own routes.
+  4. Re-run `pnpm verify` on a quiet machine and accept the flake as environmental.
+- **Recommendation:** option 1, a one-line setup change that doesn't alter any assertion. It needs your go-ahead.
 
 ## Nice-to-haves / notes (not tasks)
 - API milestone: `POST /me/requests` parses with `CreateRequestBody` and leaves the window to `checkCreateRequest` (decision 004).
