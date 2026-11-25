@@ -987,7 +987,7 @@ All copy exactly as SPEC S2.E3–E7.
 **Commit:** `git commit -m "feat(web): discover filter groups (M06-T13)"`
 
 ### T14 — Desktop filter panel (S2.E2)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/filter-panel.tsx`
 **Context:** S2 desktop layout item 2; 04-discover desktop, left panel. Visible only `lg` and up.
 **Do:**
