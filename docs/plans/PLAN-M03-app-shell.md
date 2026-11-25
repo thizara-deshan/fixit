@@ -3130,7 +3130,7 @@ export function AdminLayout() {
 ---
 
 ### T32 — System pages S39, S40, S41 and `RouteErrorBoundary`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/errors/not-found-page.tsx`, `forbidden-page.tsx`, `error-page.tsx`, `route-error-boundary.tsx`
 **Context:** SPEC §5.E (empty-state pattern centred, padding 88 16; S39 generic/provider/request copy and buttons per area; S40 `Lock` + email + `Go to home` · `Log out`; S41 `TriangleAlert` warning tile, contact email, 12 mono subtle `Error ID: {id}`, `Try again` (reloads) · `Go to home`), §6.4. ARCH §5.6 (ApiError 404 → S39 variant by route, 403 → S40, else S41 with `requestId` or a client id). D-i. AC5, AC6.
