@@ -1090,7 +1090,7 @@ export function StatusPill(props: StatusPillProps) {
 ---
 
 ### T14 — `Stars` and `PriceLabel`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/stars.tsx`, `src/components/price-label.tsx`
 **Context:** SPEC §1.3 (rating 1 decimal, "New"; short price), §2.1 `star`/`star-empty`, §9 Stars (`aria-label`, glyphs `aria-hidden`). Prototype `01-home-desktop.png` featured cards: `★★★★★ 4.9 (212)`, i.e. 5 filled stars for 4.7–4.9 (rounded).
