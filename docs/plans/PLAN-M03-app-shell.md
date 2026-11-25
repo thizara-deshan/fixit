@@ -218,7 +218,7 @@ export { Button, buttonVariants };
 ---
 
 ### T6 — Restyle form primitives and skeleton
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/{input,textarea,label,skeleton,checkbox,radio-group,switch,select,tabs}.tsx`, `src/styles/globals.css`
 **Context:** SPEC §2.9 Input/select (48 high, 1.5px `border`, `radius-md`, focus border `primary`), Checkbox (20×20 `radius-xs`, 1.5px `border-control`, on = `primary`), Toggle (44×26, off `border-strong`, on `success`, knob 20 `shadow-knob`), §6.1 skeleton (`placeholder-a`, 1.2 s opacity pulse 0.6 ↔ 1), §2.3 (input text never below 16px on phone), §9 focus ring.
