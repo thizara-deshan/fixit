@@ -400,7 +400,7 @@ describe('compareProviders(rating) ties', () => {
 **Commit:** `git commit -m "feat(contracts): GET /providers endpoint entry (M06-T5)"`
 
 ### T6 — Mock search engine `discoverSearch`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/discover.ts`, `src/mocks/lib/discover.test.ts`
 **Context:** BR-01…BR-07, ARCH §7.6 (base = all filters except category; counts from base; total and page with categories); D-3. Reuse `listedCards`, `isListed` from `mocks/lib/cards.ts`.
 **Do:** create `discover.ts`:
