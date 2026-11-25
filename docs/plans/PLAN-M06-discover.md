@@ -644,7 +644,7 @@ describe('useDiscover', () => {
 **Commit:** `git commit -m "feat(web): useDiscover hook and query key (M06-T8)"`
 
 ### T9 — URL state helper `url-state.ts`
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/url-state.ts`, `src/features/discover/url-state.test.tsx`
 **Context:** ARCH §5.4; SPEC §8.2; D-1, D-2; S2 phone toolbar badge count rule.
 **Do:** full file:
