@@ -1264,7 +1264,7 @@ export function SectionError({ onRetry, className }: { onRetry: () => void; clas
 ---
 
 ### T16 — Skeletons and `LoadingRegion` (AC9)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/skeletons.tsx`, `src/components/loading-region.tsx`, `src/components/loading-region.test.tsx`
 **Context:** SPEC §6.1 table (each skeleton has the same box as the real component), `aria-busy="true"`, visually hidden `Loading…`, 150 ms delay. Milestone AC9.
