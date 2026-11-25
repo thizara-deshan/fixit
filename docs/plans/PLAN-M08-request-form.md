@@ -59,7 +59,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — `CreateRequestBody` and `makeCreateRequestSchema`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`, `packages/contracts/src/requests/create-schema.test.ts`
 **Context:** PRODUCT §6.2, BR-34; SPEC S12 field table; ARCH §2.5; D-1. `bookingWindow` exists in `requests/rules.ts`; `MobileInput`, `MOBILE_MESSAGE`, `Id`, `IsoDate` in `common/primitives.ts`; `formatInColombo`, `colomboStartOfDay` in `common/dates.ts`.
 **Do:**
