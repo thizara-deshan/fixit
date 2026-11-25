@@ -188,3 +188,34 @@ describe('forgot + reset password', () => {
     expect((await envelope(reuse)).details?.rule).toBe('token_invalid');
   });
 });
+
+describe('POST /auth/admin/login', () => {
+  it.each([
+    ['olivia@fixit.test', DEMO_PASSWORD],
+    ['admin@fixit.test', 'wrong'],
+  ])('%s → 401 invalid_credentials', async (email, password) => {
+    const res = await call('/auth/admin/login', post({ email, password }));
+    expect([res.status, (await envelope(res)).details?.rule]).toEqual([401, 'invalid_credentials']);
+  });
+  it('admin → session', async () => {
+    const res = await call('/auth/admin/login', post({ email: 'admin@fixit.test', password: DEMO_PASSWORD }));
+    expect(AuthSession.parse(await res.json()).user.roles).toEqual(['admin']);
+  });
+});
+
+describe('POST /auth/google/mock', () => {
+  it('signs in the Google fixture user via refresh', async () => {
+    expect((await call('/auth/google/mock', { method: 'POST' })).status).toBe(204);
+    const s = AuthSession.parse(await (await call('/auth/refresh', { method: 'POST' })).json());
+    expect([s.user.email, s.user.authMethods]).toEqual(['sanduni@fixit.test', ['google']]);
+  });
+});
+
+describe('POST /auth/login (M04 fixtures)', () => {
+  it('suspended account → 401 ACCOUNT_SUSPENDED', async () => {
+    expect((await envelope(await login('ruwan@fixit.test'))).code).toBe('ACCOUNT_SUSPENDED');
+  });
+  it('Google-only account has no password → invalid_credentials', async () => {
+    expect((await envelope(await login('sanduni@fixit.test'))).details?.rule).toBe('invalid_credentials');
+  });
+});

@@ -1,4 +1,5 @@
-import { ENDPOINTS as E, type AuthSession } from '@fixit/contracts';
+import { ENDPOINTS as E, type AuthSession, type EndpointDef } from '@fixit/contracts';
+import { GOOGLE_MOCK_USER_ID } from '@fixit/fixtures';
 import type { MockDb, MockUser } from '../db/schema';
 import {
   findEmailToken,
@@ -30,6 +31,17 @@ function session(d: MockDb, userId: string, now: Date): AuthSession {
     user: buildMe(d, userId),
   };
 }
+
+/** MSW-only (ARCH §6.1): stands in for GET /auth/google → callback. Sets the mock refresh "cookie"; the SPA then runs /auth/google/done. Not in ENDPOINTS. */
+export const GOOGLE_MOCK = {
+  id: 'auth_google_mock',
+  domain: 'auth',
+  method: 'POST',
+  path: '/auth/google/mock',
+  access: ['public'],
+  owner: 'none',
+  refs: ['F-02'],
+} as const satisfies EndpointDef;
 
 export const authHandlers = [
   mockEndpoint(E.auth_login, ({ body, db: d, now }) => {
@@ -112,5 +124,19 @@ export const authHandlers = [
     if (!user.authMethods.includes('password')) user.authMethods = [...user.authMethods, 'password'];
     t.usedAt = now.toISOString();
     if (readMockRefresh() === user.id) clearMockRefresh(); // A8: other sessions end
+  }),
+  mockEndpoint(E.auth_admin_login, ({ body, db: d, now }) => {
+    const user = Object.values(d.users).find((u) => u.email === body.email);
+    // S29.E4: any failure (incl. a non-admin or suspended account) is the same 401 — no role disclosure.
+    if (!user || !user.isAdmin || user.password !== body.password || user.status === 'suspended')
+      throw invalidCredentials();
+    setMockRefresh(user.id);
+    return session(d, user.id, now);
+  }),
+  mockEndpoint(GOOGLE_MOCK, ({ db: d }) => {
+    const user = d.users[GOOGLE_MOCK_USER_ID];
+    if (!user) throw mockError(404, 'NOT_FOUND', 'Google fixture user missing');
+    if (user.status === 'suspended') throw suspended();
+    setMockRefresh(user.id);
   }),
 ];

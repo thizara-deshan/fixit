@@ -538,7 +538,7 @@ describe('forgot + reset password', () => {
 **Commit:** `git commit -m "feat(web): mock forgot and reset password handlers (M04-T8)"`
 
 ### T9 — Mock handlers: admin login and simulated Google
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/auth.ts`, `auth.test.ts`
 **Context:** ARCH §3.1 admin login (non-admin → same 401), §6.1 Google mock route; S29.E4; D-5.
