@@ -545,7 +545,7 @@ describe('toCustomerView', () => {
 **Commit:** `git commit -m "feat(web): DevPanel forced provider_paused rule error (M08-T7)"`
 
 ### T8 — Mock helpers `openRequestsOf`, `customerViewOf`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/requests.ts`, `src/mocks/lib/requests.test.ts`
 **Context:** CLAUDE mock rules (project with `toCustomerView`); `isListed` in `mocks/lib/cards.ts`; fixture request FX-2061 (Olivia → p01, pending), FX-2046 (Olivia, completed).
 **Do:** Create `requests.ts`:
