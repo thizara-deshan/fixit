@@ -894,7 +894,7 @@ describe('discover copy', () => {
 **Commit:** `git commit -m "feat(web): discover results copy helpers (M06-T11)"`
 
 ### T12 — `ResultCard` (S2.E10)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/result-card.tsx`
 **Context:** S2.E10, S2 phone item 5; 04-discover-plumbing-austin-desktop.png, the card at right (photo 132, name + badge, stars row, meta row, bio, right column price + `View profile` separated by a vertical divider). Reuse `CategoryIcon`, `Stars`, `StatusPill` (`kind: 'trust'`, `kind: 'availability'`), `priceParts`, `Button`. BR-07: no distance.
 **Do:** skeleton (fill the markup exactly with these classes):
