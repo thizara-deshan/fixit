@@ -805,7 +805,7 @@ it('signed-in customer on /login?next=https://evil.test goes to /', async () => 
 **Commit:** `git commit -m "feat(web): RequireGuest honours next (M04-T13)"`
 
 ### T14 — `lib/error-copy.ts` and `mapApiErrorToForm`
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/error-copy.ts`, `src/lib/form-errors.ts`, `src/lib/form-errors.test.ts`
 **Context:** ARCH §4.1, SPEC S5.E8, §6.3, §6.6, S29.E4; D-4; AC10 "server fieldErrors map onto fields".
