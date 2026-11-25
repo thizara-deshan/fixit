@@ -204,7 +204,7 @@ describe('reviewsWindow', () => {
 **Commit:** `git commit -m "feat(contracts): profile area order and review window (M07-T3)"`
 
 ### T4 — `Eligibility` schema and `evaluateEligibility`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`, `packages/contracts/src/requests/eligibility.ts`, `…/eligibility.test.ts`, `index.ts`
 **Context:** ARCH §2.5 `Eligibility`; SPEC S3 "Request Service states"; BR-15, BR-16, BR-33; D-3. `OPEN_LIMIT_TOTAL`, `OPEN_LIMIT_PER_PROVIDER` already in `requests/rules.ts`.
 **Do:**
