@@ -1750,7 +1750,7 @@ export function RequestSentPage() {
 **Commit:** `git commit -m "feat(web): request sent page (M08-T27)"`
 
 ### T28 — S12 behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/request-form-page.test.tsx`
 **Context:** AC1, AC2, AC3, AC4, AC5, AC6, AC7 (dialog), AC8 (500). `renderRoute`, `signInAs`, `armForcedError`, `rememberDiscover`; D-6.
 **Do:** Write the tests:
