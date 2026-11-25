@@ -278,7 +278,7 @@ describe('normalizeDiscoverQuery', () => {
 **Commit:** `git commit -m "feat(contracts): normalizeDiscoverQuery and filter steps (M06-T3)"`
 
 ### T4 — `compareProviders` for `reviews` and `town` (BR-06)
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/search/compare.ts`, `packages/contracts/src/search/compare.test.ts`
 **Context:** BR-06; D-4. `selectFeatured` keeps calling `compareProviders('rating')`.
 **Do:** replace the top part of `compare.ts` (everything above `export const FEATURED_LIMIT`) with:
