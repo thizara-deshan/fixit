@@ -1172,7 +1172,7 @@ and pass `title={title}` `description={description}` to `ResponsiveDialog`. No o
 **Commit:** `git commit -m "feat(web): discard guard accepts screen-specific copy (M08-T16)"`
 
 ### T17 — `RequestFieldset`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/request-fieldset.tsx`
 **Context:** radio groups (Service, Time slot) need a `<fieldset>` + `<legend>` with the same help/error look as `components/form-field.tsx`.
 **Do:**
