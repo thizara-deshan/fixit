@@ -1351,7 +1351,7 @@ describe('LoadingRegion (SPEC §6.1, AC9)', () => {
 ---
 
 ### T17 — `NoticeBanner`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/notice-banner.tsx`
 **Context:** SPEC §2.9 Notice banner (r14, padding 14×16, 14/600, leading icon, optional link/button right; warning = `warning-soft` + 1px dashed `warning` + `warning-text-strong`; info = `primary-soft`/`primary`; danger = `danger-soft`/`danger-text`, solid border), §6.8 ("Phone: text wraps, and the action becomes a link on its own line (44 target)"; some are dismissible).
