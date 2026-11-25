@@ -722,7 +722,7 @@ If the admin persona key isn't `admin`, use the key from `DEMO_PERSONAS`.
 **Commit:** `git commit -m "feat(web): role-aware provider CTA hook (M05-T10)"`
 
 ### T11 — `useScrollToHash`
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/use-scroll-to-hash.ts`
 **Context:** D-5, AC7, S1.E11.
