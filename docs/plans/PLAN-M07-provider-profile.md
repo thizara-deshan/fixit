@@ -1089,7 +1089,7 @@ Because the block renders twice (header + phone bar, one of them `hidden` by CSS
 **Commit:** `git commit -m "feat(web): request service action block (M07-T15)"`
 
 ### T16 — Profile header card
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-profile/components/profile-header.tsx`
 **Context:** S3 desktop/phone/tablet layout; S3.E2–E6; 05-provider-verified-desktop.png top card (ignore `$`/`TX`, the Save button and the photo stripes). AC1, AC5.
 **Do:** props `{ profile: ProviderPublicProfile; action: RequestAction }`. Structure and exact classes:
