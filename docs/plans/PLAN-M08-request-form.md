@@ -360,7 +360,7 @@ describe('reviewDeadline', () => {
 **Commit:** `git commit -m "feat(contracts): reviewDeadline (M08-T4)"`
 
 ### T5 — `toCustomerView` projection
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/projections.ts`, `packages/contracts/src/requests/projections.test.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCH §2.9 projections; PRODUCT §6.3 (provider mobile only when Accepted/Completed); BR-30 `canCancel` via `canTransition`; `RequestRecord`, `toMachineRequest` in `record.ts`; `cancelDeadline` in `rules.ts`.
 **Do:**
