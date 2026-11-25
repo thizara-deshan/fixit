@@ -547,7 +547,7 @@ describe('format (SPEC §1.3)', () => {
 ---
 
 ### T9 — `useMediaQuery` and the test `matchMedia` stub
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/use-media-query.ts`, `src/lib/use-media-query.test.tsx`, `src/test/media.ts`, `src/test/setup.ts`
 **Context:** ARCH §5.2 (`sm` = 641px, `lg` = 1024px; the switchers render only one variant in the DOM). jsdom has no `matchMedia`.
