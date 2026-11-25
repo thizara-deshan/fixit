@@ -94,6 +94,9 @@ const CORE_USERS: readonly UserSeed[] = [
   { id: 'u-hank', email: 'hank@fixit.test', fullName: 'Hank Morales', mobile: mobileNo(1108) },
   { id: 'u-kevin', email: 'kevin@fixit.test', fullName: 'Kevin Tran', mobile: mobileNo(1109) },
   { id: 'u-grace', email: 'grace@fixit.test', fullName: 'Grace Kim', mobile: mobileNo(1110) },
+  { id: 'u-chathura', email: 'chathura@fixit.test', fullName: 'Chathura Ranasinghe', mobile: mobileNo(1111) },
+  { id: 'u-nadeesha', email: 'nadeesha@fixit.test', fullName: 'Nadeesha Perera', mobile: mobileNo(1112) },
+  { id: 'u-dilani', email: 'dilani@fixit.test', fullName: 'Dilani Fernando', mobile: mobileNo(1005) },
   // named customers from the prototype sample requests
   {
     id: 'u-james-carter',
@@ -178,6 +181,12 @@ export const DEMO_PERSONAS = [
     label: 'Customer, unconfirmed (Nimal Perera)',
     email: 'nimal@fixit.test',
     userId: 'u-nimal',
+  },
+  {
+    key: 'customerAtLimit',
+    label: 'Customer, 5 open requests (Dilani Fernando)',
+    email: 'dilani@fixit.test',
+    userId: 'u-dilani',
   },
   {
     key: 'provider',

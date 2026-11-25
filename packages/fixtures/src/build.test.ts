@@ -86,7 +86,9 @@ describe('prototype requests', () => {
     expect(world.reviews.some((v) => v.requestId === r?.id)).toBe(false);
   });
   it('pending requests are 3–6 days out and not expired', () => {
-    const pending = world.requests.filter((r) => r.status === 'pending');
+    const pending = world.requests.filter(
+      (r) => r.status === 'pending' && r.providerId === 'p01' && r.customerId !== 'u-dilani',
+    );
     expect(pending).toHaveLength(3);
     for (const r of pending) {
       expect(r.preferredDate >= addDays(today, 3) && r.preferredDate <= addDays(today, 6)).toBe(true);
@@ -128,5 +130,23 @@ describe('users and providers', () => {
       const others = areas.filter((a) => !a.isBase).length;
       expect(others >= 2 && others <= 5).toBe(true);
     }
+  });
+});
+
+describe('M07 fixtures', () => {
+  const prov = (id: string) => world.providers.find((p) => p.id === id);
+  it('p12 is listed with no reviews; p13 is paused; p14 belongs to suspended Ruwan', () => {
+    expect(world.reviews.filter((r) => r.providerId === 'p12')).toHaveLength(0);
+    expect([prov('p12')?.reviewCount, prov('p12')?.ratingAvg]).toEqual([0, null]);
+    expect(prov('p13')?.paused).toBe(true);
+    expect(prov('p14')?.userId).toBe('u-ruwan');
+    expect(world.users.find((u) => u.id === 'u-ruwan')?.status).toBe('suspended');
+  });
+  it('Dilani has exactly 5 open requests, none with p01', () => {
+    const open = world.requests.filter(
+      (r) => r.customerId === 'u-dilani' && ['pending', 'accepted'].includes(r.status),
+    );
+    expect(open).toHaveLength(5);
+    expect(open.some((r) => r.providerId === 'p01')).toBe(false);
   });
 });

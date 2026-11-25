@@ -2,7 +2,7 @@
 import { computeStartingPrice, ratingFrom } from '@fixit/contracts';
 import { CATEGORIES, DISTRICTS, TOWNS } from './catalog';
 import { buildProviders } from './providers';
-import { buildPrototypeRequests } from './requests';
+import { buildLimitRequests, buildPrototypeRequests } from './requests';
 import { buildReviews } from './reviews';
 import type { World } from './types';
 import { buildUsers } from './users';
@@ -12,6 +12,7 @@ export function buildWorld(now: Date): World {
   const users = buildUsers(now);
   const { providers, services, areas, submissions, documents } = buildProviders(now);
   const prototypeRequests = buildPrototypeRequests(now, { users, providers, services });
+  const limitRequests = buildLimitRequests(now, { users, providers, services });
   const { reviews, requests: reviewedRequests } = buildReviews(now, { users, providers, services });
 
   for (const p of providers) {
@@ -33,7 +34,7 @@ export function buildWorld(now: Date): World {
     providers,
     services,
     areas,
-    requests: [...prototypeRequests, ...reviewedRequests],
+    requests: [...prototypeRequests, ...limitRequests, ...reviewedRequests],
     reviews,
     submissions,
     documents,

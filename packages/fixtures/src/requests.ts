@@ -223,3 +223,32 @@ export function buildPrototypeRequests(
     });
   });
 }
+
+/** M07: Dilani has 5 pending requests (BR-33 limit), one each to p03–p07. */
+export function buildLimitRequests(
+  now: Date,
+  ctx: { users: readonly FxUser[]; providers: readonly FxProvider[]; services: readonly FxService[] },
+): RequestRecord[] {
+  const today = colomboToday(now);
+  const customer = ctx.users.find((u) => u.id === 'u-dilani');
+  if (!customer) throw new Error('fixtures: u-dilani missing');
+  return ['p03', 'p04', 'p05', 'p06', 'p07'].map((pid, i) => {
+    const provider = ctx.providers.find((p) => p.id === pid);
+    const service = ctx.services.find((s) => s.id === serviceId(pid, 0));
+    const area = provider?.baseTownId;
+    if (!provider || !service || !area) throw new Error(`fixtures: bad limit request for ${pid}`);
+    return makeRequest({
+      ref: `FX-${String(1990 + i)}`,
+      customer,
+      provider,
+      service,
+      townId: area,
+      preferredDate: addDays(today, 4 + i),
+      slot: 'morning',
+      addressLine1: `${String(10 + i)} Temple Road`,
+      description: 'Please come and take a look; details on the phone.',
+      createdAt: new Date(now.getTime() - (5 + i) * HOUR),
+      steps: [],
+    });
+  });
+}

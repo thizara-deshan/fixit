@@ -356,7 +356,7 @@ describe('evaluateEligibility (SPEC S3.E7 order)', () => {
 **Commit:** `git commit -m "feat(contracts): profile, reviews and eligibility endpoints (M07-T5)"`
 
 ### T6 — Fixtures: new, paused and suspended providers; customer at the limit
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/providers.ts`, `users.ts`, `requests.ts`, `build.ts`, `build.test.ts`, `src/mocks/db/schema.ts`
 **Context:** D-5; AC3, AC4, AC6. Review refs use FX-0001…FX-1248; prototype FX-2037…2061; FX-1990…1994 are free.
 **Do:**
@@ -1350,6 +1350,8 @@ Tick all boxes, commit.
 - After T21: "Human: walk AC4 with each DevPanel persona."
 
 ## Blockers
+**Resolved: option A, and `store.test.ts` now uses `MOCK_DB_KEY`/`MOCK_DB_VERSION`.**
+
 ### T6 — two existing tests fail after the planned fixture changes (stopped)
 T1–T5 are done and committed. The T6 edits (providers p12–p14, users, `customerAtLimit` persona, `buildLimitRequests`, `build.ts`, new `build.test.ts` cases, `MOCK_DB_VERSION = 3`) are written but **uncommitted** in the working tree, because `pnpm verify` is red. Step 7 only allows changing numbers that count fixture providers, and neither failure is one.
 

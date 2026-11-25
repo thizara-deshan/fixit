@@ -11,6 +11,7 @@ interface ProviderSeed {
   baseTownId: string;
   years: number;
   verification: VerificationStatus;
+  paused?: boolean;
   bio: string;
   services: readonly (readonly [name: string, price: number, unit: PriceUnit])[];
   otherTowns: readonly string[];
@@ -192,6 +193,54 @@ export const PROVIDER_SEEDS: readonly ProviderSeed[] = [
     ],
     otherTowns: ['dehiwala-mount-lavinia', 'negombo', 'ja-ela'],
   },
+  {
+    id: 'p12',
+    ownerId: 'u-chathura',
+    businessName: 'Ranasinghe Garden Care',
+    categoryId: 'gardening',
+    baseTownId: 'homagama',
+    years: 2,
+    verification: 'not_submitted',
+    bio: 'New garden care service for lawns, hedges and small landscaping jobs around Homagama.',
+    services: [
+      ['Lawn mowing', 2000, 'per_visit'],
+      ['Hedge trimming', 1500, 'per_hour'],
+      ['Garden clean-up', 6000, 'fixed'],
+    ],
+    otherTowns: ['maharagama', 'kesbewa'],
+  },
+  {
+    id: 'p13',
+    ownerId: 'u-nadeesha',
+    businessName: 'Lanka Paint Works',
+    categoryId: 'painting',
+    baseTownId: 'negombo',
+    years: 9,
+    verification: 'verified',
+    paused: true,
+    bio: 'Interior and exterior painting with careful preparation and clean finishes.',
+    services: [
+      ['Interior painting', 2500, 'per_hour'],
+      ['Exterior painting', 3000, 'per_hour'],
+      ['Single room repaint', 25000, 'fixed'],
+    ],
+    otherTowns: ['ja-ela', 'kadawatha'],
+  },
+  {
+    id: 'p14',
+    ownerId: 'u-ruwan',
+    businessName: 'Jayasekara Carpentry',
+    categoryId: 'carpentry',
+    baseTownId: 'moratuwa',
+    years: 11,
+    verification: 'verified',
+    bio: 'Custom furniture, doors and window frames.',
+    services: [
+      ['Door repair', 2500, 'per_hour'],
+      ['Custom shelving', 18000, 'fixed'],
+    ],
+    otherTowns: ['colombo', 'kesbewa'],
+  },
 ];
 
 export const serviceId = (providerId: string, index: number): string => `${providerId}-s${String(index + 1)}`;
@@ -219,7 +268,7 @@ export function buildProviders(now: Date): {
     verificationStatus: s.verification,
     verifiedAt: s.verification === 'verified' ? ago(370) : null,
     reverificationReason: null,
-    paused: false,
+    paused: s.paused ?? false,
     ratingAvg: null,
     reviewCount: 0,
     startingPrice: null,
