@@ -1595,7 +1595,7 @@ If `@testing-library/user-event` isn't installed, add it first: `pnpm --filter @
 ---
 
 ### T19 — `DataList` (AC7)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/data-list.tsx`, `src/components/data-list.test.tsx`
 **Context:** SPEC §2.9 Data table (header row `page` 12/700 uppercase subtle, 10×24 padding; rows 16×24 padding, `border` top), §6.9 (cards at ≤ 640: white r16 1px `border` padding 16 gap 8; identity + status on row 1; secondary 13 muted lines; full-width actions row 44 high; whole card is the row link; no column headers). ARCH §5.2 (one column definition, `useMediaQuery` so only one form is in the DOM). Uses `LoadingRegion`, `SkeletonTableRows`, `SkeletonPhoneCards` (T16).

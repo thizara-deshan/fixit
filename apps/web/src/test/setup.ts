@@ -1,3 +1,4 @@
+import { cleanup } from '@testing-library/react';
 import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest';
 import { authStore } from '@/lib/auth-store';
 import { resetDemoData } from '@/mocks/db/store';
@@ -17,6 +18,7 @@ beforeEach(() => {
   setLatency('zero');
 });
 afterEach(() => {
+  cleanup();
   server.resetHandlers();
   server.events.removeAllListeners();
 });
