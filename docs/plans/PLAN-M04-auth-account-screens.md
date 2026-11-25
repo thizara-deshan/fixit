@@ -1522,7 +1522,7 @@ describe('useUpdateMe', () => {
 **Commit:** `git commit -m "feat(web): auth card header, divider and Google button (M04-T22)"`
 
 ### T23 — S5 Log in
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/login-page.tsx`, `login-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S5 (all elements, field table), §6.6 banner, §8.4 (suspended at login / while signed in), ARCH §6.1 (`/login?error=suspended`); AC3, AC4, AC8, AC9; D-2, D-6.
@@ -2540,6 +2540,7 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
 - **Options:**
   1. Add `@testing-library/jest-dom` as a web devDependency and register it in `src/test/setup.ts` (`import '@testing-library/jest-dom/vitest'`) plus the vitest types, as a new pre-task (e.g. T22b). Plan tests then work as written. (Recommended.)
   2. Rewrite every plan assertion with core vitest/DOM equivalents (`expect(el).toBeTruthy()`, `el.disabled`, `document.activeElement`, `getAttribute`).
+- **RESOLVED:** user chose option 1; jest-dom added in the T23 commit.
 - T1–T22 are done and committed. The T23 page code was dropped uncommitted; it is exactly the plan's code.
 
 ## Notes for review (planner)

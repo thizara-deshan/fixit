@@ -1,8 +1,6 @@
 import { PlaceholderScreen } from '../placeholder-screen';
 
-export function LoginPage() {
-  return <PlaceholderScreen frame="card" title="Log in" />;
-}
+export { LoginPage } from '@/features/auth/pages/login-page';
 
 export function SignupPage() {
   return <PlaceholderScreen frame="card" title="Sign up" />;
