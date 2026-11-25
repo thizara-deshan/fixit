@@ -13,3 +13,4 @@ export * from './reviews/rules';
 export * from './providers/pricing';
 export * from './requests/schemas';
 export * from './requests/record';
+export * from './catalog/schemas';

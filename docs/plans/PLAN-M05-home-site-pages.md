@@ -55,7 +55,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Catalog contract schemas
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/catalog/schemas.ts`, `packages/contracts/src/catalog/schemas.test.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCHITECTURE §2.5 (excerpt reproduced below), §3.2. `Id`, `Lkr` in `common/primitives.ts`; `CategoryIcon`, `PriceUnit` in `common/enums.ts`.
