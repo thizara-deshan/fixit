@@ -1350,7 +1350,17 @@ Tick all boxes, commit.
 - After T21: "Human: walk AC4 with each DevPanel persona."
 
 ## Blockers
-(executor writes here; leave empty)
+### T6 — two existing tests fail after the planned fixture changes (stopped)
+T1–T5 are done and committed. The T6 edits (providers p12–p14, users, `customerAtLimit` persona, `buildLimitRequests`, `build.ts`, new `build.test.ts` cases, `MOCK_DB_VERSION = 3`) are written but **uncommitted** in the working tree, because `pnpm verify` is red. Step 7 only allows changing numbers that count fixture providers, and neither failure is one.
+
+1. `packages/fixtures/src/build.test.ts:88` "pending requests are 3–6 days out and not expired" asserts `world.requests.filter(status === 'pending')` has length 3 with `preferredDate` within today+3..+6. T6 step 3 adds 5 pending requests for Dilani (FX-1990…1994) with `preferredDate` today+4..+8. The count becomes 8, and today+7 and +8 are outside the window, so fixing the count alone is not enough.
+   - Option A: scope the test to the prototype requests (`providerId === 'p01'` and `customerId !== 'u-dilani'`). The intent is "the prototype's 3 pending requests", so the check stays as strict.
+   - Option B: change the plan so Dilani's `preferredDate` is today+3..+6 (for example `3 + (i % 4)`) and update the count to 8. This keeps the test global but weakens the "3" meaning.
+   - Option C: leave the test alone and give Dilani's requests a status that is open but not `pending`. This is not possible, because only `accepted` is open besides `pending`, and an accepted request needs steps.
+2. `apps/web/src/mocks/db/store.test.ts` has two tests that hardcode the storage key `fixit.mockdb.v2` ("seeds when storage is empty and persists under fixit.mockdb.v2" and "reseeds when the stored version differs"). The mandated bump to `MOCK_DB_VERSION = 3` makes them fail. The fix is mechanical (use `MOCK_DB_KEY` or `v3`), but the plan doesn't list it.
+
+Recommended: plan owner amends T6 step 7 to say (a) option A for the fixtures test and (b) the web `store.test.ts` key follows `MOCK_DB_KEY`. Then rerun from T6.
+
 
 ## Nice-to-haves (not tasks)
 - Prefetch the profile on result-card hover/focus in Discover.
