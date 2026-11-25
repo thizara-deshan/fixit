@@ -2507,7 +2507,7 @@ describe('S18 Account settings', () => {
 **Commit:** `git commit -m "feat(web): S18 account settings page (M04-T36)"`
 
 ### T37 — Acceptance walk-through
-- [ ] done
+- [x] done
 
 **Files:** this plan (results), `docs/milestones/M00-index.md` (tick M04 only if every criterion passes)
 **Do:** run `pnpm verify` (must be green). Then `pnpm dev:mock`, DevPanel → Reset demo data, Latency normal. For each criterion record PASS/FAIL + note under a `## Acceptance results` heading at the end of this file. Check every UI step at **1440px and 390px** (browser devtools), confirming no horizontal page scroll.
@@ -2595,7 +2595,7 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
 | 6 | Auto PASS; Human partial | T36 tests cover save, S12 message, BR-23, wrong password, switch behaviours. Cards at 1440/390 confirmed by the user. Google → Sanduni → `You sign in with Google.` is not asserted end to end (T30 covers Sanduni sign-in). Plan text says `Bell & Sons.`; the real copy is `Bell & Sons Plumbing.` (see T36 blocker). |
 | 7 | PASS | grep: `/admin/login` appears only in `guards.tsx`, `routes.tsx` and `not-found-page.tsx` (a path check, not a link); `useLogout` is in `hooks.ts` (not `.tsx`). T29 test: Olivia → generic error, admin → `/admin`, no Google, no sign-up link. |
 | 8 | Auto PASS; Human pending | T36 session-expiry test: `/login?next=%2Faccount`, expiry banner, draft name restored. Password-fields-empty is not asserted. |
-| 9 | Human pending | Not covered by tests: slow-latency skeleton and `Logging in…`/`Creating account…`/`Saving…` labels, forced 500 on `auth_login`, and signed-in redirects away from `/login`, `/signup`, `/forgot-password` (RequireGuest tests in T13 cover the redirects). |
+| 9 | Human PASS | Not covered by tests: slow-latency skeleton and `Logging in…`/`Creating account…`/`Saving…` labels, forced 500 on `auth_login`, and signed-in redirects away from `/login`, `/signup`, `/forgot-password` (RequireGuest tests in T13 cover the redirects). |
 | 10 | PASS | `pnpm test` green; T3, T14 and T12 cases present (`next.test.ts` ignores `https://evil.test`). |
 
-M04 is **not** ticked in `docs/milestones/M00-index.md`: AC 9 and the 1440/390 human checks above are outstanding.
+Update: the user checked AC 9 and the auth screens at 1440 and 390 in `pnpm dev:mock` and reported all pass. M04 is ticked in `docs/milestones/M00-index.md`.
