@@ -524,7 +524,7 @@ If the district ids in fixtures are not `colombo`/`gampaha`/`kalutara`, use the 
 **Commit:** `git commit -m "feat(web): catalog and featured MSW handlers (M05-T6)"`
 
 ### T7 — Query keys, API calls and hooks
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/query-keys.ts`, `src/features/site/api.ts`, `src/features/site/hooks.ts`, `src/features/site/hooks.test.tsx`
 **Context:** ARCH §4.2 keys (`['catalog','catalog']`, `['catalog','featured']`); `http` + `pathOf` in `lib/http.ts` (parses the response with the schema).
