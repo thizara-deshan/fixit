@@ -55,7 +55,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Catalog contract schemas
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/catalog/schemas.ts`, `packages/contracts/src/catalog/schemas.test.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCHITECTURE §2.5 (excerpt reproduced below), §3.2. `Id`, `Lkr` in `common/primitives.ts`; `CategoryIcon`, `PriceUnit` in `common/enums.ts`.
@@ -157,7 +157,7 @@ describe('catalog schemas', () => {
 **Commit:** `git commit -m "feat(contracts): catalog and provider card schemas (M05-T1)"`
 
 ### T2 — `priceLabel()` in contracts, used by `lib/format.ts`
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/providers/pricing.ts`, `packages/contracts/src/providers/pricing.test.ts`, `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** BR-09, S1.E10 (`From` / `LKR 2,500 / hour`), D-4. `formatServicePrice` / `priceParts` already exist in `lib/format.ts`; their output must not change.
@@ -219,7 +219,7 @@ If an existing `priceParts` test uses `toEqual` on the old two-key shape, update
 **Commit:** `git commit -m "feat(contracts): priceLabel for starting prices (M05-T2)"`
 
 ### T3 — `compareProviders('rating')` and `selectFeatured()`
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/search/compare.ts`, `packages/contracts/src/search/compare.test.ts`, `packages/contracts/src/index.ts`
 **Context:** BR-06 Top rated, BR-08. M06 extends `compareProviders` with `reviews` and `town`; keep the signature extendable.
@@ -306,7 +306,7 @@ describe('selectFeatured (BR-08)', () => {
 **Commit:** `git commit -m "feat(contracts): top-rated comparator and featured selection (M05-T3)"`
 
 ### T4 — `ENDPOINTS` rows for `GET /catalog` and `GET /providers/featured`
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCHITECTURE §3.2 rows 1 and 3.
@@ -351,7 +351,7 @@ describe('selectFeatured (BR-08)', () => {
 **Commit:** `git commit -m "feat(contracts): catalog and featured endpoints (M05-T4)"`
 
 ### T5 — Mock provider-card mapper (BR-01)
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/lib/cards.ts`, `src/mocks/lib/cards.test.ts`
 **Context:** BR-01 (listed = onboarding complete + published + owner not suspended), D-6. `MockDb` in `src/mocks/db/schema.ts`. M06 reuses this for `GET /providers`.
@@ -429,7 +429,7 @@ describe('listedCards', () => {
 **Commit:** `git commit -m "feat(web): mock provider card mapper (M05-T5)"`
 
 ### T6 — MSW handlers: `GET /catalog`, `GET /providers/featured`
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/catalog.ts`, `src/mocks/handlers/catalog.test.ts`, `src/mocks/handlers/index.ts`
 **Context:** ARCH §3.2; `mockEndpoint` validates the response against the contract and handles DevPanel forced errors (AC6 uses "Force 500" on `providers_featured`).
@@ -524,7 +524,7 @@ If the district ids in fixtures are not `colombo`/`gampaha`/`kalutara`, use the 
 **Commit:** `git commit -m "feat(web): catalog and featured MSW handlers (M05-T6)"`
 
 ### T7 — Query keys, API calls and hooks
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/query-keys.ts`, `src/features/site/api.ts`, `src/features/site/hooks.ts`, `src/features/site/hooks.test.tsx`
 **Context:** ARCH §4.2 keys (`['catalog','catalog']`, `['catalog','featured']`); `http` + `pathOf` in `lib/http.ts` (parses the response with the schema).
@@ -583,7 +583,7 @@ describe('site hooks', () => {
 **Commit:** `git commit -m "feat(web): catalog and featured queries (M05-T7)"`
 
 ### T8 — `CategoryIcon` shared component
-- [ ] done
+- [x] done
 
 **Files:** `src/components/category-icon.tsx`
 **Context:** SPEC §2.10 category rows; Notes for planner ("one shared component").
@@ -625,7 +625,7 @@ If ESLint flags `?? Wrench` as unnecessary (the record is exhaustive), remove `?
 **Commit:** `git commit -m "feat(web): shared CategoryIcon (M05-T8)"`
 
 ### T9 — Home search URL builder
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/search-url.ts`, `src/features/site/search-url.test.ts`
 **Context:** S1.E4, AC3, D-1.
@@ -665,7 +665,7 @@ describe('homeSearchUrl', () => {
 **Commit:** `git commit -m "feat(web): home search URL builder (M05-T9)"`
 
 ### T10 — `useProviderCta`
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/use-provider-cta.ts`, `src/features/site/use-provider-cta.test.tsx`
 **Context:** S1.E12, S4.E3, AC5, D-3. `useAuth()` in `lib/auth-store.ts`; `signInAs` in `src/test/sign-in.ts`.
@@ -722,7 +722,7 @@ If the admin persona key isn't `admin`, use the key from `DEMO_PERSONAS`.
 **Commit:** `git commit -m "feat(web): role-aware provider CTA hook (M05-T10)"`
 
 ### T11 — `useScrollToHash`
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/use-scroll-to-hash.ts`
 **Context:** D-5, AC7, S1.E11.
@@ -746,7 +746,7 @@ export function useScrollToHash(ready = true): void {
 **Commit:** `git commit -m "feat(web): scroll to hash on site pages (M05-T11)"`
 
 ### T12 — Hero search bar with popular chips (S1.E4, S1.E5)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/hero-search.tsx`
 **Context:** S1.E4, S1.E5, S1 phone layout item 1, §2.9 "Search bar" (home variant), 01-home-desktop.png search bar + chips row. Reuses `useCatalog` (T7), `homeSearchUrl` (T9).
@@ -863,7 +863,7 @@ Phone (≤640): form is `flex-col` → Service (56), divider (`h-px`), Location 
 **Commit:** `git commit -m "feat(web): home hero search bar and popular chips (M05-T12)"`
 
 ### T13 — Hero section (S1.E1–E3, E6)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/hero.tsx`
 **Context:** S1 desktop item 1, phone item 1, tablet; S1.E1, E2, E3, E6; 01-home-desktop.png top band. Reuses `Stars`, `VerifiedBadge`-style `BadgeCheck`, `CategoryIcon`, `StatusPill` is **not** used (the `Accepted` pill here is decorative).
@@ -918,7 +918,7 @@ States: floating card hidden when `floating` is null. Hero photo: always the `pr
 **Commit:** `git commit -m "feat(web): home hero (M05-T13)"`
 
 ### T14 — Section header + category card + categories section (S1.E7, E8)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/section-header.tsx`, `src/features/site/components/category-card.tsx`, `src/features/site/components/categories-section.tsx`, `src/components/skeletons.tsx`
 **Context:** S1.E7, S1.E8, S1 phone item 2–3, §6.1 Category card skeleton, §6.3 section error; 01-home-desktop.png "Popular services". Reuses `LoadingRegion`, `SkeletonCategoryCard`, `SectionError`, `CategoryIcon`, `useCatalog`.
@@ -983,7 +983,7 @@ const GRID = 'grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4';
 **Commit:** `git commit -m "feat(web): popular services section (M05-T14)"`
 
 ### T15 — Featured provider card (S1.E10)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/featured-card.tsx`
 **Context:** S1.E10, AC4, D-4, §6.1 Featured skeleton (180-high block; 160 on phone); 01-home-desktop.png "Featured providers" cards. Reuses `Stars`, `VerifiedBadge` (`size="sm"`), `CategoryIcon`, `priceParts` (T2), `Button`.
@@ -1034,7 +1034,7 @@ Also update `SkeletonFeaturedCard` in `src/components/skeletons.tsx`: image bloc
 **Commit:** `git commit -m "feat(web): featured provider card (M05-T15)"`
 
 ### T16 — Featured section (S1.E9)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/featured-section.tsx`
 **Context:** S1.E9, BR-08, AC1, AC6. Query is owned by the page (shared with the hero floating card), so this takes the query result as a prop.
@@ -1081,7 +1081,7 @@ States: loading → 4 skeletons; error → section error, retry refetches only f
 **Commit:** `git commit -m "feat(web): featured providers section (M05-T16)"`
 
 ### T17 — Steps grid (S1.E11 / S4.E4)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/steps-grid.tsx`
 **Context:** S1.E11, S4.E4, S1 tablet rule ("3 columns if ≥ 900 px, otherwise 1"); 01-home-desktop.png "How it works" cards (icon tile 56 r16, big faint numeral right, title, copy; step 3 tile `cta`).
@@ -1116,7 +1116,7 @@ export function StepsGrid({ steps }: { steps: readonly Step[] }) {
 **Commit:** `git commit -m "feat(web): steps grid (M05-T17)"`
 
 ### T18 — CTA band (S1.E12 / S4.E6)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/cta-band.tsx`
 **Context:** S1.E12, S4.E6, S1 phone item 6, AC5; 01-home-desktop.png blue band (`cta` button + outline `Learn more` on blue). Reuses `useProviderCta` (T10), `Button` (`cta` variant).
@@ -1158,7 +1158,7 @@ Phone: padding 28/24 (`px-6 py-7`), radius 20, text stacks over full-width 48 bu
 **Commit:** `git commit -m "feat(web): provider CTA band (M05-T18)"`
 
 ### T19 — Home page assembly + wiring
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/pages/home-page.tsx`, `src/features/site/pages/home-page.test.tsx`, `src/app/chunks/home.tsx`
 **Context:** S1 desktop/phone order, section-gap 88/56, AC1–AC6, AC7 (hash). Reuses all of T12–T18, `useFeatured`, `useScrollToHash`.
@@ -1293,7 +1293,7 @@ If `renderRoute` needs the auth bootstrap to finish first (status `booting` rend
 **Commit:** `git commit -m "feat(web): S1 home page (M05-T19)"`
 
 ### T20 — S4 For providers page
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/pages/for-providers-page.tsx`, `src/features/site/pages/for-providers-page.test.tsx`, `src/app/chunks/public.tsx`
 **Context:** S4 (all elements), AC5 (S4 primary CTA and band). Reuses `StepsGrid`, `CtaBand` (`learnMore={false}`), `useProviderCta`.
@@ -1337,7 +1337,7 @@ describe('S4 For providers', () => {
 **Commit:** `git commit -m "feat(web): S4 for providers page (M05-T20)"`
 
 ### T21 — Article card + About page
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/article-card.tsx`, `src/features/site/pages/about-page.tsx`, `src/app/chunks/public.tsx`
 **Context:** S11 layout + About row; BR-20 tooltip sentence — copy it verbatim from PRODUCT BR-20 (`grep -n "BR-20" docs/PRODUCT.md`). If BR-20 has no single sentence to copy, **STOP** with a blocker.
@@ -1367,7 +1367,7 @@ export function ArticleCard({ title, children }: { title: string; children: Reac
 **Commit:** `git commit -m "feat(web): S11 about page (M05-T21)"`
 
 ### T22 — Contact page
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/pages/contact-page.tsx`, `src/app/chunks/public.tsx`
 **Context:** S11 Contact row; `CONTACT_EMAIL` from `@/lib/env` (`VITE_CONTACT_EMAIL`, default `hello@fixit.test`).
@@ -1380,7 +1380,7 @@ Re-export `ContactPage` in `chunks/public.tsx`. If `VITE_CONTACT_EMAIL` is missi
 **Commit:** `git commit -m "feat(web): S11 contact page (M05-T22)"`
 
 ### T23 — Privacy page + S11 tests
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/pages/privacy-page.tsx`, `src/features/site/pages/site-pages.test.tsx`, `src/app/chunks/public.tsx`
 **Context:** S11 Privacy row, AC7.
@@ -1446,7 +1446,7 @@ If the test env sets a different `VITE_CONTACT_EMAIL`, assert on `CONTACT_EMAIL`
 **Commit:** `git commit -m "feat(web): S11 privacy page (M05-T23)"`
 
 ### T24 — M05 acceptance
-- [ ] done
+- [x] done
 
 **Files:** `docs/plans/PLAN-M05-home-site-pages.md` (results table appended), `docs/milestones/M00-index.md` (status only, if that file tracks milestone status)
 **Do:** Run `pnpm verify` (must be green), then `pnpm dev:mock` and walk each criterion. Record ✅/❌ with a one-line note per row in a `## Acceptance results` section at the end of this plan. Any ❌ that is a code bug: fix it in a separate `fix(web): … (M05-T24)` commit with a test that fails first. Anything a human must judge visually: mark "human check".
@@ -1476,3 +1476,18 @@ If the test env sets a different `VITE_CONTACT_EMAIL`, assert on `CONTACT_EMAIL`
 - Move `FeaturedCard` to `components/` when S17 Saved providers (F-10) reuses it.
 - Real hero photo asset with `primary-soft` fallback on load error.
 - `document.title` per site page if the app adopts a title convention.
+
+## Acceptance results
+`pnpm verify` green (format, lint, typecheck, all tests, build). Executed headless: the visual and DevTools checks below were not run in a browser and are marked "human check".
+
+| AC | Result | Note |
+|---|---|---|
+| 1 | ✅ tests / human check | `home-page.test.tsx` and `handlers/catalog.test.ts` cover 8 categories, ≤ 4 featured (verified, with reviews, Top rated order), Location `<optgroup>`s (Colombo, Gampaha, Kalutara) and the CTA band. Visual 1440 comparison with `01-home-desktop.png`: human check. |
+| 2 | human check | 390 and 800 px layouts (stacked search, 2-column categories, 1-column featured, `scrollWidth === 390`) need a browser. |
+| 3 | ✅ | Search hand-off and chip tests pass (`/discover?q=plumb&loc=dehiwala-mount-lavinia`; empty fields omitted; chip fills without submitting). |
+| 4 | ✅ tests / human check | Category link `/discover?cat=plumbing` and featured `/providers/{id}` links tested. `From` over price and the icon-tile fallback by code and `priceParts` tests; visual: human check. |
+| 5 | ✅ | CTA band (Home) and both CTAs (S4) tested for guest, customer and provider; admin → no primary CTA (`use-provider-cta.test.tsx`). |
+| 6 | ✅ tests / human check | Forced 500 on `providers_featured` (section error, categories still render, Try again recovers) and 0 qualifying (section and floating card hidden) tested. Skeleton layout stability under DevPanel `slow`: human check. |
+| 7 | ✅ tests / human check | `/about`, `/contact` (shows the contact email) and `/privacy` (six headings plus placeholder) tested. Phone padding and the footer "How it works" scroll offset under the 72 px nav: human check. |
+
+Deviations from plan code (lint-driven): `compareProviders` uses a comparator map (T3); `SubmitEvent` instead of `FormEvent` (T12); `border-2` instead of `border-[1.5px]` on the CTA band's `Learn more` button (T18, `no-raw-colors` bans `border-[`); braces in `waitFor` callbacks. `docs/milestones/M00-index.md` status was not updated (milestone files are off limits for this run).

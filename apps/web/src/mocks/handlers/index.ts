@@ -1,10 +1,11 @@
 import type { RequestHandler } from 'msw';
 import { authHandlers } from './auth';
+import { catalogHandlers } from './catalog';
 import { MOCK_DOMAINS, type MockDomain } from '../domains';
 
 export const handlersByDomain: Record<MockDomain, RequestHandler[]> = {
   auth: authHandlers,
-  catalog: [],
+  catalog: catalogHandlers,
   providers: [],
   requests: [],
   reviews: [],

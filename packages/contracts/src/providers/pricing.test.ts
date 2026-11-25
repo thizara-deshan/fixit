@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { computeStartingPrice } from './pricing';
+import { computeStartingPrice, priceLabel } from './pricing';
 
 describe('computeStartingPrice', () => {
   it('no services → null', () => {
@@ -27,5 +27,15 @@ describe('computeStartingPrice', () => {
         { price: 1500, unit: 'per_hour' },
       ]),
     ).toEqual({ amount: 1500, unit: 'per_hour' });
+  });
+});
+
+describe('priceLabel', () => {
+  it.each([
+    ['per_hour', 'From', ' / hour'],
+    ['per_visit', 'From', ' / visit'],
+    ['fixed', null, ' fixed'],
+  ] as const)('%s → lead %s, suffix %s', (unit, lead, suffix) => {
+    expect(priceLabel({ amount: 2500, unit })).toEqual({ lead, amount: 2500, suffix });
   });
 });

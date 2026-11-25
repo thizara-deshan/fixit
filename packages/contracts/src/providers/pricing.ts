@@ -18,3 +18,18 @@ export function computeStartingPrice(
   }
   return best;
 }
+
+export const PRICE_UNIT_SUFFIX: Record<PriceUnit, ' / hour' | ' / visit' | ' fixed'> = {
+  per_hour: ' / hour',
+  per_visit: ' / visit',
+  fixed: ' fixed',
+};
+
+/** BR-09 label parts. Cards show `lead` (small, own line) over `LKR {amount}{suffix}`; fixed prices have no lead (D-4). */
+export function priceLabel(p: { amount: number; unit: PriceUnit }): {
+  lead: 'From' | null;
+  amount: number;
+  suffix: ' / hour' | ' / visit' | ' fixed';
+} {
+  return { lead: p.unit === 'fixed' ? null : 'From', amount: p.amount, suffix: PRICE_UNIT_SUFFIX[p.unit] };
+}

@@ -11,6 +11,7 @@ import {
   ResetPasswordBody,
   UpdateMeBody,
 } from './auth/schemas';
+import { CatalogResponse, ProviderCard } from './catalog/schemas';
 
 export type Access = 'public' | 'user' | 'provider' | 'admin';
 // user = signed-in non-admin (every user is a customer); provider = user with a published listing
@@ -183,6 +184,26 @@ export const ENDPOINTS = {
     owner: 'self',
     body: ChangePasswordBody,
     refs: ['S18', 'A9'],
+  },
+  catalog_get: {
+    id: 'catalog_get',
+    domain: 'catalog',
+    method: 'GET',
+    path: '/catalog',
+    access: ['public'],
+    owner: 'none',
+    response: CatalogResponse,
+    refs: ['S1', 'S2', 'S12', 'S19', 'S24', 'S25'],
+  },
+  providers_featured: {
+    id: 'providers_featured',
+    domain: 'catalog',
+    method: 'GET',
+    path: '/providers/featured',
+    access: ['public'],
+    owner: 'none',
+    response: z.array(ProviderCard),
+    refs: ['F-05', 'S1', 'BR-08'],
   },
 } as const satisfies Record<string, EndpointDef>;
 export type EndpointId = keyof typeof ENDPOINTS;

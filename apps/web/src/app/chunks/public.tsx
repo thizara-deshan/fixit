@@ -8,18 +8,10 @@ export function ProviderProfilePage() {
   return <PlaceholderScreen title="Provider profile" />;
 }
 
-export function ForProvidersPage() {
-  return <PlaceholderScreen title="For providers" />;
-}
+export { ForProvidersPage } from '@/features/site/pages/for-providers-page';
 
-export function AboutPage() {
-  return <PlaceholderScreen title="About" />;
-}
+export { AboutPage } from '@/features/site/pages/about-page';
 
-export function ContactPage() {
-  return <PlaceholderScreen title="Contact" />;
-}
+export { ContactPage } from '@/features/site/pages/contact-page';
 
-export function PrivacyPage() {
-  return <PlaceholderScreen title="Privacy" />;
-}
+export { PrivacyPage } from '@/features/site/pages/privacy-page';
