@@ -1424,7 +1424,7 @@ Layout: `EmptyState` already stacks buttons full-width on phone (`w-full sm:w-au
 **Commit:** `git commit -m "feat(web): S12 blocked card (M08-T23)"`
 
 ### T24 — `RequestForm` card
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/request-form.tsx`
 **Context:** SPEC S12 field table (order, labels, help, placeholder), S12.E3, E4, E6; §6.1 submitting; §6.3 server banner; §6.6 draft (`useFormDraft`); D-4, D-5; `mapApiErrorToForm`, `requestRuleBanner` (T13), `MOBILE_MESSAGE`.
 **Do:** Create the component. Full code:

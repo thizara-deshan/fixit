@@ -12,7 +12,7 @@ export function MobileField({
 }: {
   mobile: string | null;
   businessName: string;
-  field: UseFormRegisterReturn;
+  field: UseFormRegisterReturn | undefined;
   error?: string | undefined;
 }) {
   if (mobile !== null) {
@@ -28,6 +28,7 @@ export function MobileField({
       </p>
     );
   }
+  if (!field) return null;
   return (
     <FormField
       label="Mobile number"
