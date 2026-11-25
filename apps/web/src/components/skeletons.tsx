@@ -6,8 +6,8 @@ const card = 'rounded-xl border border-border bg-surface';
 
 export function SkeletonCategoryCard() {
   return (
-    <div className={cn(card, 'flex flex-col gap-3 p-5')}>
-      <Skeleton className="h-12 w-[52px] rounded-lg" />
+    <div className={cn(card, 'flex flex-col gap-3 p-4 sm:p-5')}>
+      <Skeleton className="h-10 w-11 rounded-lg sm:h-12 sm:w-[52px]" />
       <Skeleton className="h-[17px] w-3/5" />
       <Skeleton className="h-3.5 w-4/5" />
     </div>

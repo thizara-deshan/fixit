@@ -918,7 +918,7 @@ States: floating card hidden when `floating` is null. Hero photo: always the `pr
 **Commit:** `git commit -m "feat(web): home hero (M05-T13)"`
 
 ### T14 — Section header + category card + categories section (S1.E7, E8)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/section-header.tsx`, `src/features/site/components/category-card.tsx`, `src/features/site/components/categories-section.tsx`, `src/components/skeletons.tsx`
 **Context:** S1.E7, S1.E8, S1 phone item 2–3, §6.1 Category card skeleton, §6.3 section error; 01-home-desktop.png "Popular services". Reuses `LoadingRegion`, `SkeletonCategoryCard`, `SectionError`, `CategoryIcon`, `useCatalog`.
