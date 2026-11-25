@@ -1367,7 +1367,7 @@ export function ArticleCard({ title, children }: { title: string; children: Reac
 **Commit:** `git commit -m "feat(web): S11 about page (M05-T21)"`
 
 ### T22 — Contact page
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/pages/contact-page.tsx`, `src/app/chunks/public.tsx`
 **Context:** S11 Contact row; `CONTACT_EMAIL` from `@/lib/env` (`VITE_CONTACT_EMAIL`, default `hello@fixit.test`).

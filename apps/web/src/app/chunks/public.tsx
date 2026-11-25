@@ -12,9 +12,7 @@ export { ForProvidersPage } from '@/features/site/pages/for-providers-page';
 
 export { AboutPage } from '@/features/site/pages/about-page';
 
-export function ContactPage() {
-  return <PlaceholderScreen title="Contact" />;
-}
+export { ContactPage } from '@/features/site/pages/contact-page';
 
 export function PrivacyPage() {
   return <PlaceholderScreen title="Privacy" />;
