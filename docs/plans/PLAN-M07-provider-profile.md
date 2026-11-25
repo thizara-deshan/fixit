@@ -76,7 +76,7 @@ SPEC S3.E11 shows the 5 newest reviews, then `Show more reviews` loads 10 more. 
 **Commit:** `git commit -m "docs: decision 003 profile reviews paging (M07-T1)"`
 
 ### T2 — `Service`, `ProviderPublicProfile`, `PublicReview` schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/schemas.ts`, `packages/contracts/src/catalog/schemas.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCH §2.5. `Service` is only the entity here; `ServiceBody` arrives with S23 (not this milestone).
 **Do:**

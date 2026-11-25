@@ -16,3 +16,4 @@ export * from './requests/record';
 export * from './catalog/schemas';
 export * from './search/compare';
 export * from './search/match';
+export * from './providers/schemas';

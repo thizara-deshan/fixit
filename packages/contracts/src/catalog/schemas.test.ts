@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CatalogResponse, DiscoverQuery, ProviderCard } from './schemas';
+import { CatalogResponse, DiscoverQuery, ProviderCard, ProviderPublicProfile } from './schemas';
 
 const card = {
   id: 'p-bell',
@@ -87,5 +87,21 @@ describe('DiscoverQuery', () => {
   });
   it('dedupes cat ids', () => {
     expect(DiscoverQuery.parse({ cat: 'a,a,b' }).cat).toEqual(['a', 'b']);
+  });
+});
+
+describe('ProviderPublicProfile', () => {
+  it('rejects a profile without ownerName', () => {
+    const ok = {
+      ...card,
+      ownerName: 'Marcus Bell',
+      services: [],
+      areas: [],
+      ratingSummary: { rating: null, reviewCount: 0 },
+    };
+    expect(ProviderPublicProfile.safeParse(ok).success).toBe(true);
+    const bad: Partial<typeof ok> = { ...ok };
+    delete bad.ownerName;
+    expect(ProviderPublicProfile.safeParse(bad).success).toBe(false);
   });
 });
