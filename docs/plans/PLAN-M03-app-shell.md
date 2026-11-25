@@ -3841,7 +3841,7 @@ If a test fails because of a real bug in T23–T35 code, fix that code in this t
 ---
 
 ### T37 — Dev demo page `/dev/ui` (AC7)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/chunks/dev.tsx`
 **Context:** Milestone AC7 (DataList table/cards, ResponsiveDialog dialog/sheet, toast 4 s / 8 s pausing on hover/focus). Dev-only route registered in T35 (`import.meta.env.DEV`). Shows every shared component once so later milestones and the human checkpoint can see them.
