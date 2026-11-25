@@ -17,7 +17,7 @@ export function SkeletonCategoryCard() {
 export function SkeletonFeaturedCard() {
   return (
     <div className={cn(card, 'overflow-hidden')}>
-      <Skeleton className="h-[180px] w-full rounded-none" />
+      <Skeleton className="h-40 w-full rounded-none sm:h-[180px]" />
       <div className="flex flex-col gap-2 p-4">
         <Skeleton className="h-[19px] w-2/3" />
         <Skeleton className="h-3.5 w-1/2" />

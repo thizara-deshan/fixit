@@ -983,7 +983,7 @@ const GRID = 'grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4';
 **Commit:** `git commit -m "feat(web): popular services section (M05-T14)"`
 
 ### T15 — Featured provider card (S1.E10)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/featured-card.tsx`
 **Context:** S1.E10, AC4, D-4, §6.1 Featured skeleton (180-high block; 160 on phone); 01-home-desktop.png "Featured providers" cards. Reuses `Stars`, `VerifiedBadge` (`size="sm"`), `CategoryIcon`, `priceParts` (T2), `Button`.
