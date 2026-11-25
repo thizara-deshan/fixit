@@ -1081,7 +1081,7 @@ States: loading → 4 skeletons; error → section error, retry refetches only f
 **Commit:** `git commit -m "feat(web): featured providers section (M05-T16)"`
 
 ### T17 — Steps grid (S1.E11 / S4.E4)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/steps-grid.tsx`
 **Context:** S1.E11, S4.E4, S1 tablet rule ("3 columns if ≥ 900 px, otherwise 1"); 01-home-desktop.png "How it works" cards (icon tile 56 r16, big faint numeral right, title, copy; step 3 tile `cta`).
