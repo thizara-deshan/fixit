@@ -1426,7 +1426,7 @@ describe('useUpdateMe', () => {
 **Commit:** `git commit -m "feat(web): SubmitButton and FormErrorBanner (M04-T21)"`
 
 ### T22 — Auth components: card header, divider, Google button
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/components/auth-card-header.tsx`, `or-divider.tsx`, `google-button.tsx`
 **Context:** SPEC L1-auth card header (56×56 icon tile r16, title `text-title-md`, subtitle 15/22 muted), S5.E3/E4, S6.E2; ARCH §6.1 Google; D-7.
