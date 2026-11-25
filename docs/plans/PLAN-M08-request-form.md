@@ -1398,7 +1398,7 @@ States: no service selected → `Choose a service` placeholder line (13 subtle l
 **Commit:** `git commit -m "feat(web): request summary card (M08-T22)"`
 
 ### T23 — `BlockedCard`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/blocked-card.tsx`
 **Context:** T15 `Block`; `EmptyState` (§2.9); `useResendConfirmation` (toast `Email sent again.` already built in).
 **Do:**
