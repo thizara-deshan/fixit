@@ -1351,7 +1351,7 @@ Check the `Stars` and `CategoryIcon` prop names in their files and match them.
 **Commit:** `git commit -m "feat(web): provider mini row (M08-T21)"`
 
 ### T22 — `RequestSummary` and `WhatHappensNext`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/request-summary.tsx`
 **Context:** SPEC S12 desktop right column (sticky top 96, card r20); S12.E7 copy; BR-11 note copy; phone: "What happens next" below the form as a plain list.
 **Do:**
