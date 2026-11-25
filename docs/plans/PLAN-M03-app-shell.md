@@ -2112,7 +2112,7 @@ export function PhoneInput({ className, ...props }: Omit<ComponentProps<'input'>
 ---
 
 ### T23 — Nav configuration (links, active rules, menus, sidebars, footer)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/nav-config.ts`, `src/app/layouts/nav-config.test.ts`
 **Context:** SPEC L1 "Nav content per role", avatar menu, active link rules, footer links; L2 section tabs; L3 nav items (badge = Pending count, Verification dot when Not submitted or Rejected); L4 nav items; §4.1 Should/Could gating; D-b. `lib/features.ts`.
