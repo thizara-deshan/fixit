@@ -1331,7 +1331,7 @@ describe('useUpdateMe', () => {
 **Commit:** `git commit -m "feat(web): account API and hooks (M04-T19)"`
 
 ### T20 — Shared form pieces: `labelAside`, `PasswordInput`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/form-field.tsx`, `src/components/password-input.tsx`
 **Context:** SPEC S5 Password field (show/hide `Eye`/`EyeOff`, 44 target, label `Show password`), S5.E6 (Forgot link on the Password label row).

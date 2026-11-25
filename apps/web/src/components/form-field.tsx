@@ -16,6 +16,8 @@ interface FormFieldProps {
   /** Shows a visible "Optional" after the label. */
   optional?: boolean;
   help?: ReactNode;
+  /** Right-aligned on the label row (e.g. S5 "Forgot password?"). */
+  labelAside?: ReactNode;
   error?: string | undefined;
   /** Render the control with the wiring props spread onto it. */
   children: (control: FieldControlProps) => ReactNode;
@@ -27,6 +29,7 @@ export function FormField({
   required = false,
   optional = false,
   help,
+  labelAside,
   error,
   children,
   className,
@@ -38,11 +41,14 @@ export function FormField({
     [help !== undefined ? helpId : null, error ? errorId : null].filter(Boolean).join(' ') || undefined;
   return (
     <div className={cn('flex flex-col gap-1.5', className)}>
-      <Label htmlFor={id}>
-        {label}
-        {required && <span className="sr-only"> (required)</span>}
-        {optional && <span className="text-text-subtle ml-1.5 font-medium">Optional</span>}
-      </Label>
+      <div className="flex items-center justify-between gap-3">
+        <Label htmlFor={id}>
+          {label}
+          {required && <span className="sr-only"> (required)</span>}
+          {optional && <span className="text-text-subtle ml-1.5 font-medium">Optional</span>}
+        </Label>
+        {labelAside}
+      </div>
       {children({
         id,
         'aria-describedby': describedBy,
