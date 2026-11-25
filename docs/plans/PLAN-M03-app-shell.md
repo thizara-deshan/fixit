@@ -2751,7 +2751,7 @@ export function Footer({ variant = 'full' }: { variant?: 'full' | 'minimal' }) {
 ---
 
 ### T29 — `PublicLayout`, `AuthLayout`, `CustomerLayout` + `CustomerPageHeader`, `PlaceholderScreen`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/public-layout.tsx`, `auth-layout.tsx`, `customer-layout.tsx`, `src/app/placeholder-screen.tsx`
 **Context:** SPEC L1, L1-auth (main `page` bg, padding 56 16 88; card max 440 r20 padding 32 / 24 phone, 1px `border`; S29 logo-only), L2 (max 1240, padding 32 32 88 / phone 20 16 56, gap 24; header H1 `text-title-lg` + 15 muted subtitle; section tabs as links; detail pages use a back link instead), §6.8 placement, §9 skip link. D-a (PublicLayout accepts children so guards can render S40 inside it).
