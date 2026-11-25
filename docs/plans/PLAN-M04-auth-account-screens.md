@@ -1930,7 +1930,7 @@ it('tampered token → This link has expired + Log in to resend', async () => {
 **Commit:** `git commit -m "feat(web): S8 confirm email screen (M04-T26)"`
 
 ### T27 — S9 Forgot password
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/forgot-password-page.tsx`, `forgot-password-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S9, A7; AC5.
@@ -2554,7 +2554,7 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
 - **RESOLVED:** user chose option 1. S6 navigates with `state: { email, session }`; S7 (`CheckEmailPage`) calls `authStore.setSession` on mount, then replaces the history state with `{ email }`. The T24 success test waits for `me` with `waitFor`.
 - Work so far: T1–T23 committed. The T24 page and test, as written in the plan, are saved outside the repo and were not committed.
 
-### T27 — the plan's test cannot match the plan's markup
+### T27 — the plan's test cannot match the plan's markup (RESOLVED: option 1, matcher changed)
 - **Problem:** the plan's sent state renders `<p>If an account exists for <span>{sentTo}</span>, you'll get a reset link…</p>`, and its test does `findByText(/If an account exists for olivia@fixit.test/)`. Testing Library's `getByText` matches only an element's own text nodes, and the email sits in the inner `<span>`, so the `<p>` reads "If an account exists for , you'll get…". Both test cases fail (2 of 2). I checked that the sent state does render (the "Check your email" heading is found). The page code is written per plan and is uncommitted in the working tree.
 - **Why I stopped:** fixing it means changing either the plan's markup (drop the `<span>`, losing the semibold email) or the plan's test matcher. Both depart from the plan text, and the rules forbid changing tests.
 - **Options:**

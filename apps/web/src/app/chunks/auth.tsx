@@ -12,9 +12,7 @@ export function GoogleDonePage() {
   return <PlaceholderScreen frame="card" title="Signing you in" />;
 }
 
-export function ForgotPasswordPage() {
-  return <PlaceholderScreen frame="card" title="Forgot password" />;
-}
+export { ForgotPasswordPage } from '@/features/auth/pages/forgot-password-page';
 
 export function ResetPasswordPage() {
   return <PlaceholderScreen frame="card" title="Reset password" />;
