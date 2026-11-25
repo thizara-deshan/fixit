@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { lastDiscoverUrl, rememberDiscover } from './last-discover';
+import { lastDiscoverLoc, lastDiscoverUrl, rememberDiscover } from './last-discover';
 
 describe('last-discover', () => {
   beforeEach(() => {
@@ -15,5 +15,18 @@ describe('last-discover', () => {
   it('ignores a tampered value', () => {
     sessionStorage.setItem('fixit.lastDiscover', 'https://evil.example');
     expect(lastDiscoverUrl()).toBe('/discover');
+  });
+});
+
+describe('lastDiscoverLoc', () => {
+  beforeEach(() => {
+    sessionStorage.clear();
+  });
+  it('reads loc or null', () => {
+    expect(lastDiscoverLoc()).toBeNull();
+    rememberDiscover('?q=plumb&loc=colombo');
+    expect(lastDiscoverLoc()).toBe('colombo');
+    rememberDiscover('?q=plumb');
+    expect(lastDiscoverLoc()).toBeNull();
   });
 });

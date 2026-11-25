@@ -898,7 +898,7 @@ describe('formatDeadline', () => {
 **Commit:** `git commit -m "feat(web): deadline formatter and slot labels (M08-T11)"`
 
 ### T12 — `lastDiscoverLoc` and `initialTownId`
-- [ ] done
+- [x] done
 **Files:** `src/lib/last-discover.ts`, `src/lib/last-discover.test.ts`, `src/features/requests/town-prefill.ts`, `src/features/requests/town-prefill.test.ts`
 **Context:** SPEC S12 Town "Prefilled from the Discover `loc` if it's in the list"; §8.2 last Discover URL.
 **Do:**

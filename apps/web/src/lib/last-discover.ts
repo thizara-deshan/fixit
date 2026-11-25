@@ -18,3 +18,10 @@ export function lastDiscoverUrl(): string {
     return '/discover';
   }
 }
+
+/** The `loc` of the last Discover URL, or null. */
+export function lastDiscoverLoc(): string | null {
+  const url = lastDiscoverUrl();
+  const i = url.indexOf('?');
+  return i === -1 ? null : new URLSearchParams(url.slice(i)).get('loc');
+}
