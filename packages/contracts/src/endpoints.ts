@@ -20,7 +20,7 @@ import {
   PublicReviewPage,
 } from './catalog/schemas';
 import { PageQuery } from './common/pagination';
-import { Eligibility } from './requests/schemas';
+import { CreateRequestBody, CustomerRequestView, Eligibility } from './requests/schemas';
 
 export type Access = 'public' | 'user' | 'provider' | 'admin';
 // user = signed-in non-admin (every user is a customer); provider = user with a published listing
@@ -255,6 +255,27 @@ export const ENDPOINTS = {
     owner: 'self',
     response: Eligibility,
     refs: ['F-14', 'S3.E7', 'S12'],
+  },
+  requests_create: {
+    id: 'requests_create',
+    domain: 'requests',
+    method: 'POST',
+    path: '/me/requests',
+    access: ['user'],
+    owner: 'self',
+    body: CreateRequestBody,
+    response: CustomerRequestView,
+    refs: ['F-11', 'F-14', 'S12', 'A11'],
+  },
+  requests_get: {
+    id: 'requests_get',
+    domain: 'requests',
+    method: 'GET',
+    path: '/me/requests/:ref',
+    access: ['user'],
+    owner: 'request_customer',
+    response: CustomerRequestView,
+    refs: ['S13', 'S15'],
   },
 } as const satisfies Record<string, EndpointDef>;
 export type EndpointId = keyof typeof ENDPOINTS;

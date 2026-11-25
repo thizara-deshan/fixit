@@ -478,7 +478,7 @@ describe('toCustomerView', () => {
 **Commit:** `git commit -m "feat(contracts): toCustomerView projection (M08-T5)"`
 
 ### T6 — Endpoint entries `requests_create`, `requests_get`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.4 rows `POST /me/requests` and `GET /me/requests/:ref`.
 **Do:**
