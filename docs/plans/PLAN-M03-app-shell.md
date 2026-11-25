@@ -1422,7 +1422,7 @@ export function NoticeBanner({ variant, children, action, onDismiss, className }
 ---
 
 ### T18 — `ResponsiveDialog` (AC7)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/responsive-dialog.tsx`, `src/components/responsive-dialog.test.tsx`
 **Context:** SPEC §6.10 (desktop modal r20 padding 32 max 440 `shadow-modal`, buttons right-aligned secondary → primary; phone bottom sheet §2.9: top radius 20, `shadow-toast`, grab handle 36×4 `border-strong`, header title + 44 close, sticky footer, buttons stacked full width with primary/danger first; focus trapped; Esc/overlay close except while submitting; focus returns to trigger). ARCH §5.2 (Dialog ≥ 641, Sheet bottom below, one in the DOM). Milestone note: features never use `Dialog`/`Sheet` directly.
