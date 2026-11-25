@@ -99,4 +99,18 @@ export const authHandlers = [
       throw mockError(429, 'RATE_LIMITED', 'Wait 60 s');
     issueEmailToken(d, user.id, 'confirm_email', now);
   }),
+  mockEndpoint(E.auth_forgot_password, ({ body, db: d, now }) => {
+    const user = Object.values(d.users).find((u) => u.email === body.email);
+    if (user) issueEmailToken(d, user.id, 'reset_password', now); // always 204: no account enumeration
+  }),
+  mockEndpoint(E.auth_reset_password, ({ body, db: d, now }) => {
+    const t = findEmailToken(d, body.token, 'reset_password');
+    const user = t ? d.users[t.userId] : undefined;
+    if (!t || !user || t.usedAt !== null || isTokenExpired(t, now))
+      throw mockError(422, 'RULE_VIOLATION', 'Token invalid', { details: { rule: 'token_invalid' } });
+    user.password = body.password;
+    if (!user.authMethods.includes('password')) user.authMethods = [...user.authMethods, 'password'];
+    t.usedAt = now.toISOString();
+    if (readMockRefresh() === user.id) clearMockRefresh(); // A8: other sessions end
+  }),
 ];

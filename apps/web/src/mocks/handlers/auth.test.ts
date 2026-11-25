@@ -171,3 +171,20 @@ describe('POST /auth/resend-confirmation', () => {
     ).toBe(403);
   });
 });
+
+describe('forgot + reset password', () => {
+  it('unknown email → 204 and no link', async () => {
+    const res = await call('/auth/forgot-password', post({ email: 'nobody@fixit.test' }));
+    expect([res.status, db().lastEmailLink]).toEqual([204, null]);
+  });
+  it('reset changes the password once; old password stops working', async () => {
+    await call('/auth/forgot-password', post({ email: 'olivia@fixit.test' }));
+    const token = tokenFrom(db().lastEmailLink);
+    expect(db().lastEmailLink).toMatch(/^\/reset-password\?token=/);
+    expect((await call('/auth/reset-password', post({ token, password: 'newpass99' }))).status).toBe(204);
+    expect((await login('olivia@fixit.test')).status).toBe(401);
+    expect((await login('olivia@fixit.test', 'newpass99')).status).toBe(200);
+    const reuse = await call('/auth/reset-password', post({ token, password: 'other123' }));
+    expect((await envelope(reuse)).details?.rule).toBe('token_invalid');
+  });
+});

@@ -494,7 +494,7 @@ describe('POST /auth/resend-confirmation', () => {
 **Commit:** `git commit -m "feat(web): mock register, confirm and resend handlers (M04-T7)"`
 
 ### T8 — Mock handlers: forgot and reset password
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/auth.ts`, `auth.test.ts`
 **Context:** ARCH §3.1, §6.1 Forgot/reset (no enumeration; Google-only gets a link too; reset revokes sessions); SPEC A7, A8.
