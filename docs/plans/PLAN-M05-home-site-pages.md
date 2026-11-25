@@ -746,7 +746,7 @@ export function useScrollToHash(ready = true): void {
 **Commit:** `git commit -m "feat(web): scroll to hash on site pages (M05-T11)"`
 
 ### T12 — Hero search bar with popular chips (S1.E4, S1.E5)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/hero-search.tsx`
 **Context:** S1.E4, S1.E5, S1 phone layout item 1, §2.9 "Search bar" (home variant), 01-home-desktop.png search bar + chips row. Reuses `useCatalog` (T7), `homeSearchUrl` (T9).
