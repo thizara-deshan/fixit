@@ -1218,7 +1218,7 @@ export function ProviderProfilePage() {
 **Commit:** `git commit -m "feat(web): provider profile page (M07-T19)"`
 
 ### T20 — Profile page behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-profile/pages/provider-profile-page.test.tsx`
 **Context:** AC1–AC7 (behaviour only; no markup/styling assertions).
 **Do / Test:**
