@@ -157,7 +157,7 @@ describe('catalog schemas', () => {
 **Commit:** `git commit -m "feat(contracts): catalog and provider card schemas (M05-T1)"`
 
 ### T2 — `priceLabel()` in contracts, used by `lib/format.ts`
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/providers/pricing.ts`, `packages/contracts/src/providers/pricing.test.ts`, `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** BR-09, S1.E10 (`From` / `LKR 2,500 / hour`), D-4. `formatServicePrice` / `priceParts` already exist in `lib/format.ts`; their output must not change.

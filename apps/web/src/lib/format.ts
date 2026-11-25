@@ -1,24 +1,23 @@
-import { colomboStartOfDay, formatInColombo, type PriceUnit } from '@fixit/contracts';
+import { colomboStartOfDay, formatInColombo, priceLabel, type PriceUnit } from '@fixit/contracts';
 
 const grouping = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
 
 /** `LKR 2,500` (whole rupees). */
 export const formatLkr = (amount: number): string => `LKR ${grouping.format(amount)}`;
 
-const UNIT_SUFFIX: Record<PriceUnit, string> = {
-  per_hour: ' / hour',
-  per_visit: ' / visit',
-  fixed: ' fixed',
-};
-
 /** BR-09: `from LKR 2,500 / hour`, `from LKR 1,500 / visit`, `LKR 4,500 fixed`. */
 export function formatServicePrice(amount: number, unit: PriceUnit): string {
-  return unit === 'fixed' ? `${formatLkr(amount)} fixed` : `from ${formatLkr(amount)}${UNIT_SUFFIX[unit]}`;
+  const l = priceLabel({ amount, unit });
+  return `${l.lead ? 'from ' : ''}${formatLkr(amount)}${l.suffix}`;
 }
 
-/** Short price for cards: big `LKR 2,500` + small suffix ` / hour` | ` / visit` | ` fixed`. */
-export function priceParts(amount: number, unit: PriceUnit): { amount: string; suffix: string } {
-  return { amount: formatLkr(amount), suffix: UNIT_SUFFIX[unit] };
+/** Short price for cards: big `LKR 2,500` + small suffix, plus the `From` lead (null for fixed). */
+export function priceParts(
+  amount: number,
+  unit: PriceUnit,
+): { lead: 'From' | null; amount: string; suffix: string } {
+  const l = priceLabel({ amount, unit });
+  return { lead: l.lead, amount: formatLkr(amount), suffix: l.suffix };
 }
 
 /** 'YYYY-MM-DD' is a Colombo calendar day; anything else is an instant (ISO date-time or Date). */

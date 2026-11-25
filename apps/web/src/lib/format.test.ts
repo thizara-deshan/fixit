@@ -22,8 +22,8 @@ describe('format (SPEC §1.3)', () => {
     expect(formatServicePrice(2500, 'per_hour')).toBe('from LKR 2,500 / hour');
     expect(formatServicePrice(1500, 'per_visit')).toBe('from LKR 1,500 / visit');
     expect(formatServicePrice(4500, 'fixed')).toBe('LKR 4,500 fixed');
-    expect(priceParts(2500, 'per_hour')).toEqual({ amount: 'LKR 2,500', suffix: ' / hour' });
-    expect(priceParts(4500, 'fixed')).toEqual({ amount: 'LKR 4,500', suffix: ' fixed' });
+    expect(priceParts(2500, 'per_hour')).toEqual({ lead: 'From', amount: 'LKR 2,500', suffix: ' / hour' });
+    expect(priceParts(4500, 'fixed')).toEqual({ lead: null, amount: 'LKR 4,500', suffix: ' fixed' });
   });
   it('dates in Asia/Colombo', () => {
     expect(formatDateLong('2026-11-21')).toBe('Sat, 21 Nov 2026');
@@ -48,5 +48,12 @@ describe('format (SPEC §1.3)', () => {
     expect(initialsOf('Olivia Martinez')).toBe('OM');
     expect(initialsOf('  Marcus  van Bell ')).toBe('MB');
     expect(initialsOf('Admin')).toBe('A');
+  });
+});
+
+describe('priceParts lead', () => {
+  it('From for per_hour, null for fixed', () => {
+    expect(priceParts(2500, 'per_hour')).toEqual({ lead: 'From', amount: 'LKR 2,500', suffix: ' / hour' });
+    expect(priceParts(15000, 'fixed')).toEqual({ lead: null, amount: 'LKR 15,000', suffix: ' fixed' });
   });
 });
