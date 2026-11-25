@@ -1788,7 +1788,7 @@ describe('DataList (SPEC §6.9, AC7)', () => {
 ---
 
 ### T20 — `Pagination`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/pagination.tsx`, `src/components/pagination.test.ts`
 **Context:** SPEC S2.E12 (hidden when 1 page; current page `primary` bg, white; `Previous` · `1 2 3 … 8` · `Next`), S2 phone note 6 (`‹ Previous` · `Page 2 of 5` · `Next ›`), §9 (44 targets on phone). Pagination is URL-driven (`?page=`), so pages are links.
