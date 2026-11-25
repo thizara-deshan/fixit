@@ -1004,7 +1004,7 @@ describe('requestRuleBanner', () => {
 **Commit:** `git commit -m "feat(web): request rule banner copy (M08-T13)"`
 
 ### T14 — Requests hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/hooks.ts`, `src/features/requests/hooks.test.tsx`
 **Context:** ARCH §4.2; AC4 (mobile shows in `/account` afterwards → refresh `me`); `fetchEligibility` in `features/provider-profile/api.ts`; `fetchMe` in `features/auth/api.ts`.
 **Do:** Create `hooks.ts`:
