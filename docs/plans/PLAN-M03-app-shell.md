@@ -3900,3 +3900,20 @@ Fix any ❌ that is a bug in this milestone's code (commit as `fix(web): … (M0
 - Milestone AC7 says the toast "pauses on hover/focus". Sonner pauses on hover. Focus pausing is checked manually in T37 and becomes a blocker if missing.
 - SPEC L3 lists "swipe left" to close the drawer. AC3 doesn't require it, and Radix Sheet has no swipe, so it's left out.
 - Nice-to-haves (not in this plan): move focus to the page H1 after route changes (SPEC §9 "Focus management"; the skip link and `main#main` are in place); a Playwright no-horizontal-scroll smoke test per route (planned for M21); route-level `<title>` per screen; a lint rule that bans `outline-none` in `components/ui` except on menu/content containers.
+
+## Acceptance results
+Automated (`pnpm verify` green; web suite 26 files / 132 tests). Browser-only items were **not** exercised by the executor (no browser in the session); they rely on the human checkpoints.
+
+| AC | Result | Note |
+|---|---|---|
+| 1 | ⚠️ not browser-verified | L1 nav, footer, nav sheet built (T24–T28); focus trap/Esc/overlay come from the Radix Sheet. Needs a human look at 390/1440. |
+| 2 | ✅ (unit) | `nav-config.test.ts` covers avatar menu and top links per role. |
+| 3 | ✅ (unit) / ⚠️ visual | Sidebar item lists and flag gating tested; `routes.test.tsx` asserts L3/L4 nav render. Drawer behaviour and visuals need a human check. |
+| 4 | ✅ | `routes.test.tsx` redirect matrix, S40 cases and logout green. |
+| 5 | ✅ | `/nope`, `/dashboard/nope`, `/admin/nope`, `/dashboard/settings` tested. |
+| 6 | ✅ (test) / ⚠️ | `/dev/throw` renders S41 with an Error ID in L1 (tested); `Try again` reload not clicked in a browser. |
+| 7 | ✅ (unit) / ⚠️ | `data-list`, `responsive-dialog`, `toast` tests green. Toast pause on focus and the 4 s / 8 s timings are unchecked; `/dev/ui` exists for the human check. |
+| 8 | ⚠️ not verified | No-horizontal-scroll, focus rings and 44px targets need a browser walk-through. |
+| 9 | ✅ | `loading-region` and `use-delayed-flag` tests green. |
+
+Not done: `docs/milestones/M00-index.md` M03 status was left as "Not started" (instructions forbid editing milestones). `m03-done` tag not created until the ⚠️ items are confirmed.
