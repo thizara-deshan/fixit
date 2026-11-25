@@ -14,9 +14,7 @@ export function GoogleDonePage() {
 
 export { ForgotPasswordPage } from '@/features/auth/pages/forgot-password-page';
 
-export function ResetPasswordPage() {
-  return <PlaceholderScreen frame="card" title="Reset password" />;
-}
+export { ResetPasswordPage } from '@/features/auth/pages/reset-password-page';
 
 export function AdminLoginPage() {
   return <PlaceholderScreen frame="card" title="Admin sign-in" />;

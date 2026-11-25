@@ -1955,7 +1955,7 @@ it.each(['olivia@fixit.test', 'nobody@fixit.test'])('%s → same sent state', as
 **Commit:** `git commit -m "feat(web): S9 forgot password screen (M04-T27)"`
 
 ### T28 — S10 Reset password
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/reset-password-page.tsx`, `reset-password-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S10, A8; AC5.
