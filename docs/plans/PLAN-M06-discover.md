@@ -125,7 +125,7 @@ describe('DiscoverQuery', () => {
 **Commit:** `git commit -m "feat(contracts): DiscoverQuery and DiscoverResult schemas (M06-T1)"`
 
 ### T2 — `matchCategory` (BR-02)
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/search/match.ts`, `packages/contracts/src/search/match.test.ts`, `packages/contracts/src/index.ts`
 **Context:** PRODUCT BR-02; ARCH §2.6.
 **Do:** create `search/match.ts`:
