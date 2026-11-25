@@ -590,7 +590,7 @@ describe('GET /providers', () => {
 **Commit:** `git commit -m "feat(web): GET /providers mock handler (M06-T7)"`
 
 ### T8 — Query key, api and `useDiscover` hook
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/features/discover/api.ts`, `src/features/discover/hooks.ts`, `src/features/discover/hooks.test.tsx`
 **Context:** ARCH §4.2; D-5. `api.ts` needs `writeDiscover`, so this task creates `url-state.ts` with only `readDiscover` and `writeDiscover`; T9 replaces it with the full file.
 **Do:**
