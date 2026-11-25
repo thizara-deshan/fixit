@@ -2534,7 +2534,13 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
 - After T36: "Human: `/account` as Olivia, Marcus and Sanduni at 1440 and 390; cards max 720, Save full width on phone."
 
 ## Blockers
-(executor writes here; leave empty)
+### T23 (affects T23–T36 tests) — jest-dom matchers are not set up
+- **Problem:** the plan's page tests use `toBeInTheDocument`, `toBeDisabled`, `toHaveFocus`, `toHaveAttribute`. `@testing-library/jest-dom` is not installed, `apps/web/src/test/setup.ts` does not register it, and no existing test uses these matchers. Running T23's test fails with `Invalid Chai property: toBeInTheDocument` (5 of 6 tests).
+- **Why I stopped:** the plan only authorizes adding `@testing-library/user-event` (T15). Adding a dev dependency and editing `setup.ts` is outside any task, and rewriting the plan's assertions would change its tests.
+- **Options:**
+  1. Add `@testing-library/jest-dom` as a web devDependency and register it in `src/test/setup.ts` (`import '@testing-library/jest-dom/vitest'`) plus the vitest types, as a new pre-task (e.g. T22b). Plan tests then work as written. (Recommended.)
+  2. Rewrite every plan assertion with core vitest/DOM equivalents (`expect(el).toBeTruthy()`, `el.disabled`, `document.activeElement`, `getAttribute`).
+- T1–T22 are done and committed. The T23 page code was dropped uncommitted; it is exactly the plan's code.
 
 ## Notes for review (planner)
 - **Milestone vs ARCHITECTURE (D-1):** `POST /auth/register` returns 204 but `resend-confirmation` needs a session; S7 resend after sign-up needs one. The plan logs the user in after registering. The alternative is to make `register` return an `AuthSession` (an ARCH §3.1 change needing a decision record).
