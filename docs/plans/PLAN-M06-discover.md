@@ -953,7 +953,7 @@ States: verified / not verified / paused / 0 reviews / no photo — all from pro
 **Commit:** `git commit -m "feat(web): discover result card (M06-T12)"`
 
 ### T13 — Filter groups (S2.E3–E7)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/filter-groups.tsx`
 **Context:** S2.E3–E7 copy/states; 04-discover desktop left panel; §2.9 Checkbox row, Option row, Toggle. Reuse `components/ui/checkbox`, `components/ui/switch`, `Stars` (showValue false). Phone rows 44 high.
 **Do:** one component used by the desktop panel and the sheet:
