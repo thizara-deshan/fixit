@@ -423,7 +423,7 @@ describe('toast helpers (SPEC §6.5)', () => {
 ---
 
 ### T8 — `lib/format.ts`
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** SPEC §1.3 (money, service price BR-09, short price, dates, phone, rating "New"), §9 Stars text alternative. D-g.
