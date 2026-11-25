@@ -518,7 +518,7 @@ describe('toCustomerView', () => {
 **Commit:** `git commit -m "feat(contracts): request create/get endpoint entries (M08-T6)"`
 
 ### T7 — Forced `rule_provider_paused` in mock controls
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/controls.ts`, `src/mocks/lib/controls.test.ts`, `src/mocks/dev/DevPanel.tsx`
 **Context:** AC6; D-7; ARCH §4.5 "Force next error".
 **Do:**
