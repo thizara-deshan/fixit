@@ -296,7 +296,7 @@ export { Skeleton };
 ---
 
 ### T7 — Toaster, `lib/toast.ts` and providers
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/sonner.tsx` (create), `src/lib/toast.ts`, `src/lib/toast.test.ts`, `src/app/providers.tsx`
 **Context:** SPEC §2.9 Toast, §6.5 (4 s, 8 s with action, pause on hover/focus, one at a time, phone bottom 16 and width calc(100% − 32), 44-high action), §6.3 error toast (leading `CircleAlert`, `Try again`), §9 (white focus outline on dark surfaces). ARCH §5.5 (`visibleToasts={1}`, `bottom-center`). D-f.
