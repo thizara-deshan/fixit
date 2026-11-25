@@ -304,7 +304,7 @@ describe('evaluateEligibility (SPEC S3.E7 order)', () => {
 **Commit:** `git commit -m "feat(contracts): request eligibility (M07-T4)"`
 
 ### T5 — Endpoint entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `endpoints.test.ts`
 **Context:** ARCH §3.2, §3.4; decision 003.
 **Do:** import `ProviderPublicProfile, PublicReviewPage` from `./catalog/schemas`, `PageQuery` from `./common/pagination`, `Eligibility` from `./requests/schemas`; add after `providers_search`:

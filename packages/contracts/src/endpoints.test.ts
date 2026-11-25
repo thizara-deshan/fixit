@@ -63,4 +63,14 @@ describe('ENDPOINTS', () => {
       owner: 'none',
     });
   });
+  it('M07 rows match ARCHITECTURE §3.2/§3.4', () => {
+    const rows = Object.fromEntries(
+      Object.values(ENDPOINTS).map((d) => [`${d.method} ${d.path}`, [d.domain, d.access]]),
+    );
+    expect(rows).toMatchObject({
+      'GET /providers/:id': ['catalog', ['public']],
+      'GET /providers/:id/reviews': ['catalog', ['public']],
+      'GET /me/request-eligibility/:providerId': ['requests', ['user']],
+    });
+  });
 });

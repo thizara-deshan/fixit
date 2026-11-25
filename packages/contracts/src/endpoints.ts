@@ -11,7 +11,16 @@ import {
   ResetPasswordBody,
   UpdateMeBody,
 } from './auth/schemas';
-import { CatalogResponse, DiscoverQuery, DiscoverResult, ProviderCard } from './catalog/schemas';
+import {
+  CatalogResponse,
+  DiscoverQuery,
+  DiscoverResult,
+  ProviderCard,
+  ProviderPublicProfile,
+  PublicReviewPage,
+} from './catalog/schemas';
+import { PageQuery } from './common/pagination';
+import { Eligibility } from './requests/schemas';
 
 export type Access = 'public' | 'user' | 'provider' | 'admin';
 // user = signed-in non-admin (every user is a customer); provider = user with a published listing
@@ -215,6 +224,37 @@ export const ENDPOINTS = {
     query: DiscoverQuery,
     response: DiscoverResult,
     refs: ['F-06', 'F-07', 'F-08', 'S2'],
+  },
+  providers_get: {
+    id: 'providers_get',
+    domain: 'catalog',
+    method: 'GET',
+    path: '/providers/:id',
+    access: ['public'],
+    owner: 'none',
+    response: ProviderPublicProfile,
+    refs: ['F-09', 'S3', 'BR-01', 'BR-41'],
+  },
+  providers_reviews: {
+    id: 'providers_reviews',
+    domain: 'catalog',
+    method: 'GET',
+    path: '/providers/:id/reviews',
+    access: ['public'],
+    owner: 'none',
+    query: PageQuery,
+    response: PublicReviewPage,
+    refs: ['S3.E11', 'F-23', 'D-003'],
+  },
+  requests_eligibility: {
+    id: 'requests_eligibility',
+    domain: 'requests',
+    method: 'GET',
+    path: '/me/request-eligibility/:providerId',
+    access: ['user'],
+    owner: 'self',
+    response: Eligibility,
+    refs: ['F-14', 'S3.E7', 'S12'],
   },
 } as const satisfies Record<string, EndpointDef>;
 export type EndpointId = keyof typeof ENDPOINTS;
