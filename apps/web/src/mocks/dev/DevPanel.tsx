@@ -10,7 +10,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { logout, signIn } from '@/features/auth/api';
+import { signIn } from '@/features/auth/api';
+import { useLogout } from '@/features/auth/hooks';
 import { useAuth } from '@/lib/auth-store';
 import { ApiError } from '@/lib/http';
 import { ENDPOINTS } from '@fixit/contracts';
@@ -39,6 +40,7 @@ export function DevSection({ title, children }: { title: string; children: React
 
 function SessionSection() {
   const auth = useAuth();
+  const doLogout = useLogout();
   const [busy, setBusy] = useState<PersonaKey | 'logout' | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -70,7 +72,7 @@ function SessionSection() {
           variant="outline"
           className="h-11"
           disabled={auth.status !== 'signed-in' || busy !== null}
-          onClick={() => void run('logout', logout)}
+          onClick={() => void run('logout', doLogout)}
         >
           {busy === 'logout' ? 'Logging out…' : 'Log out'}
         </Button>

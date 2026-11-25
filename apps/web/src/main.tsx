@@ -1,15 +1,11 @@
-import { lazy, StrictMode, Suspense } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router';
 import '@/styles/globals.css';
-import { PlaceholderPage } from '@/app/placeholder-page';
 import { AppProviders } from '@/app/providers';
+import { router } from '@/app/router';
 import { bootstrapAuth } from '@/lib/bootstrap-auth';
 import { enableMocks } from '@/mocks/enable';
-
-// Dev only: the branch is removed from production builds, so the DevPanel chunk never ships.
-const DevPanel = import.meta.env.DEV
-  ? lazy(() => import('@/mocks/dev/DevPanel').then((m) => ({ default: m.DevPanel })))
-  : null;
 
 async function boot(rootEl: HTMLElement): Promise<void> {
   await enableMocks();
@@ -17,12 +13,7 @@ async function boot(rootEl: HTMLElement): Promise<void> {
   createRoot(rootEl).render(
     <StrictMode>
       <AppProviders>
-        <PlaceholderPage />
-        {DevPanel && (
-          <Suspense fallback={null}>
-            <DevPanel />
-          </Suspense>
-        )}
+        <RouterProvider router={router} />
       </AppProviders>
     </StrictMode>,
   );

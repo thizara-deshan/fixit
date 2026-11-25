@@ -3439,7 +3439,7 @@ export function LeaveReviewPage() {
 ---
 
 ### T35 — Route table, router, root layout, boot wiring, test render helper
-- [ ] done
+- [x] done
 
 **Files:** `src/app/routes.tsx`, `src/app/router.tsx`, `src/app/layouts/root-layout.tsx`, `src/main.tsx`, `src/mocks/dev/DevPanel.tsx`, `src/test/render.tsx`, delete `src/app/placeholder-page.tsx`, `src/app/chunks/dev.tsx` (stub)
 **Context:** ARCH §5.1 route map (guards, layouts, chunks; Should/Could routes gated by `lib/features.ts`), §5.6 (route `errorElement`), §4.4 boot order (`enableMocks` → `bootstrapAuth` → render). SPEC §5.E (S39/S41 by area). D-a, D-b, D-c, D-h. ARCH §9.4 (`render.tsx` with a memory router).
