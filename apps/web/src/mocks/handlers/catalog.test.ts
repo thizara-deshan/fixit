@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { CatalogResponse, DiscoverResult, ProviderCard, selectFeatured } from '@fixit/contracts';
+import {
+  CatalogResponse,
+  DiscoverResult,
+  ProviderCard,
+  ProviderPublicProfile,
+  PublicReviewPage,
+  selectFeatured,
+} from '@fixit/contracts';
 import { z } from 'zod';
 import { db } from '../db/store';
 import { armForcedError } from '../lib/controls';
@@ -66,5 +73,33 @@ describe('GET /providers', () => {
   it('honours a DevPanel forced 500', async () => {
     armForcedError('providers_search', '500');
     expect((await get('/providers')).status).toBe(500);
+  });
+});
+
+describe('GET /providers/:id', () => {
+  it('returns the profile for a guest', async () => {
+    const res = await get('/providers/p01');
+    expect(res.status).toBe(200);
+    expect(ProviderPublicProfile.parse(await res.json()).businessName).toBe('Bell & Sons Plumbing');
+  });
+  it.each(['unknown', 'p11', 'p14'])('%s → 404 NOT_FOUND', async (id) => {
+    const res = await get(`/providers/${id}`);
+    expect(res.status).toBe(404);
+  });
+  it('featured still resolves', async () => {
+    expect((await get('/providers/featured')).status).toBe(200);
+  });
+});
+describe('GET /providers/:id/reviews', () => {
+  it('page 1 = 5, page 2 = 10', async () => {
+    const one = PublicReviewPage.parse(await (await get('/providers/p01/reviews')).json());
+    const two = PublicReviewPage.parse(await (await get('/providers/p01/reviews?page=2')).json());
+    expect([one.items.length, one.pageSize, two.items.length, two.pageSize]).toEqual([5, 5, 10, 10]);
+  });
+  it('p12 has none; suspended p14 → 404; forced 500 honoured', async () => {
+    expect(PublicReviewPage.parse(await (await get('/providers/p12/reviews')).json()).total).toBe(0);
+    expect((await get('/providers/p14/reviews')).status).toBe(404);
+    armForcedError('providers_reviews', '500');
+    expect((await get('/providers/p01/reviews')).status).toBe(500);
   });
 });

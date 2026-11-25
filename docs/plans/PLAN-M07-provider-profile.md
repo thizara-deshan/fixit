@@ -637,7 +637,7 @@ describe('eligibilityFor (fixtures)', () => {
 **Commit:** `git commit -m "feat(web): mock profile, reviews and eligibility projections (M07-T7)"`
 
 ### T8 — `GET /providers/:id` and `/reviews` handlers
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/catalog.ts`, `catalog.test.ts`
 **Do:** import `listedProviderOr404, publicReviewsPage, toPublicProfile` from `../lib/profile`; append to `catalogHandlers` **after** `providers_featured` (MSW matches in order; `/providers/featured` must win over `/providers/:id`):
 ```ts
