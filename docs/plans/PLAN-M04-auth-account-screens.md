@@ -2381,7 +2381,7 @@ States: not a provider (switch off, enabled); draft in progress (off + `Continue
 **Commit:** `git commit -m "feat(web): S18 offer-services card (M04-T35)"`
 
 ### T36 — S18 Account page assembly
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/pages/account-page.tsx`, `account-page.test.tsx`, `src/app/chunks/customer.tsx`
 **Context:** SPEC S18 layout (one column of cards, max 720, gap 20), S18.E4 (F-40 line); §6.7; AC6, AC8.
@@ -2562,7 +2562,7 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
   2. Keep the test; remove the `<span>` so the email is plain text in the `<p>`.
   3. Keep the test; wrap the email so the text stays in one node, e.g. `<strong>` can't (still a separate element), so this means option 2.
 
-### T36 — the plan's test expects a business name the fixtures don't have
+### T36 — the plan's test expects a business name the fixtures don't have (RESOLVED: option 1, test string changed)
 - **Problem:** the offer-services test asserts `getByText("You're listed as Bell & Sons.")` for Marcus. Marcus's fixture business is `Bell & Sons Plumbing` (`packages/fixtures/src/providers.ts:23`), and the card renders `me.provider.businessName` as the plan specifies, so it shows "You're listed as Bell & Sons Plumbing." The other 6 tests pass.
 - **Why I stopped:** the fix is either a change to the plan's test string or to the fixtures, and the rules forbid changing tests and fixtures are outside T36.
 - **Also (not a blocker):** the plan's session-expiry test uses `getByText` for the "Your session expired…" copy right after the URL changes. The login page is lazy-loaded, so I used `findByText` there. It is the same assertion, just not racing the render. I'd keep this.
