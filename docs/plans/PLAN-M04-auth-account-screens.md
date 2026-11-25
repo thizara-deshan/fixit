@@ -707,7 +707,7 @@ describe('POST /me/password', () => {
 **Commit:** `git commit -m "feat(web): clickable DevPanel email link (M04-T11)"`
 
 ### T12 — `lib/next.ts`: same-site `next` and role home
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/next.ts`, `src/lib/next.test.ts`
 **Context:** SPEC §8.4 (`next` validation, signed-in redirects), S5 success redirect; AC10; D-2.
