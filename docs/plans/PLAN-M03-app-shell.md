@@ -67,7 +67,7 @@ Planner's decisions the executor must follow (they fill gaps between the milesto
 ## Tasks
 
 ### T1 — Branch, start tag, router and toast dependencies
-- [ ] done
+- [x] done
 
 **Files:** `apps/web/package.json`, `pnpm-lock.yaml`
 **Context:** ARCH §5.1 (React Router route `lazy`), §5.5 (Sonner). Neither package is installed yet.
