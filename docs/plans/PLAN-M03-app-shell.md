@@ -2502,7 +2502,7 @@ export function AccountMenu({ me }: { me: Me }) {
 ---
 
 ### T26 — `NavSheet` (phone/tablet right sheet)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/nav-sheet.tsx`
 **Context:** SPEC L1 "Tablet & phone": hamburger `Menu` 44×44; right sheet (full height, width min(360, 100vw), `shadow-modal`, overlay); close `X` 44 top-right; nav links as 56-high rows 16/600, active `primary` + `primary-soft` bg; guests: two full-width 48 buttons `Log in` (secondary) and `Sign up` (primary); signed-in: account-menu items; admin: `Admin console` + `Log out` (L1 role table). Closes on link tap, overlay tap, Esc; focus trapped; returns focus to the hamburger (Radix `SheetTrigger` does this). AC1.
