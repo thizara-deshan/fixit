@@ -2606,7 +2606,7 @@ export function NavSheet({ me }: { me: Me | null }) {
 ---
 
 ### T27 — `PublicNav` (L1 top bar)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/public-nav.tsx`
 **Context:** SPEC L1 desktop (sticky top 0, z 10, white, 1px bottom `border`, height 72 / 64 phone via `h-nav`; inner max 1240, padding 0 32 (24 tablet, 16 phone), gap 48; links gap 32, 15/600, active `primary` + 2px underline, inactive `text-muted` hover `text`; actions gap 10 right). Role table: Guest `Log in` (secondary 40) · `Sign up` (primary 40); Customer avatar menu; Provider `Dashboard` (outline 40, `LayoutDashboard`) + avatar; Admin `Admin console` (outline 40) + `Log out` (secondary 40). ≤1023: logo left; right: avatar (signed-in, not admin) + hamburger. S29: logo only. Prototype `01-home-desktop.png` top bar.
