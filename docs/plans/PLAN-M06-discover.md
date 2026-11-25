@@ -1128,7 +1128,7 @@ export function SortSelect({ value, onChange, className }: { value: SortKey; onC
 **Commit:** `git commit -m "feat(web): discover results heading and sort (M06-T17)"`
 
 ### T18 — `DiscoverPage` assembly and states
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/pages/discover-page.tsx`, `src/app/chunks/public.tsx`
 **Context:** S2 desktop + phone layout; §6.1 (result skeleton ×4, 150 ms, `aria-busy`), §6.2 (empty, `SearchX`), §6.3 section error; AC1–AC7; D-5, D-7. Reuse `useCatalog` (`features/site/hooks`), `LoadingRegion`, `SkeletonResultCard`, `EmptyState`, `SectionError`, `Pagination`.
 **Do:**

@@ -1,8 +1,6 @@
 import { PlaceholderScreen } from '../placeholder-screen';
 
-export function DiscoverPage() {
-  return <PlaceholderScreen title="Discover" />;
-}
+export { DiscoverPage } from '@/features/discover/pages/discover-page';
 
 export function ProviderProfilePage() {
   return <PlaceholderScreen title="Provider profile" />;
