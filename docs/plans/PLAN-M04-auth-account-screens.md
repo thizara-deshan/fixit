@@ -2300,7 +2300,7 @@ States: default (pre-filled), field errors (name/mobile, S6/S12 copy), provider 
 **Commit:** `git commit -m "feat(web): S18 details card (M04-T33)"`
 
 ### T34 — S18 Password card
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/components/password-card.tsx`
 **Context:** SPEC S18.E2 and field table (Google-only → `You sign in with Google.`); AC6.
