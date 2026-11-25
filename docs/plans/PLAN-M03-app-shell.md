@@ -669,7 +669,7 @@ describe('useMediaQuery', () => {
 ---
 
 ### T10 — `useDelayedFlag` (150 ms skeleton delay)
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/use-delayed-flag.ts`, `src/lib/use-delayed-flag.test.ts`
 **Context:** SPEC §6.1 ("only if loading takes longer than 150 ms"). ARCH §5.6.
