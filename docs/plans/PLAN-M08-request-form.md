@@ -337,7 +337,7 @@ describe('checkCreateRequest (S12 order)', () => {
 **Commit:** `git commit -m "feat(contracts): checkCreateRequest in SPEC S12 order (M08-T3)"`
 
 ### T4 — `reviewDeadline`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/reviews/rules.ts`, `packages/contracts/src/reviews/rules.test.ts`
 **Context:** BR-24 (30 days after completion). Needed by `toCustomerView` (T5).
 **Do:** Add to `reviews/rules.ts`:
