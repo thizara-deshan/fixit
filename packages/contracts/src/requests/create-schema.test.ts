@@ -51,6 +51,18 @@ describe('makeCreateRequestSchema', () => {
     expect(r.success).toBe(false);
     if (!r.success) expect(firstByPath(r.error).preferredDate).toBe(bookingWindowMessage(now));
   });
+  it('range message shows even while other fields are still invalid', () => {
+    const r = schema.safeParse({
+      providerId: 'p03',
+      serviceId: '',
+      preferredDate: '2026-11-22',
+      townId: '',
+      addressLine1: '',
+      description: '',
+    });
+    expect(r.success).toBe(false);
+    if (!r.success) expect(firstByPath(r.error).preferredDate).toBe(bookingWindowMessage(now));
+  });
   it.each(['2026-11-23', '2027-01-21'])('%s is inside the window', (d) => {
     expect(schema.safeParse({ ...valid, preferredDate: d }).success).toBe(true);
   });

@@ -65,13 +65,21 @@ export const CreateRequestBody = z.object({
 });
 export type CreateRequestBody = z.infer<typeof CreateRequestBody>;
 
-/** Form schema: adds the BR-34 window for a given `now`. The server uses the rule `date_out_of_window` instead (D-2). */
+/**
+ * Form schema: adds the BR-34 window for a given `now`. The server uses the rule `date_out_of_window` instead (D-2).
+ * The check sits on the field (not an object-level refine) so the range message shows even while other fields are invalid.
+ */
 export const makeCreateRequestSchema = (now: Date) =>
-  CreateRequestBody.superRefine((v, ctx) => {
-    if (typeof v.preferredDate !== 'string' || !IsoDate.safeParse(v.preferredDate).success) return;
-    const { min, max } = bookingWindow(now);
-    if (v.preferredDate < min || v.preferredDate > max)
-      ctx.addIssue({ code: 'custom', path: ['preferredDate'], message: bookingWindowMessage(now) });
+  CreateRequestBody.extend({
+    preferredDate: required('Choose a date.')
+      .pipe(IsoDate)
+      .refine(
+        (d) => {
+          const { min, max } = bookingWindow(now);
+          return d >= min && d <= max;
+        },
+        { error: bookingWindowMessage(now) },
+      ),
   });
 
 export const StatusEvent = z.object({
