@@ -219,7 +219,7 @@ If an existing `priceParts` test uses `toEqual` on the old two-key shape, update
 **Commit:** `git commit -m "feat(contracts): priceLabel for starting prices (M05-T2)"`
 
 ### T3 — `compareProviders('rating')` and `selectFeatured()`
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/search/compare.ts`, `packages/contracts/src/search/compare.test.ts`, `packages/contracts/src/index.ts`
 **Context:** BR-06 Top rated, BR-08. M06 extends `compareProviders` with `reviews` and `town`; keep the signature extendable.
