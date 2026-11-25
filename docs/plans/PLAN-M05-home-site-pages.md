@@ -1337,7 +1337,7 @@ describe('S4 For providers', () => {
 **Commit:** `git commit -m "feat(web): S4 for providers page (M05-T20)"`
 
 ### T21 — Article card + About page
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/article-card.tsx`, `src/features/site/pages/about-page.tsx`, `src/app/chunks/public.tsx`
 **Context:** S11 layout + About row; BR-20 tooltip sentence — copy it verbatim from PRODUCT BR-20 (`grep -n "BR-20" docs/PRODUCT.md`). If BR-20 has no single sentence to copy, **STOP** with a blocker.

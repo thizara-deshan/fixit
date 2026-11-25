@@ -10,9 +10,7 @@ export function ProviderProfilePage() {
 
 export { ForProvidersPage } from '@/features/site/pages/for-providers-page';
 
-export function AboutPage() {
-  return <PlaceholderScreen title="About" />;
-}
+export { AboutPage } from '@/features/site/pages/about-page';
 
 export function ContactPage() {
   return <PlaceholderScreen title="Contact" />;
