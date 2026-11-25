@@ -3376,7 +3376,7 @@ export function RequireAdmin({ children }: { children?: ReactNode }) {
 ---
 
 ### T34 — Placeholder pages per lazy chunk
-- [ ] done
+- [x] done
 
 **Files:** `src/app/chunks/{home,public,auth,customer,onboarding,provider,admin}.tsx`
 **Context:** Milestone "Out of scope": pages render an H1 with the SPEC title only. SPEC §4.1 screen names. ARCH §5.1 chunks. D-h. L2 pages use `CustomerPageHeader` (list pages with tabs) or `BackLink` + H1 (detail pages).
