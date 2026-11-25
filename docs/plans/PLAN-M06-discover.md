@@ -51,7 +51,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — `DiscoverQuery` and `DiscoverResult` schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/catalog/schemas.ts`, `packages/contracts/src/catalog/schemas.test.ts`
 **Context:** ARCH §2.6; SPEC §8.2 (invalid → defaults). `SortKey` already exists in `common/enums.ts`; `paginated` in `common/pagination.ts`.
 **Do:**
