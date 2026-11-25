@@ -2325,7 +2325,7 @@ States: Google-only text; default; field errors; wrong current (`Current passwor
 **Commit:** `git commit -m "feat(web): S18 password card (M04-T34)"`
 
 ### T35 — S18 "I offer services" card
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/components/offer-services-card.tsx`
 **Context:** SPEC S18.E3 (F-03), BR-35; AC6.
