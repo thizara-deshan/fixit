@@ -2543,6 +2543,16 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
 - **RESOLVED:** user chose option 1; jest-dom added in the T23 commit.
 - T1–T22 are done and committed. The T23 page code was dropped uncommitted; it is exactly the plan's code.
 
+### T24 — S6 sign-up success lands on `/` instead of `/signup/check-email` (D-2 ordering doesn't hold)
+- **Problem:** the plan's submit handler does `await navigate('/signup/check-email', …)` then `authStore.setSession(session)`. The router does reach `/signup/check-email` (idle, still guest), but React has not yet swapped out the old tree: the `/signup` page under `RequireGuest` is still mounted when `setSession` fires, so its `<Navigate to="/">` runs and the final location is `/`. The test `success → S7 with the email, signed in` fails (`expected '/' to be '/signup/check-email'`); the other two T24 tests pass.
+- **Attempts (2, both failed):** (1) `navigate(…, { flushSync: true })`; (2) an extra `await new Promise(r => setTimeout(r, 0))` before `setSession`. A signed-in user opening `/signup/check-email` directly is fine (checked), so S7 itself is not the cause.
+- **Options:**
+  1. Carry the session to S7 and let S7 call `authStore.setSession` on mount (session held in router `state`, in memory only). Changes T24/T25 and where D-2 says the session is set.
+  2. Make `RequireGuest` ignore signed-in users when a flag is set (e.g. `authStore` "justRegistered" or `location.state`) so `/signup` never redirects during this hand-off. Touches T13's guard.
+  3. Poll until the S7 heading is in the DOM before `setSession` (works but is a test-shaped hack in production code).
+- **Recommendation:** option 1, as it keeps the guard rule (D-2) unchanged and removes the timing dependence.
+- Work so far: T1–T23 committed. The T24 page and test, as written in the plan, are saved outside the repo and were not committed.
+
 ## Notes for review (planner)
 - **Milestone vs ARCHITECTURE (D-1):** `POST /auth/register` returns 204 but `resend-confirmation` needs a session; S7 resend after sign-up needs one. The plan logs the user in after registering. The alternative is to make `register` return an `AuthSession` (an ARCH §3.1 change needing a decision record).
 - **AC4 wording:** "DevPanel forced `ACCOUNT_SUSPENDED`" isn't a DevPanel option (only 500/409/401/network). The plan uses a suspended fixture (Ruwan) instead.
