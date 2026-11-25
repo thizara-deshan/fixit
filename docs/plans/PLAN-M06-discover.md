@@ -1093,7 +1093,7 @@ interface Props {
 **Commit:** `git commit -m "feat(web): discover search bar (M06-T16)"`
 
 ### T17 — Results header with sort (S2.E8, S2.E9)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/results-header.tsx`
 **Context:** S2.E8/E9; desktop header row (H1 left, `Sort by` select right); phone H1 22/30 via `text-title-lg`. First check `globals.css`: `text-title-lg` must have a ≤ 640px override to 22/30. If it doesn't, STOP and write a blocker (don't add or change tokens).
 **Do:**
