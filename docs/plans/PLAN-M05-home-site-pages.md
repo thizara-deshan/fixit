@@ -351,7 +351,7 @@ describe('selectFeatured (BR-08)', () => {
 **Commit:** `git commit -m "feat(contracts): catalog and featured endpoints (M05-T4)"`
 
 ### T5 — Mock provider-card mapper (BR-01)
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/lib/cards.ts`, `src/mocks/lib/cards.test.ts`
 **Context:** BR-01 (listed = onboarding complete + published + owner not suspended), D-6. `MockDb` in `src/mocks/db/schema.ts`. M06 reuses this for `GET /providers`.
