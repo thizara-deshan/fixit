@@ -1041,7 +1041,7 @@ Notes: `rounded-lg` must be 12px — check `globals.css` radius map; if `lg` is 
 **Commit:** `git commit -m "feat(web): verified badge tooltip (M07-T14)"`
 
 ### T15 — Request Service action block
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-profile/components/request-action-block.tsx`
 **Context:** S3.E7 table; SPEC §2.9 buttons; helper text 13 `text-muted` under the button.
 **Do:** one component used by the header card (desktop/tablet) and the phone bar:
