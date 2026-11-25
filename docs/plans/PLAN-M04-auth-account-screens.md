@@ -1269,7 +1269,7 @@ describe('useSignup', () => {
 **Commit:** `git commit -m "feat(web): auth mutation hooks (M04-T18)"`
 
 ### T19 — Account feature: API calls and hooks
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/api.ts`, `src/features/account/hooks.ts`, `src/features/account/hooks.test.tsx`
 **Context:** ARCH §3.1 `PATCH /me`, `POST /me/password`; AC6 (avatar initials update).
