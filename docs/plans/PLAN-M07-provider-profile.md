@@ -1161,7 +1161,7 @@ States:
 **Commit:** `git commit -m "feat(web): provider reviews section (M07-T18)"`
 
 ### T19 — Profile page, phone bar, skeleton, not found; wire route
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-profile/components/sticky-request-bar.tsx`, `src/features/provider-profile/pages/provider-profile-page.tsx`, `src/app/chunks/public.tsx`
 **Context:** S3 layouts, E1, E14, §6.1 profile skeleton, §6.4; D-6; AC1, AC5, AC6, AC7.
 **Do:**
