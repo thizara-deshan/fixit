@@ -2854,7 +2854,7 @@ export function PlaceholderScreen({ title, frame = 'page' }: { title: string; fr
 ---
 
 ### T30 — `DashboardShell` (ResponsiveSidebar) and `SidebarNav`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/sidebar-nav.tsx`, `src/app/layouts/parts/dashboard-shell.tsx`
 **Context:** SPEC L3 desktop (grid `256px minmax(0,1fr)`, min-height 100vh, `page` bg; sidebar sticky 100vh, white, 1px right `border`, padding 24 16, gap 28; nav gap 4; items 44 high, padding 0 12, r12, gap 12, icon 22, 15/600; active `primary` on `primary-soft`; inactive `text-muted`, hover bg `page`; count badge min-width 22 h22 `accent`(= `cta`)/`on-accent` 12/800; footer block margin-top auto; main padding 32 40 64, gap 28, max 1240, banner slot at top). ≤1023: top bar sticky 56 white 1px bottom border padding 0 8: `Menu` 44 · logo + badge · spacer · action icon button 44 with count overlay; `Menu` opens a left drawer (width min(320, 85vw), `shadow-modal`) with the same items as 48-high rows; closes on navigation, overlay, Esc; main padding 20 16 56 (tablet 24 24 64), gap 20. ARCH §5.2 `ResponsiveSidebar`. AC3, AC8.
