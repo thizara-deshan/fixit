@@ -846,7 +846,7 @@ If `commit` is not exported from `@/mocks/db/store`, use whatever `store.ts` exp
 **Commit:** `git commit -m "feat(web): mock create-request and get-request handlers (M08-T9)"`
 
 ### T10 — Query keys and requests api
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/features/requests/api.ts`
 **Context:** ARCH §4.2.
 **Do:**
