@@ -2554,6 +2554,14 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
 - **RESOLVED:** user chose option 1. S6 navigates with `state: { email, session }`; S7 (`CheckEmailPage`) calls `authStore.setSession` on mount, then replaces the history state with `{ email }`. The T24 success test waits for `me` with `waitFor`.
 - Work so far: T1–T23 committed. The T24 page and test, as written in the plan, are saved outside the repo and were not committed.
 
+### T27 — the plan's test cannot match the plan's markup
+- **Problem:** the plan's sent state renders `<p>If an account exists for <span>{sentTo}</span>, you'll get a reset link…</p>`, and its test does `findByText(/If an account exists for olivia@fixit.test/)`. Testing Library's `getByText` matches only an element's own text nodes, and the email sits in the inner `<span>`, so the `<p>` reads "If an account exists for , you'll get…". Both test cases fail (2 of 2). I checked that the sent state does render (the "Check your email" heading is found). The page code is written per plan and is uncommitted in the working tree.
+- **Why I stopped:** fixing it means changing either the plan's markup (drop the `<span>`, losing the semibold email) or the plan's test matcher. Both depart from the plan text, and the rules forbid changing tests.
+- **Options:**
+  1. Keep the markup; change the test to match on the `<p>`'s full text, e.g. `findByText((_, el) => el?.tagName === 'P' && /If an account exists for olivia@fixit.test/.test(el.textContent ?? ''))`. Same assertion, different matcher. (Recommended.)
+  2. Keep the test; remove the `<span>` so the email is plain text in the `<p>`.
+  3. Keep the test; wrap the email so the text stays in one node, e.g. `<strong>` can't (still a separate element), so this means option 2.
+
 ## Notes for review (planner)
 - **Milestone vs ARCHITECTURE (D-1):** `POST /auth/register` returns 204 but `resend-confirmation` needs a session; S7 resend after sign-up needs one. The plan logs the user in after registering. The alternative is to make `register` return an `AuthSession` (an ARCH §3.1 change needing a decision record).
 - **AC4 wording:** "DevPanel forced `ACCOUNT_SUSPENDED`" isn't a DevPanel option (only 500/409/401/network). The plan uses a suspended fixture (Ruwan) instead.
