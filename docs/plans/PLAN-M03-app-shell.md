@@ -1895,7 +1895,7 @@ describe('pageItems', () => {
 ---
 
 ### T21 — `SegmentedTabs`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/segmented-tabs.tsx`
 **Context:** SPEC §2.9 Segmented tabs (track `page` r12 padding 4 gap 4; tab 34 high r9 13/600; count 12 subtle; active white + `shadow-xs` + `text`), L2 (links; phone: track full width, scrolls horizontally, each tab ≥ 44 high), §9 (status tabs = `tablist`, or links with `aria-current` when they change the URL).
