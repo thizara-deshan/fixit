@@ -52,7 +52,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Decision record for review paging
-- [ ] done
+- [x] done
 **Files:** `docs/decisions/003-profile-reviews-paging.md`, `docs/ARCHITECTURE.md`
 **Context:** ARCH §3.2 row `GET /providers/:id/reviews` says `PageQuery + size (5|10)`; SPEC S3.E11 says 5, then 10 more. D-1.
 **Do:**
