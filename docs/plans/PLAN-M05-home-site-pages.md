@@ -665,7 +665,7 @@ describe('homeSearchUrl', () => {
 **Commit:** `git commit -m "feat(web): home search URL builder (M05-T9)"`
 
 ### T10 — `useProviderCta`
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/use-provider-cta.ts`, `src/features/site/use-provider-cta.test.tsx`
 **Context:** S1.E12, S4.E3, AC5, D-3. `useAuth()` in `lib/auth-store.ts`; `signInAs` in `src/test/sign-in.ts`.
