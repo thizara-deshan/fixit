@@ -946,7 +946,7 @@ describe('useProviderReviews', () => {
 **Commit:** `git commit -m "feat(web): provider profile hooks (M07-T12)"`
 
 ### T13 — `useBodyClass`
-- [ ] done
+- [x] done
 **Files:** `src/lib/use-body-class.ts`
 **Context:** D-6.
 **Do:**
