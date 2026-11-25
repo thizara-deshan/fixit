@@ -429,7 +429,7 @@ describe('listedCards', () => {
 **Commit:** `git commit -m "feat(web): mock provider card mapper (M05-T5)"`
 
 ### T6 — MSW handlers: `GET /catalog`, `GET /providers/featured`
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/catalog.ts`, `src/mocks/handlers/catalog.test.ts`, `src/mocks/handlers/index.ts`
 **Context:** ARCH §3.2; `mockEndpoint` validates the response against the contract and handles DevPanel forced errors (AC6 uses "Force 500" on `providers_featured`).
