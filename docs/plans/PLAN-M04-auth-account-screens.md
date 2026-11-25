@@ -130,7 +130,7 @@ describe('MobileOrEmpty', () => {
 **Commit:** `git commit -m "feat(contracts): MobileOrEmpty primitive (M04-T2)"`
 
 ### T3 — Contracts: auth bodies, results and form schemas
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/auth/schemas.ts`, `schemas.test.ts`
 **Context:** ARCH §2.1 auth exports, §3.1; SPEC S6, S10, S18 field tables.
