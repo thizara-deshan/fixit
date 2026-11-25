@@ -863,7 +863,7 @@ Phone (≤640): form is `flex-col` → Service (56), divider (`h-px`), Location 
 **Commit:** `git commit -m "feat(web): home hero search bar and popular chips (M05-T12)"`
 
 ### T13 — Hero section (S1.E1–E3, E6)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/hero.tsx`
 **Context:** S1 desktop item 1, phone item 1, tablet; S1.E1, E2, E3, E6; 01-home-desktop.png top band. Reuses `Stars`, `VerifiedBadge`-style `BadgeCheck`, `CategoryIcon`, `StatusPill` is **not** used (the `Accepted` pill here is decorative).
