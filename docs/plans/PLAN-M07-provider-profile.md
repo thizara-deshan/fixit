@@ -1327,7 +1327,7 @@ Notes: the request block renders twice (header + phone bar), hence `findAll…[0
 **Commit:** `git commit -m "test(web): provider profile page behaviour (M07-T20)"`
 
 ### T21 — Acceptance checks
-- [ ] done
+- [x] done
 **Files:** this plan (tick boxes), `docs/milestones/M00-index.md` (mark M07 done the same way M06 was)
 **Do:** run `pnpm verify` (green), then `pnpm dev:mock` and check every criterion. Use DevPanel "Reset demo data" first (version bump reseeds anyway).
 | AC | Check |
