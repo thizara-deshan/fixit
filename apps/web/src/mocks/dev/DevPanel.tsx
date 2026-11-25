@@ -234,9 +234,18 @@ function MockControlsSections() {
         </p>
       </DevSection>
       <DevSection title="Last email link">
-        <p className="text-body-sm text-text-muted break-all">
-          {isMocked('auth') ? (db().lastEmailLink ?? 'None yet') : 'Only available when auth is mocked'}
-        </p>
+        {!isMocked('auth') ? (
+          <p className="text-body-sm text-text-muted">Only available when auth is mocked</p>
+        ) : db().lastEmailLink ? (
+          <a
+            href={db().lastEmailLink ?? '/'}
+            className="text-body-sm text-primary hover:text-primary-hover inline-flex min-h-11 items-center break-all font-semibold underline underline-offset-2"
+          >
+            {`${window.location.origin}${db().lastEmailLink ?? ''}`}
+          </a>
+        ) : (
+          <p className="text-body-sm text-text-muted">None yet</p>
+        )}
       </DevSection>
     </>
   );

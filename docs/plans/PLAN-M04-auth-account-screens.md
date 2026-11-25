@@ -683,7 +683,7 @@ describe('POST /me/password', () => {
 **Commit:** `git commit -m "feat(web): mock PATCH /me and change-password handlers (M04-T10)"`
 
 ### T11 — DevPanel: clickable "Last email link"
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/dev/DevPanel.tsx`
 **Context:** ARCH §4.5, milestone "DevPanel Last email link shows the confirmation/reset link"; T6 stores a same-site path.
