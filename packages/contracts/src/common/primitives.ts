@@ -32,15 +32,28 @@ export const FullName = z
   .min(2, 'Name must be 2 to 80 characters.')
   .max(80, 'Name must be 2 to 80 characters.');
 
+export const MOBILE_MESSAGE = 'Enter a Sri Lankan mobile number, like 077 123 4567.';
+
 /** Input: "077 123 4567", "0771234567", "+94 77 123 4567" → output "+94771234567" (E.164). */
 export const MobileInput = z
   .string()
   .transform((s) => s.replace(/[\s-]/g, ''))
   .transform((s) => (s.startsWith('+94') ? s.slice(3) : s.startsWith('0') ? s.slice(1) : s))
-  .pipe(z.string().regex(/^7\d{8}$/, 'Enter a Sri Lankan mobile number, like 077 123 4567.'))
+  .pipe(z.string().regex(/^7\d{8}$/, MOBILE_MESSAGE))
   .transform((d) => `+94${d}`);
 /** Output form, as stored and returned. Display formatting (+94 77 123 4567) is web-only. */
 export const Mobile = z.string().regex(/^\+947\d{8}$/);
+
+/** S18: an empty field clears the number (→ null); anything else must be a valid Sri Lankan mobile. */
+export const MobileOrEmpty = z.string().transform((s, ctx) => {
+  if (s.trim() === '') return null;
+  const parsed = MobileInput.safeParse(s);
+  if (!parsed.success) {
+    ctx.addIssue({ code: 'custom', message: MOBILE_MESSAGE });
+    return z.NEVER;
+  }
+  return parsed.data;
+});
 
 export const OptionalReason = z
   .string()

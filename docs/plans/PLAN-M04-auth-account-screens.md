@@ -84,7 +84,7 @@ Planner's decisions the executor must follow (they fill gaps between the milesto
 **Commit:** `git commit -m "chore(web): form deps and VITE_GOOGLE_ENABLED (M04-T1)"`
 
 ### T2 — Contracts: `MobileOrEmpty` primitive
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/common/primitives.ts`, `primitives.test.ts`
 **Context:** SPEC S18 Mobile row (customers may clear it), S12 mobile message.
