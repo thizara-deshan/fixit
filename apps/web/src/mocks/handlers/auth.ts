@@ -139,4 +139,26 @@ export const authHandlers = [
     if (user.status === 'suspended') throw suspended();
     setMockRefresh(user.id);
   }),
+  mockEndpoint(E.me_update, ({ actor, body, db: d }) => {
+    const user = actor ? d.users[actor.userId] : undefined; // self: the id comes from the token only
+    if (!actor || !user) throw mockError(404, 'NOT_FOUND', 'User not found');
+    if (body.mobile === null && actor.roles.includes('provider'))
+      throw mockError(422, 'RULE_VIOLATION', 'Providers need a mobile', {
+        details: { rule: 'mobile_missing' },
+      }); // BR-23
+    if (body.fullName !== undefined) user.fullName = body.fullName;
+    if (body.mobile !== undefined) user.mobile = body.mobile;
+    return buildMe(d, user.id);
+  }),
+  mockEndpoint(E.me_password, ({ actor, body, db: d }) => {
+    const user = actor ? d.users[actor.userId] : undefined;
+    if (!user) throw mockError(404, 'NOT_FOUND', 'User not found');
+    if (user.password === null || user.password !== body.currentPassword)
+      throw mockError(422, 'RULE_VIOLATION', 'Current password wrong', {
+        details: { rule: 'current_password_wrong' },
+      });
+    if (body.newPassword === body.currentPassword)
+      throw mockError(422, 'RULE_VIOLATION', 'Password reused', { details: { rule: 'password_reused' } });
+    user.password = body.newPassword;
+  }),
 ];

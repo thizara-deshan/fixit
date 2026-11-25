@@ -219,3 +219,79 @@ describe('POST /auth/login (M04 fixtures)', () => {
     expect((await envelope(await login('sanduni@fixit.test'))).details?.rule).toBe('invalid_credentials');
   });
 });
+
+const sessionFor = async (email: string) => AuthSession.parse(await (await login(email)).json()).accessToken;
+const patchMe = (token: string, body: unknown) =>
+  call(
+    '/me',
+    withBearer(token, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }),
+  );
+const changePw = (token: string, body: unknown) =>
+  call(
+    '/me/password',
+    withBearer(token, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }),
+  );
+
+describe('PATCH /me', () => {
+  it('updates name and normalises the mobile', async () => {
+    const me = Me.parse(
+      await (
+        await patchMe(await sessionFor('olivia@fixit.test'), {
+          fullName: 'Olivia Perera',
+          mobile: '077 123 4567',
+        })
+      ).json(),
+    );
+    expect([me.fullName, me.mobile, me.displayName]).toEqual(['Olivia Perera', '+94771234567', 'Olivia P.']);
+  });
+  it('customer may clear the mobile', async () => {
+    expect(
+      Me.parse(await (await patchMe(await sessionFor('olivia@fixit.test'), { mobile: '' })).json()).mobile,
+    ).toBeNull();
+  });
+  it('provider clearing the mobile → 422 mobile_missing', async () => {
+    const e = await envelope(await patchMe(await sessionFor('marcus@fixit.test'), { mobile: '' }));
+    expect([e.code, e.details?.rule]).toEqual(['RULE_VIOLATION', 'mobile_missing']);
+  });
+  it('bad mobile → 400 with the S12 message', async () => {
+    const e = await envelope(await patchMe(await sessionFor('olivia@fixit.test'), { mobile: '123' }));
+    expect(e.fieldErrors?.mobile).toEqual(['Enter a Sri Lankan mobile number, like 077 123 4567.']);
+  });
+  it('anonymous → 401; admin → 403', async () => {
+    expect(
+      (await call('/me', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: '{}' }))
+        .status,
+    ).toBe(401);
+    expect((await patchMe(await sessionFor('admin@fixit.test'), {})).status).toBe(403);
+  });
+});
+
+describe('POST /me/password', () => {
+  it.each([
+    [{ currentPassword: 'nope', newPassword: 'abc12345' }, 'current_password_wrong'],
+    [{ currentPassword: DEMO_PASSWORD, newPassword: DEMO_PASSWORD }, 'password_reused'],
+  ])('%j → %s', async (body, rule) => {
+    expect((await envelope(await changePw(await sessionFor('olivia@fixit.test'), body))).details?.rule).toBe(
+      rule,
+    );
+  });
+  it('changes the password', async () => {
+    expect(
+      (
+        await changePw(await sessionFor('olivia@fixit.test'), {
+          currentPassword: DEMO_PASSWORD,
+          newPassword: 'newpass99',
+        })
+      ).status,
+    ).toBe(204);
+    expect((await login('olivia@fixit.test', 'newpass99')).status).toBe(200);
+  });
+});

@@ -610,7 +610,7 @@ describe('POST /auth/login (M04 fixtures)', () => {
 **Commit:** `git commit -m "feat(web): mock admin login and Google handlers (M04-T9)"`
 
 ### T10 — Mock handlers: `PATCH /me` and `POST /me/password`
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/auth.ts`, `auth.test.ts`
 **Context:** ARCH §3.1 (self only), §6.1 Change password; SPEC S18 field table; BR-23; D-4.
