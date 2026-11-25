@@ -194,7 +194,7 @@ describe('makeCreateRequestSchema', () => {
 **Commit:** `git commit -m "feat(contracts): CreateRequestBody and booking-window form schema (M08-T1)"`
 
 ### T2 — `StatusEvent` and `CustomerRequestView` schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`
 **Context:** ARCH §2.5 (`RequestBase`, `CustomerRequestView`); PRODUCT §6.3. Only the customer view is in scope. Provider and admin views come in later milestones.
 **Do:** Add to `requests/schemas.ts` (inline town ref to avoid a `catalog` import cycle):

@@ -1,7 +1,14 @@
 import { z } from 'zod';
 import { colomboStartOfDay, formatInColombo } from '../common/dates';
-import { PriceUnit, TimeSlot } from '../common/enums';
-import { Id, IsoDate, Lkr, MobileInput, RequestRef } from '../common/primitives';
+import {
+  CategoryIcon,
+  PriceUnit,
+  RequestActor,
+  RequestStatus,
+  ReviewVisibility,
+  TimeSlot,
+} from '../common/enums';
+import { Id, IsoDate, IsoDateTime, Lkr, Mobile, MobileInput, RequestRef } from '../common/primitives';
 import { bookingWindow } from './rules';
 
 export const ServiceSnapshot = z.object({ name: z.string(), price: Lkr, unit: PriceUnit });
@@ -66,3 +73,65 @@ export const makeCreateRequestSchema = (now: Date) =>
     if (v.preferredDate < min || v.preferredDate > max)
       ctx.addIssue({ code: 'custom', path: ['preferredDate'], message: bookingWindowMessage(now) });
   });
+
+export const StatusEvent = z.object({
+  status: RequestStatus,
+  at: IsoDateTime,
+  actor: RequestActor,
+  actorName: z.string().nullable(), // filled in admin views only
+  reason: z.string().nullable(),
+});
+export type StatusEvent = z.infer<typeof StatusEvent>;
+
+const RequestBase = z.object({
+  ref: RequestRef,
+  status: RequestStatus,
+  service: ServiceSnapshot,
+  preferredDate: IsoDate,
+  slot: TimeSlot,
+  town: z.object({ id: Id, name: z.string() }),
+  description: z.string(),
+  agreedPrice: Lkr.nullable(),
+  reason: z.string().nullable(),
+  closedBy: RequestActor.nullable(),
+  createdAt: IsoDateTime,
+  updatedAt: IsoDateTime,
+  expiresAt: IsoDateTime,
+  completedAt: IsoDateTime.nullable(),
+  history: z.array(StatusEvent),
+});
+
+export const CustomerRequestView = RequestBase.extend({
+  provider: z.object({
+    id: Id,
+    businessName: z.string(),
+    photoUrl: z.string().nullable(),
+    categoryIcon: CategoryIcon,
+    verified: z.boolean(),
+    rating: z.number().nullable(),
+    reviewCount: z.number().int(),
+    listed: z.boolean(),
+    mobile: Mobile.nullable(), // only when accepted | completed (§6.3)
+  }),
+  addressLine1: z.string(),
+  addressLine2: z.string().nullable(),
+  customerMobile: Mobile,
+  cancelDeadline: IsoDateTime,
+  canCancel: z.boolean(),
+  review: z
+    .object({
+      eligible: z.boolean(),
+      deadline: IsoDateTime.nullable(),
+      own: z
+        .object({
+          id: Id,
+          rating: z.number().int(),
+          text: z.string(),
+          createdAt: IsoDateTime,
+          visibility: ReviewVisibility,
+        })
+        .nullable(),
+    })
+    .nullable(), // null unless completed
+});
+export type CustomerRequestView = z.infer<typeof CustomerRequestView>;
