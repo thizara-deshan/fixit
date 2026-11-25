@@ -3713,7 +3713,7 @@ Also remove the comment `/** Router wrapper arrives in M03. */`.
 ---
 
 ### T36 — Routing tests: redirect matrix, 404s, error page, logout (AC4, AC5, AC6)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/routes.test.tsx`
 **Context:** Milestone AC4 (verbatim matrix), AC5, AC6, SPEC §8.1 A4, §8.4. `signInAs` (`src/test/sign-in.ts`) personas: `customer` (Olivia), `provider` (Marcus), `providerDraft` (Kasun, step 3), `admin`.

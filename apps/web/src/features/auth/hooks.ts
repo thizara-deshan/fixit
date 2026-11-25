@@ -19,7 +19,7 @@ export function useMe() {
   });
 }
 
-/** A4: POST /auth/logout → clear cache → `/` (admins → `/admin/login`). D-c: guards render nothing while reason = 'logout'. */
+/** A4: POST /auth/logout → clear cache → `/` (admins → `/admin/login`). D-c: guards render nothing while reason = 'logout'; RootLayout clears it once the new location has rendered. */
 export function useLogout(): () => Promise<void> {
   const navigate = useNavigate();
   const qc = useQueryClient();
@@ -28,6 +28,5 @@ export function useLogout(): () => Promise<void> {
     await logout();
     qc.clear();
     await navigate(wasAdmin ? '/admin/login' : '/', { replace: true });
-    authStore.clearSignOutReason();
   }, [navigate, qc]);
 }
