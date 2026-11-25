@@ -1210,7 +1210,7 @@ export function RequestFieldset({ legend, help, error, children, className }: {
 **Commit:** `git commit -m "feat(web): request fieldset (M08-T17)"`
 
 ### T18 — `ServiceOptions` radio cards
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/service-options.tsx`
 **Context:** SPEC S12 field "Service": radio cards, name 15/600 + price label (BR-09); §2.9 "Option row" (selected = `primary` border + `primary-soft` bg); phone: full-width cards.
 **Do:**
