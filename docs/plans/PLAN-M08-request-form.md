@@ -1082,7 +1082,7 @@ describe('requests hooks', () => {
 **Commit:** `git commit -m "feat(web): requests hooks (M08-T14)"`
 
 ### T15 — Eligibility → S12 blocked state
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/blocked-state.ts`, `src/features/requests/blocked-state.test.ts`
 **Context:** SPEC S12 "Blocked states" table (copy, icons, buttons); D-3.
 **Do:** Create `blocked-state.ts`:
