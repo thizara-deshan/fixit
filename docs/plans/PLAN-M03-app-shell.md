@@ -113,7 +113,7 @@ describe('formatInColombo', () => {
 ---
 
 ### T3 — Add shadcn primitives
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/{dialog,dropdown-menu,popover,tooltip,switch,checkbox,radio-group,select,tabs,skeleton,input,textarea,label}.tsx`
 **Context:** Milestone "Notes for the planner" (primitive list). M02 blocker T34: shadcn 4.23.0 writes `import { cn } from "cn"`, and the user approved rewriting it to `@/lib/utils`. Sonner is **not** added here (D-f). `button` and `sheet` already exist and must not be overwritten.
