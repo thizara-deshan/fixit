@@ -1681,7 +1681,7 @@ States: loading (skeleton after 150 ms, `aria-busy`), not found (S39 provider bo
 **Commit:** `git commit -m "feat(web): request form page (M08-T26)"`
 
 ### T27 — `RequestSentPage` (S13) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/request-sent-page.tsx`, `src/app/chunks/customer.tsx`
 **Context:** SPEC S13 (layout, E1–E4, redirect to S15 when not Pending); AC3, AC8; `useMyRequest`; `formatDeadline`, `formatDateLong`, `SLOT_LABEL`; `StatusPill kind="request"`; `lastDiscoverUrl`.
 **Do:**
