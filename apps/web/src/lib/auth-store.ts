@@ -40,6 +40,10 @@ export const authStore = {
   signOut: (reason: SignOutReason): void => {
     set({ status: 'guest', accessToken: null, me: null, signOutReason: reason });
   },
+  /** D-c: after logout navigation, forget the `logout` reason so guards redirect normally again. Other reasons stay for S5's banner. */
+  clearSignOutReason: (): void => {
+    if (state.status === 'guest' && state.signOutReason === 'logout') set({ ...state, signOutReason: null });
+  },
   /** Tests only. */
   reset: (): void => {
     set(INITIAL);

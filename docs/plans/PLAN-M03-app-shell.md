@@ -881,7 +881,7 @@ describe('useOptimisticMutation', () => {
 ---
 
 ### T12 — Contact email env, online status, `clearSignOutReason`, `useLogout`
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/env.ts`, `src/vite-env.d.ts`, `/.env.example`, `src/lib/use-online-status.ts`, `src/lib/auth-store.ts`, `src/lib/auth-store.test.ts`, `src/features/auth/hooks.ts`
 **Context:** D-c, D-i. SPEC §8.1 A4 (Log out → `/`, admins → `/admin/login`), §6.3 offline banner. ARCH §5.6 (`useOnlineStatus`), §10.3 (`VITE_CONTACT_EMAIL`). The milestone note asks for `queryClient.clear()` on logout.

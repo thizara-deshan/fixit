@@ -37,4 +37,13 @@ describe('authStore', () => {
     authStore.setMe(session().user);
     expect(authStore.getState().me).toBeNull();
   });
+  it('clearSignOutReason clears only the logout reason', () => {
+    authStore.setSession(session());
+    authStore.signOut('logout');
+    authStore.clearSignOutReason();
+    expect(authStore.getState().signOutReason).toBeNull();
+    authStore.signOut('expired');
+    authStore.clearSignOutReason();
+    expect(authStore.getState().signOutReason).toBe('expired');
+  });
 });
