@@ -191,7 +191,7 @@ describe('matchCategory (BR-02)', () => {
 **Commit:** `git commit -m "feat(contracts): matchCategory BR-02 (M06-T2)"`
 
 ### T3 — `RATING_STEPS`, `PRICE_STEPS`, `normalizeDiscoverQuery`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/search/match.ts`, `packages/contracts/src/search/match.test.ts`
 **Context:** BR-03/04/05; ARCH §2.6 ("unknown cat/loc ids dropped"), §7.6 (`text` null when BR-02 matches, the category joins `cats`).
 **Do:** append to `match.ts`:
