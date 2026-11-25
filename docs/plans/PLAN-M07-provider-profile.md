@@ -1146,7 +1146,7 @@ Because the block renders twice (header + phone bar, one of them `hidden` by CSS
 **Commit:** `git commit -m "feat(web): about, services and service area sections (M07-T17)"`
 
 ### T18 — Reviews section
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-profile/components/reviews-section.tsx`
 **Context:** S3.E11 (E12 hidden: `features.replies` is false — do not render `reply`), §6.1 review row skeleton (3), §6.3 section error, D-8, AC3, AC7.
 **Do:** props `{ providerId: string; businessName: string; rating: number | null; reviewCount: number }`; uses `useProviderReviews(providerId)`. Render inside `SectionCard id="reviews" className="scroll-mt-22"` with title `Reviews`, aside (only when reviewCount > 0): `<span className="text-body-sm text-text-subtle"><Star aria-hidden className="text-star inline size-4 fill-current" strokeWidth={0} /> <b className="text-text">{formatRating(rating, reviewCount)}</b> · {reviewCount} reviews</span>`.
