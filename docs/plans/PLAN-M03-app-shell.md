@@ -1171,7 +1171,7 @@ export function PriceLabel({ amount, unit, variant = 'full', amountClassName = '
 ---
 
 ### T15 — `EmptyState` and `SectionError`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/empty-state.tsx`, `src/components/section-error.tsx`
 **Context:** SPEC §2.9 Empty state (white, 1px dashed `border-strong`, r16, padding 56×24, 56×56 `primary-soft` r16 icon tile with 28 icon, 18/700 title, 15 muted body, primary 48 button), §6.2, §6.3 "Section failed to load" (`TriangleAlert` warning tile; `We couldn't load this.` / `Check your connection and try again.` / `Try again`), §5.E (S41 tile `warning-soft`/`warning-text`).
