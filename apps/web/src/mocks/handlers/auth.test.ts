@@ -110,3 +110,64 @@ describe('GET /auth/me', () => {
     expect(Me.parse(await res.json()).roles).toEqual(['admin']);
   });
 });
+
+const tokenFrom = (link: string | null) => new URL(link ?? '', 'http://x').searchParams.get('token') ?? '';
+const register = (email: string) =>
+  call('/auth/register', post({ fullName: 'Ann Lee', email, password: 'abc12345' }));
+const withBearer = (token: string, init: RequestInit = {}): RequestInit => ({
+  ...init,
+  headers: { ...(init.headers as Record<string, string> | undefined), Authorization: `Bearer ${token}` },
+});
+
+describe('POST /auth/register', () => {
+  it('creates an unconfirmed customer and a confirmation link', async () => {
+    const res = await register('ann@fixit.test');
+    expect(res.status).toBe(204);
+    const user = Object.values(db().users).find((u) => u.email === 'ann@fixit.test');
+    expect([user?.emailConfirmedAt, user?.isAdmin]).toEqual([null, false]);
+    expect(db().lastEmailLink).toMatch(/^\/auth\/confirm\?token=[0-9a-f]{48}$/);
+  });
+  it('taken email → 409 email_taken', async () => {
+    const e = await envelope(await register('olivia@fixit.test'));
+    expect([e.code, e.details?.rule]).toEqual(['CONFLICT', 'email_taken']);
+  });
+  it('empty body → 400 with SPEC field messages', async () => {
+    const res = await call('/auth/register', post({ fullName: '', email: '', password: '' }));
+    const e = await envelope(res);
+    expect(res.status).toBe(400);
+    expect(e.fieldErrors?.fullName?.[0]).toBe('Enter your full name.');
+  });
+});
+
+describe('POST /auth/confirm-email', () => {
+  it('confirms, then reports already_confirmed; tampered → 422 token_invalid', async () => {
+    await register('ann@fixit.test');
+    const token = tokenFrom(db().lastEmailLink);
+    const first = await call('/auth/confirm-email', post({ token }));
+    expect(await first.json()).toEqual({ status: 'confirmed' });
+    const again = await call('/auth/confirm-email', post({ token }));
+    expect(await again.json()).toEqual({ status: 'already_confirmed' });
+    const bad = await call('/auth/confirm-email', post({ token: `${token}x` }));
+    expect([bad.status, (await envelope(bad)).details?.rule]).toEqual([422, 'token_invalid']);
+  });
+});
+
+describe('POST /auth/resend-confirmation', () => {
+  it('anonymous → 401', async () => {
+    expect((await call('/auth/resend-confirmation', post(undefined))).status).toBe(401);
+  });
+  it('unconfirmed user: 204, then 429 inside 60 s', async () => {
+    const s = AuthSession.parse(await (await login('nimal@fixit.test')).json());
+    const first = await call('/auth/resend-confirmation', withBearer(s.accessToken, { method: 'POST' }));
+    expect(first.status).toBe(204);
+    expect(db().lastEmailLink).toMatch(/^\/auth\/confirm\?token=/);
+    const second = await call('/auth/resend-confirmation', withBearer(s.accessToken, { method: 'POST' }));
+    expect([second.status, (await envelope(second)).code]).toEqual([429, 'RATE_LIMITED']);
+  });
+  it('admin → 403', async () => {
+    const s = AuthSession.parse(await (await login('admin@fixit.test')).json());
+    expect(
+      (await call('/auth/resend-confirmation', withBearer(s.accessToken, { method: 'POST' }))).status,
+    ).toBe(403);
+  });
+});

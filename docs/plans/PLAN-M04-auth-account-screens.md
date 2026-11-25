@@ -384,7 +384,7 @@ it('has a Google-only user and a suspended user (M04)', () => {
 **Commit:** `git commit -m "feat(web): mock db v2 with email tokens (M04-T6)"`
 
 ### T7 — Mock handlers: register, confirm email, resend confirmation
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/auth.ts`, `src/mocks/handlers/auth.test.ts`
 **Context:** ARCH §3.1 rows, §6.1 Register/Confirm; SPEC A1, A5, A6; D-1.
