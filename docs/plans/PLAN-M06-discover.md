@@ -1185,7 +1185,7 @@ States covered: first load (skeleton after 150 ms), results, 0 results (empty), 
 **Commit:** `git commit -m "feat(web): discover page (M06-T18)"`
 
 ### T19 — Discover page integration tests
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/pages/discover-page.test.tsx`
 **Context:** AC1–AC4, AC6 (badge, live count), AC7; `renderRoute` from `@/test/render`; `setViewportWidth` from `@/test/media`; `armForcedError`; `db()` to add providers for pagination (see T6 `addClones` — copy the helper).
 **Do/Test:**
