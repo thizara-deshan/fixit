@@ -330,7 +330,7 @@ it('has a Google-only user and a suspended user (M04)', () => {
 **Commit:** `git commit -m "feat(fixtures): Google-only and suspended users (M04-T5)"`
 
 ### T6 — Mock db: token `createdAt`, v2, Google-only users have no password
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/db/schema.ts`, `src/mocks/db/seed.ts`, `src/mocks/lib/email-tokens.ts` (create)
 **Context:** CLAUDE.md mock rules (bump the version key), ARCH §4.3 (tokens + DevPanel link), SPEC S7 (60 s), S8 (24 h), S9/S10 (1 h).

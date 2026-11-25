@@ -13,7 +13,9 @@ export function seedDb(now: Date): MockDb {
     categories: w.categories,
     districts: w.districts,
     towns: w.towns,
-    users: byId(w.users.map((u) => ({ ...u, password: DEMO_PASSWORD }))),
+    users: byId(
+      w.users.map((u) => ({ ...u, password: u.authMethods.includes('password') ? DEMO_PASSWORD : null })),
+    ),
     providers: byId(w.providers),
     services: byId(w.services),
     areas: w.areas,
