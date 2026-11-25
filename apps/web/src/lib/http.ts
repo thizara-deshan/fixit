@@ -33,7 +33,14 @@ export interface HttpOpts<S extends z.ZodType | undefined> {
 type Out<S> = S extends z.ZodType ? z.output<S> : undefined;
 
 /** D-a: a 401 from these is an answer (bad credentials, no session), not an expired access token. */
-const NO_REFRESH_PATHS = new Set(['/auth/login', '/auth/admin/login', '/auth/refresh', '/auth/logout']);
+const NO_REFRESH_PATHS = new Set([
+  '/auth/login',
+  '/auth/admin/login',
+  '/auth/register',
+  '/auth/google/mock',
+  '/auth/refresh',
+  '/auth/logout',
+]);
 
 /** D-f: absolute URL so Node fetch (Vitest) and the browser behave the same. */
 export function apiUrl(path: string, query: Query = {}): string {

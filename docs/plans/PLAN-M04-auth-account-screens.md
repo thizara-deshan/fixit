@@ -1095,7 +1095,7 @@ describe('useCooldown', () => {
 **Commit:** `git commit -m "feat(web): useCooldown for resend (M04-T16)"`
 
 ### T17 — Auth feature: API calls
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/api.ts`, `src/features/auth/api.test.ts`, `src/lib/query-keys.ts`
 **Context:** ARCH §4.2 api.ts pattern; T4 rows; T9 `GOOGLE_MOCK`.
