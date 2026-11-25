@@ -2562,6 +2562,14 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
   2. Keep the test; remove the `<span>` so the email is plain text in the `<p>`.
   3. Keep the test; wrap the email so the text stays in one node, e.g. `<strong>` can't (still a separate element), so this means option 2.
 
+### T36 — the plan's test expects a business name the fixtures don't have
+- **Problem:** the offer-services test asserts `getByText("You're listed as Bell & Sons.")` for Marcus. Marcus's fixture business is `Bell & Sons Plumbing` (`packages/fixtures/src/providers.ts:23`), and the card renders `me.provider.businessName` as the plan specifies, so it shows "You're listed as Bell & Sons Plumbing." The other 6 tests pass.
+- **Why I stopped:** the fix is either a change to the plan's test string or to the fixtures, and the rules forbid changing tests and fixtures are outside T36.
+- **Also (not a blocker):** the plan's session-expiry test uses `getByText` for the "Your session expired…" copy right after the URL changes. The login page is lazy-loaded, so I used `findByText` there. It is the same assertion, just not racing the render. I'd keep this.
+- **Options:**
+  1. Change the test's expected string to `You're listed as Bell & Sons Plumbing.` (the fixtures are the source of truth). (Recommended.)
+  2. Rename the fixture business to `Bell & Sons`. This touches other milestones' seed data and tests, so I don't recommend it.
+
 ## Notes for review (planner)
 - **Milestone vs ARCHITECTURE (D-1):** `POST /auth/register` returns 204 but `resend-confirmation` needs a session; S7 resend after sign-up needs one. The plan logs the user in after registering. The alternative is to make `register` return an `AuthSession` (an ARCH §3.1 change needing a decision record).
 - **AC4 wording:** "DevPanel forced `ACCOUNT_SUSPENDED`" isn't a DevPanel option (only 500/409/401/network). The plan uses a suspended fixture (Ruwan) instead.
