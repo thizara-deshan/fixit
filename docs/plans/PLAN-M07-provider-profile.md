@@ -858,7 +858,7 @@ describe('toRequestAction (SPEC S3.E7)', () => {
 **Commit:** `git commit -m "feat(web): request service state mapping (M07-T11)"`
 
 ### T12 — Hooks: profile, reviews, request action
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-profile/hooks.ts`, `hooks.test.tsx`
 **Context:** D-2, D-4; ARCH §4.2.
 **Do:**
