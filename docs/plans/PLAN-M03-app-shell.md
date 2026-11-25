@@ -3285,7 +3285,7 @@ export function RouteErrorBoundary() {
 ---
 
 ### T33 — Route guards
-- [ ] done
+- [x] done
 
 **Files:** `src/app/guards/guards.tsx`
 **Context:** ARCH §5.1 guard semantics; SPEC §8.4 (guest → `/login?next={path}`; guest `/admin*` → `/admin/login?next=…`; signed-in on `/login`/`/signup` → `/` (providers → `/dashboard`); customer (not provider) on `/dashboard*` → `/become-a-provider/{resume step}` (1 if not started); non-admin on `/admin*` → S40; admin on L2/L3 → S40), §6.4. D-a, D-c. Guards are UX only.
