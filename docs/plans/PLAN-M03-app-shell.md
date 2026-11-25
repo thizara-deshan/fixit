@@ -967,7 +967,7 @@ export function useLogout(): () => Promise<void> {
 ---
 
 ### T13 — `StatusPill` and `VerifiedBadge`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/verified-badge.tsx`, `src/components/status-pill.tsx`
 **Context:** SPEC §2.2 (every request/verification/account/review/availability/trust variant; normal 28 high 13/700 padding 0 12, compact 24 high 12/700 padding 0 10; leading 6×6 dot `aria-hidden`), §2.9 Verified badge, §9 (status never by colour alone).
