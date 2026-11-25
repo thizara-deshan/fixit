@@ -733,7 +733,7 @@ describe('useDelayedFlag', () => {
 ---
 
 ### T11 — Optimistic mutation helper
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/optimistic.ts`, `src/lib/optimistic.test.tsx`
 **Context:** ARCH §5.5 (code adapted to `lib/toast.ts`). SPEC §6.3 action-failed toast, §6.5 (Undo only where the caller passes `undo`).
