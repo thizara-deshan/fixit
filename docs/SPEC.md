@@ -1466,7 +1466,8 @@ The URL is the single source of truth; the page renders from it, so any Discover
 
 Behaviour:
 - **Submitting the search bar** (S1 or S2) is a new search.
-  - It sets `q` and `loc`, and sets `cat` from BR-02 (the matched category, else none).
+  - On S1 it sets only `q` and `loc` (empty ones omitted); Discover then applies BR-02 from `q` when it loads (changed by decision 001).
+  - On S2 it sets `q` and `loc`, and sets `cat` from BR-02 (the matched category, else none).
   - It drops `rating`, `verified`, `price` and `page` (BR-05), and keeps `sort`.
   - It pushes a history entry, so Back returns to the previous search.
 - **Changing a filter, sort or location** applies immediately, replaces the history entry, and resets `page`. This matches the prototype's `replaceState`.
