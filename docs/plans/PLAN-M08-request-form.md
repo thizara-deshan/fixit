@@ -1589,7 +1589,7 @@ export function RequestFormSkeleton() {
 **Commit:** `git commit -m "feat(web): request form skeleton (M08-T25)"`
 
 ### T26 — `RequestFormPage` (S12) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/request-form-page.tsx`, `src/app/chunks/customer.tsx`
 **Context:** SPEC S12 desktop/phone layouts, E1, E5; AC1, AC5, AC7, AC8; D-3, D-5; `useProviderProfile` (provider-profile hooks), `NotFoundPage variant="provider"`, `DiscardChangesGuard` (T16), `useBodyClass`, `lastDiscoverLoc`.
 **Do:**

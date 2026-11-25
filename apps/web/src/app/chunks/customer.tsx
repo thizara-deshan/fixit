@@ -2,9 +2,7 @@ import { BackLink } from '@/components/back-link';
 import { CustomerPageHeader } from '../layouts/customer-layout';
 import { PlaceholderScreen } from '../placeholder-screen';
 
-export function RequestFormPage() {
-  return <PlaceholderScreen title="Request form" />;
-}
+export { RequestFormPage } from '@/features/requests/pages/request-form-page';
 export function RequestSentPage() {
   return <PlaceholderScreen title="Request sent" />;
 }
