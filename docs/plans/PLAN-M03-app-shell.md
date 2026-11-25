@@ -2434,7 +2434,7 @@ export function BannerSlot({ banners, placement }: { banners: readonly ReactNode
 ---
 
 ### T25 — `AccountMenu` (avatar dropdown)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/account-menu.tsx`
 **Context:** SPEC L1 avatar menu (dropdown white r14 `shadow-tooltip` 1px `border` min-width 220; items 44 high 14/600 with icon; header name 14/700 + email 13 subtle; divider; Log out `LogOut`, hover `danger-text`). Trigger: initials 40 circle (`primary-soft`/`primary` 800) + `ChevronDown` on desktop; on phone the trigger is the 40×40 avatar only. AC2. Uses `accountMenuItems` (T23), `useLogout` (T12), `initialsOf` (T8).
