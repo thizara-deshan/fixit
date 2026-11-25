@@ -1446,7 +1446,7 @@ If the test env sets a different `VITE_CONTACT_EMAIL`, assert on `CONTACT_EMAIL`
 **Commit:** `git commit -m "feat(web): S11 privacy page (M05-T23)"`
 
 ### T24 — M05 acceptance
-- [ ] done
+- [x] done
 
 **Files:** `docs/plans/PLAN-M05-home-site-pages.md` (results table appended), `docs/milestones/M00-index.md` (status only, if that file tracks milestone status)
 **Do:** Run `pnpm verify` (must be green), then `pnpm dev:mock` and walk each criterion. Record ✅/❌ with a one-line note per row in a `## Acceptance results` section at the end of this plan. Any ❌ that is a code bug: fix it in a separate `fix(web): … (M05-T24)` commit with a test that fails first. Anything a human must judge visually: mark "human check".
@@ -1476,3 +1476,18 @@ If the test env sets a different `VITE_CONTACT_EMAIL`, assert on `CONTACT_EMAIL`
 - Move `FeaturedCard` to `components/` when S17 Saved providers (F-10) reuses it.
 - Real hero photo asset with `primary-soft` fallback on load error.
 - `document.title` per site page if the app adopts a title convention.
+
+## Acceptance results
+`pnpm verify` green (format, lint, typecheck, all tests, build). Executed headless: the visual and DevTools checks below were not run in a browser and are marked "human check".
+
+| AC | Result | Note |
+|---|---|---|
+| 1 | ✅ tests / human check | `home-page.test.tsx` and `handlers/catalog.test.ts` cover 8 categories, ≤ 4 featured (verified, with reviews, Top rated order), Location `<optgroup>`s (Colombo, Gampaha, Kalutara) and the CTA band. Visual 1440 comparison with `01-home-desktop.png`: human check. |
+| 2 | human check | 390 and 800 px layouts (stacked search, 2-column categories, 1-column featured, `scrollWidth === 390`) need a browser. |
+| 3 | ✅ | Search hand-off and chip tests pass (`/discover?q=plumb&loc=dehiwala-mount-lavinia`; empty fields omitted; chip fills without submitting). |
+| 4 | ✅ tests / human check | Category link `/discover?cat=plumbing` and featured `/providers/{id}` links tested. `From` over price and the icon-tile fallback by code and `priceParts` tests; visual: human check. |
+| 5 | ✅ | CTA band (Home) and both CTAs (S4) tested for guest, customer and provider; admin → no primary CTA (`use-provider-cta.test.tsx`). |
+| 6 | ✅ tests / human check | Forced 500 on `providers_featured` (section error, categories still render, Try again recovers) and 0 qualifying (section and floating card hidden) tested. Skeleton layout stability under DevPanel `slow`: human check. |
+| 7 | ✅ tests / human check | `/about`, `/contact` (shows the contact email) and `/privacy` (six headings plus placeholder) tested. Phone padding and the footer "How it works" scroll offset under the 72 px nav: human check. |
+
+Deviations from plan code (lint-driven): `compareProviders` uses a comparator map (T3); `SubmitEvent` instead of `FormEvent` (T12); `border-2` instead of `border-[1.5px]` on the CTA band's `Learn more` button (T18, `no-raw-colors` bans `border-[`); braces in `waitFor` callbacks. `docs/milestones/M00-index.md` status was not updated (milestone files are off limits for this run).
