@@ -782,7 +782,7 @@ describe('postLoginTarget', () => {
 **Commit:** `git commit -m "feat(web): same-site next and post-login target (M04-T12)"`
 
 ### T13 — `RequireGuest` redirects to `postLoginTarget`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/guards/guards.tsx`
 **Context:** D-2, SPEC §8.4 row "Signed-in user opens /login or /signup".

@@ -28,6 +28,21 @@ describe('guards (SPEC §8.4, AC4)', () => {
     });
   });
 
+  it('signed-in customer on /login?next=/requests goes to /requests', async () => {
+    signInAs('customer');
+    const r = renderRoute('/login?next=%2Frequests');
+    await waitFor(() => {
+      expect(r.location()).toBe('/requests');
+    });
+  });
+  it('signed-in customer on /login?next=https://evil.test goes to /', async () => {
+    signInAs('customer');
+    const r = renderRoute('/login?next=https%3A%2F%2Fevil.test');
+    await waitFor(() => {
+      expect(r.location()).toBe('/');
+    });
+  });
+
   it('Olivia on /admin sees S40 with her email', async () => {
     signInAs('customer');
     renderRoute('/admin');
