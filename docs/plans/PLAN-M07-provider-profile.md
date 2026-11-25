@@ -685,7 +685,7 @@ describe('GET /providers/:id/reviews', () => {
 **Commit:** `git commit -m "feat(web): mock provider profile and reviews endpoints (M07-T8)"`
 
 ### T9 — `GET /me/request-eligibility/:providerId` handler
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `requests.test.ts`, `handlers/index.ts`
 **Context:** ARCH §3.4; Notes for planner (handler in `requests.ts`); AC8.
 **Do:**
