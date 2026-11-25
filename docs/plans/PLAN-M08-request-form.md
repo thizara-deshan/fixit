@@ -1246,7 +1246,7 @@ States: unselected (white, `border-border`); selected (`border-primary bg-primar
 **Commit:** `git commit -m "feat(web): service radio cards (M08-T18)"`
 
 ### T19 — `SlotControl` segmented radio
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/slot-control.tsx`
 **Context:** SPEC S12 "Time slot": segmented radio `Morning` · `Afternoon` · `Evening`; phone: 3-column, 48 high (AC7).
 **Do:**
