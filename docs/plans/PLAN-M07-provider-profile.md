@@ -771,7 +771,7 @@ export const fetchEligibility = (providerId: string): Promise<Eligibility> =>
 **Commit:** `git commit -m "feat(web): profile query keys, api and review date format (M07-T10)"`
 
 ### T11 — `toRequestAction` (SPEC order → rendering)
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-profile/request-action.ts`, `request-action.test.ts`
 **Context:** SPEC "Request Service states"; D-3, D-4; AC8 first half.
 **Do:**
