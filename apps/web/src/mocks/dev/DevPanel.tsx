@@ -110,6 +110,7 @@ const FORCED_LABEL: Record<ForcedKind, string> = {
   '409': '409 INVALID_TRANSITION',
   '401': '401 Unauthenticated',
   network: 'Network failure',
+  rule_provider_paused: '422 RULE_VIOLATION provider_paused',
 };
 const selectClass =
   'border-border-control bg-surface text-body text-text focus-visible:ring-ring h-11 w-full rounded-md border px-3 focus-visible:ring-2 focus-visible:outline-none';

@@ -3,6 +3,7 @@ import {
   ANY_ENDPOINT,
   armForcedError,
   clearForcedErrors,
+  forcedResponse,
   getControls,
   setLatency,
   takeForcedError,
@@ -31,5 +32,12 @@ describe('mock controls', () => {
     expect(getControls().forced).toEqual({});
     localStorage.setItem('fixit.mock.controls', '{not json');
     expect(getControls()).toEqual({ latency: 'normal', forced: {} });
+  });
+  it('rule_provider_paused → 422 with details.rule', async () => {
+    const res = forcedResponse('rule_provider_paused');
+    expect(res.status).toBe(422);
+    const body = (await res.json()) as { error: { code: string; details: { rule: string } } };
+    expect(body.error.code).toBe('RULE_VIOLATION');
+    expect(body.error.details.rule).toBe('provider_paused');
   });
 });

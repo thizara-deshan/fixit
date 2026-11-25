@@ -59,7 +59,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — `CreateRequestBody` and `makeCreateRequestSchema`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`, `packages/contracts/src/requests/create-schema.test.ts`
 **Context:** PRODUCT §6.2, BR-34; SPEC S12 field table; ARCH §2.5; D-1. `bookingWindow` exists in `requests/rules.ts`; `MobileInput`, `MOBILE_MESSAGE`, `Id`, `IsoDate` in `common/primitives.ts`; `formatInColombo`, `colomboStartOfDay` in `common/dates.ts`.
 **Do:**
@@ -194,7 +194,7 @@ describe('makeCreateRequestSchema', () => {
 **Commit:** `git commit -m "feat(contracts): CreateRequestBody and booking-window form schema (M08-T1)"`
 
 ### T2 — `StatusEvent` and `CustomerRequestView` schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`
 **Context:** ARCH §2.5 (`RequestBase`, `CustomerRequestView`); PRODUCT §6.3. Only the customer view is in scope. Provider and admin views come in later milestones.
 **Do:** Add to `requests/schemas.ts` (inline town ref to avoid a `catalog` import cycle):
@@ -260,7 +260,7 @@ export type CustomerRequestView = z.infer<typeof CustomerRequestView>;
 **Commit:** `git commit -m "feat(contracts): CustomerRequestView schema (M08-T2)"`
 
 ### T3 — `checkCreateRequest`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/rules.ts`, `packages/contracts/src/requests/rules.test.ts`
 **Context:** ARCH §2.8 signature; SPEC S12 blocked-state order, then the field rules; BR-16, BR-15, BR-23, BR-33, BR-34; `RuleCode` in `common/errors.ts`.
 **Do:** Add to `rules.ts`:
@@ -337,7 +337,7 @@ describe('checkCreateRequest (S12 order)', () => {
 **Commit:** `git commit -m "feat(contracts): checkCreateRequest in SPEC S12 order (M08-T3)"`
 
 ### T4 — `reviewDeadline`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/reviews/rules.ts`, `packages/contracts/src/reviews/rules.test.ts`
 **Context:** BR-24 (30 days after completion). Needed by `toCustomerView` (T5).
 **Do:** Add to `reviews/rules.ts`:
@@ -360,7 +360,7 @@ describe('reviewDeadline', () => {
 **Commit:** `git commit -m "feat(contracts): reviewDeadline (M08-T4)"`
 
 ### T5 — `toCustomerView` projection
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/projections.ts`, `packages/contracts/src/requests/projections.test.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCH §2.9 projections; PRODUCT §6.3 (provider mobile only when Accepted/Completed); BR-30 `canCancel` via `canTransition`; `RequestRecord`, `toMachineRequest` in `record.ts`; `cancelDeadline` in `rules.ts`.
 **Do:**
@@ -478,7 +478,7 @@ describe('toCustomerView', () => {
 **Commit:** `git commit -m "feat(contracts): toCustomerView projection (M08-T5)"`
 
 ### T6 — Endpoint entries `requests_create`, `requests_get`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.4 rows `POST /me/requests` and `GET /me/requests/:ref`.
 **Do:**
@@ -518,7 +518,7 @@ describe('toCustomerView', () => {
 **Commit:** `git commit -m "feat(contracts): request create/get endpoint entries (M08-T6)"`
 
 ### T7 — Forced `rule_provider_paused` in mock controls
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/controls.ts`, `src/mocks/lib/controls.test.ts`, `src/mocks/dev/DevPanel.tsx`
 **Context:** AC6; D-7; ARCH §4.5 "Force next error".
 **Do:**
@@ -545,7 +545,7 @@ describe('toCustomerView', () => {
 **Commit:** `git commit -m "feat(web): DevPanel forced provider_paused rule error (M08-T7)"`
 
 ### T8 — Mock helpers `openRequestsOf`, `customerViewOf`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/requests.ts`, `src/mocks/lib/requests.test.ts`
 **Context:** CLAUDE mock rules (project with `toCustomerView`); `isListed` in `mocks/lib/cards.ts`; fixture request FX-2061 (Olivia → p01, pending), FX-2046 (Olivia, completed).
 **Do:** Create `requests.ts`:
@@ -626,7 +626,7 @@ describe('mock request helpers', () => {
 **Commit:** `git commit -m "feat(web): mock request view helpers (M08-T8)"`
 
 ### T9 — `POST /me/requests` and `GET /me/requests/:ref` handlers
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-create.test.ts`
 **Context:** ARCH §3.4, §4.3 (expireDue at the start of request handlers), §7.5 (`FX-` + `refSeq`, seeded 2062); A11; D-2, D-6, D-8. `mockEndpoint` already returns 401 (anon) / 403 (admin) and 400 `VALIDATION_FAILED` with `fieldErrors` for a bad body.
 **Do:** Replace `requests.ts` with:
@@ -846,7 +846,7 @@ If `commit` is not exported from `@/mocks/db/store`, use whatever `store.ts` exp
 **Commit:** `git commit -m "feat(web): mock create-request and get-request handlers (M08-T9)"`
 
 ### T10 — Query keys and requests api
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/features/requests/api.ts`
 **Context:** ARCH §4.2.
 **Do:**
@@ -872,7 +872,7 @@ export const fetchMyRequest = (ref: string): Promise<CustomerRequestView> =>
 **Commit:** `git commit -m "feat(web): request api functions and query keys (M08-T10)"`
 
 ### T11 — `formatDeadline` and `SLOT_LABEL`
-- [ ] done
+- [x] done
 **Files:** `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** SPEC S13.E2 `{Sat, 21 Nov, 3:42 PM}`; S12 slot labels `Morning` · `Afternoon` · `Evening`.
 **Do:** Add to `format.ts`:
@@ -898,7 +898,7 @@ describe('formatDeadline', () => {
 **Commit:** `git commit -m "feat(web): deadline formatter and slot labels (M08-T11)"`
 
 ### T12 — `lastDiscoverLoc` and `initialTownId`
-- [ ] done
+- [x] done
 **Files:** `src/lib/last-discover.ts`, `src/lib/last-discover.test.ts`, `src/features/requests/town-prefill.ts`, `src/features/requests/town-prefill.test.ts`
 **Context:** SPEC S12 Town "Prefilled from the Discover `loc` if it's in the list"; §8.2 last Discover URL.
 **Do:**
@@ -950,7 +950,7 @@ describe('initialTownId', () => {
 **Commit:** `git commit -m "feat(web): town prefill from last Discover loc (M08-T12)"`
 
 ### T13 — Request rule banner copy
-- [ ] done
+- [x] done
 **Files:** `src/lib/error-copy.ts`, `src/lib/error-copy.test.ts`
 **Context:** SPEC S12.E6 (+ blocked-state copy for the limits), §6.3. Copy is written once in `lib/error-copy.ts` (CLAUDE).
 **Do:** Add to `error-copy.ts`:
@@ -1004,7 +1004,7 @@ describe('requestRuleBanner', () => {
 **Commit:** `git commit -m "feat(web): request rule banner copy (M08-T13)"`
 
 ### T14 — Requests hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/hooks.ts`, `src/features/requests/hooks.test.tsx`
 **Context:** ARCH §4.2; AC4 (mobile shows in `/account` afterwards → refresh `me`); `fetchEligibility` in `features/provider-profile/api.ts`; `fetchMe` in `features/auth/api.ts`.
 **Do:** Create `hooks.ts`:
@@ -1082,7 +1082,7 @@ describe('requests hooks', () => {
 **Commit:** `git commit -m "feat(web): requests hooks (M08-T14)"`
 
 ### T15 — Eligibility → S12 blocked state
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/blocked-state.ts`, `src/features/requests/blocked-state.test.ts`
 **Context:** SPEC S12 "Blocked states" table (copy, icons, buttons); D-3.
 **Do:** Create `blocked-state.ts`:
@@ -1156,7 +1156,7 @@ describe('toBlock', () => {
 **Commit:** `git commit -m "feat(web): S12 blocked-state mapping (M08-T15)"`
 
 ### T16 — `DiscardChangesGuard` title and description props
-- [ ] done
+- [x] done
 **Files:** `src/components/discard-changes-guard.tsx`
 **Context:** SPEC S12.E5: `Discard this request?` / `Your details won't be saved.` (S12-specific copy; §6.7 generic copy stays the default).
 **Do:** Change the signature to
@@ -1172,7 +1172,7 @@ and pass `title={title}` `description={description}` to `ResponsiveDialog`. No o
 **Commit:** `git commit -m "feat(web): discard guard accepts screen-specific copy (M08-T16)"`
 
 ### T17 — `RequestFieldset`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/request-fieldset.tsx`
 **Context:** radio groups (Service, Time slot) need a `<fieldset>` + `<legend>` with the same help/error look as `components/form-field.tsx`.
 **Do:**
@@ -1210,7 +1210,7 @@ export function RequestFieldset({ legend, help, error, children, className }: {
 **Commit:** `git commit -m "feat(web): request fieldset (M08-T17)"`
 
 ### T18 — `ServiceOptions` radio cards
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/service-options.tsx`
 **Context:** SPEC S12 field "Service": radio cards, name 15/600 + price label (BR-09); §2.9 "Option row" (selected = `primary` border + `primary-soft` bg); phone: full-width cards.
 **Do:**
@@ -1246,7 +1246,7 @@ States: unselected (white, `border-border`); selected (`border-primary bg-primar
 **Commit:** `git commit -m "feat(web): service radio cards (M08-T18)"`
 
 ### T19 — `SlotControl` segmented radio
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/slot-control.tsx`
 **Context:** SPEC S12 "Time slot": segmented radio `Morning` · `Afternoon` · `Evening`; phone: 3-column, 48 high (AC7).
 **Do:**
@@ -1279,7 +1279,7 @@ Same 3 columns and `h-12` at every width. If `shadow-xs` is not a token in `glob
 **Commit:** `git commit -m "feat(web): time slot control (M08-T19)"`
 
 ### T20 — `MobileField`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/mobile-field.tsx`
 **Context:** SPEC S12 field "Mobile number"; BR-23; AC4; `PhoneInput`, `FormField`, `formatPhone`.
 **Do:**
@@ -1313,7 +1313,7 @@ The form only calls `register('mobile')` when `mobile === null` (T23). Pass a no
 **Commit:** `git commit -m "feat(web): request mobile field (M08-T20)"`
 
 ### T21 — `ProviderMiniRow`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/provider-mini-row.tsx`
 **Context:** SPEC S12 summary "provider mini row (56 photo r12, name 17/700, Verified badge or `Not yet verified`, rating line)"; phone "compact provider row (48 photo, name, rating)". Reuse `StatusPill kind="trust"`, `Stars`, `CategoryIcon`.
 **Do:**
@@ -1351,7 +1351,7 @@ Check the `Stars` and `CategoryIcon` prop names in their files and match them.
 **Commit:** `git commit -m "feat(web): provider mini row (M08-T21)"`
 
 ### T22 — `RequestSummary` and `WhatHappensNext`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/request-summary.tsx`
 **Context:** SPEC S12 desktop right column (sticky top 96, card r20); S12.E7 copy; BR-11 note copy; phone: "What happens next" below the form as a plain list.
 **Do:**
@@ -1398,7 +1398,7 @@ States: no service selected → `Choose a service` placeholder line (13 subtle l
 **Commit:** `git commit -m "feat(web): request summary card (M08-T22)"`
 
 ### T23 — `BlockedCard`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/blocked-card.tsx`
 **Context:** T15 `Block`; `EmptyState` (§2.9); `useResendConfirmation` (toast `Email sent again.` already built in).
 **Do:**
@@ -1424,7 +1424,7 @@ Layout: `EmptyState` already stacks buttons full-width on phone (`w-full sm:w-au
 **Commit:** `git commit -m "feat(web): S12 blocked card (M08-T23)"`
 
 ### T24 — `RequestForm` card
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/request-form.tsx`
 **Context:** SPEC S12 field table (order, labels, help, placeholder), S12.E3, E4, E6; §6.1 submitting; §6.3 server banner; §6.6 draft (`useFormDraft`); D-4, D-5; `mapApiErrorToForm`, `requestRuleBanner` (T13), `MOBILE_MESSAGE`.
 **Do:** Create the component. Full code:
@@ -1569,7 +1569,7 @@ States: default (town prefilled or empty), field errors (inline, focus first), s
 **Commit:** `git commit -m "feat(web): request form card (M08-T24)"`
 
 ### T25 — `RequestFormSkeleton`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/request-form-skeleton.tsx`
 **Context:** AC8 "form skeleton while provider + eligibility load"; §6.1 `SkeletonSectionCard`.
 **Do:**
@@ -1589,7 +1589,7 @@ export function RequestFormSkeleton() {
 **Commit:** `git commit -m "feat(web): request form skeleton (M08-T25)"`
 
 ### T26 — `RequestFormPage` (S12) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/request-form-page.tsx`, `src/app/chunks/customer.tsx`
 **Context:** SPEC S12 desktop/phone layouts, E1, E5; AC1, AC5, AC7, AC8; D-3, D-5; `useProviderProfile` (provider-profile hooks), `NotFoundPage variant="provider"`, `DiscardChangesGuard` (T16), `useBodyClass`, `lastDiscoverLoc`.
 **Do:**
@@ -1681,7 +1681,7 @@ States: loading (skeleton after 150 ms, `aria-busy`), not found (S39 provider bo
 **Commit:** `git commit -m "feat(web): request form page (M08-T26)"`
 
 ### T27 — `RequestSentPage` (S13) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/request-sent-page.tsx`, `src/app/chunks/customer.tsx`
 **Context:** SPEC S13 (layout, E1–E4, redirect to S15 when not Pending); AC3, AC8; `useMyRequest`; `formatDeadline`, `formatDateLong`, `SLOT_LABEL`; `StatusPill kind="request"`; `lastDiscoverUrl`.
 **Do:**
@@ -1750,7 +1750,7 @@ export function RequestSentPage() {
 **Commit:** `git commit -m "feat(web): request sent page (M08-T27)"`
 
 ### T28 — S12 behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/request-form-page.test.tsx`
 **Context:** AC1, AC2, AC3, AC4, AC5, AC6, AC7 (dialog), AC8 (500). `renderRoute`, `signInAs`, `armForcedError`, `rememberDiscover`; D-6.
 **Do:** Write the tests:
@@ -1913,7 +1913,7 @@ Adjustments the executor may make **without** changing what is asserted: the exa
 **Commit:** `git commit -m "test(web): request form behaviour (M08-T28)"`
 
 ### T29 — S13 behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/request-sent-page.test.tsx`
 **Context:** AC3 (`Back to search`), AC8 (no longer Pending → S15; another customer's ref → S39 request).
 **Do:**
@@ -1954,7 +1954,7 @@ describe('RequestSentPage (S13)', () => {
 **Commit:** `git commit -m "test(web): request sent behaviour (M08-T29)"`
 
 ### T30 — Acceptance checks
-- [ ] done
+- [x] done
 **Files:** this plan (tick boxes); `docs/milestones/M00-index.md` only if it tracks milestone status (tick M08 there in the same format as M07).
 **Do:** Run `pnpm verify` (green). Then `pnpm dev:mock` and walk each criterion. Use the DevPanel to switch personas, set Latency `slow` for loading checks, and **Reset demo data** between checks that create requests.
 | AC | Check |
@@ -1977,7 +1977,9 @@ Write any failing check under `## Blockers` and stop.
 - After T27: "Human: send a request and look at S13 at 1440 and 390."
 
 ## Blockers
-(executor writes here; leave empty)
+(none open)
+
+_Resolved:_ T29 cold-load timeouts under load. Fixed with option 1: `configure({ asyncUtilTimeout: 4000 })` in `apps/web/src/test/setup.ts`, approved by the user. No assertion changed.
 
 ## Nice-to-haves / notes (not tasks)
 - API milestone: `POST /me/requests` parses with `CreateRequestBody` and leaves the window to `checkCreateRequest` (decision 004).

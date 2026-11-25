@@ -6,6 +6,7 @@ import {
   type RuleCode,
 } from '@fixit/contracts';
 import { CONTACT_EMAIL } from './env';
+import { ApiError } from './http';
 
 /** Form-level banner copy (SPEC S5.E8, S29.E4, §6.3, §6.6). Written once. */
 export const FORM_COPY = {
@@ -31,3 +32,21 @@ export const RULE_FIELD_COPY: Partial<Record<RuleCode, string>> = {
 export const RULE_BANNER_COPY: Partial<Record<RuleCode, string>> = {
   invalid_credentials: FORM_COPY.invalidCredentials,
 };
+
+/** S12.E6. Returns the banner for a create-request rule, or null (caller falls back to mapApiErrorToForm → §6.3). */
+export function requestRuleBanner(err: unknown, business: string): string | null {
+  if (!(err instanceof ApiError)) return null;
+  switch (err.rule) {
+    case 'provider_paused':
+    case 'provider_unavailable':
+      return `${business} can't take requests right now. Your request wasn't sent.`;
+    case 'open_with_provider':
+      return `You already have an open request with ${business}. You can send another once this one is finished.`;
+    case 'open_limit_reached':
+      return 'You have 5 open requests. You can have up to 5 open requests at a time. Cancel one or wait for one to finish.';
+    case 'date_out_of_window':
+      return 'That date is no longer available. Choose another date.';
+    default:
+      return null;
+  }
+}

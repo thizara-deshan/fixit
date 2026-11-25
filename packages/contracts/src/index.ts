@@ -19,3 +19,4 @@ export * from './search/match';
 export * from './providers/schemas';
 export * from './catalog/profile';
 export * from './requests/eligibility';
+export * from './requests/projections';

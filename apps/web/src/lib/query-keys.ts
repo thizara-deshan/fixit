@@ -9,5 +9,9 @@ export const qk = {
   provider: (id: string) => ['catalog', 'provider', id] as const,
   providerReviews: (id: string) => ['catalog', 'provider-reviews', id] as const,
   eligibility: (providerId: string) => ['requests', 'eligibility', providerId] as const,
+  myRequests: {
+    all: ['requests', 'mine'] as const,
+    detail: (ref: string) => ['requests', 'mine', ref] as const,
+  },
   confirmEmail: (token: string) => ['auth', 'confirm', token] as const,
 };

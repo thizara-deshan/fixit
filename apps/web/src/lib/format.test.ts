@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   formatDateLong,
+  formatDeadline,
   formatDateShort,
   formatDateTime,
   formatLkr,
@@ -62,5 +63,12 @@ describe('priceParts lead', () => {
 describe('formatReviewDate', () => {
   it('formats in Colombo time', () => {
     expect(formatReviewDate('2026-09-11T20:00:00Z')).toBe('12 Sep 2026');
+  });
+});
+
+describe('formatDeadline', () => {
+  it('formats in Colombo', () => {
+    expect(formatDeadline('2026-11-21T10:12:00.000Z')).toBe('Sat, 21 Nov, 3:42 PM');
+    expect(formatDeadline('2026-11-22T18:30:00.000Z')).toBe('Mon, 23 Nov, 12:00 AM');
   });
 });

@@ -19,7 +19,7 @@ Gate decisions (2026-11-22):
 | [M05](M05-home-site-pages.md) | Home & site pages | B | M03 | 1 | Done |
 | [M06](M06-discover.md) | Discover | B | M05 | 1½ | Done |
 | [M07](M07-provider-profile.md) | Provider public profile | B | M04, M06 | 1 | Done |
-| [M08](M08-request-form.md) | Request form & confirmation | B | M07 | 1 | Not started |
+| [M08](M08-request-form.md) | Request form & confirmation | B | M07 | 1 | Done |
 | [M09](M09-my-requests-reviews.md) | My requests, cancel & leave a review | B | M08 | 1½ | Not started |
 | [M10](M10-provider-requests.md) | Provider overview & requests | B | M08 | 1½ | Not started |
 | [M11](M11-onboarding-verification.md) | Onboarding & verification | B | M10 | 1½ | Not started |

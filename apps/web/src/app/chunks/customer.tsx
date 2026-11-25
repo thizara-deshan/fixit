@@ -2,12 +2,8 @@ import { BackLink } from '@/components/back-link';
 import { CustomerPageHeader } from '../layouts/customer-layout';
 import { PlaceholderScreen } from '../placeholder-screen';
 
-export function RequestFormPage() {
-  return <PlaceholderScreen title="Request form" />;
-}
-export function RequestSentPage() {
-  return <PlaceholderScreen title="Request sent" />;
-}
+export { RequestFormPage } from '@/features/requests/pages/request-form-page';
+export { RequestSentPage } from '@/features/requests/pages/request-sent-page';
 export function MyRequestsPage() {
   return <CustomerPageHeader title="My requests" tabs />;
 }

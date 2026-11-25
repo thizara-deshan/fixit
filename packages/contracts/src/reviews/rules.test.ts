@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ratingFrom } from './rules';
+import { ratingFrom, reviewDeadline } from './rules';
 
 describe('ratingFrom', () => {
   it('no ratings → New', () => {
@@ -12,5 +12,13 @@ describe('ratingFrom', () => {
     [[3], 3],
   ])('%j → %d', (ratings, rating) => {
     expect(ratingFrom(ratings)).toEqual({ rating, count: ratings.length });
+  });
+});
+
+describe('reviewDeadline', () => {
+  it('is 30 days after completion', () => {
+    expect(reviewDeadline(new Date('2026-11-21T10:00:00.000Z')).toISOString()).toBe(
+      '2026-12-21T10:00:00.000Z',
+    );
   });
 });

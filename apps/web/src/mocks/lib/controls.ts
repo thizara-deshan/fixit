@@ -4,7 +4,7 @@ import { errorResponse } from './errors';
 
 export const LATENCIES = ['zero', 'normal', 'slow'] as const;
 export type Latency = (typeof LATENCIES)[number];
-export const FORCED_KINDS = ['500', '409', '401', 'network'] as const;
+export const FORCED_KINDS = ['500', '409', '401', 'network', 'rule_provider_paused'] as const;
 export type ForcedKind = (typeof FORCED_KINDS)[number];
 export const ANY_ENDPOINT = '*';
 
@@ -75,5 +75,9 @@ export function forcedResponse(kind: ForcedKind): Response {
       });
     case '500':
       return errorResponse(500, 'INTERNAL', 'Forced 500 (DevPanel)');
+    case 'rule_provider_paused':
+      return errorResponse(422, 'RULE_VIOLATION', 'Forced provider_paused (DevPanel)', {
+        details: { rule: 'provider_paused' },
+      });
   }
 }

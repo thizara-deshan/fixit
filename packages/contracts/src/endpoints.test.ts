@@ -73,4 +73,20 @@ describe('ENDPOINTS', () => {
       'GET /me/request-eligibility/:providerId': ['requests', ['user']],
     });
   });
+  it('M08 request rows match ARCHITECTURE §3.4', () => {
+    expect(ENDPOINTS.requests_create).toMatchObject({
+      method: 'POST',
+      path: '/me/requests',
+      access: ['user'],
+      owner: 'self',
+      domain: 'requests',
+    });
+    expect(ENDPOINTS.requests_get).toMatchObject({
+      method: 'GET',
+      path: '/me/requests/:ref',
+      access: ['user'],
+      owner: 'request_customer',
+      domain: 'requests',
+    });
+  });
 });
