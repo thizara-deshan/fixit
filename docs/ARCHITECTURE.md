@@ -476,7 +476,7 @@ export const AdminRequestView = RequestBase.extend({
 export const CreateRequestBody = z.object({
   providerId: Id,
   serviceId: Id.min(1, 'Choose a service.'),
-  preferredDate: IsoDate,                          // range checked by bookingWindow(now) in a refinement built by makeCreateRequestSchema(now)
+  preferredDate: IsoDate,                          // range: form refinement makeCreateRequestSchema(now); server rule date_out_of_window (decision 004)
   slot: TimeSlot,
   townId: Id,
   addressLine1: z.string().trim().min(1, 'Enter your address.').min(5, 'Enter a fuller address so the provider can find you.').max(120, 'Keep each address line under 120 characters.'),
@@ -484,7 +484,7 @@ export const CreateRequestBody = z.object({
   description: z.string().trim().min(20, 'Describe the job in at least 20 characters.').max(1000, 'Keep the description under 1,000 characters.'),
   mobile: MobileInput.optional(),                  // required only if the profile has none (server checks, rule mobile_missing)
 });
-/** Used by the form and the API: adds the BR-34 date-range refinement for a given `now`. */
+/** Used by the web form only: adds the BR-34 date-range refinement for a given `now`. The server checks the window in checkCreateRequest (decision 004). */
 export const makeCreateRequestSchema = (now: Date) => CreateRequestBody.superRefine((v, ctx) => {
   const { min, max } = bookingWindow(now);
   if (v.preferredDate < min || v.preferredDate > max)
@@ -770,7 +770,7 @@ This table is mirrored 1:1 by `ENDPOINTS` (§2.7) and is the authorization test 
 | Method | Path | Roles | Ownership rule | Request schema | Response schema | Refs |
 |---|---|---|---|---|---|---|
 | GET | /me/request-eligibility/:providerId | U | self | — | Eligibility | F-14 S3.E7 S12 |
-| POST | /me/requests | U | customer = me; `checkCreateRequest` (BR-16/23/33/34, paused, listed, town, service) | CreateRequestBody (+ window refinement) | CustomerRequestView | F-11 F-14 S12 A11 |
+| POST | /me/requests | U | customer = me; `checkCreateRequest` (BR-16/23/33/34, paused, listed, town, service) | CreateRequestBody (no window refinement; BR-34 → `date_out_of_window`, decision 004) | CustomerRequestView | F-11 F-14 S12 A11 |
 | GET | /me/requests | U | customerId = me | RequestListQuery {status group, page} | Paginated<CustomerRequestView> + counts | F-12 S14 |
 | GET | /me/requests/:ref | U | customerId = me else 404 | — | CustomerRequestView | S13 S15 |
 | POST | /me/requests/:ref/cancel | U | customerId = me; state machine | CancelBody {reason?} | CustomerRequestView | F-13 S15 A12 |
@@ -1398,7 +1398,7 @@ export const ZQuery = (s: z.ZodType) => Query(new ZodValidationPipe(s));
 // common/http/respond.ts — strips unknown keys (zod default), so a mapper can't leak extra fields
 export const respond = <S extends z.ZodType>(schema: S, data: z.input<S>): z.output<S> => schema.parse(data);
 ```
-Schemas that need `now` (create request) are built in the service: `makeCreateRequestSchema(clock.now()).parse(body)`.
+The create-request body is parsed with plain `CreateRequestBody`; the BR-34 window is checked by `checkCreateRequest({ now: clock.now(), … })` and returns `RULE_VIOLATION` `date_out_of_window` (decision 004).
 
 ### 7.3 Errors
 `AppError(status, code, message, { fieldErrors?, details? })` with factories: `validation`, `notFound`, `forbidden`, `rule(rule, details?)` (422), `transition(reason, status)` (409), `conflict(rule)`. The global `AllExceptionsFilter` maps:
