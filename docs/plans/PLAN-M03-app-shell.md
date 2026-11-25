@@ -1998,7 +1998,7 @@ export function SegmentedTabs({
 ---
 
 ### T22 — `BackLink`, `FormField`, `PhoneInput`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/back-link.tsx`, `src/components/form-field.tsx`, `src/components/phone-input.tsx`
 **Context:** SPEC L2 back link (`ArrowLeft` + 15/600 muted, hover `primary`); §5 form conventions (errors 13/19 `danger-text` with `CircleAlert` 16; border turns `danger`); §9 Labels (visible label; `aria-describedby` for help + error; `aria-invalid`; required → `(required)` for screen readers; optional fields show `Optional`); S12 mobile field (tel input with fixed `+94` prefix; parsing by `MobileInput` from contracts in M04/M08 forms).
