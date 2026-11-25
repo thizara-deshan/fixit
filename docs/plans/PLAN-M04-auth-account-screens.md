@@ -931,7 +931,7 @@ describe('mapApiErrorToForm', () => {
 **Commit:** `git commit -m "feat(web): error copy and mapApiErrorToForm (M04-T14)"`
 
 ### T15 — `useFormDraft` (§6.6 session-expiry draft)
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/use-form-draft.ts`, `src/lib/use-form-draft.test.tsx`
 **Context:** SPEC §6.6 (values minus passwords/files kept for the tab, restored after login via `next`), ARCH §4.1; AC8.
