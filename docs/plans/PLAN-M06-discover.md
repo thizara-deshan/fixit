@@ -835,7 +835,7 @@ describe('last-discover', () => {
 **Commit:** `git commit -m "feat(web): remember last discover URL (M06-T10)"`
 
 ### T11 — Results copy helpers
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/copy.ts`, `src/features/discover/copy.test.ts`
 **Context:** S2.E8 copy; D-8.
 **Do:**
