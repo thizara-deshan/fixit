@@ -67,7 +67,7 @@ Planner's decisions the executor must follow (they fill gaps between the milesto
 ## Tasks
 
 ### T1 — Branch, start tag, router and toast dependencies
-- [ ] done
+- [x] done
 
 **Files:** `apps/web/package.json`, `pnpm-lock.yaml`
 **Context:** ARCH §5.1 (React Router route `lazy`), §5.5 (Sonner). Neither package is installed yet.
@@ -82,7 +82,7 @@ Planner's decisions the executor must follow (they fill gaps between the milesto
 ---
 
 ### T2 — `formatInColombo()` in contracts
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/common/dates.ts`, `packages/contracts/src/common/dates.test.ts`
 **Context:** SPEC §1.3 date formats. D-g. `date-fns` and `@date-fns/tz` are already dependencies of contracts.
@@ -113,7 +113,7 @@ describe('formatInColombo', () => {
 ---
 
 ### T3 — Add shadcn primitives
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/{dialog,dropdown-menu,popover,tooltip,switch,checkbox,radio-group,select,tabs,skeleton,input,textarea,label}.tsx`
 **Context:** Milestone "Notes for the planner" (primitive list). M02 blocker T34: shadcn 4.23.0 writes `import { cn } from "cn"`, and the user approved rewriting it to `@/lib/utils`. Sonner is **not** added here (D-f). `button` and `sheet` already exist and must not be overwritten.
@@ -130,7 +130,7 @@ describe('formatInColombo', () => {
 ---
 
 ### T4 — Button variants and sizes (SPEC §2.9)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/button.tsx`, `src/mocks/dev/DevPanel.tsx`
 **Context:** SPEC §2.9 button rows, §6.10 danger button, §9 focus ring (the global `:focus-visible` outline in `globals.css`, so primitives must **not** set `outline-none` or `ring-*`). ARCH §5.3 variant names. Touch targets ≥ 44 on phone.
@@ -197,7 +197,7 @@ export { Button, buttonVariants };
 ---
 
 ### T5 — Restyle overlay primitives (dialog, sheet, dropdown-menu, popover, tooltip)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/{dialog,sheet,dropdown-menu,popover,tooltip}.tsx`
 **Context:** SPEC §2.1 `overlay`, `tooltip-bg`; §2.5 `shadow-modal`, `shadow-tooltip`; §2.8 sheet slide 200 ms ease-out; §6.10; §9 focus ring.
@@ -218,7 +218,7 @@ export { Button, buttonVariants };
 ---
 
 ### T6 — Restyle form primitives and skeleton
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/{input,textarea,label,skeleton,checkbox,radio-group,switch,select,tabs}.tsx`, `src/styles/globals.css`
 **Context:** SPEC §2.9 Input/select (48 high, 1.5px `border`, `radius-md`, focus border `primary`), Checkbox (20×20 `radius-xs`, 1.5px `border-control`, on = `primary`), Toggle (44×26, off `border-strong`, on `success`, knob 20 `shadow-knob`), §6.1 skeleton (`placeholder-a`, 1.2 s opacity pulse 0.6 ↔ 1), §2.3 (input text never below 16px on phone), §9 focus ring.
@@ -296,7 +296,7 @@ export { Skeleton };
 ---
 
 ### T7 — Toaster, `lib/toast.ts` and providers
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/sonner.tsx` (create), `src/lib/toast.ts`, `src/lib/toast.test.ts`, `src/app/providers.tsx`
 **Context:** SPEC §2.9 Toast, §6.5 (4 s, 8 s with action, pause on hover/focus, one at a time, phone bottom 16 and width calc(100% − 32), 44-high action), §6.3 error toast (leading `CircleAlert`, `Try again`), §9 (white focus outline on dark surfaces). ARCH §5.5 (`visibleToasts={1}`, `bottom-center`). D-f.
@@ -423,7 +423,7 @@ describe('toast helpers (SPEC §6.5)', () => {
 ---
 
 ### T8 — `lib/format.ts`
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** SPEC §1.3 (money, service price BR-09, short price, dates, phone, rating "New"), §9 Stars text alternative. D-g.
@@ -547,7 +547,7 @@ describe('format (SPEC §1.3)', () => {
 ---
 
 ### T9 — `useMediaQuery` and the test `matchMedia` stub
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/use-media-query.ts`, `src/lib/use-media-query.test.tsx`, `src/test/media.ts`, `src/test/setup.ts`
 **Context:** ARCH §5.2 (`sm` = 641px, `lg` = 1024px; the switchers render only one variant in the DOM). jsdom has no `matchMedia`.
@@ -669,7 +669,7 @@ describe('useMediaQuery', () => {
 ---
 
 ### T10 — `useDelayedFlag` (150 ms skeleton delay)
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/use-delayed-flag.ts`, `src/lib/use-delayed-flag.test.ts`
 **Context:** SPEC §6.1 ("only if loading takes longer than 150 ms"). ARCH §5.6.
@@ -733,7 +733,7 @@ describe('useDelayedFlag', () => {
 ---
 
 ### T11 — Optimistic mutation helper
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/optimistic.ts`, `src/lib/optimistic.test.tsx`
 **Context:** ARCH §5.5 (code adapted to `lib/toast.ts`). SPEC §6.3 action-failed toast, §6.5 (Undo only where the caller passes `undo`).
@@ -881,7 +881,7 @@ describe('useOptimisticMutation', () => {
 ---
 
 ### T12 — Contact email env, online status, `clearSignOutReason`, `useLogout`
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/env.ts`, `src/vite-env.d.ts`, `/.env.example`, `src/lib/use-online-status.ts`, `src/lib/auth-store.ts`, `src/lib/auth-store.test.ts`, `src/features/auth/hooks.ts`
 **Context:** D-c, D-i. SPEC §8.1 A4 (Log out → `/`, admins → `/admin/login`), §6.3 offline banner. ARCH §5.6 (`useOnlineStatus`), §10.3 (`VITE_CONTACT_EMAIL`). The milestone note asks for `queryClient.clear()` on logout.
@@ -967,7 +967,7 @@ export function useLogout(): () => Promise<void> {
 ---
 
 ### T13 — `StatusPill` and `VerifiedBadge`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/verified-badge.tsx`, `src/components/status-pill.tsx`
 **Context:** SPEC §2.2 (every request/verification/account/review/availability/trust variant; normal 28 high 13/700 padding 0 12, compact 24 high 12/700 padding 0 10; leading 6×6 dot `aria-hidden`), §2.9 Verified badge, §9 (status never by colour alone).
@@ -1090,7 +1090,7 @@ export function StatusPill(props: StatusPillProps) {
 ---
 
 ### T14 — `Stars` and `PriceLabel`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/stars.tsx`, `src/components/price-label.tsx`
 **Context:** SPEC §1.3 (rating 1 decimal, "New"; short price), §2.1 `star`/`star-empty`, §9 Stars (`aria-label`, glyphs `aria-hidden`). Prototype `01-home-desktop.png` featured cards: `★★★★★ 4.9 (212)`, i.e. 5 filled stars for 4.7–4.9 (rounded).
@@ -1171,7 +1171,7 @@ export function PriceLabel({ amount, unit, variant = 'full', amountClassName = '
 ---
 
 ### T15 — `EmptyState` and `SectionError`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/empty-state.tsx`, `src/components/section-error.tsx`
 **Context:** SPEC §2.9 Empty state (white, 1px dashed `border-strong`, r16, padding 56×24, 56×56 `primary-soft` r16 icon tile with 28 icon, 18/700 title, 15 muted body, primary 48 button), §6.2, §6.3 "Section failed to load" (`TriangleAlert` warning tile; `We couldn't load this.` / `Check your connection and try again.` / `Try again`), §5.E (S41 tile `warning-soft`/`warning-text`).
@@ -1264,7 +1264,7 @@ export function SectionError({ onRetry, className }: { onRetry: () => void; clas
 ---
 
 ### T16 — Skeletons and `LoadingRegion` (AC9)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/skeletons.tsx`, `src/components/loading-region.tsx`, `src/components/loading-region.test.tsx`
 **Context:** SPEC §6.1 table (each skeleton has the same box as the real component), `aria-busy="true"`, visually hidden `Loading…`, 150 ms delay. Milestone AC9.
@@ -1351,7 +1351,7 @@ describe('LoadingRegion (SPEC §6.1, AC9)', () => {
 ---
 
 ### T17 — `NoticeBanner`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/notice-banner.tsx`
 **Context:** SPEC §2.9 Notice banner (r14, padding 14×16, 14/600, leading icon, optional link/button right; warning = `warning-soft` + 1px dashed `warning` + `warning-text-strong`; info = `primary-soft`/`primary`; danger = `danger-soft`/`danger-text`, solid border), §6.8 ("Phone: text wraps, and the action becomes a link on its own line (44 target)"; some are dismissible).
@@ -1422,7 +1422,7 @@ export function NoticeBanner({ variant, children, action, onDismiss, className }
 ---
 
 ### T18 — `ResponsiveDialog` (AC7)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/responsive-dialog.tsx`, `src/components/responsive-dialog.test.tsx`
 **Context:** SPEC §6.10 (desktop modal r20 padding 32 max 440 `shadow-modal`, buttons right-aligned secondary → primary; phone bottom sheet §2.9: top radius 20, `shadow-toast`, grab handle 36×4 `border-strong`, header title + 44 close, sticky footer, buttons stacked full width with primary/danger first; focus trapped; Esc/overlay close except while submitting; focus returns to trigger). ARCH §5.2 (Dialog ≥ 641, Sheet bottom below, one in the DOM). Milestone note: features never use `Dialog`/`Sheet` directly.
@@ -1595,7 +1595,7 @@ If `@testing-library/user-event` isn't installed, add it first: `pnpm --filter @
 ---
 
 ### T19 — `DataList` (AC7)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/data-list.tsx`, `src/components/data-list.test.tsx`
 **Context:** SPEC §2.9 Data table (header row `page` 12/700 uppercase subtle, 10×24 padding; rows 16×24 padding, `border` top), §6.9 (cards at ≤ 640: white r16 1px `border` padding 16 gap 8; identity + status on row 1; secondary 13 muted lines; full-width actions row 44 high; whole card is the row link; no column headers). ARCH §5.2 (one column definition, `useMediaQuery` so only one form is in the DOM). Uses `LoadingRegion`, `SkeletonTableRows`, `SkeletonPhoneCards` (T16).
@@ -1788,7 +1788,7 @@ describe('DataList (SPEC §6.9, AC7)', () => {
 ---
 
 ### T20 — `Pagination`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/pagination.tsx`, `src/components/pagination.test.ts`
 **Context:** SPEC S2.E12 (hidden when 1 page; current page `primary` bg, white; `Previous` · `1 2 3 … 8` · `Next`), S2 phone note 6 (`‹ Previous` · `Page 2 of 5` · `Next ›`), §9 (44 targets on phone). Pagination is URL-driven (`?page=`), so pages are links.
@@ -1895,7 +1895,7 @@ describe('pageItems', () => {
 ---
 
 ### T21 — `SegmentedTabs`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/segmented-tabs.tsx`
 **Context:** SPEC §2.9 Segmented tabs (track `page` r12 padding 4 gap 4; tab 34 high r9 13/600; count 12 subtle; active white + `shadow-xs` + `text`), L2 (links; phone: track full width, scrolls horizontally, each tab ≥ 44 high), §9 (status tabs = `tablist`, or links with `aria-current` when they change the URL).
@@ -1998,7 +1998,7 @@ export function SegmentedTabs({
 ---
 
 ### T22 — `BackLink`, `FormField`, `PhoneInput`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/back-link.tsx`, `src/components/form-field.tsx`, `src/components/phone-input.tsx`
 **Context:** SPEC L2 back link (`ArrowLeft` + 15/600 muted, hover `primary`); §5 form conventions (errors 13/19 `danger-text` with `CircleAlert` 16; border turns `danger`); §9 Labels (visible label; `aria-describedby` for help + error; `aria-invalid`; required → `(required)` for screen readers; optional fields show `Optional`); S12 mobile field (tel input with fixed `+94` prefix; parsing by `MobileInput` from contracts in M04/M08 forms).
@@ -2112,7 +2112,7 @@ export function PhoneInput({ className, ...props }: Omit<ComponentProps<'input'>
 ---
 
 ### T23 — Nav configuration (links, active rules, menus, sidebars, footer)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/nav-config.ts`, `src/app/layouts/nav-config.test.ts`
 **Context:** SPEC L1 "Nav content per role", avatar menu, active link rules, footer links; L2 section tabs; L3 nav items (badge = Pending count, Verification dot when Not submitted or Rejected); L4 nav items; §4.1 Should/Could gating; D-b. `lib/features.ts`.
@@ -2353,7 +2353,7 @@ describe('nav config', () => {
 ---
 
 ### T24 — Layout parts: Logo, SkipLink, OfflineBanner, BannerSlot
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/logo.tsx`, `skip-link.tsx`, `offline-banner.tsx`, `banner-slot.tsx`
 **Context:** SPEC L1 logo (34×34 `primary` tile r10 with white "F" 17/800 + "Fixit" `text-logo`; footer: white tile with `primary` F, "Fixit" white), §9 Skip link (first focusable element of every layout), §6.3 Offline (thin `warning-soft` banner under the nav/top bar, aria-live polite, `You're offline. Some things won't work until you reconnect.`), §6.8 placement + "at most 2 banners".
@@ -2434,7 +2434,7 @@ export function BannerSlot({ banners, placement }: { banners: readonly ReactNode
 ---
 
 ### T25 — `AccountMenu` (avatar dropdown)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/account-menu.tsx`
 **Context:** SPEC L1 avatar menu (dropdown white r14 `shadow-tooltip` 1px `border` min-width 220; items 44 high 14/600 with icon; header name 14/700 + email 13 subtle; divider; Log out `LogOut`, hover `danger-text`). Trigger: initials 40 circle (`primary-soft`/`primary` 800) + `ChevronDown` on desktop; on phone the trigger is the 40×40 avatar only. AC2. Uses `accountMenuItems` (T23), `useLogout` (T12), `initialsOf` (T8).
@@ -2502,7 +2502,7 @@ export function AccountMenu({ me }: { me: Me }) {
 ---
 
 ### T26 — `NavSheet` (phone/tablet right sheet)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/nav-sheet.tsx`
 **Context:** SPEC L1 "Tablet & phone": hamburger `Menu` 44×44; right sheet (full height, width min(360, 100vw), `shadow-modal`, overlay); close `X` 44 top-right; nav links as 56-high rows 16/600, active `primary` + `primary-soft` bg; guests: two full-width 48 buttons `Log in` (secondary) and `Sign up` (primary); signed-in: account-menu items; admin: `Admin console` + `Log out` (L1 role table). Closes on link tap, overlay tap, Esc; focus trapped; returns focus to the hamburger (Radix `SheetTrigger` does this). AC1.
@@ -2606,7 +2606,7 @@ export function NavSheet({ me }: { me: Me | null }) {
 ---
 
 ### T27 — `PublicNav` (L1 top bar)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/public-nav.tsx`
 **Context:** SPEC L1 desktop (sticky top 0, z 10, white, 1px bottom `border`, height 72 / 64 phone via `h-nav`; inner max 1240, padding 0 32 (24 tablet, 16 phone), gap 48; links gap 32, 15/600, active `primary` + 2px underline, inactive `text-muted` hover `text`; actions gap 10 right). Role table: Guest `Log in` (secondary 40) · `Sign up` (primary 40); Customer avatar menu; Provider `Dashboard` (outline 40, `LayoutDashboard`) + avatar; Admin `Admin console` (outline 40) + `Log out` (secondary 40). ≤1023: logo left; right: avatar (signed-in, not admin) + hamburger. S29: logo only. Prototype `01-home-desktop.png` top bar.
@@ -2699,7 +2699,7 @@ export function PublicNav({ variant = 'full' }: { variant?: 'full' | 'logo' }) {
 ---
 
 ### T28 — `Footer`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/footer.tsx`
 **Context:** SPEC L1 footer (`footer-bg`, margin-top auto; max 1240, padding 56 32 28; grid `1.6fr 1fr 1fr 1fr` gap 40; brand block: white tile with `primary` F, "Fixit" white, "Home service booking marketplace." 14/20; column titles white 700 14; links `footer-text` 14 gap 10; bottom rule 1px `footer-divider`, padding-top 20, 13 `footer-meta` "© 2026 Fixit"). Phone/tablet: brand full width, link columns in a 2-column grid, links ≥ 44 high. §9 white focus outline on the footer. S29 (`minimal`): only the copyright row. AC1.
@@ -2751,7 +2751,7 @@ export function Footer({ variant = 'full' }: { variant?: 'full' | 'minimal' }) {
 ---
 
 ### T29 — `PublicLayout`, `AuthLayout`, `CustomerLayout` + `CustomerPageHeader`, `PlaceholderScreen`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/public-layout.tsx`, `auth-layout.tsx`, `customer-layout.tsx`, `src/app/placeholder-screen.tsx`
 **Context:** SPEC L1, L1-auth (main `page` bg, padding 56 16 88; card max 440 r20 padding 32 / 24 phone, 1px `border`; S29 logo-only), L2 (max 1240, padding 32 32 88 / phone 20 16 56, gap 24; header H1 `text-title-lg` + 15 muted subtitle; section tabs as links; detail pages use a back link instead), §6.8 placement, §9 skip link. D-a (PublicLayout accepts children so guards can render S40 inside it).
@@ -2854,7 +2854,7 @@ export function PlaceholderScreen({ title, frame = 'page' }: { title: string; fr
 ---
 
 ### T30 — `DashboardShell` (ResponsiveSidebar) and `SidebarNav`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/sidebar-nav.tsx`, `src/app/layouts/parts/dashboard-shell.tsx`
 **Context:** SPEC L3 desktop (grid `256px minmax(0,1fr)`, min-height 100vh, `page` bg; sidebar sticky 100vh, white, 1px right `border`, padding 24 16, gap 28; nav gap 4; items 44 high, padding 0 12, r12, gap 12, icon 22, 15/600; active `primary` on `primary-soft`; inactive `text-muted`, hover bg `page`; count badge min-width 22 h22 `accent`(= `cta`)/`on-accent` 12/800; footer block margin-top auto; main padding 32 40 64, gap 28, max 1240, banner slot at top). ≤1023: top bar sticky 56 white 1px bottom border padding 0 8: `Menu` 44 · logo + badge · spacer · action icon button 44 with count overlay; `Menu` opens a left drawer (width min(320, 85vw), `shadow-modal`) with the same items as 48-high rows; closes on navigation, overlay, Esc; main padding 20 16 56 (tablet 24 24 64), gap 20. ARCH §5.2 `ResponsiveSidebar`. AC3, AC8.
@@ -3011,7 +3011,7 @@ export function DashboardShell({ navLabel, badge, items, footer, topBarAction, c
 ---
 
 ### T31 — `ProviderLayout` (L3) and `AdminLayout` (L4)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/provider-layout.tsx`, `src/app/layouts/admin-layout.tsx`
 **Context:** SPEC L3 (Pro badge 22 high, padding 0 8, `warning-soft`/`warning-text` 11/700; business card padding 12, 1px `border`, r14, 40×40 r10 tile, business name 14/700 ellipsis + owner 12 subtle; **Switch to booking** `ArrowLeftRight` 20, 14/600 muted → `/`; **Log out** `LogOut` 14/600 muted hover `danger-text`; top-bar action Requests with the count), L4 (Admin badge `footer-bg` + white 11/700; admin card: initials avatar, name 14/700, "Super admin" 12 subtle; Log out; no Switch to booking; top-bar action Verification). D-d, D-e. AC3.
@@ -3130,7 +3130,7 @@ export function AdminLayout() {
 ---
 
 ### T32 — System pages S39, S40, S41 and `RouteErrorBoundary`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/errors/not-found-page.tsx`, `forbidden-page.tsx`, `error-page.tsx`, `route-error-boundary.tsx`
 **Context:** SPEC §5.E (empty-state pattern centred, padding 88 16; S39 generic/provider/request copy and buttons per area; S40 `Lock` + email + `Go to home` · `Log out`; S41 `TriangleAlert` warning tile, contact email, 12 mono subtle `Error ID: {id}`, `Try again` (reloads) · `Go to home`), §6.4. ARCH §5.6 (ApiError 404 → S39 variant by route, 403 → S40, else S41 with `requestId` or a client id). D-i. AC5, AC6.
@@ -3285,7 +3285,7 @@ export function RouteErrorBoundary() {
 ---
 
 ### T33 — Route guards
-- [ ] done
+- [x] done
 
 **Files:** `src/app/guards/guards.tsx`
 **Context:** ARCH §5.1 guard semantics; SPEC §8.4 (guest → `/login?next={path}`; guest `/admin*` → `/admin/login?next=…`; signed-in on `/login`/`/signup` → `/` (providers → `/dashboard`); customer (not provider) on `/dashboard*` → `/become-a-provider/{resume step}` (1 if not started); non-admin on `/admin*` → S40; admin on L2/L3 → S40), §6.4. D-a, D-c. Guards are UX only.
@@ -3376,7 +3376,7 @@ export function RequireAdmin({ children }: { children?: ReactNode }) {
 ---
 
 ### T34 — Placeholder pages per lazy chunk
-- [ ] done
+- [x] done
 
 **Files:** `src/app/chunks/{home,public,auth,customer,onboarding,provider,admin}.tsx`
 **Context:** Milestone "Out of scope": pages render an H1 with the SPEC title only. SPEC §4.1 screen names. ARCH §5.1 chunks. D-h. L2 pages use `CustomerPageHeader` (list pages with tabs) or `BackLink` + H1 (detail pages).
@@ -3439,7 +3439,7 @@ export function LeaveReviewPage() {
 ---
 
 ### T35 — Route table, router, root layout, boot wiring, test render helper
-- [ ] done
+- [x] done
 
 **Files:** `src/app/routes.tsx`, `src/app/router.tsx`, `src/app/layouts/root-layout.tsx`, `src/main.tsx`, `src/mocks/dev/DevPanel.tsx`, `src/test/render.tsx`, delete `src/app/placeholder-page.tsx`, `src/app/chunks/dev.tsx` (stub)
 **Context:** ARCH §5.1 route map (guards, layouts, chunks; Should/Could routes gated by `lib/features.ts`), §5.6 (route `errorElement`), §4.4 boot order (`enableMocks` → `bootstrapAuth` → render). SPEC §5.E (S39/S41 by area). D-a, D-b, D-c, D-h. ARCH §9.4 (`render.tsx` with a memory router).
@@ -3713,7 +3713,7 @@ Also remove the comment `/** Router wrapper arrives in M03. */`.
 ---
 
 ### T36 — Routing tests: redirect matrix, 404s, error page, logout (AC4, AC5, AC6)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/routes.test.tsx`
 **Context:** Milestone AC4 (verbatim matrix), AC5, AC6, SPEC §8.1 A4, §8.4. `signInAs` (`src/test/sign-in.ts`) personas: `customer` (Olivia), `provider` (Marcus), `providerDraft` (Kasun, step 3), `admin`.
@@ -3841,7 +3841,7 @@ If a test fails because of a real bug in T23–T35 code, fix that code in this t
 ---
 
 ### T37 — Dev demo page `/dev/ui` (AC7)
-- [ ] done
+- [x] done
 
 **Files:** `src/app/chunks/dev.tsx`
 **Context:** Milestone AC7 (DataList table/cards, ResponsiveDialog dialog/sheet, toast 4 s / 8 s pausing on hover/focus). Dev-only route registered in T35 (`import.meta.env.DEV`). Shows every shared component once so later milestones and the human checkpoint can see them.
@@ -3864,7 +3864,7 @@ If the toast does **not** pause while focused, **STOP** and write a blocker (opt
 ---
 
 ### T38 — Acceptance walk-through
-- [ ] done
+- [x] done
 
 **Files:** `docs/plans/PLAN-M03-app-shell.md` (tick boxes), `docs/milestones/M00-index.md` (M03 status → Done, if the index tracks status)
 **Context:** Milestone M03 acceptance criteria 1–9.
@@ -3900,3 +3900,22 @@ Fix any ❌ that is a bug in this milestone's code (commit as `fix(web): … (M0
 - Milestone AC7 says the toast "pauses on hover/focus". Sonner pauses on hover. Focus pausing is checked manually in T37 and becomes a blocker if missing.
 - SPEC L3 lists "swipe left" to close the drawer. AC3 doesn't require it, and Radix Sheet has no swipe, so it's left out.
 - Nice-to-haves (not in this plan): move focus to the page H1 after route changes (SPEC §9 "Focus management"; the skip link and `main#main` are in place); a Playwright no-horizontal-scroll smoke test per route (planned for M21); route-level `<title>` per screen; a lint rule that bans `outline-none` in `components/ui` except on menu/content containers.
+
+## Acceptance results
+Human browser checks (AC1, AC3, AC6–AC8, T6/T31/T37 checkpoints) confirmed OK by the user after this table was written; ⚠️ items below are resolved.
+
+Automated (`pnpm verify` green; web suite 26 files / 132 tests). Browser-only items were **not** exercised by the executor (no browser in the session); they rely on the human checkpoints.
+
+| AC | Result | Note |
+|---|---|---|
+| 1 | ⚠️ not browser-verified | L1 nav, footer, nav sheet built (T24–T28); focus trap/Esc/overlay come from the Radix Sheet. Needs a human look at 390/1440. |
+| 2 | ✅ (unit) | `nav-config.test.ts` covers avatar menu and top links per role. |
+| 3 | ✅ (unit) / ⚠️ visual | Sidebar item lists and flag gating tested; `routes.test.tsx` asserts L3/L4 nav render. Drawer behaviour and visuals need a human check. |
+| 4 | ✅ | `routes.test.tsx` redirect matrix, S40 cases and logout green. |
+| 5 | ✅ | `/nope`, `/dashboard/nope`, `/admin/nope`, `/dashboard/settings` tested. |
+| 6 | ✅ (test) / ⚠️ | `/dev/throw` renders S41 with an Error ID in L1 (tested); `Try again` reload not clicked in a browser. |
+| 7 | ✅ (unit) / ⚠️ | `data-list`, `responsive-dialog`, `toast` tests green. Toast pause on focus and the 4 s / 8 s timings are unchecked; `/dev/ui` exists for the human check. |
+| 8 | ⚠️ not verified | No-horizontal-scroll, focus rings and 44px targets need a browser walk-through. |
+| 9 | ✅ | `loading-region` and `use-delayed-flag` tests green. |
+
+Not done: `docs/milestones/M00-index.md` M03 status was left as "Not started" (instructions forbid editing milestones). `m03-done` tag not created until the ⚠️ items are confirmed.

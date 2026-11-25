@@ -1,0 +1,35 @@
+import { BackLink } from '@/components/back-link';
+import { CustomerPageHeader } from '../layouts/customer-layout';
+import { PlaceholderScreen } from '../placeholder-screen';
+
+export function RequestFormPage() {
+  return <PlaceholderScreen title="Request form" />;
+}
+export function RequestSentPage() {
+  return <PlaceholderScreen title="Request sent" />;
+}
+export function MyRequestsPage() {
+  return <CustomerPageHeader title="My requests" tabs />;
+}
+export function SavedPage() {
+  return <CustomerPageHeader title="Saved providers" tabs />;
+}
+export function AccountPage() {
+  return <CustomerPageHeader title="Account settings" tabs />;
+}
+export function CustomerRequestPage() {
+  return (
+    <>
+      <BackLink to="/requests">Back to my requests</BackLink>
+      <PlaceholderScreen frame="bare" title="Request detail" />
+    </>
+  );
+}
+export function LeaveReviewPage() {
+  return (
+    <>
+      <BackLink to="..">Back to request</BackLink>
+      <PlaceholderScreen frame="bare" title="Leave a review" />
+    </>
+  );
+}
