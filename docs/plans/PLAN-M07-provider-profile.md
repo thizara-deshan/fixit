@@ -486,7 +486,7 @@ describe('M07 fixtures', () => {
 **Commit:** `git commit -m "feat(fixtures): new, paused, suspended providers and a customer at the open limit (M07-T6)"`
 
 ### T7 — Mock projections: profile, reviews page, eligibility input
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/profile.ts`, `src/mocks/lib/profile.test.ts`
 **Context:** BR-01, BR-41 (`isListed` in `mocks/lib/cards.ts` already checks owner `status === 'active'`), BR-27, S3.E13, decision 003.
 **Do:** create
