@@ -950,7 +950,7 @@ describe('initialTownId', () => {
 **Commit:** `git commit -m "feat(web): town prefill from last Discover loc (M08-T12)"`
 
 ### T13 — Request rule banner copy
-- [ ] done
+- [x] done
 **Files:** `src/lib/error-copy.ts`, `src/lib/error-copy.test.ts`
 **Context:** SPEC S12.E6 (+ blocked-state copy for the limits), §6.3. Copy is written once in `lib/error-copy.ts` (CLAUDE).
 **Do:** Add to `error-copy.ts`:
