@@ -130,7 +130,7 @@ describe('formatInColombo', () => {
 ---
 
 ### T4 — Button variants and sizes (SPEC §2.9)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/button.tsx`, `src/mocks/dev/DevPanel.tsx`
 **Context:** SPEC §2.9 button rows, §6.10 danger button, §9 focus ring (the global `:focus-visible` outline in `globals.css`, so primitives must **not** set `outline-none` or `ring-*`). ARCH §5.3 variant names. Touch targets ≥ 44 on phone.

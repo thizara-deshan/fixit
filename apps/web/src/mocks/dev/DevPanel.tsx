@@ -147,7 +147,7 @@ function MockControlsSections() {
           {LATENCIES.map((l) => (
             <Button
               key={l}
-              variant={controls.latency === l ? 'default' : 'outline'}
+              variant={controls.latency === l ? 'primary' : 'outline'}
               className="h-auto min-h-11 whitespace-normal"
               aria-pressed={controls.latency === l}
               onClick={() => {
