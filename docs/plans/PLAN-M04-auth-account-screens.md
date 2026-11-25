@@ -2042,7 +2042,7 @@ it('customer credentials → generic error; admin → /admin', async () => {
 **Commit:** `git commit -m "feat(web): S29 admin sign-in screen (M04-T29)"`
 
 ### T30 — `/auth/google/done`
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/google-done-page.tsx`, `google-done-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** ARCH §6.1 Google, milestone note "refresh → go to `next`"; SPEC S6.E2 (provider intent → `/become-a-provider/1`).

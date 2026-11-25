@@ -1,5 +1,3 @@
-import { PlaceholderScreen } from '../placeholder-screen';
-
 export { LoginPage } from '@/features/auth/pages/login-page';
 
 export { SignupPage } from '@/features/auth/pages/signup-page';
@@ -8,9 +6,7 @@ export { CheckEmailPage } from '@/features/auth/pages/check-email-page';
 
 export { ConfirmEmailPage } from '@/features/auth/pages/confirm-email-page';
 
-export function GoogleDonePage() {
-  return <PlaceholderScreen frame="card" title="Signing you in" />;
-}
+export { GoogleDonePage } from '@/features/auth/pages/google-done-page';
 
 export { ForgotPasswordPage } from '@/features/auth/pages/forgot-password-page';
 
