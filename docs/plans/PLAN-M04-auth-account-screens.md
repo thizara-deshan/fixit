@@ -2006,7 +2006,7 @@ it('bad token → expired state', async () => {
 **Commit:** `git commit -m "feat(web): S10 reset password screen (M04-T28)"`
 
 ### T29 — S29 Admin sign-in
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/admin-login-page.tsx`, `admin-login-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S29 (all elements; no Google, no sign-up link), §6.6 admin; AC7; D-2.
