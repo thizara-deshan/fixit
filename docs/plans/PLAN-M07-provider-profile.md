@@ -968,7 +968,7 @@ export function useBodyClass(classes: string): void {
 **Commit:** `git commit -m "feat(web): body class hook (M07-T13)"`
 
 ### T14 — Verified badge with tooltip
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-profile/components/verified-tip.tsx`
 **Context:** S3.E5, BR-20, D-7, SPEC §2.9 Tooltip (`tooltip-bg`, width 280, r12, pad 12×14, 13/19 500 white, bold title), AC2, AC5 (clamped). Reuse the look of `components/verified-badge.tsx` (do not change that component).
 **Do:**
