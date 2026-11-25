@@ -2155,7 +2155,7 @@ it('confirmed user sees no banner', async () => {
 **Commit:** `git commit -m "feat(web): unconfirmed-email account banner (M04-T31)"`
 
 ### T32 — `DiscardChangesGuard` (§6.7)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/discard-changes-guard.tsx`
 **Context:** SPEC §6.7 copy; §6.10 (dialog → bottom sheet on phone via `ResponsiveDialog`); D-8.
