@@ -1313,7 +1313,7 @@ The form only calls `register('mobile')` when `mobile === null` (T23). Pass a no
 **Commit:** `git commit -m "feat(web): request mobile field (M08-T20)"`
 
 ### T21 — `ProviderMiniRow`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/provider-mini-row.tsx`
 **Context:** SPEC S12 summary "provider mini row (56 photo r12, name 17/700, Verified badge or `Not yet verified`, rating line)"; phone "compact provider row (48 photo, name, rating)". Reuse `StatusPill kind="trust"`, `Stars`, `CategoryIcon`.
 **Do:**
