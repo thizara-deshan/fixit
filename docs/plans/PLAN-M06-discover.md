@@ -1009,7 +1009,7 @@ Export `FilterGroupsProps` from `filter-groups.tsx` for this.
 **Commit:** `git commit -m "feat(web): discover desktop filter panel (M06-T14)"`
 
 ### T15 — Filters sheet and phone/tablet toolbar
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/filters-sheet.tsx`
 **Context:** S2 phone items 3–4; §2.9 Bottom sheet; §6.10; AC6. Reuse `components/ui/sheet` (don't fork it: pass classes via `className`), `useMediaQuery(MQ.sm)`, `appliedFilterCount`, `showCountLabel`.
 **Do:**
