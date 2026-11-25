@@ -1034,7 +1034,7 @@ Also update `SkeletonFeaturedCard` in `src/components/skeletons.tsx`: image bloc
 **Commit:** `git commit -m "feat(web): featured provider card (M05-T15)"`
 
 ### T16 — Featured section (S1.E9)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/featured-section.tsx`
 **Context:** S1.E9, BR-08, AC1, AC6. Query is owned by the page (shared with the hero floating card), so this takes the query result as a prop.
