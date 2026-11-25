@@ -2353,7 +2353,7 @@ describe('nav config', () => {
 ---
 
 ### T24 — Layout parts: Logo, SkipLink, OfflineBanner, BannerSlot
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/logo.tsx`, `skip-link.tsx`, `offline-banner.tsx`, `banner-slot.tsx`
 **Context:** SPEC L1 logo (34×34 `primary` tile r10 with white "F" 17/800 + "Fixit" `text-logo`; footer: white tile with `primary` F, "Fixit" white), §9 Skip link (first focusable element of every layout), §6.3 Offline (thin `warning-soft` banner under the nav/top bar, aria-live polite, `You're offline. Some things won't work until you reconnect.`), §6.8 placement + "at most 2 banners".
