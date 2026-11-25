@@ -5,7 +5,15 @@ import { authStore } from '@/lib/auth-store';
 import { ResponsiveDialog } from './responsive-dialog';
 
 /** SPEC §6.7. One per page (D-8). Never blocks once signed out, so expiry/logout redirects pass. */
-export function DiscardChangesGuard({ when }: { when: boolean }) {
+export function DiscardChangesGuard({
+  when,
+  title = 'Discard changes?',
+  description = "What you've entered won't be saved.",
+}: {
+  when: boolean;
+  title?: string;
+  description?: string;
+}) {
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       when &&
@@ -29,8 +37,8 @@ export function DiscardChangesGuard({ when }: { when: boolean }) {
       onOpenChange={(open) => {
         if (!open && blocker.state === 'blocked') blocker.reset();
       }}
-      title="Discard changes?"
-      description="What you've entered won't be saved."
+      title={title}
+      description={description}
       footer={
         <>
           <Button

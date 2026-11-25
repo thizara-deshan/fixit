@@ -1156,7 +1156,7 @@ describe('toBlock', () => {
 **Commit:** `git commit -m "feat(web): S12 blocked-state mapping (M08-T15)"`
 
 ### T16 — `DiscardChangesGuard` title and description props
-- [ ] done
+- [x] done
 **Files:** `src/components/discard-changes-guard.tsx`
 **Context:** SPEC S12.E5: `Discard this request?` / `Your details won't be saved.` (S12-specific copy; §6.7 generic copy stays the default).
 **Do:** Change the signature to
