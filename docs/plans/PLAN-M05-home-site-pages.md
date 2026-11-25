@@ -306,7 +306,7 @@ describe('selectFeatured (BR-08)', () => {
 **Commit:** `git commit -m "feat(contracts): top-rated comparator and featured selection (M05-T3)"`
 
 ### T4 — `ENDPOINTS` rows for `GET /catalog` and `GET /providers/featured`
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCHITECTURE §3.2 rows 1 and 3.

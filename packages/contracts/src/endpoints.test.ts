@@ -40,4 +40,18 @@ describe('ENDPOINTS', () => {
     ] as const)
       expect('response' in ENDPOINTS[id]).toBe(false); // 204
   });
+  it('M05 catalog rows match ARCHITECTURE §3.2', () => {
+    expect(ENDPOINTS.catalog_get).toMatchObject({
+      method: 'GET',
+      path: '/catalog',
+      access: ['public'],
+      domain: 'catalog',
+    });
+    expect(ENDPOINTS.providers_featured).toMatchObject({
+      method: 'GET',
+      path: '/providers/featured',
+      access: ['public'],
+      domain: 'catalog',
+    });
+  });
 });
