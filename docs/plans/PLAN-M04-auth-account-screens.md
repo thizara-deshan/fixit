@@ -1377,7 +1377,7 @@ describe('useUpdateMe', () => {
 **Commit:** `git commit -m "feat(web): PasswordInput and label aside slot (M04-T20)"`
 
 ### T21 — Shared: `SubmitButton` and `FormErrorBanner`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/submit-button.tsx`, `src/components/form-error-banner.tsx`
 **Context:** SPEC §6.1 submitting buttons (label → `…ing` form, 16 px spinner, fixed width, disabled, `aria-busy`), §6.3 form banner (danger, top of form, scrolled into view).
