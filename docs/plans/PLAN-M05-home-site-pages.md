@@ -1116,7 +1116,7 @@ export function StepsGrid({ steps }: { steps: readonly Step[] }) {
 **Commit:** `git commit -m "feat(web): steps grid (M05-T17)"`
 
 ### T18 — CTA band (S1.E12 / S4.E6)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/components/cta-band.tsx`
 **Context:** S1.E12, S4.E6, S1 phone item 6, AC5; 01-home-desktop.png blue band (`cta` button + outline `Learn more` on blue). Reuses `useProviderCta` (T10), `Button` (`cta` variant).
