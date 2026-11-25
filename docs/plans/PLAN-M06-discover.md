@@ -51,7 +51,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — `DiscoverQuery` and `DiscoverResult` schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/catalog/schemas.ts`, `packages/contracts/src/catalog/schemas.test.ts`
 **Context:** ARCH §2.6; SPEC §8.2 (invalid → defaults). `SortKey` already exists in `common/enums.ts`; `paginated` in `common/pagination.ts`.
 **Do:**
@@ -125,7 +125,7 @@ describe('DiscoverQuery', () => {
 **Commit:** `git commit -m "feat(contracts): DiscoverQuery and DiscoverResult schemas (M06-T1)"`
 
 ### T2 — `matchCategory` (BR-02)
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/search/match.ts`, `packages/contracts/src/search/match.test.ts`, `packages/contracts/src/index.ts`
 **Context:** PRODUCT BR-02; ARCH §2.6.
 **Do:** create `search/match.ts`:
@@ -191,7 +191,7 @@ describe('matchCategory (BR-02)', () => {
 **Commit:** `git commit -m "feat(contracts): matchCategory BR-02 (M06-T2)"`
 
 ### T3 — `RATING_STEPS`, `PRICE_STEPS`, `normalizeDiscoverQuery`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/search/match.ts`, `packages/contracts/src/search/match.test.ts`
 **Context:** BR-03/04/05; ARCH §2.6 ("unknown cat/loc ids dropped"), §7.6 (`text` null when BR-02 matches, the category joins `cats`).
 **Do:** append to `match.ts`:
@@ -278,7 +278,7 @@ describe('normalizeDiscoverQuery', () => {
 **Commit:** `git commit -m "feat(contracts): normalizeDiscoverQuery and filter steps (M06-T3)"`
 
 ### T4 — `compareProviders` for `reviews` and `town` (BR-06)
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/search/compare.ts`, `packages/contracts/src/search/compare.test.ts`
 **Context:** BR-06; D-4. `selectFeatured` keeps calling `compareProviders('rating')`.
 **Do:** replace the top part of `compare.ts` (everything above `export const FEATURED_LIMIT`) with:
@@ -373,7 +373,7 @@ describe('compareProviders(rating) ties', () => {
 **Commit:** `git commit -m "feat(contracts): compareProviders reviews and town sorts (M06-T4)"`
 
 ### T5 — `providers_search` endpoint entry
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.2 row `GET /providers` (Pub, DiscoverQuery → DiscoverResult, refs F-06 F-07 F-08 S2).
 **Do:** extend the catalog import to `import { CatalogResponse, DiscoverQuery, DiscoverResult, ProviderCard } from './catalog/schemas';` and add after `providers_featured`:
@@ -400,7 +400,7 @@ describe('compareProviders(rating) ties', () => {
 **Commit:** `git commit -m "feat(contracts): GET /providers endpoint entry (M06-T5)"`
 
 ### T6 — Mock search engine `discoverSearch`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/discover.ts`, `src/mocks/lib/discover.test.ts`
 **Context:** BR-01…BR-07, ARCH §7.6 (base = all filters except category; counts from base; total and page with categories); D-3. Reuse `listedCards`, `isListed` from `mocks/lib/cards.ts`.
 **Do:** create `discover.ts`:
@@ -556,7 +556,7 @@ If `FxProvider` spread trips TypeScript (e.g. `id` is a branded type), adjust th
 **Commit:** `git commit -m "feat(web): mock discover search engine (M06-T6)"`
 
 ### T7 — `GET /providers` MSW handler
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/catalog.ts`, `src/mocks/handlers/catalog.test.ts`
 **Context:** ARCH §4.3 (`mockEndpoint` parses `query` with the registry schema, applies access, honours forced errors).
 **Do:** in `catalog.ts` import `discoverSearch` from `'../lib/discover'` and add as the **last** array entry:
@@ -590,7 +590,7 @@ describe('GET /providers', () => {
 **Commit:** `git commit -m "feat(web): GET /providers mock handler (M06-T7)"`
 
 ### T8 — Query key, api and `useDiscover` hook
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/features/discover/api.ts`, `src/features/discover/hooks.ts`, `src/features/discover/hooks.test.tsx`
 **Context:** ARCH §4.2; D-5. `api.ts` needs `writeDiscover`, so this task creates `url-state.ts` with only `readDiscover` and `writeDiscover`; T9 replaces it with the full file.
 **Do:**
@@ -644,7 +644,7 @@ describe('useDiscover', () => {
 **Commit:** `git commit -m "feat(web): useDiscover hook and query key (M06-T8)"`
 
 ### T9 — URL state helper `url-state.ts`
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/url-state.ts`, `src/features/discover/url-state.test.tsx`
 **Context:** ARCH §5.4; SPEC §8.2; D-1, D-2; S2 phone toolbar badge count rule.
 **Do:** full file:
@@ -787,7 +787,7 @@ describe('url-state', () => {
 **Commit:** `git commit -m "feat(web): discover URL state helper (M06-T9)"`
 
 ### T10 — Last Discover URL in session
-- [ ] done
+- [x] done
 **Files:** `src/lib/last-discover.ts`, `src/lib/last-discover.test.ts`
 **Context:** SPEC §8.2 "Back to results"; ARCH §5.4; D-7.
 **Do:**
@@ -835,7 +835,7 @@ describe('last-discover', () => {
 **Commit:** `git commit -m "feat(web): remember last discover URL (M06-T10)"`
 
 ### T11 — Results copy helpers
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/copy.ts`, `src/features/discover/copy.test.ts`
 **Context:** S2.E8 copy; D-8.
 **Do:**
@@ -894,7 +894,7 @@ describe('discover copy', () => {
 **Commit:** `git commit -m "feat(web): discover results copy helpers (M06-T11)"`
 
 ### T12 — `ResultCard` (S2.E10)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/result-card.tsx`
 **Context:** S2.E10, S2 phone item 5; 04-discover-plumbing-austin-desktop.png, the card at right (photo 132, name + badge, stars row, meta row, bio, right column price + `View profile` separated by a vertical divider). Reuse `CategoryIcon`, `Stars`, `StatusPill` (`kind: 'trust'`, `kind: 'availability'`), `priceParts`, `Button`. BR-07: no distance.
 **Do:** skeleton (fill the markup exactly with these classes):
@@ -953,7 +953,7 @@ States: verified / not verified / paused / 0 reviews / no photo — all from pro
 **Commit:** `git commit -m "feat(web): discover result card (M06-T12)"`
 
 ### T13 — Filter groups (S2.E3–E7)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/filter-groups.tsx`
 **Context:** S2.E3–E7 copy/states; 04-discover desktop left panel; §2.9 Checkbox row, Option row, Toggle. Reuse `components/ui/checkbox`, `components/ui/switch`, `Stars` (showValue false). Phone rows 44 high.
 **Do:** one component used by the desktop panel and the sheet:
@@ -987,7 +987,7 @@ All copy exactly as SPEC S2.E3–E7.
 **Commit:** `git commit -m "feat(web): discover filter groups (M06-T13)"`
 
 ### T14 — Desktop filter panel (S2.E2)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/filter-panel.tsx`
 **Context:** S2 desktop layout item 2; 04-discover desktop, left panel. Visible only `lg` and up.
 **Do:**
@@ -1009,7 +1009,7 @@ Export `FilterGroupsProps` from `filter-groups.tsx` for this.
 **Commit:** `git commit -m "feat(web): discover desktop filter panel (M06-T14)"`
 
 ### T15 — Filters sheet and phone/tablet toolbar
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/filters-sheet.tsx`
 **Context:** S2 phone items 3–4; §2.9 Bottom sheet; §6.10; AC6. Reuse `components/ui/sheet` (don't fork it: pass classes via `className`), `useMediaQuery(MQ.sm)`, `appliedFilterCount`, `showCountLabel`.
 **Do:**
@@ -1072,7 +1072,7 @@ States: closed; open with badge 0; open with count loading (`Show providers`); o
 **Commit:** `git commit -m "feat(web): discover filters sheet (M06-T15)"`
 
 ### T16 — Search bar (discover variant, S2.E1)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/discover-search-bar.tsx`
 **Context:** S2.E1; §2.9 Search bar discover variant (radius 16, pad 6, 56 high, `shadow-search-sm`); phone stacks like S1. Copy as S1.E4 (`Service`, `What service do you need?`, `Location`, `All locations`, `Search`). Pattern: copy the markup of `features/site/components/hero-search.tsx` (not import — it navigates and has chips); do **not** render the Popular chips.
 **Do:**
@@ -1093,7 +1093,7 @@ interface Props {
 **Commit:** `git commit -m "feat(web): discover search bar (M06-T16)"`
 
 ### T17 — Results header with sort (S2.E8, S2.E9)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/results-header.tsx`
 **Context:** S2.E8/E9; desktop header row (H1 left, `Sort by` select right); phone H1 22/30 via `text-title-lg`. First check `globals.css`: `text-title-lg` must have a ≤ 640px override to 22/30. If it doesn't, STOP and write a blocker (don't add or change tokens).
 **Do:**
@@ -1128,7 +1128,7 @@ export function SortSelect({ value, onChange, className }: { value: SortKey; onC
 **Commit:** `git commit -m "feat(web): discover results heading and sort (M06-T17)"`
 
 ### T18 — `DiscoverPage` assembly and states
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/pages/discover-page.tsx`, `src/app/chunks/public.tsx`
 **Context:** S2 desktop + phone layout; §6.1 (result skeleton ×4, 150 ms, `aria-busy`), §6.2 (empty, `SearchX`), §6.3 section error; AC1–AC7; D-5, D-7. Reuse `useCatalog` (`features/site/hooks`), `LoadingRegion`, `SkeletonResultCard`, `EmptyState`, `SectionError`, `Pagination`.
 **Do:**
@@ -1185,7 +1185,7 @@ States covered: first load (skeleton after 150 ms), results, 0 results (empty), 
 **Commit:** `git commit -m "feat(web): discover page (M06-T18)"`
 
 ### T19 — Discover page integration tests
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/pages/discover-page.test.tsx`
 **Context:** AC1–AC4, AC6 (badge, live count), AC7; `renderRoute` from `@/test/render`; `setViewportWidth` from `@/test/media`; `armForcedError`; `db()` to add providers for pagination (see T6 `addClones` — copy the helper).
 **Do/Test:**
@@ -1271,7 +1271,7 @@ If `armForcedError` only arms the next call and the 500 is consumed by a retry, 
 **Commit:** `git commit -m "test(web): discover page behaviour (M06-T19)"`
 
 ### T20 — Acceptance walk-through
-- [ ] done
+- [x] done
 **Files:** `docs/plans/PLAN-M06-discover.md` (ticks), `docs/milestones/M00-index.md` (M06 → Done)
 **Do:** run `pnpm verify`, then `pnpm dev:mock` and check each criterion; record any failure under Blockers instead of fixing out of scope.
 | AC | Check |

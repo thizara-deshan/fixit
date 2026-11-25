@@ -1,8 +1,10 @@
 import { ENDPOINTS as E, selectFeatured } from '@fixit/contracts';
 import { mockEndpoint } from '../lib/endpoint';
 import { listedCards } from '../lib/cards';
+import { discoverSearch } from '../lib/discover';
+import { listedProviderOr404, publicReviewsPage, toPublicProfile } from '../lib/profile';
 
-// Keep /providers/featured before /providers/:id (M07).
+// Order matters: /providers/featured before /providers/:id.
 export const catalogHandlers = [
   mockEndpoint(E.catalog_get, ({ db: d }) => {
     const districts = [...d.districts].sort((a, b) => a.order - b.order);
@@ -24,4 +26,12 @@ export const catalogHandlers = [
     };
   }),
   mockEndpoint(E.providers_featured, ({ db: d }) => selectFeatured(listedCards(d))),
+  mockEndpoint(E.providers_search, ({ db: d, query }) => discoverSearch(d, query)),
+  mockEndpoint(E.providers_get, ({ db: d, params }) =>
+    toPublicProfile(d, listedProviderOr404(d, params.id ?? '')),
+  ),
+  mockEndpoint(E.providers_reviews, ({ db: d, params, query }) => {
+    const p = listedProviderOr404(d, params.id ?? '');
+    return publicReviewsPage(d, p.id, query.page);
+  }),
 ];

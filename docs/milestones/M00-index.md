@@ -17,8 +17,8 @@ Gate decisions (2026-11-22):
 | [M03](M03-app-shell.md) | App shell, layouts & shared states | A | M02 | 1½ | Done |
 | [M04](M04-auth-account-screens.md) | Auth & account screens | B | M03 | 1½ | Done |
 | [M05](M05-home-site-pages.md) | Home & site pages | B | M03 | 1 | Done |
-| [M06](M06-discover.md) | Discover | B | M05 | 1½ | Not started |
-| [M07](M07-provider-profile.md) | Provider public profile | B | M04, M06 | 1 | Not started |
+| [M06](M06-discover.md) | Discover | B | M05 | 1½ | Done |
+| [M07](M07-provider-profile.md) | Provider public profile | B | M04, M06 | 1 | Done |
 | [M08](M08-request-form.md) | Request form & confirmation | B | M07 | 1 | Not started |
 | [M09](M09-my-requests-reviews.md) | My requests, cancel & leave a review | B | M08 | 1½ | Not started |
 | [M10](M10-provider-requests.md) | Provider overview & requests | B | M08 | 1½ | Not started |

@@ -739,7 +739,7 @@ This table is mirrored 1:1 by `ENDPOINTS` (§2.7) and is the authorization test 
 | GET | /providers | Pub | listed only (BR-01) | DiscoverQuery | DiscoverResult | F-06 F-07 F-08 S2 |
 | GET | /providers/featured | Pub | BR-08 (verified, ≥ 1 review, top 4) | — | ProviderCard[] | F-05 S1 |
 | GET | /providers/:id | Pub | unlisted/suspended/draft → 404 | — | ProviderPublicProfile | F-09 S3 |
-| GET | /providers/:id/reviews | Pub | visible only; provider listed | PageQuery + `size` (5\|10) | Paginated<PublicReview> | S3.E11 F-23 display |
+| GET | /providers/:id/reviews | Pub | visible only; provider listed | PageQuery (window: decision 003) | Paginated<PublicReview> | S3.E11 F-23 display |
 | GET | /me/saved | U | self; listed providers only | — | SavedProviderList | F-10 (Could) S17 |
 | PUT | /me/saved/:providerId | U | self; not own listing | — | 204 | F-10 S3.E8 A10 |
 | DELETE | /me/saved/:providerId | U | self | — | 204 | F-10 S17 A10 |

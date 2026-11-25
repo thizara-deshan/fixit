@@ -1,12 +1,6 @@
-import { PlaceholderScreen } from '../placeholder-screen';
+export { DiscoverPage } from '@/features/discover/pages/discover-page';
 
-export function DiscoverPage() {
-  return <PlaceholderScreen title="Discover" />;
-}
-
-export function ProviderProfilePage() {
-  return <PlaceholderScreen title="Provider profile" />;
-}
+export { ProviderProfilePage } from '@/features/provider-profile/pages/provider-profile-page';
 
 export { ForProvidersPage } from '@/features/site/pages/for-providers-page';
 

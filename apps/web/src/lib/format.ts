@@ -33,6 +33,10 @@ export const formatDateLong = (value: string | Date): string =>
 export const formatDateShort = (value: string | Date): string =>
   formatInColombo(toInstant(value), 'EEE, d MMM');
 /** `21 Nov 2026, 3:42 PM` (history) */
+/** `12 Sep 2026` (S3.E11 review date) */
+export const formatReviewDate = (value: string | Date): string =>
+  formatInColombo(toInstant(value), 'd MMM yyyy');
+
 export const formatDateTime = (value: string | Date): string =>
   formatInColombo(toInstant(value), 'd MMM yyyy, h:mm a');
 
