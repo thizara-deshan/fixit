@@ -1954,7 +1954,7 @@ describe('RequestSentPage (S13)', () => {
 **Commit:** `git commit -m "test(web): request sent behaviour (M08-T29)"`
 
 ### T30 — Acceptance checks
-- [ ] done
+- [x] done
 **Files:** this plan (tick boxes); `docs/milestones/M00-index.md` only if it tracks milestone status (tick M08 there in the same format as M07).
 **Do:** Run `pnpm verify` (green). Then `pnpm dev:mock` and walk each criterion. Use the DevPanel to switch personas, set Latency `slow` for loading checks, and **Reset demo data** between checks that create requests.
 | AC | Check |
