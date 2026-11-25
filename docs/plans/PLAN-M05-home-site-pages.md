@@ -583,7 +583,7 @@ describe('site hooks', () => {
 **Commit:** `git commit -m "feat(web): catalog and featured queries (M05-T7)"`
 
 ### T8 — `CategoryIcon` shared component
-- [ ] done
+- [x] done
 
 **Files:** `src/components/category-icon.tsx`
 **Context:** SPEC §2.10 category rows; Notes for planner ("one shared component").
