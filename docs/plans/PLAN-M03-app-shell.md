@@ -3864,7 +3864,7 @@ If the toast does **not** pause while focused, **STOP** and write a blocker (opt
 ---
 
 ### T38 — Acceptance walk-through
-- [ ] done
+- [x] done
 
 **Files:** `docs/plans/PLAN-M03-app-shell.md` (tick boxes), `docs/milestones/M00-index.md` (M03 status → Done, if the index tracks status)
 **Context:** Milestone M03 acceptance criteria 1–9.
@@ -3902,6 +3902,8 @@ Fix any ❌ that is a bug in this milestone's code (commit as `fix(web): … (M0
 - Nice-to-haves (not in this plan): move focus to the page H1 after route changes (SPEC §9 "Focus management"; the skip link and `main#main` are in place); a Playwright no-horizontal-scroll smoke test per route (planned for M21); route-level `<title>` per screen; a lint rule that bans `outline-none` in `components/ui` except on menu/content containers.
 
 ## Acceptance results
+Human browser checks (AC1, AC3, AC6–AC8, T6/T31/T37 checkpoints) confirmed OK by the user after this table was written; ⚠️ items below are resolved.
+
 Automated (`pnpm verify` green; web suite 26 files / 132 tests). Browser-only items were **not** exercised by the executor (no browser in the session); they rely on the human checkpoints.
 
 | AC | Result | Note |
