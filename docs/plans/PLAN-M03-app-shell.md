@@ -197,7 +197,7 @@ export { Button, buttonVariants };
 ---
 
 ### T5 — Restyle overlay primitives (dialog, sheet, dropdown-menu, popover, tooltip)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/ui/{dialog,sheet,dropdown-menu,popover,tooltip}.tsx`
 **Context:** SPEC §2.1 `overlay`, `tooltip-bg`; §2.5 `shadow-modal`, `shadow-tooltip`; §2.8 sheet slide 200 ms ease-out; §6.10; §9 focus ring.
