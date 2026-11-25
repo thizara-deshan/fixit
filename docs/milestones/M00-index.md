@@ -12,8 +12,8 @@ Gate decisions (2026-11-22):
 
 | ID | Title | Phase | Depends on | Est | Status |
 |---|---|---|---|---|---|
-| [M01](M01-foundation.md) | Foundation | A | — | 1 | Not started |
-| [M02](M02-data-layer-mocks.md) | Data layer & mock backend | A | M01 | 1½ | Not started |
+| [M01](M01-foundation.md) | Foundation | A | — | 1 | Done |
+| [M02](M02-data-layer-mocks.md) | Data layer & mock backend | A | M01 | 1½ | Done |
 | [M03](M03-app-shell.md) | App shell, layouts & shared states | A | M02 | 1½ | Not started |
 | [M04](M04-auth-account-screens.md) | Auth & account screens | B | M03 | 1½ | Not started |
 | [M05](M05-home-site-pages.md) | Home & site pages | B | M03 | 1 | Not started |
