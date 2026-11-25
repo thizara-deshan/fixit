@@ -1271,7 +1271,7 @@ If `armForcedError` only arms the next call and the 500 is consumed by a retry, 
 **Commit:** `git commit -m "test(web): discover page behaviour (M06-T19)"`
 
 ### T20 — Acceptance walk-through
-- [ ] done
+- [x] done
 **Files:** `docs/plans/PLAN-M06-discover.md` (ticks), `docs/milestones/M00-index.md` (M06 → Done)
 **Do:** run `pnpm verify`, then `pnpm dev:mock` and check each criterion; record any failure under Blockers instead of fixing out of scope.
 | AC | Check |
