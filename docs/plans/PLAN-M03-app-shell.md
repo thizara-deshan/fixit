@@ -82,7 +82,7 @@ Planner's decisions the executor must follow (they fill gaps between the milesto
 ---
 
 ### T2 — `formatInColombo()` in contracts
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/common/dates.ts`, `packages/contracts/src/common/dates.test.ts`
 **Context:** SPEC §1.3 date formats. D-g. `date-fns` and `@date-fns/tz` are already dependencies of contracts.

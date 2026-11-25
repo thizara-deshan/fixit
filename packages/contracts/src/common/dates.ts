@@ -1,4 +1,5 @@
 import { TZDate } from '@date-fns/tz';
+import { format } from 'date-fns';
 
 export const COLOMBO_TZ = 'Asia/Colombo';
 
@@ -26,4 +27,9 @@ export function colomboStartOfDay(isoDate: string): Date {
 export function addDays(isoDate: string, days: number): string {
   const [y, m, d] = parseIsoDate(isoDate);
   return new Date(Date.UTC(y, m - 1, d + days)).toISOString().slice(0, 10);
+}
+
+/** Formats an instant as seen on a wall clock in Asia/Colombo (date-fns pattern, e.g. 'EEE, d MMM yyyy'). Pure: the instant is passed in. */
+export function formatInColombo(instant: Date, pattern: string): string {
+  return format(new TZDate(instant.getTime(), COLOMBO_TZ), pattern);
 }
