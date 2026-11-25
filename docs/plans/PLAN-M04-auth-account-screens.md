@@ -1678,7 +1678,7 @@ describe('S5 Log in', () => {
 **Commit:** `git commit -m "feat(web): S5 log in screen (M04-T23)"`
 
 ### T24 — S6 Sign up
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/signup-page.tsx`, `signup-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S6 (title variants, fields, help line, consent, footer), A1, BR-35; AC1; D-1, D-3.
@@ -2551,6 +2551,7 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
   2. Make `RequireGuest` ignore signed-in users when a flag is set (e.g. `authStore` "justRegistered" or `location.state`) so `/signup` never redirects during this hand-off. Touches T13's guard.
   3. Poll until the S7 heading is in the DOM before `setSession` (works but is a test-shaped hack in production code).
 - **Recommendation:** option 1, as it keeps the guard rule (D-2) unchanged and removes the timing dependence.
+- **RESOLVED:** user chose option 1. S6 navigates with `state: { email, session }`; S7 (`CheckEmailPage`) calls `authStore.setSession` on mount, then replaces the history state with `{ email }`. The T24 success test waits for `me` with `waitFor`.
 - Work so far: T1–T23 committed. The T24 page and test, as written in the plan, are saved outside the repo and were not committed.
 
 ## Notes for review (planner)
