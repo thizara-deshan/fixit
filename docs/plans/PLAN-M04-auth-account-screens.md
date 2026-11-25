@@ -2581,3 +2581,21 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
 - A DevPanel "Expire session" button (clear the access token and the refresh entry) instead of arming two forced 401s for AC8.
 - A "Suspended (Ruwan)" DevPanel persona.
 - Clearing the React Query cache on `signOut('expired')` (ARCH §4.1 mentions it; M03 left it out).
+
+## Acceptance results
+`pnpm verify` green at `1c10ed1` (41 test files, 212 tests in web). "Auto" = covered by a passing automated test. "Human" = needs someone in a browser at 1440 and 390; not yet checked.
+
+| AC | Result | Note |
+|---|---|---|
+| 1 | Auto PASS; Human pending | T24 tests (three messages, focus, `This email already has an account.` + `Log in instead`). |
+| 2 | Auto PASS; Human pending | T25/T26 tests (S7 email, resend countdown, confirm, already confirmed, tampered token). Provider-intent path covered by the T26 test. |
+| 3 | Auto PASS; Human pending | T23 (Olivia → `/`, Marcus → `/dashboard`, `next`), T31 (Nimal banner + `Resend email`). |
+| 4 | Auto PASS | T23 test: `ruwan@fixit.test` → `Your account is suspended.` banner. |
+| 5 | Auto PASS; Human pending | T27 (same sent state for known/unknown email), T28 (mismatch, success → `/login`, old password 401, bad token → expired). The `Password updated…` toast and token reuse are not asserted separately. |
+| 6 | Auto PASS; Human partial | T36 tests cover save, S12 message, BR-23, wrong password, switch behaviours. Cards at 1440/390 confirmed by the user. Google → Sanduni → `You sign in with Google.` is not asserted end to end (T30 covers Sanduni sign-in). Plan text says `Bell & Sons.`; the real copy is `Bell & Sons Plumbing.` (see T36 blocker). |
+| 7 | PASS | grep: `/admin/login` appears only in `guards.tsx`, `routes.tsx` and `not-found-page.tsx` (a path check, not a link); `useLogout` is in `hooks.ts` (not `.tsx`). T29 test: Olivia → generic error, admin → `/admin`, no Google, no sign-up link. |
+| 8 | Auto PASS; Human pending | T36 session-expiry test: `/login?next=%2Faccount`, expiry banner, draft name restored. Password-fields-empty is not asserted. |
+| 9 | Human pending | Not covered by tests: slow-latency skeleton and `Logging in…`/`Creating account…`/`Saving…` labels, forced 500 on `auth_login`, and signed-in redirects away from `/login`, `/signup`, `/forgot-password` (RequireGuest tests in T13 cover the redirects). |
+| 10 | PASS | `pnpm test` green; T3, T14 and T12 cases present (`next.test.ts` ignores `https://evil.test`). |
+
+M04 is **not** ticked in `docs/milestones/M00-index.md`: AC 9 and the 1440/390 human checks above are outstanding.
