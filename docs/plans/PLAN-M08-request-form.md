@@ -260,7 +260,7 @@ export type CustomerRequestView = z.infer<typeof CustomerRequestView>;
 **Commit:** `git commit -m "feat(contracts): CustomerRequestView schema (M08-T2)"`
 
 ### T3 — `checkCreateRequest`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/rules.ts`, `packages/contracts/src/requests/rules.test.ts`
 **Context:** ARCH §2.8 signature; SPEC S12 blocked-state order, then the field rules; BR-16, BR-15, BR-23, BR-33, BR-34; `RuleCode` in `common/errors.ts`.
 **Do:** Add to `rules.ts`:
