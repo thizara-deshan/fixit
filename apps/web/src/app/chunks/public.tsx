@@ -14,6 +14,4 @@ export { AboutPage } from '@/features/site/pages/about-page';
 
 export { ContactPage } from '@/features/site/pages/contact-page';
 
-export function PrivacyPage() {
-  return <PlaceholderScreen title="Privacy" />;
-}
+export { PrivacyPage } from '@/features/site/pages/privacy-page';

@@ -1380,7 +1380,7 @@ Re-export `ContactPage` in `chunks/public.tsx`. If `VITE_CONTACT_EMAIL` is missi
 **Commit:** `git commit -m "feat(web): S11 contact page (M05-T22)"`
 
 ### T23 — Privacy page + S11 tests
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/pages/privacy-page.tsx`, `src/features/site/pages/site-pages.test.tsx`, `src/app/chunks/public.tsx`
 **Context:** S11 Privacy row, AC7.
