@@ -11,7 +11,7 @@ import {
   ResetPasswordBody,
   UpdateMeBody,
 } from './auth/schemas';
-import { CatalogResponse, ProviderCard } from './catalog/schemas';
+import { CatalogResponse, DiscoverQuery, DiscoverResult, ProviderCard } from './catalog/schemas';
 
 export type Access = 'public' | 'user' | 'provider' | 'admin';
 // user = signed-in non-admin (every user is a customer); provider = user with a published listing
@@ -204,6 +204,17 @@ export const ENDPOINTS = {
     owner: 'none',
     response: z.array(ProviderCard),
     refs: ['F-05', 'S1', 'BR-08'],
+  },
+  providers_search: {
+    id: 'providers_search',
+    domain: 'catalog',
+    method: 'GET',
+    path: '/providers',
+    access: ['public'],
+    owner: 'none',
+    query: DiscoverQuery,
+    response: DiscoverResult,
+    refs: ['F-06', 'F-07', 'F-08', 'S2'],
   },
 } as const satisfies Record<string, EndpointDef>;
 export type EndpointId = keyof typeof ENDPOINTS;

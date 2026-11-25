@@ -54,4 +54,13 @@ describe('ENDPOINTS', () => {
       domain: 'catalog',
     });
   });
+  it('M06 discover row matches ARCHITECTURE §3.2', () => {
+    expect(ENDPOINTS.providers_search).toMatchObject({
+      method: 'GET',
+      path: '/providers',
+      access: ['public'],
+      domain: 'catalog',
+      owner: 'none',
+    });
+  });
 });

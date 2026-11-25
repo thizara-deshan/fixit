@@ -373,7 +373,7 @@ describe('compareProviders(rating) ties', () => {
 **Commit:** `git commit -m "feat(contracts): compareProviders reviews and town sorts (M06-T4)"`
 
 ### T5 — `providers_search` endpoint entry
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.2 row `GET /providers` (Pub, DiscoverQuery → DiscoverResult, refs F-06 F-07 F-08 S2).
 **Do:** extend the catalog import to `import { CatalogResponse, DiscoverQuery, DiscoverResult, ProviderCard } from './catalog/schemas';` and add after `providers_featured`:
