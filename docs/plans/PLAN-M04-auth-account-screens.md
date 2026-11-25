@@ -258,7 +258,7 @@ describe('UpdateMeBody', () => {
 **Commit:** `git commit -m "feat(contracts): M04 auth and account schemas (M04-T3)"`
 
 ### T4 — Contracts: endpoint registry rows
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/endpoints.ts`, `endpoints.test.ts`
 **Context:** ARCH §3.1 (every remaining row), §2.7.
