@@ -1072,7 +1072,7 @@ States: closed; open with badge 0; open with count loading (`Show providers`); o
 **Commit:** `git commit -m "feat(web): discover filters sheet (M06-T15)"`
 
 ### T16 — Search bar (discover variant, S2.E1)
-- [ ] done
+- [x] done
 **Files:** `src/features/discover/components/discover-search-bar.tsx`
 **Context:** S2.E1; §2.9 Search bar discover variant (radius 16, pad 6, 56 high, `shadow-search-sm`); phone stacks like S1. Copy as S1.E4 (`Service`, `What service do you need?`, `Location`, `All locations`, `Search`). Pattern: copy the markup of `features/site/components/hero-search.tsx` (not import — it navigates and has chips); do **not** render the Popular chips.
 **Do:**
