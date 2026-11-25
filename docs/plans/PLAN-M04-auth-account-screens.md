@@ -61,7 +61,7 @@ Planner's decisions the executor must follow (they fill gaps between the milesto
 ## Tasks
 
 ### T1 — Branch, start tag, form dependencies, Google env flag
-- [ ] done
+- [x] done
 
 **Files:** `apps/web/package.json`, `/.env.example`, `apps/web/.env.mock`, `src/vite-env.d.ts`, `src/lib/env.ts`
 **Context:** ARCH §10.3 (`VITE_GOOGLE_ENABLED`, default `false`), milestone note "Google button only when `VITE_GOOGLE_ENABLED=true`", D-10.
@@ -84,7 +84,7 @@ Planner's decisions the executor must follow (they fill gaps between the milesto
 **Commit:** `git commit -m "chore(web): form deps and VITE_GOOGLE_ENABLED (M04-T1)"`
 
 ### T2 — Contracts: `MobileOrEmpty` primitive
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/common/primitives.ts`, `primitives.test.ts`
 **Context:** SPEC S18 Mobile row (customers may clear it), S12 mobile message.
@@ -130,7 +130,7 @@ describe('MobileOrEmpty', () => {
 **Commit:** `git commit -m "feat(contracts): MobileOrEmpty primitive (M04-T2)"`
 
 ### T3 — Contracts: auth bodies, results and form schemas
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/auth/schemas.ts`, `schemas.test.ts`
 **Context:** ARCH §2.1 auth exports, §3.1; SPEC S6, S10, S18 field tables.
@@ -258,7 +258,7 @@ describe('UpdateMeBody', () => {
 **Commit:** `git commit -m "feat(contracts): M04 auth and account schemas (M04-T3)"`
 
 ### T4 — Contracts: endpoint registry rows
-- [ ] done
+- [x] done
 
 **Files:** `packages/contracts/src/endpoints.ts`, `endpoints.test.ts`
 **Context:** ARCH §3.1 (every remaining row), §2.7.
@@ -301,7 +301,7 @@ it('M04 auth rows match ARCHITECTURE §3.1', () => {
 **Commit:** `git commit -m "feat(contracts): M04 auth endpoint rows (M04-T4)"`
 
 ### T5 — Fixtures: Google-only and suspended users
-- [ ] done
+- [x] done
 
 **Files:** `packages/fixtures/src/users.ts`, `packages/fixtures/src/build.test.ts`
 **Context:** AC4, AC6, D-5. `FxUser` already has `status` and `authMethods`.
@@ -330,7 +330,7 @@ it('has a Google-only user and a suspended user (M04)', () => {
 **Commit:** `git commit -m "feat(fixtures): Google-only and suspended users (M04-T5)"`
 
 ### T6 — Mock db: token `createdAt`, v2, Google-only users have no password
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/db/schema.ts`, `src/mocks/db/seed.ts`, `src/mocks/lib/email-tokens.ts` (create)
 **Context:** CLAUDE.md mock rules (bump the version key), ARCH §4.3 (tokens + DevPanel link), SPEC S7 (60 s), S8 (24 h), S9/S10 (1 h).
@@ -384,7 +384,7 @@ it('has a Google-only user and a suspended user (M04)', () => {
 **Commit:** `git commit -m "feat(web): mock db v2 with email tokens (M04-T6)"`
 
 ### T7 — Mock handlers: register, confirm email, resend confirmation
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/auth.ts`, `src/mocks/handlers/auth.test.ts`
 **Context:** ARCH §3.1 rows, §6.1 Register/Confirm; SPEC A1, A5, A6; D-1.
@@ -494,7 +494,7 @@ describe('POST /auth/resend-confirmation', () => {
 **Commit:** `git commit -m "feat(web): mock register, confirm and resend handlers (M04-T7)"`
 
 ### T8 — Mock handlers: forgot and reset password
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/auth.ts`, `auth.test.ts`
 **Context:** ARCH §3.1, §6.1 Forgot/reset (no enumeration; Google-only gets a link too; reset revokes sessions); SPEC A7, A8.
@@ -538,7 +538,7 @@ describe('forgot + reset password', () => {
 **Commit:** `git commit -m "feat(web): mock forgot and reset password handlers (M04-T8)"`
 
 ### T9 — Mock handlers: admin login and simulated Google
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/auth.ts`, `auth.test.ts`
 **Context:** ARCH §3.1 admin login (non-admin → same 401), §6.1 Google mock route; S29.E4; D-5.
@@ -610,7 +610,7 @@ describe('POST /auth/login (M04 fixtures)', () => {
 **Commit:** `git commit -m "feat(web): mock admin login and Google handlers (M04-T9)"`
 
 ### T10 — Mock handlers: `PATCH /me` and `POST /me/password`
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/handlers/auth.ts`, `auth.test.ts`
 **Context:** ARCH §3.1 (self only), §6.1 Change password; SPEC S18 field table; BR-23; D-4.
@@ -683,7 +683,7 @@ describe('POST /me/password', () => {
 **Commit:** `git commit -m "feat(web): mock PATCH /me and change-password handlers (M04-T10)"`
 
 ### T11 — DevPanel: clickable "Last email link"
-- [ ] done
+- [x] done
 
 **Files:** `src/mocks/dev/DevPanel.tsx`
 **Context:** ARCH §4.5, milestone "DevPanel Last email link shows the confirmation/reset link"; T6 stores a same-site path.
@@ -707,7 +707,7 @@ describe('POST /me/password', () => {
 **Commit:** `git commit -m "feat(web): clickable DevPanel email link (M04-T11)"`
 
 ### T12 — `lib/next.ts`: same-site `next` and role home
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/next.ts`, `src/lib/next.test.ts`
 **Context:** SPEC §8.4 (`next` validation, signed-in redirects), S5 success redirect; AC10; D-2.
@@ -782,7 +782,7 @@ describe('postLoginTarget', () => {
 **Commit:** `git commit -m "feat(web): same-site next and post-login target (M04-T12)"`
 
 ### T13 — `RequireGuest` redirects to `postLoginTarget`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/guards/guards.tsx`
 **Context:** D-2, SPEC §8.4 row "Signed-in user opens /login or /signup".
@@ -805,7 +805,7 @@ it('signed-in customer on /login?next=https://evil.test goes to /', async () => 
 **Commit:** `git commit -m "feat(web): RequireGuest honours next (M04-T13)"`
 
 ### T14 — `lib/error-copy.ts` and `mapApiErrorToForm`
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/error-copy.ts`, `src/lib/form-errors.ts`, `src/lib/form-errors.test.ts`
 **Context:** ARCH §4.1, SPEC S5.E8, §6.3, §6.6, S29.E4; D-4; AC10 "server fieldErrors map onto fields".
@@ -931,7 +931,7 @@ describe('mapApiErrorToForm', () => {
 **Commit:** `git commit -m "feat(web): error copy and mapApiErrorToForm (M04-T14)"`
 
 ### T15 — `useFormDraft` (§6.6 session-expiry draft)
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/use-form-draft.ts`, `src/lib/use-form-draft.test.tsx`
 **Context:** SPEC §6.6 (values minus passwords/files kept for the tab, restored after login via `next`), ARCH §4.1; AC8.
@@ -1028,7 +1028,7 @@ describe('useFormDraft', () => {
 **Commit:** `git commit -m "feat(web): useFormDraft for session expiry (M04-T15)"`
 
 ### T16 — `useCooldown` (S7 resend countdown)
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/use-cooldown.ts`, `src/lib/use-cooldown.test.ts`
 **Context:** SPEC S7.E2 (`Resend in 0:45`), AC2 (`Resend in 0:59` right after a resend).
@@ -1095,7 +1095,7 @@ describe('useCooldown', () => {
 **Commit:** `git commit -m "feat(web): useCooldown for resend (M04-T16)"`
 
 ### T17 — Auth feature: API calls
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/api.ts`, `src/features/auth/api.test.ts`, `src/lib/query-keys.ts`
 **Context:** ARCH §4.2 api.ts pattern; T4 rows; T9 `GOOGLE_MOCK`.
@@ -1149,7 +1149,7 @@ it('googleStartUrl keeps next and intent', () => {
 **Commit:** `git commit -m "feat(web): auth API calls (M04-T17)"`
 
 ### T18 — Auth feature: hooks
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/hooks.ts`, `src/features/auth/hooks.test.tsx`
 **Context:** ARCH §4.2 hooks; SPEC A1–A8; D-1, D-3, D-9.
@@ -1269,7 +1269,7 @@ describe('useSignup', () => {
 **Commit:** `git commit -m "feat(web): auth mutation hooks (M04-T18)"`
 
 ### T19 — Account feature: API calls and hooks
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/api.ts`, `src/features/account/hooks.ts`, `src/features/account/hooks.test.tsx`
 **Context:** ARCH §3.1 `PATCH /me`, `POST /me/password`; AC6 (avatar initials update).
@@ -1331,7 +1331,7 @@ describe('useUpdateMe', () => {
 **Commit:** `git commit -m "feat(web): account API and hooks (M04-T19)"`
 
 ### T20 — Shared form pieces: `labelAside`, `PasswordInput`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/form-field.tsx`, `src/components/password-input.tsx`
 **Context:** SPEC S5 Password field (show/hide `Eye`/`EyeOff`, 44 target, label `Show password`), S5.E6 (Forgot link on the Password label row).
@@ -1377,7 +1377,7 @@ describe('useUpdateMe', () => {
 **Commit:** `git commit -m "feat(web): PasswordInput and label aside slot (M04-T20)"`
 
 ### T21 — Shared: `SubmitButton` and `FormErrorBanner`
-- [ ] done
+- [x] done
 
 **Files:** `src/components/submit-button.tsx`, `src/components/form-error-banner.tsx`
 **Context:** SPEC §6.1 submitting buttons (label → `…ing` form, 16 px spinner, fixed width, disabled, `aria-busy`), §6.3 form banner (danger, top of form, scrolled into view).
@@ -1426,7 +1426,7 @@ describe('useUpdateMe', () => {
 **Commit:** `git commit -m "feat(web): SubmitButton and FormErrorBanner (M04-T21)"`
 
 ### T22 — Auth components: card header, divider, Google button
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/components/auth-card-header.tsx`, `or-divider.tsx`, `google-button.tsx`
 **Context:** SPEC L1-auth card header (56×56 icon tile r16, title `text-title-md`, subtitle 15/22 muted), S5.E3/E4, S6.E2; ARCH §6.1 Google; D-7.
@@ -1522,7 +1522,7 @@ describe('useUpdateMe', () => {
 **Commit:** `git commit -m "feat(web): auth card header, divider and Google button (M04-T22)"`
 
 ### T23 — S5 Log in
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/login-page.tsx`, `login-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S5 (all elements, field table), §6.6 banner, §8.4 (suspended at login / while signed in), ARCH §6.1 (`/login?error=suspended`); AC3, AC4, AC8, AC9; D-2, D-6.
@@ -1678,7 +1678,7 @@ describe('S5 Log in', () => {
 **Commit:** `git commit -m "feat(web): S5 log in screen (M04-T23)"`
 
 ### T24 — S6 Sign up
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/signup-page.tsx`, `signup-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S6 (title variants, fields, help line, consent, footer), A1, BR-35; AC1; D-1, D-3.
@@ -1749,7 +1749,7 @@ it('success → S7 with the email, signed in', async () => {
 **Commit:** `git commit -m "feat(web): S6 sign up screen (M04-T24)"`
 
 ### T25 — S7 Check your email
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/check-email-page.tsx`, `check-email-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S7 (all elements); AC2; D-9.
@@ -1821,7 +1821,7 @@ it('resend → toast and countdown label', async () => {
 **Commit:** `git commit -m "feat(web): S7 check your email screen (M04-T25)"`
 
 ### T26 — S8 Confirm email result
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/confirm-email-page.tsx`, `confirm-email-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S8 (four states), A6; AC2, AC9; D-3.
@@ -1930,7 +1930,7 @@ it('tampered token → This link has expired + Log in to resend', async () => {
 **Commit:** `git commit -m "feat(web): S8 confirm email screen (M04-T26)"`
 
 ### T27 — S9 Forgot password
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/forgot-password-page.tsx`, `forgot-password-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S9, A7; AC5.
@@ -1955,7 +1955,7 @@ it.each(['olivia@fixit.test', 'nobody@fixit.test'])('%s → same sent state', as
 **Commit:** `git commit -m "feat(web): S9 forgot password screen (M04-T27)"`
 
 ### T28 — S10 Reset password
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/reset-password-page.tsx`, `reset-password-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S10, A8; AC5.
@@ -2006,7 +2006,7 @@ it('bad token → expired state', async () => {
 **Commit:** `git commit -m "feat(web): S10 reset password screen (M04-T28)"`
 
 ### T29 — S29 Admin sign-in
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/admin-login-page.tsx`, `admin-login-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S29 (all elements; no Google, no sign-up link), §6.6 admin; AC7; D-2.
@@ -2042,7 +2042,7 @@ it('customer credentials → generic error; admin → /admin', async () => {
 **Commit:** `git commit -m "feat(web): S29 admin sign-in screen (M04-T29)"`
 
 ### T30 — `/auth/google/done`
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/google-done-page.tsx`, `google-done-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** ARCH §6.1 Google, milestone note "refresh → go to `next`"; SPEC S6.E2 (provider intent → `/become-a-provider/1`).
@@ -2100,7 +2100,7 @@ it('no session → /login?error=google_cancelled', async () => {
 **Commit:** `git commit -m "feat(web): Google done route (M04-T30)"`
 
 ### T31 — Unconfirmed-email banner (§6.8 #6)
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/components/unconfirmed-email-banner.tsx`, `src/app/layouts/parts/use-account-banners.tsx`, `src/app/layouts/public-layout.tsx`, `src/app/layouts/parts/dashboard-shell.tsx`, `src/app/layouts/public-layout.test.tsx` (create)
 **Context:** SPEC §6.8 row 6 (warning; L1/L2 strip under the nav, L3 main slot; phone: action on its own line, 44 target — already in `NoticeBanner`); AC3.
@@ -2155,7 +2155,7 @@ it('confirmed user sees no banner', async () => {
 **Commit:** `git commit -m "feat(web): unconfirmed-email account banner (M04-T31)"`
 
 ### T32 — `DiscardChangesGuard` (§6.7)
-- [ ] done
+- [x] done
 
 **Files:** `src/components/discard-changes-guard.tsx`
 **Context:** SPEC §6.7 copy; §6.10 (dialog → bottom sheet on phone via `ResponsiveDialog`); D-8.
@@ -2210,7 +2210,7 @@ export function DiscardChangesGuard({ when }: { when: boolean }) {
 **Commit:** `git commit -m "feat(web): discard-changes guard (M04-T32)"`
 
 ### T33 — S18 "Your details" card
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/components/details-card.tsx`, `src/components/status-pill.tsx`
 **Context:** SPEC S18.E1 and field table; §6.6 draft; AC6, AC8; D-4.
@@ -2300,7 +2300,7 @@ States: default (pre-filled), field errors (name/mobile, S6/S12 copy), provider 
 **Commit:** `git commit -m "feat(web): S18 details card (M04-T33)"`
 
 ### T34 — S18 Password card
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/components/password-card.tsx`
 **Context:** SPEC S18.E2 and field table (Google-only → `You sign in with Google.`); AC6.
@@ -2325,7 +2325,7 @@ States: Google-only text; default; field errors; wrong current (`Current passwor
 **Commit:** `git commit -m "feat(web): S18 password card (M04-T34)"`
 
 ### T35 — S18 "I offer services" card
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/components/offer-services-card.tsx`
 **Context:** SPEC S18.E3 (F-03), BR-35; AC6.
@@ -2381,7 +2381,7 @@ States: not a provider (switch off, enabled); draft in progress (off + `Continue
 **Commit:** `git commit -m "feat(web): S18 offer-services card (M04-T35)"`
 
 ### T36 — S18 Account page assembly
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/pages/account-page.tsx`, `account-page.test.tsx`, `src/app/chunks/customer.tsx`
 **Context:** SPEC S18 layout (one column of cards, max 720, gap 20), S18.E4 (F-40 line); §6.7; AC6, AC8.
@@ -2507,7 +2507,7 @@ describe('S18 Account settings', () => {
 **Commit:** `git commit -m "feat(web): S18 account settings page (M04-T36)"`
 
 ### T37 — Acceptance walk-through
-- [ ] done
+- [x] done
 
 **Files:** this plan (results), `docs/milestones/M00-index.md` (tick M04 only if every criterion passes)
 **Do:** run `pnpm verify` (must be green). Then `pnpm dev:mock`, DevPanel → Reset demo data, Latency normal. For each criterion record PASS/FAIL + note under a `## Acceptance results` heading at the end of this file. Check every UI step at **1440px and 390px** (browser devtools), confirming no horizontal page scroll.
@@ -2534,7 +2534,41 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
 - After T36: "Human: `/account` as Olivia, Marcus and Sanduni at 1440 and 390; cards max 720, Save full width on phone."
 
 ## Blockers
-(executor writes here; leave empty)
+### T23 (affects T23–T36 tests) — jest-dom matchers are not set up
+- **Problem:** the plan's page tests use `toBeInTheDocument`, `toBeDisabled`, `toHaveFocus`, `toHaveAttribute`. `@testing-library/jest-dom` is not installed, `apps/web/src/test/setup.ts` does not register it, and no existing test uses these matchers. Running T23's test fails with `Invalid Chai property: toBeInTheDocument` (5 of 6 tests).
+- **Why I stopped:** the plan only authorizes adding `@testing-library/user-event` (T15). Adding a dev dependency and editing `setup.ts` is outside any task, and rewriting the plan's assertions would change its tests.
+- **Options:**
+  1. Add `@testing-library/jest-dom` as a web devDependency and register it in `src/test/setup.ts` (`import '@testing-library/jest-dom/vitest'`) plus the vitest types, as a new pre-task (e.g. T22b). Plan tests then work as written. (Recommended.)
+  2. Rewrite every plan assertion with core vitest/DOM equivalents (`expect(el).toBeTruthy()`, `el.disabled`, `document.activeElement`, `getAttribute`).
+- **RESOLVED:** user chose option 1; jest-dom added in the T23 commit.
+- T1–T22 are done and committed. The T23 page code was dropped uncommitted; it is exactly the plan's code.
+
+### T24 — S6 sign-up success lands on `/` instead of `/signup/check-email` (D-2 ordering doesn't hold)
+- **Problem:** the plan's submit handler does `await navigate('/signup/check-email', …)` then `authStore.setSession(session)`. The router does reach `/signup/check-email` (idle, still guest), but React has not yet swapped out the old tree: the `/signup` page under `RequireGuest` is still mounted when `setSession` fires, so its `<Navigate to="/">` runs and the final location is `/`. The test `success → S7 with the email, signed in` fails (`expected '/' to be '/signup/check-email'`); the other two T24 tests pass.
+- **Attempts (2, both failed):** (1) `navigate(…, { flushSync: true })`; (2) an extra `await new Promise(r => setTimeout(r, 0))` before `setSession`. A signed-in user opening `/signup/check-email` directly is fine (checked), so S7 itself is not the cause.
+- **Options:**
+  1. Carry the session to S7 and let S7 call `authStore.setSession` on mount (session held in router `state`, in memory only). Changes T24/T25 and where D-2 says the session is set.
+  2. Make `RequireGuest` ignore signed-in users when a flag is set (e.g. `authStore` "justRegistered" or `location.state`) so `/signup` never redirects during this hand-off. Touches T13's guard.
+  3. Poll until the S7 heading is in the DOM before `setSession` (works but is a test-shaped hack in production code).
+- **Recommendation:** option 1, as it keeps the guard rule (D-2) unchanged and removes the timing dependence.
+- **RESOLVED:** user chose option 1. S6 navigates with `state: { email, session }`; S7 (`CheckEmailPage`) calls `authStore.setSession` on mount, then replaces the history state with `{ email }`. The T24 success test waits for `me` with `waitFor`.
+- Work so far: T1–T23 committed. The T24 page and test, as written in the plan, are saved outside the repo and were not committed.
+
+### T27 — the plan's test cannot match the plan's markup (RESOLVED: option 1, matcher changed)
+- **Problem:** the plan's sent state renders `<p>If an account exists for <span>{sentTo}</span>, you'll get a reset link…</p>`, and its test does `findByText(/If an account exists for olivia@fixit.test/)`. Testing Library's `getByText` matches only an element's own text nodes, and the email sits in the inner `<span>`, so the `<p>` reads "If an account exists for , you'll get…". Both test cases fail (2 of 2). I checked that the sent state does render (the "Check your email" heading is found). The page code is written per plan and is uncommitted in the working tree.
+- **Why I stopped:** fixing it means changing either the plan's markup (drop the `<span>`, losing the semibold email) or the plan's test matcher. Both depart from the plan text, and the rules forbid changing tests.
+- **Options:**
+  1. Keep the markup; change the test to match on the `<p>`'s full text, e.g. `findByText((_, el) => el?.tagName === 'P' && /If an account exists for olivia@fixit.test/.test(el.textContent ?? ''))`. Same assertion, different matcher. (Recommended.)
+  2. Keep the test; remove the `<span>` so the email is plain text in the `<p>`.
+  3. Keep the test; wrap the email so the text stays in one node, e.g. `<strong>` can't (still a separate element), so this means option 2.
+
+### T36 — the plan's test expects a business name the fixtures don't have (RESOLVED: option 1, test string changed)
+- **Problem:** the offer-services test asserts `getByText("You're listed as Bell & Sons.")` for Marcus. Marcus's fixture business is `Bell & Sons Plumbing` (`packages/fixtures/src/providers.ts:23`), and the card renders `me.provider.businessName` as the plan specifies, so it shows "You're listed as Bell & Sons Plumbing." The other 6 tests pass.
+- **Why I stopped:** the fix is either a change to the plan's test string or to the fixtures, and the rules forbid changing tests and fixtures are outside T36.
+- **Also (not a blocker):** the plan's session-expiry test uses `getByText` for the "Your session expired…" copy right after the URL changes. The login page is lazy-loaded, so I used `findByText` there. It is the same assertion, just not racing the render. I'd keep this.
+- **Options:**
+  1. Change the test's expected string to `You're listed as Bell & Sons Plumbing.` (the fixtures are the source of truth). (Recommended.)
+  2. Rename the fixture business to `Bell & Sons`. This touches other milestones' seed data and tests, so I don't recommend it.
 
 ## Notes for review (planner)
 - **Milestone vs ARCHITECTURE (D-1):** `POST /auth/register` returns 204 but `resend-confirmation` needs a session; S7 resend after sign-up needs one. The plan logs the user in after registering. The alternative is to make `register` return an `AuthSession` (an ARCH §3.1 change needing a decision record).
@@ -2547,3 +2581,21 @@ If any criterion fails, write it under `## Blockers` (AC number, what happened) 
 - A DevPanel "Expire session" button (clear the access token and the refresh entry) instead of arming two forced 401s for AC8.
 - A "Suspended (Ruwan)" DevPanel persona.
 - Clearing the React Query cache on `signOut('expired')` (ARCH §4.1 mentions it; M03 left it out).
+
+## Acceptance results
+`pnpm verify` green at `1c10ed1` (41 test files, 212 tests in web). "Auto" = covered by a passing automated test. "Human" = needs someone in a browser at 1440 and 390; not yet checked.
+
+| AC | Result | Note |
+|---|---|---|
+| 1 | Auto PASS; Human pending | T24 tests (three messages, focus, `This email already has an account.` + `Log in instead`). |
+| 2 | Auto PASS; Human pending | T25/T26 tests (S7 email, resend countdown, confirm, already confirmed, tampered token). Provider-intent path covered by the T26 test. |
+| 3 | Auto PASS; Human pending | T23 (Olivia → `/`, Marcus → `/dashboard`, `next`), T31 (Nimal banner + `Resend email`). |
+| 4 | Auto PASS | T23 test: `ruwan@fixit.test` → `Your account is suspended.` banner. |
+| 5 | Auto PASS; Human pending | T27 (same sent state for known/unknown email), T28 (mismatch, success → `/login`, old password 401, bad token → expired). The `Password updated…` toast and token reuse are not asserted separately. |
+| 6 | Auto PASS; Human partial | T36 tests cover save, S12 message, BR-23, wrong password, switch behaviours. Cards at 1440/390 confirmed by the user. Google → Sanduni → `You sign in with Google.` is not asserted end to end (T30 covers Sanduni sign-in). Plan text says `Bell & Sons.`; the real copy is `Bell & Sons Plumbing.` (see T36 blocker). |
+| 7 | PASS | grep: `/admin/login` appears only in `guards.tsx`, `routes.tsx` and `not-found-page.tsx` (a path check, not a link); `useLogout` is in `hooks.ts` (not `.tsx`). T29 test: Olivia → generic error, admin → `/admin`, no Google, no sign-up link. |
+| 8 | Auto PASS; Human pending | T36 session-expiry test: `/login?next=%2Faccount`, expiry banner, draft name restored. Password-fields-empty is not asserted. |
+| 9 | Human PASS | Not covered by tests: slow-latency skeleton and `Logging in…`/`Creating account…`/`Saving…` labels, forced 500 on `auth_login`, and signed-in redirects away from `/login`, `/signup`, `/forgot-password` (RequireGuest tests in T13 cover the redirects). |
+| 10 | PASS | `pnpm test` green; T3, T14 and T12 cases present (`next.test.ts` ignores `https://evil.test`). |
+
+Update: the user checked AC 9 and the auth screens at 1440 and 390 in `pnpm dev:mock` and reported all pass. M04 is ticked in `docs/milestones/M00-index.md`.

@@ -13,7 +13,7 @@ import type {
 } from '@fixit/fixtures';
 
 /** Bump when the MockDb shape changes (CLAUDE.md mock rules). */
-export const MOCK_DB_VERSION = 1;
+export const MOCK_DB_VERSION = 2;
 export const MOCK_DB_KEY = `fixit.mockdb.v${String(MOCK_DB_VERSION)}`;
 
 export interface MockUser extends FxUser {
@@ -24,6 +24,7 @@ export interface MockAuthToken {
   userId: string;
   type: 'confirm_email' | 'reset_password';
   token: string;
+  createdAt: string;
   expiresAt: string;
   usedAt: string | null;
 }
@@ -60,5 +61,5 @@ export interface MockDb {
   audit: MockAudit[];
   refSeq: number; // next FX number
   authTokens: MockAuthToken[]; // filled from M04
-  lastEmailLink: string | null; // DevPanel "Last email link" (M04)
+  lastEmailLink: string | null; // DevPanel "Last email link": a same-site path like /auth/confirm?token=…
 }

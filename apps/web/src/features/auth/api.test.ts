@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { DEMO_PASSWORD } from '@fixit/fixtures';
 import { authStore } from '@/lib/auth-store';
 import { ApiError, refreshOnce } from '@/lib/http';
-import { logout, signIn } from './api';
+import { googleStartUrl, login, logout, register, signIn } from './api';
 
 describe('auth api', () => {
   it('signIn stores the session', async () => {
@@ -21,5 +21,15 @@ describe('auth api', () => {
     await logout();
     expect(authStore.getState()).toMatchObject({ status: 'guest', signOutReason: 'logout' });
     expect(await refreshOnce()).toBe(false);
+  });
+  it('register → 204, then login works (unconfirmed)', async () => {
+    await register({ fullName: 'Ann Lee', email: 'ann@fixit.test', password: 'abc12345' });
+    const s = await login({ email: 'ann@fixit.test', password: 'abc12345' });
+    expect(s.user.emailConfirmed).toBe(false);
+  });
+  it('googleStartUrl keeps next and intent', () => {
+    expect(googleStartUrl({ next: '/requests', intent: 'provider' })).toBe(
+      `${window.location.origin}/api/auth/google?next=%2Frequests&intent=provider`,
+    );
   });
 });

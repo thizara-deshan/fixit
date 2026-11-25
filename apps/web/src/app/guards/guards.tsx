@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import type { Me } from '@fixit/contracts';
 import { Navigate, Outlet, useLocation } from 'react-router';
 import { useAuth } from '@/lib/auth-store';
+import { postLoginTarget } from '@/lib/next';
 import { ForbiddenPage } from '../errors/forbidden-page';
 import { PublicLayout } from '../layouts/public-layout';
 
@@ -22,9 +23,10 @@ export function RequireGuest({
   children?: ReactNode;
 }) {
   const { status, me } = useAuth();
+  const { search } = useLocation();
   if (status === 'booting') return null;
   if (status === 'signed-in') {
-    const to = area === 'admin' && isAdmin(me) ? '/admin' : isProvider(me) ? '/dashboard' : '/';
+    const to = postLoginTarget(me, search, area);
     return <Navigate to={to} replace />;
   }
   return children ?? <Outlet />;

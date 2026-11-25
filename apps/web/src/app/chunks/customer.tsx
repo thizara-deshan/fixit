@@ -14,9 +14,7 @@ export function MyRequestsPage() {
 export function SavedPage() {
   return <CustomerPageHeader title="Saved providers" tabs />;
 }
-export function AccountPage() {
-  return <CustomerPageHeader title="Account settings" tabs />;
-}
+export { AccountPage } from '@/features/account/pages/account-page';
 export function CustomerRequestPage() {
   return (
     <>

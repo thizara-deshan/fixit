@@ -1,33 +1,15 @@
-import { PlaceholderScreen } from '../placeholder-screen';
+export { LoginPage } from '@/features/auth/pages/login-page';
 
-export function LoginPage() {
-  return <PlaceholderScreen frame="card" title="Log in" />;
-}
+export { SignupPage } from '@/features/auth/pages/signup-page';
 
-export function SignupPage() {
-  return <PlaceholderScreen frame="card" title="Sign up" />;
-}
+export { CheckEmailPage } from '@/features/auth/pages/check-email-page';
 
-export function CheckEmailPage() {
-  return <PlaceholderScreen frame="card" title="Check your email" />;
-}
+export { ConfirmEmailPage } from '@/features/auth/pages/confirm-email-page';
 
-export function ConfirmEmailPage() {
-  return <PlaceholderScreen frame="card" title="Confirm email" />;
-}
+export { GoogleDonePage } from '@/features/auth/pages/google-done-page';
 
-export function GoogleDonePage() {
-  return <PlaceholderScreen frame="card" title="Signing you in" />;
-}
+export { ForgotPasswordPage } from '@/features/auth/pages/forgot-password-page';
 
-export function ForgotPasswordPage() {
-  return <PlaceholderScreen frame="card" title="Forgot password" />;
-}
+export { ResetPasswordPage } from '@/features/auth/pages/reset-password-page';
 
-export function ResetPasswordPage() {
-  return <PlaceholderScreen frame="card" title="Reset password" />;
-}
-
-export function AdminLoginPage() {
-  return <PlaceholderScreen frame="card" title="Admin sign-in" />;
-}
+export { AdminLoginPage } from '@/features/auth/pages/admin-login-page';
