@@ -1749,7 +1749,7 @@ it('success → S7 with the email, signed in', async () => {
 **Commit:** `git commit -m "feat(web): S6 sign up screen (M04-T24)"`
 
 ### T25 — S7 Check your email
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/check-email-page.tsx`, `check-email-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S7 (all elements); AC2; D-9.

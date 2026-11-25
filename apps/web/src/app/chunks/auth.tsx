@@ -2,13 +2,9 @@ import { PlaceholderScreen } from '../placeholder-screen';
 
 export { LoginPage } from '@/features/auth/pages/login-page';
 
-export function SignupPage() {
-  return <PlaceholderScreen frame="card" title="Sign up" />;
-}
+export { SignupPage } from '@/features/auth/pages/signup-page';
 
-export function CheckEmailPage() {
-  return <PlaceholderScreen frame="card" title="Check your email" />;
-}
+export { CheckEmailPage } from '@/features/auth/pages/check-email-page';
 
 export function ConfirmEmailPage() {
   return <PlaceholderScreen frame="card" title="Confirm email" />;
