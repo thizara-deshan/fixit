@@ -787,7 +787,7 @@ describe('url-state', () => {
 **Commit:** `git commit -m "feat(web): discover URL state helper (M06-T9)"`
 
 ### T10 — Last Discover URL in session
-- [ ] done
+- [x] done
 **Files:** `src/lib/last-discover.ts`, `src/lib/last-discover.test.ts`
 **Context:** SPEC §8.2 "Back to results"; ARCH §5.4; D-7.
 **Do:**
