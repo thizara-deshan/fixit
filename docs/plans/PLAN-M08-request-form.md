@@ -1279,7 +1279,7 @@ Same 3 columns and `h-12` at every width. If `shadow-xs` is not a token in `glob
 **Commit:** `git commit -m "feat(web): time slot control (M08-T19)"`
 
 ### T20 — `MobileField`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/mobile-field.tsx`
 **Context:** SPEC S12 field "Mobile number"; BR-23; AC4; `PhoneInput`, `FormField`, `formatPhone`.
 **Do:**
