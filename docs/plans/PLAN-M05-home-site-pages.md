@@ -1293,7 +1293,7 @@ If `renderRoute` needs the auth bootstrap to finish first (status `booting` rend
 **Commit:** `git commit -m "feat(web): S1 home page (M05-T19)"`
 
 ### T20 — S4 For providers page
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/pages/for-providers-page.tsx`, `src/features/site/pages/for-providers-page.test.tsx`, `src/app/chunks/public.tsx`
 **Context:** S4 (all elements), AC5 (S4 primary CTA and band). Reuses `StepsGrid`, `CtaBand` (`learnMore={false}`), `useProviderCta`.

@@ -8,9 +8,7 @@ export function ProviderProfilePage() {
   return <PlaceholderScreen title="Provider profile" />;
 }
 
-export function ForProvidersPage() {
-  return <PlaceholderScreen title="For providers" />;
-}
+export { ForProvidersPage } from '@/features/site/pages/for-providers-page';
 
 export function AboutPage() {
   return <PlaceholderScreen title="About" />;
