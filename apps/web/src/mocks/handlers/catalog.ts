@@ -1,6 +1,7 @@
 import { ENDPOINTS as E, selectFeatured } from '@fixit/contracts';
 import { mockEndpoint } from '../lib/endpoint';
 import { listedCards } from '../lib/cards';
+import { discoverSearch } from '../lib/discover';
 
 // Keep /providers/featured before /providers/:id (M07).
 export const catalogHandlers = [
@@ -24,4 +25,5 @@ export const catalogHandlers = [
     };
   }),
   mockEndpoint(E.providers_featured, ({ db: d }) => selectFeatured(listedCards(d))),
+  mockEndpoint(E.providers_search, ({ db: d, query }) => discoverSearch(d, query)),
 ];

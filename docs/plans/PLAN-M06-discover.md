@@ -556,7 +556,7 @@ If `FxProvider` spread trips TypeScript (e.g. `id` is a branded type), adjust th
 **Commit:** `git commit -m "feat(web): mock discover search engine (M06-T6)"`
 
 ### T7 — `GET /providers` MSW handler
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/catalog.ts`, `src/mocks/handlers/catalog.test.ts`
 **Context:** ARCH §4.3 (`mockEndpoint` parses `query` with the registry schema, applies access, honours forced errors).
 **Do:** in `catalog.ts` import `discoverSearch` from `'../lib/discover'` and add as the **last** array entry:

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CatalogResponse, ProviderCard, selectFeatured } from '@fixit/contracts';
+import { CatalogResponse, DiscoverResult, ProviderCard, selectFeatured } from '@fixit/contracts';
 import { z } from 'zod';
 import { db } from '../db/store';
 import { armForcedError } from '../lib/controls';
@@ -48,5 +48,23 @@ describe('GET /providers/featured', () => {
   it('honours a DevPanel forced 500', async () => {
     armForcedError('providers_featured', '500');
     expect((await get('/providers/featured')).status).toBe(500);
+  });
+});
+
+describe('GET /providers', () => {
+  it('returns a DiscoverResult for a guest', async () => {
+    const res = await get('/providers?q=plumb&loc=dehiwala-mount-lavinia');
+    expect(res.status).toBe(200);
+    const r = DiscoverResult.parse(await res.json());
+    expect(r.matchedCategoryId).toBe('plumbing');
+  });
+  it('junk params → 200 with defaults', async () => {
+    const res = await get('/providers?rating=9&page=-1&cat=,,x');
+    expect(res.status).toBe(200);
+    expect(DiscoverResult.parse(await res.json()).page).toBe(1);
+  });
+  it('honours a DevPanel forced 500', async () => {
+    armForcedError('providers_search', '500');
+    expect((await get('/providers')).status).toBe(500);
   });
 });
