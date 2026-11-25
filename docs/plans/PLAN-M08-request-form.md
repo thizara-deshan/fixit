@@ -626,7 +626,7 @@ describe('mock request helpers', () => {
 **Commit:** `git commit -m "feat(web): mock request view helpers (M08-T8)"`
 
 ### T9 — `POST /me/requests` and `GET /me/requests/:ref` handlers
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-create.test.ts`
 **Context:** ARCH §3.4, §4.3 (expireDue at the start of request handlers), §7.5 (`FX-` + `refSeq`, seeded 2062); A11; D-2, D-6, D-8. `mockEndpoint` already returns 401 (anon) / 403 (admin) and 400 `VALIDATION_FAILED` with `fieldErrors` for a bad body.
 **Do:** Replace `requests.ts` with:
