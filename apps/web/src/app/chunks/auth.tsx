@@ -6,9 +6,7 @@ export { SignupPage } from '@/features/auth/pages/signup-page';
 
 export { CheckEmailPage } from '@/features/auth/pages/check-email-page';
 
-export function ConfirmEmailPage() {
-  return <PlaceholderScreen frame="card" title="Confirm email" />;
-}
+export { ConfirmEmailPage } from '@/features/auth/pages/confirm-email-page';
 
 export function GoogleDonePage() {
   return <PlaceholderScreen frame="card" title="Signing you in" />;

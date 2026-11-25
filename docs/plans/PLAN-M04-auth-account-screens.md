@@ -1821,7 +1821,7 @@ it('resend → toast and countdown label', async () => {
 **Commit:** `git commit -m "feat(web): S7 check your email screen (M04-T25)"`
 
 ### T26 — S8 Confirm email result
-- [ ] done
+- [x] done
 
 **Files:** `src/features/auth/pages/confirm-email-page.tsx`, `confirm-email-page.test.tsx`, `src/app/chunks/auth.tsx`
 **Context:** SPEC S8 (four states), A6; AC2, AC9; D-3.
