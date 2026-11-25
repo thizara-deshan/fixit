@@ -1028,7 +1028,7 @@ describe('useFormDraft', () => {
 **Commit:** `git commit -m "feat(web): useFormDraft for session expiry (M04-T15)"`
 
 ### T16 — `useCooldown` (S7 resend countdown)
-- [ ] done
+- [x] done
 
 **Files:** `src/lib/use-cooldown.ts`, `src/lib/use-cooldown.test.ts`
 **Context:** SPEC S7.E2 (`Resend in 0:45`), AC2 (`Resend in 0:59` right after a resend).
