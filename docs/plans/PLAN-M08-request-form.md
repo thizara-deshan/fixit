@@ -1569,7 +1569,7 @@ States: default (town prefilled or empty), field errors (inline, focus first), s
 **Commit:** `git commit -m "feat(web): request form card (M08-T24)"`
 
 ### T25 — `RequestFormSkeleton`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/request-form-skeleton.tsx`
 **Context:** AC8 "form skeleton while provider + eligibility load"; §6.1 `SkeletonSectionCard`.
 **Do:**
