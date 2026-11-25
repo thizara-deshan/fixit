@@ -61,7 +61,7 @@ Planner's decisions the executor must follow (they fill gaps between the milesto
 ## Tasks
 
 ### T1 — Branch, start tag, form dependencies, Google env flag
-- [ ] done
+- [x] done
 
 **Files:** `apps/web/package.json`, `/.env.example`, `apps/web/.env.mock`, `src/vite-env.d.ts`, `src/lib/env.ts`
 **Context:** ARCH §10.3 (`VITE_GOOGLE_ENABLED`, default `false`), milestone note "Google button only when `VITE_GOOGLE_ENABLED=true`", D-10.
