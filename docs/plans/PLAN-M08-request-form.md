@@ -872,7 +872,7 @@ export const fetchMyRequest = (ref: string): Promise<CustomerRequestView> =>
 **Commit:** `git commit -m "feat(web): request api functions and query keys (M08-T10)"`
 
 ### T11 — `formatDeadline` and `SLOT_LABEL`
-- [ ] done
+- [x] done
 **Files:** `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** SPEC S13.E2 `{Sat, 21 Nov, 3:42 PM}`; S12 slot labels `Morning` · `Afternoon` · `Evening`.
 **Do:** Add to `format.ts`:

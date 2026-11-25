@@ -1,4 +1,10 @@
-import { colomboStartOfDay, formatInColombo, priceLabel, type PriceUnit } from '@fixit/contracts';
+import {
+  colomboStartOfDay,
+  formatInColombo,
+  priceLabel,
+  type PriceUnit,
+  type TimeSlot,
+} from '@fixit/contracts';
 
 const grouping = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
 
@@ -64,3 +70,13 @@ export function initialsOf(fullName: string): string {
   const last = words.length > 1 ? (words[words.length - 1]?.[0] ?? '') : '';
   return (first + last).toUpperCase();
 }
+
+/** `Sat, 21 Nov, 3:42 PM` (S13 reply deadline) */
+export const formatDeadline = (value: string | Date): string =>
+  formatInColombo(toInstant(value), 'EEE, d MMM, h:mm a');
+
+export const SLOT_LABEL: Record<TimeSlot, string> = {
+  morning: 'Morning',
+  afternoon: 'Afternoon',
+  evening: 'Evening',
+};
