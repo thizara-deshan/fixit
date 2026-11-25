@@ -8,9 +8,9 @@ const PREFIX = 'fixit.draft.';
  * SPEC §6.6: when the session expires (signOut('expired')), keep this form's values (minus `exclude`) in
  * sessionStorage; on the next mount, restore them once (marked dirty) and forget the draft.
  */
-export function useFormDraft<T extends FieldValues>(
+export function useFormDraft<T extends FieldValues, O extends FieldValues = T>(
   key: string,
-  form: UseFormReturn<T>,
+  form: UseFormReturn<T, unknown, O>,
   exclude: readonly Path<T>[] = [],
 ): void {
   const excludeKey = exclude.join(',');

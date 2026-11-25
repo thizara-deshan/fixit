@@ -24,6 +24,7 @@ export type StatusPillProps = { compact?: boolean; className?: string } & (
   | { kind: 'review'; visibility: ReviewVisibility }
   | { kind: 'availability' } // BR-15 "Not taking requests"
   | { kind: 'trust'; verified: boolean } // listing trust
+  | { kind: 'email'; confirmed: boolean }
 );
 
 type Resolved = { tone: Tone; label: string; dot: boolean; semibold?: boolean } | 'verified' | null;
@@ -56,6 +57,12 @@ function resolve(p: StatusPillProps): Resolved {
       return p.visibility === 'hidden' ? { tone: 'cancelled', label: 'Hidden', dot: true } : null;
     case 'availability':
       return { tone: 'pending', label: 'Not taking requests', dot: false };
+    case 'email':
+      return {
+        tone: p.confirmed ? 'completed' : 'pending',
+        label: p.confirmed ? 'Confirmed' : 'Not confirmed',
+        dot: true,
+      };
     case 'trust':
       return p.verified
         ? 'verified'

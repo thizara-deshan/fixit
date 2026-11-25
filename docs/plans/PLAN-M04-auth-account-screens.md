@@ -2210,7 +2210,7 @@ export function DiscardChangesGuard({ when }: { when: boolean }) {
 **Commit:** `git commit -m "feat(web): discard-changes guard (M04-T32)"`
 
 ### T33 — S18 "Your details" card
-- [ ] done
+- [x] done
 
 **Files:** `src/features/account/components/details-card.tsx`, `src/components/status-pill.tsx`
 **Context:** SPEC S18.E1 and field table; §6.6 draft; AC6, AC8; D-4.
