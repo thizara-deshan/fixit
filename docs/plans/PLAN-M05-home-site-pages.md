@@ -625,7 +625,7 @@ If ESLint flags `?? Wrench` as unnecessary (the record is exhaustive), remove `?
 **Commit:** `git commit -m "feat(web): shared CategoryIcon (M05-T8)"`
 
 ### T9 — Home search URL builder
-- [ ] done
+- [x] done
 
 **Files:** `src/features/site/search-url.ts`, `src/features/site/search-url.test.ts`
 **Context:** S1.E4, AC3, D-1.
