@@ -2699,7 +2699,7 @@ export function PublicNav({ variant = 'full' }: { variant?: 'full' | 'logo' }) {
 ---
 
 ### T28 — `Footer`
-- [ ] done
+- [x] done
 
 **Files:** `src/app/layouts/parts/footer.tsx`
 **Context:** SPEC L1 footer (`footer-bg`, margin-top auto; max 1240, padding 56 32 28; grid `1.6fr 1fr 1fr 1fr` gap 40; brand block: white tile with `primary` F, "Fixit" white, "Home service booking marketplace." 14/20; column titles white 700 14; links `footer-text` 14 gap 10; bottom rule 1px `footer-divider`, padding-top 20, 13 `footer-meta` "© 2026 Fixit"). Phone/tablet: brand full width, link columns in a 2-column grid, links ≥ 44 high. §9 white focus outline on the footer. S29 (`minimal`): only the copyright row. AC1.
