@@ -438,7 +438,7 @@ describe('uploads', () => {
 **Commit:** `git commit -m "feat(contracts): upload limits and document rules (M11-T3)"`
 
 ### T4 — OwnProvider, VerificationState and onboarding body parser
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/own.ts`, `packages/contracts/src/providers/own.test.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCH §3.3 `GET /me/provider`, `PUT /me/provider/photo` → `{photoUrl}`, verification rows; `Me.provider` (auth/schemas.ts) — the same onboarding/verification fields; D-3, D-10. `catalog/schemas.ts` imports `providers/schemas.ts`, so these live in a new file that imports catalog (no cycle).
 **Do:**
