@@ -1550,7 +1550,7 @@ export function CustomerRequestPage() {
 **Commit:** `git commit -m "test(web): request detail behaviour (M09-T22)"`
 
 ### T23 — `StarRatingInput`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/star-rating-input.tsx`
 **Context:** S16 rating field: 5-star radio group, each 44×44, hover/focus preview + label `Poor` … `Excellent`; `RATING_LABELS`; lucide `Star` with `fill="currentColor"` when on; visible focus ring; no hover-only affordance (label also shows for the selected value).
 **Do:**
