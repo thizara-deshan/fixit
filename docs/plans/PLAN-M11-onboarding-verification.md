@@ -1111,7 +1111,7 @@ describe('own provider (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock onboarding and publish rules (M11-T10)"`
 
 ### T11 — Handlers: `GET /me/provider` and `PUT /me/provider/onboarding/:step`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-onboarding.test.ts`
 **Context:** D-3; T10 helpers; `mockEndpoint` gives `request` in ctx (body is not pre-read because the def has no `body`).
 **Do:** Add to `providersHandlers`:
