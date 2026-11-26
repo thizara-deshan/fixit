@@ -2181,7 +2181,7 @@ describe('ServicesRepeater', () => {
 **Commit:** `git commit -m "feat(web): shared services editor (M11-T22)"`
 
 ### T23 — Areas picker
-- [ ] done
+- [x] done
 **Files:** `src/components/areas-picker.tsx`, `src/components/areas-picker.test.tsx`
 **Context:** SPEC S25 (3 columns desktop, 1 phone, district heading 14/700, rows 44 high on phone, base unticked automatically), S19 step 4 field table; BR-14; `CatalogResponse` (`districts`, `towns` with `districtId`, `order` on district — towns sorted by name within a district); `AreasFormInput`, `OTHER_TOWNS_MAX`, `OTHER_TOWNS_MAX_MESSAGE` (T1). Native `<select>`/`<input type=checkbox>` (same select class as `features/requests/components/request-form.tsx` `selectClass`).
 **Do:** Create `areas-picker.tsx` — a controlled component (the step form passes `value` and `onChange`):
