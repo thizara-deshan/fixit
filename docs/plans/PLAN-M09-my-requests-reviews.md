@@ -988,7 +988,7 @@ describe('formatCount', () => {
 **Commit:** `git commit -m "feat(web): my-requests api, query key and formatters (M09-T10)"`
 
 ### T11 — Hooks: `useMyRequests`, `useCancelRequest`, `usePostReview`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/hooks.ts`, `src/features/requests/hooks.test.tsx`
 **Context:** A12 (contact hidden, lists/eligibility/me refresh), A19 (invalidate `catalog` so the profile rating changes), ARCH §4.2 domain-wide invalidation.
 **Do:** Append to `hooks.ts` (imports: `keepPreviousData` from TanStack; `CancelBody, CreateReviewBody, RequestListQuery` types; `cancelMyRequest, fetchMyRequests, postReview`):

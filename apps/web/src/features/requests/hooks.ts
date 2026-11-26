@@ -1,10 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type { CreateRequestBody } from '@fixit/contracts';
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import type { CancelBody, CreateRequestBody, CreateReviewBody, RequestListQuery } from '@fixit/contracts';
 import { fetchMe } from '@/features/auth/api';
 import { fetchEligibility } from '@/features/provider-profile/api';
 import { authStore } from '@/lib/auth-store';
 import { qk } from '@/lib/query-keys';
-import { createRequest, fetchMyRequest } from './api';
+import { cancelMyRequest, createRequest, fetchMyRequest, fetchMyRequests, postReview } from './api';
 
 export const useEligibility = (providerId: string) =>
   useQuery({
@@ -24,12 +24,49 @@ export function useCreateRequest() {
     onSuccess: (view, body) => {
       qc.setQueryData(qk.myRequests.detail(view.ref), view);
       void qc.invalidateQueries({ queryKey: qk.eligibility(body.providerId) });
-      void fetchMe()
-        .then((me) => {
-          authStore.setMe(me);
-          qc.setQueryData(qk.me, me);
-        })
-        .catch(() => undefined); // the session layer handles auth failures
+      refreshMe(qc);
+    },
+  });
+}
+
+export const useMyRequests = (q: RequestListQuery) =>
+  useQuery({
+    queryKey: qk.myRequests.list(q),
+    queryFn: () => fetchMyRequests(q),
+    placeholderData: keepPreviousData,
+  });
+
+function refreshMe(qc: ReturnType<typeof useQueryClient>) {
+  void fetchMe()
+    .then((me) => {
+      authStore.setMe(me);
+      qc.setQueryData(qk.me, me);
+    })
+    .catch(() => undefined);
+}
+
+/** A12. The view returned by the server replaces the cached detail (contact hidden, history updated). */
+export function useCancelRequest(ref: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (body: CancelBody) => cancelMyRequest(ref, body),
+    onSuccess: (view) => {
+      qc.setQueryData(qk.myRequests.detail(ref), view);
+      void qc.invalidateQueries({ queryKey: [...qk.myRequests.all, 'list'] });
+      void qc.invalidateQueries({ queryKey: qk.eligibility(view.provider.id) });
+      refreshMe(qc); // openRequestCount
+    },
+  });
+}
+
+/** A19. Detail + lists refetch (review block, Leave a review button); catalog refetches (rating/count). */
+export function usePostReview(ref: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (body: CreateReviewBody) => postReview(ref, body),
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: qk.myRequests.all });
+      void qc.invalidateQueries({ queryKey: ['catalog'] });
     },
   });
 }
