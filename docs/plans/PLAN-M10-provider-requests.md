@@ -3043,7 +3043,7 @@ export function AgreedPriceEditor({ view, onConflict }: { view: ProviderRequestV
 **Commit:** `git commit -m "feat(web): inline agreed price editor (M10-T37)"`
 
 ### T38 — S22 Actions card
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/actions-card.tsx`
 **Context:** S22.E3–E6; BR-32; D-9, D-10, D-14; `CONTACT_EMAIL` from `@/lib/env`; `View review` link only when `features.providerReviews` (S27 not built).
 **States:** Pending (with/without buttons per D-14), Accepted (complete enabled / disabled + help), Completed (with review / with deadline / neither), Declined, Cancelled (customer / admin / system), Expired.
