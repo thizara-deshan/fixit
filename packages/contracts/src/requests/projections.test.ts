@@ -36,6 +36,7 @@ const ctx: CustomerViewContext = {
     id: 'p-1',
     businessName: 'Bell & Sons Plumbing',
     photoUrl: null,
+    categoryId: 'plumbing',
     categoryIcon: 'wrench',
     verified: true,
     rating: 4.9,
@@ -63,6 +64,7 @@ describe('toCustomerView', () => {
   });
   it('pending: history, cancel deadline, canCancel, no review block', () => {
     const v = view({});
+    expect(v.provider.categoryId).toBe('plumbing');
     expect(v.history).toEqual([{ status: 'pending', at, actor: 'customer', actorName: null, reason: null }]);
     expect(v.cancelDeadline).toBe('2026-11-24T18:30:00.000Z');
     expect(v.canCancel).toBe(true);

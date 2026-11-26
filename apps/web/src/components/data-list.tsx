@@ -108,7 +108,11 @@ export function DataList<T>({
             const title = columns.find((c) => c.card === 'title');
             const statuses = columns.filter((c) => c.card === 'status');
             const metas = columns.filter((c) => c.card === 'meta');
-            const actions = columns.filter((c) => c.card === 'actions');
+            // An actions column whose cell renders nothing for this row adds no (empty) action row.
+            const actionCells = columns
+              .filter((c) => c.card === 'actions')
+              .map((c) => ({ id: c.id, node: c.cell(row) }))
+              .filter(({ node }) => node !== null && node !== undefined && node !== false);
             return (
               <li
                 key={getRowKey(row)}
@@ -129,11 +133,11 @@ export function DataList<T>({
                     {c.cell(row)}
                   </div>
                 ))}
-                {actions.length > 0 && (
+                {actionCells.length > 0 && (
                   <div className="relative z-10 mt-1 flex gap-2 [&_a]:min-h-11 [&_a]:flex-1 [&_button]:min-h-11 [&_button]:flex-1">
-                    {actions.map((c) => (
-                      <div key={c.id} className="flex flex-1 gap-2">
-                        {c.cell(row)}
+                    {actionCells.map(({ id, node }) => (
+                      <div key={id} className="flex flex-1 gap-2">
+                        {node}
                       </div>
                     ))}
                   </div>

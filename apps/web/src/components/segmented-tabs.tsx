@@ -1,5 +1,5 @@
 import { useRef, type KeyboardEvent } from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { cn } from '@/lib/utils';
 
 export interface SegmentedTabItem {
@@ -8,6 +8,8 @@ export interface SegmentedTabItem {
   count?: number;
   /** Links mode: the URL this tab opens. */
   to?: string;
+  /** Links mode: overrides route matching for tabs that differ only by query string (NavLink ignores `?search`). */
+  active?: boolean;
 }
 
 const track = 'flex w-full gap-1 overflow-x-auto rounded-md bg-page p-1 sm:inline-flex sm:w-auto';
@@ -31,17 +33,29 @@ export function SegmentedTabLinks({
 }) {
   return (
     <nav aria-label={label} className={cn(track, className)}>
-      {items.map((it) => (
-        <NavLink
-          key={it.value}
-          to={it.to ?? '#'}
-          end
-          className={({ isActive }) => cn(tab, isActive && active)}
-        >
-          {it.label}
-          <Count n={it.count} />
-        </NavLink>
-      ))}
+      {items.map((it) =>
+        it.active === undefined ? (
+          <NavLink
+            key={it.value}
+            to={it.to ?? '#'}
+            end
+            className={({ isActive }) => cn(tab, isActive && active)}
+          >
+            {it.label}
+            <Count n={it.count} />
+          </NavLink>
+        ) : (
+          <Link
+            key={it.value}
+            to={it.to ?? '#'}
+            aria-current={it.active ? 'page' : undefined}
+            className={cn(tab, it.active && active)}
+          >
+            {it.label}
+            <Count n={it.count} />
+          </Link>
+        ),
+      )}
     </nav>
   );
 }

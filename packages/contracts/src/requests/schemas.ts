@@ -112,6 +112,7 @@ const RequestBase = z.object({
 export const CustomerRequestView = RequestBase.extend({
   provider: z.object({
     id: Id,
+    categoryId: Id,
     businessName: z.string(),
     photoUrl: z.string().nullable(),
     categoryIcon: CategoryIcon,

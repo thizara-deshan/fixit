@@ -27,7 +27,7 @@ describe('RequestSentPage (S13)', () => {
   it('no longer pending → S15', async () => {
     signInAs('customer');
     renderRoute('/requests/FX-2046/sent');
-    expect(await screen.findByText('Request detail')).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { level: 1, name: 'Leak repair' })).toBeInTheDocument();
   });
   it("another customer's ref → S39 request", async () => {
     signInAs('customer');

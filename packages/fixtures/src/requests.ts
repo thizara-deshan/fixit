@@ -7,7 +7,7 @@ import {
   type TimeSlot,
 } from '@fixit/contracts';
 import { serviceId } from './providers';
-import type { FxProvider, FxService, FxUser } from './types';
+import type { FxProvider, FxReview, FxService, FxUser } from './types';
 
 const HOUR = 3_600_000;
 
@@ -23,7 +23,12 @@ export interface RequestSeed {
   description: string;
   createdAt: Date;
   /** Provider-made transitions after creation, oldest first. */
-  steps: readonly { status: Exclude<RequestStatus, 'pending'>; at: Date; reason?: string }[];
+  steps: readonly {
+    status: Exclude<RequestStatus, 'pending'>;
+    at: Date;
+    reason?: string;
+    actor?: 'provider' | 'admin' | 'system'; // default provider (D-2)
+  }[];
 }
 
 export function makeRequest(s: RequestSeed): RequestRecord {
@@ -49,7 +54,7 @@ export function makeRequest(s: RequestSeed): RequestRecord {
     agreedPrice: accepted ? s.service.price : null,
     status,
     reason: last?.reason ?? null,
-    closedBy: status === 'declined' || status === 'completed' ? 'provider' : null,
+    closedBy: status === 'pending' || status === 'accepted' ? null : (last?.actor ?? 'provider'),
     createdAt: s.createdAt.toISOString(),
     updatedAt: (last?.at ?? s.createdAt).toISOString(),
     expiresAt: expiresAt(s.createdAt, s.preferredDate).toISOString(),
@@ -62,13 +67,16 @@ export function makeRequest(s: RequestSeed): RequestRecord {
         actorUserId: s.customer.id,
         reason: null,
       },
-      ...s.steps.map((st) => ({
-        status: st.status,
-        at: st.at.toISOString(),
-        actor: 'provider' as const,
-        actorUserId: s.provider.userId,
-        reason: st.reason ?? null,
-      })),
+      ...s.steps.map((st) => {
+        const actor = st.actor ?? 'provider';
+        return {
+          status: st.status,
+          at: st.at.toISOString(),
+          actor,
+          actorUserId: actor === 'provider' ? s.provider.userId : actor === 'admin' ? 'u-admin' : null,
+          reason: st.reason ?? null,
+        };
+      }),
     ],
   };
 }
@@ -251,4 +259,154 @@ export function buildLimitRequests(
       steps: [],
     });
   });
+}
+
+interface JourneyRow {
+  ref: string;
+  providerId: string;
+  prefDays: number;
+  createdHoursAgo: number;
+  steps: readonly {
+    status: Exclude<RequestStatus, 'pending'>;
+    hoursAgo: number;
+    actor?: 'provider' | 'admin' | 'system';
+    reason?: string;
+  }[];
+  hiddenReview?: { rating: number; text: string; hoursAgo: number };
+}
+
+/** M09 (D-1): Olivia's requests in every state S15 renders. Providers p04–p07, p09, p10 are not used by other tests. */
+const JOURNEY: readonly JourneyRow[] = [
+  // Accepted, cut-off in the future (AC5)
+  {
+    ref: 'FX-2030',
+    providerId: 'p04',
+    prefDays: 5,
+    createdHoursAgo: 30,
+    steps: [{ status: 'accepted', hoursAgo: 20 }],
+  },
+  // Accepted, preferred date today → past the cut-off (AC5)
+  {
+    ref: 'FX-2031',
+    providerId: 'p05',
+    prefDays: 0,
+    createdHoursAgo: 50,
+    steps: [{ status: 'accepted', hoursAgo: 40 }],
+  },
+  // Pending that expires 6 minutes after seeding (AC6 mock sweep)
+  { ref: 'FX-2032', providerId: 'p06', prefDays: 4, createdHoursAgo: 71.9, steps: [] },
+  // Declined with a reason
+  {
+    ref: 'FX-2033',
+    providerId: 'p07',
+    prefDays: -5,
+    createdHoursAgo: 300,
+    steps: [{ status: 'declined', hoursAgo: 290, reason: 'Fully booked that week.' }],
+  },
+  // Declined by the system (provider suspended)
+  {
+    ref: 'FX-2034',
+    providerId: 'p09',
+    prefDays: -2,
+    createdHoursAgo: 200,
+    steps: [{ status: 'declined', hoursAgo: 190, actor: 'system', reason: 'Provider unavailable' }],
+  },
+  // Accepted, then cancelled by an admin
+  {
+    ref: 'FX-2035',
+    providerId: 'p10',
+    prefDays: -1,
+    createdHoursAgo: 150,
+    steps: [
+      { status: 'accepted', hoursAgo: 140 },
+      {
+        status: 'cancelled',
+        hoursAgo: 100,
+        actor: 'admin',
+        reason: 'The provider reported a family emergency.',
+      },
+    ],
+  },
+  // Expired at createdAt + 72 h
+  {
+    ref: 'FX-2036',
+    providerId: 'p04',
+    prefDays: -10,
+    createdHoursAgo: 400,
+    steps: [{ status: 'expired', hoursAgo: 328, actor: 'system' }],
+  },
+  // Completed 35 days ago → review window closed (AC8)
+  {
+    ref: 'FX-2029',
+    providerId: 'p09',
+    prefDays: -36,
+    createdHoursAgo: 900,
+    steps: [
+      { status: 'accepted', hoursAgo: 890 },
+      { status: 'completed', hoursAgo: 840 },
+    ],
+  },
+  // Completed, reviewed, review hidden by an admin (S15.E6 Hidden pill)
+  {
+    ref: 'FX-2028',
+    providerId: 'p10',
+    prefDays: -15,
+    createdHoursAgo: 400,
+    steps: [
+      { status: 'accepted', hoursAgo: 390 },
+      { status: 'completed', hoursAgo: 350 },
+    ],
+    hiddenReview: { rating: 2, text: 'Arrived very late and left a mess behind.', hoursAgo: 340 },
+  },
+];
+
+export function buildCustomerJourneyRequests(
+  now: Date,
+  ctx: { users: readonly FxUser[]; providers: readonly FxProvider[]; services: readonly FxService[] },
+): { requests: RequestRecord[]; reviews: FxReview[] } {
+  const today = colomboToday(now);
+  const at = (hoursAgo: number) => new Date(now.getTime() - hoursAgo * HOUR);
+  const customer = ctx.users.find((u) => u.id === 'u-olivia');
+  if (!customer) throw new Error('fixtures: u-olivia missing');
+  const requests: RequestRecord[] = [];
+  const reviews: FxReview[] = [];
+  for (const row of JOURNEY) {
+    const provider = ctx.providers.find((p) => p.id === row.providerId);
+    const service = ctx.services.find((s) => s.id === serviceId(row.providerId, 0));
+    if (!provider?.baseTownId || !service) throw new Error(`fixtures: bad journey request ${row.ref}`);
+    const r = makeRequest({
+      ref: row.ref,
+      customer,
+      provider,
+      service,
+      townId: provider.baseTownId,
+      preferredDate: addDays(today, row.prefDays),
+      slot: 'afternoon',
+      addressLine1: '24 Galle Road',
+      description: 'Please take a look and tell me what it will cost.',
+      createdAt: at(row.createdHoursAgo),
+      steps: row.steps.map((st) => ({
+        status: st.status,
+        at: at(st.hoursAgo),
+        ...(st.actor ? { actor: st.actor } : {}),
+        ...(st.reason ? { reason: st.reason } : {}),
+      })),
+    });
+    requests.push(r);
+    if (row.hiddenReview)
+      reviews.push({
+        id: `v-${row.ref}`,
+        requestId: r.id,
+        providerId: provider.id,
+        authorId: customer.id,
+        rating: row.hiddenReview.rating,
+        text: row.hiddenReview.text,
+        visibility: 'hidden',
+        createdAt: at(row.hiddenReview.hoursAgo).toISOString(),
+        replyText: null,
+        replyCreatedAt: null,
+        replyUpdatedAt: null,
+      });
+  }
+  return { requests, reviews };
 }

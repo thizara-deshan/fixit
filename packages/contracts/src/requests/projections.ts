@@ -1,5 +1,5 @@
 import type { CategoryIcon, RequestStatus, ReviewVisibility } from '../common/enums';
-import { reviewDeadline } from '../reviews/rules';
+import { reviewDeadline, reviewEligibility } from '../reviews/rules';
 import { toMachineRequest, type RequestRecord } from './record';
 import { cancelDeadline } from './rules';
 import type { CustomerRequestView } from './schemas';
@@ -10,6 +10,7 @@ const REVEALED: readonly RequestStatus[] = ['accepted', 'completed'];
 export interface CustomerViewContext {
   provider: {
     id: string;
+    categoryId: string;
     businessName: string;
     photoUrl: string | null;
     categoryIcon: CategoryIcon;
@@ -35,7 +36,7 @@ export function toCustomerView(r: RequestRecord, ctx: CustomerViewContext, now: 
   if (r.status === 'completed' && r.completedAt !== null) {
     const deadline = reviewDeadline(new Date(r.completedAt));
     review = {
-      eligible: ctx.ownReview === null && now.getTime() < deadline.getTime(),
+      eligible: reviewEligibility(r, ctx.ownReview, r.customerId, now).ok,
       deadline: deadline.toISOString(),
       own: ctx.ownReview,
     };

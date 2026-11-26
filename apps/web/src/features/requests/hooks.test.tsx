@@ -1,12 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
-import { bookingWindow } from '@fixit/contracts';
+import { bookingWindow, type CustomerRequestView } from '@fixit/contracts';
+import { qk } from '@/lib/query-keys';
 import { authStore } from '@/lib/auth-store';
 import { commit, db } from '@/mocks/db/store';
 import { FIXED_NOW } from '@/test/fixed-now';
-import { createWrapper } from '@/test/render';
+import { createTestQueryClient, createWrapper } from '@/test/render';
 import { signInAs } from '@/test/sign-in';
-import { useCreateRequest, useMyRequest } from './hooks';
+import { useCancelRequest, useCreateRequest, useMyRequest, usePostReview } from './hooks';
 
 describe('requests hooks', () => {
   beforeEach(() => {
@@ -45,5 +46,47 @@ describe('requests hooks', () => {
     await waitFor(() => {
       expect(authStore.getState().me?.mobile).toBe('+94771234567');
     });
+  });
+});
+
+describe('useCancelRequest', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ now: FIXED_NOW, toFake: ['Date'] });
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('replaces the cached detail with the cancelled view', async () => {
+    signInAs('customer');
+    const queryClient = createTestQueryClient();
+    const { result } = renderHook(() => useCancelRequest('FX-2030'), { wrapper: createWrapper(queryClient) });
+    result.current.mutate({ reason: undefined });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    const view = queryClient.getQueryData<CustomerRequestView>(qk.myRequests.detail('FX-2030'));
+    expect(view?.status).toBe('cancelled');
+    expect(view?.provider.mobile).toBeNull();
+  });
+});
+describe('usePostReview', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ now: FIXED_NOW, toFake: ['Date'] });
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('invalidates catalog queries', async () => {
+    signInAs('customer');
+    const queryClient = createTestQueryClient();
+    const { result } = renderHook(() => usePostReview('FX-2046'), { wrapper: createWrapper(queryClient) });
+    const spy = vi.spyOn(queryClient, 'invalidateQueries');
+    result.current.mutate({ rating: 5, text: 'Great work, thank you!' });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(spy).toHaveBeenCalledWith({ queryKey: ['catalog'] });
   });
 });

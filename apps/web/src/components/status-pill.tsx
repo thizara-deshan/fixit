@@ -38,6 +38,23 @@ const REQUEST: Record<RequestStatus, [Tone, string]> = {
   expired: ['expired', 'Expired'],
 };
 
+export const REQUEST_DOT: Record<RequestStatus, string> = {
+  pending: 'bg-warning',
+  accepted: 'bg-primary',
+  completed: 'bg-success',
+  declined: 'bg-danger',
+  cancelled: 'bg-icon-subtle',
+  expired: 'bg-border-control',
+};
+export const REQUEST_LABEL: Record<RequestStatus, string> = {
+  pending: 'Pending',
+  accepted: 'Accepted',
+  completed: 'Completed',
+  declined: 'Declined',
+  cancelled: 'Cancelled',
+  expired: 'Expired',
+};
+
 function resolve(p: StatusPillProps): Resolved {
   switch (p.kind) {
     case 'request': {

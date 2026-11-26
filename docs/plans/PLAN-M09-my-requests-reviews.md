@@ -67,7 +67,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Status groups, `RequestListQuery`, `MyRequestList`, `CancelBody`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/list.ts`, `packages/contracts/src/requests/list.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S14.E2 (groups: Open = Pending + Accepted; Closed = Declined + Cancelled + Expired), S14.E5 (20 per page, `PAGE_SIZE.myRequests`), §8.3 reason ≤ 500 `Keep the reason under 500 characters.`; ARCH §3.4. `PageQuery`, `paginated` in `common/pagination.ts`.
 **Do:**
@@ -178,7 +178,7 @@ describe('CancelBody', () => {
 **Commit:** `git commit -m "feat(contracts): request list query, status groups and cancel body (M09-T1)"`
 
 ### T2 — `categoryId` in `CustomerRequestView`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`, `packages/contracts/src/requests/projections.ts`, `packages/contracts/src/requests/projections.test.ts`, `src/mocks/lib/requests.ts`
 **Context:** D-3; SPEC S15 `Find another provider` → `/discover?cat={cat}&loc={town}`.
 **Do:**
@@ -190,7 +190,7 @@ describe('CancelBody', () => {
 **Commit:** `git commit -m "feat(contracts): provider category id in the customer request view (M09-T2)"`
 
 ### T3 — `CreateReviewBody`, `Review`, `RATING_LABELS`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/reviews/schemas.ts`, `packages/contracts/src/reviews/schemas.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S16 field table; BR-26; ARCH §2.5 excerpt. `PublicReview` in `catalog/schemas.ts`.
 **Do:**
@@ -266,7 +266,7 @@ describe('CreateReviewBody (S16)', () => {
 **Commit:** `git commit -m "feat(contracts): review body and review schemas (M09-T3)"`
 
 ### T4 — `reviewEligibility` and its use in `toCustomerView`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/reviews/rules.ts`, `packages/contracts/src/reviews/rules.test.ts`, `packages/contracts/src/requests/projections.ts`
 **Context:** BR-24, BR-25; D-4; AC9. `RuleCode` already has `review_not_eligible`, `review_window_closed`, `already_reviewed`.
 **Do:**
@@ -346,7 +346,7 @@ describe('reviewEligibility (BR-24/25)', () => {
 **Commit:** `git commit -m "feat(contracts): reviewEligibility, used by the customer view (M09-T4)"`
 
 ### T5 — Endpoint entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.4 rows `GET /me/requests`, `POST /me/requests/:ref/cancel`; §3.5 `POST /me/requests/:ref/review`.
 **Do:**
@@ -414,7 +414,7 @@ import { CreateReviewBody, Review } from './reviews/schemas';
 **Commit:** `git commit -m "feat(contracts): my-requests list, cancel and review endpoints (M09-T5)"`
 
 ### T6 — Fixtures: step actors and Olivia's journey requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/requests.ts`, `packages/fixtures/src/build.ts`, `packages/fixtures/src/build.test.ts`, `src/mocks/db/schema.ts`, `src/mocks/handlers/auth.test.ts`
 **Context:** D-1, D-2; AC4–AC8. Existing `makeRequest`, `serviceId` (from `./providers`), `FxReview` type.
 **Do:**
@@ -618,7 +618,7 @@ Use `allReviews` instead of `reviews` in the aggregate loop and in the returned 
 **Commit:** `git commit -m "feat(fixtures): Olivia's requests in every status for S15 (M09-T6)"`
 
 ### T7 — Mock helpers: `transitionOr409` and `myRequestList`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/requests.ts`, `src/mocks/lib/requests.test.ts`
 **Context:** D-5; S14.E4 (most recently updated first), S14.E5 (20 per page); `statusesOf`, `groupOf`, `PAGE_SIZE`.
 **Do:** Add to `src/mocks/lib/requests.ts` (extend the contracts import with `assertTransition, groupOf, PAGE_SIZE, statusesOf, toMachineRequest, TransitionError, type MachineActor, type MyRequestList, type RequestListQuery, type TransitionInput`):
@@ -694,7 +694,7 @@ describe('myRequestList', () => {
 **Commit:** `git commit -m "feat(web): mock request list and transition helpers (M09-T7)"`
 
 ### T8 — Mock handlers: `GET /me/requests` and `POST /me/requests/:ref/cancel`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-mine.test.ts`
 **Context:** A12, BR-30, F-25 (sweep at the start of each handler), §6.3 privacy (contact hidden after cancel), AC6, AC8, AC9.
 **Do:** Add to `requestsHandlers` (imports: `myRequestList`, `transitionOr409` from `../lib/requests`):
@@ -811,7 +811,7 @@ describe('POST /me/requests/:ref/cancel', () => {
 **Commit:** `git commit -m "feat(web): mock my-requests list and cancel handlers (M09-T8)"`
 
 ### T9 — Mock handler: `POST /me/requests/:ref/review` with rating recompute
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/reviews.ts`, `src/mocks/handlers/reviews.test.ts`, `src/mocks/handlers/index.ts`
 **Context:** A19, BR-24–BR-27, F-29; ARCH §4 (rating recomputed with `ratingFrom()` over visible reviews, not incremented). `displayNameOf` in contracts `auth/names`.
 **Do:**
@@ -943,7 +943,7 @@ describe('POST /me/requests/:ref/review', () => {
 **Checkpoint after T9:** "Human: run `pnpm dev:mock`, open the DevPanel endpoint list and check that `requests_list`, `requests_cancel` and `reviews_create` appear."
 
 ### T10 — Query key, API functions, formatters
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/features/requests/api.ts`, `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** ARCH §4.2 key shape; D-6; S16 counter `{n} / 1,000`.
 **Do:**
@@ -988,7 +988,7 @@ describe('formatCount', () => {
 **Commit:** `git commit -m "feat(web): my-requests api, query key and formatters (M09-T10)"`
 
 ### T11 — Hooks: `useMyRequests`, `useCancelRequest`, `usePostReview`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/hooks.ts`, `src/features/requests/hooks.test.tsx`
 **Context:** A12 (contact hidden, lists/eligibility/me refresh), A19 (invalidate `catalog` so the profile rating changes), ARCH §4.2 domain-wide invalidation.
 **Do:** Append to `hooks.ts` (imports: `keepPreviousData` from TanStack; `CancelBody, CreateReviewBody, RequestListQuery` types; `cancelMyRequest, fetchMyRequests, postReview`):
@@ -1061,7 +1061,7 @@ describe('usePostReview', () => {
 **Commit:** `git commit -m "feat(web): my-requests, cancel and post-review hooks (M09-T11)"`
 
 ### T12 — S14 URL state helper
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/list-search.ts`, `src/features/requests/list-search.test.ts`
 **Context:** S14.E2 (`?status=`, page resets), S14.E5 (`?page=`); `RequestListQuery`.
 **Do:**
@@ -1105,7 +1105,7 @@ describe('list-search', () => {
 **Commit:** `git commit -m "feat(web): my-requests URL state (M09-T12)"`
 
 ### T13 — S15 status panel copy
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/status-panel.ts`, `src/features/requests/status-panel.test.ts`, `src/components/status-pill.tsx`
 **Context:** SPEC S15 status panel table; D-6; BR-12; the UI never evaluates rules (uses `canCancel`).
 **Do:**
@@ -1276,7 +1276,7 @@ describe('statusPanel (S15)', () => {
 **Commit:** `git commit -m "feat(web): S15 status panel copy per status (M09-T13)"`
 
 ### T14 — S15 history actor wording
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/history.ts`, `src/features/requests/history.test.ts`
 **Context:** S15.E7: `by you` / `by {Business}` / `by Fixit` / `automatically`.
 **Do:**
@@ -1316,7 +1316,7 @@ describe('actorLabel (S15.E7)', () => {
 **Commit:** `git commit -m "feat(web): S15 history actor wording (M09-T14)"`
 
 ### T15 — `MyRequestsList` (S14 table / phone cards)
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/my-requests-list.tsx`
 **Context:** S14 desktop + phone layouts, S14.E3; D-7; §6.9; `DataList`, `StatusPill`, `Button`, `CategoryIcon`, `formatDateShort`, `SLOT_LABEL`; lucide `Phone`, `CalendarDays`, `MapPin`.
 **Do:** Create the component:
@@ -1364,7 +1364,7 @@ States: loading → DataList skeletons (table rows ×5 / phone cards ×5, `aria-
 **Commit:** `git commit -m "feat(web): my-requests table and phone cards (M09-T15)"`
 
 ### T16 — `MyRequestsPage` (S14) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/my-requests-page.tsx`, `src/app/chunks/customer.tsx`
 **Context:** S14 layout, E1–E7; L2 header (`CustomerPageHeader`); `SegmentedTabLinks` (S20 pattern), `Pagination`, `EmptyState` (`Inbox`), `SectionError`; `parseListSearch`, `listHref`.
 **Do:**
@@ -1400,7 +1400,7 @@ export function MyRequestsPage() {
 **Checkpoint after T16:** "Human: run `pnpm dev:mock`, sign in as Olivia, open `/requests` at 1440 and 390. INFERRED screen (no prototype image): compare with SPEC S14 and the S20 table pattern in `reference/screens/` (provider overview). Check tabs scroll at 390 and there is no horizontal page scroll."
 
 ### T17 — S15 building blocks: contact block, details card, history, provider aside
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/contact-block.tsx`, `request-details-card.tsx`, `request-history.tsx`, `provider-aside-card.tsx` (all under `src/features/requests/components/`)
 **Context:** S15.E3, E4, E5, E7; D-8; `formatPhone`, `formatDateLong`, `formatDateTime`, `SLOT_LABEL`, `formatServicePrice`, `REQUEST_DOT`, `REQUEST_LABEL`, `actorLabel`, `VerifiedBadge`, `Stars`, `notify`, `notifyError`.
 **Do:**
@@ -1415,7 +1415,7 @@ export function MyRequestsPage() {
 **Commit:** `git commit -m "feat(web): S15 contact, details, history and provider cards (M09-T17)"`
 
 ### T18 — Cancel dialog and conflict dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/cancel-request-dialog.tsx`, `src/features/requests/components/conflict-dialog.tsx`
 **Context:** §8.3 cancel dialog copy, A12, §6.10 (bottom sheet on phone, buttons stack, primary/danger first), §6.3 conflict + form-submit failure, D-5; `ResponsiveDialog`, `FormField`, `Textarea`, `SubmitButton`, `FormErrorBanner`, `FORM_COPY.saveFailed`, `mapApiErrorToForm`, `CancelBody` via `zodResolver`.
 **Do:**
@@ -1433,7 +1433,7 @@ export function MyRequestsPage() {
 **Commit:** `git commit -m "feat(web): cancel and conflict dialogs (M09-T18)"`
 
 ### T19 — S14 behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/my-requests-page.test.tsx`
 **Context:** AC1–AC3; `renderRoute`, `signInAs`, `armForcedError` (`@/mocks/lib/controls`), `setViewport`/media-query mocking — use whatever the existing page tests use for 390 vs 1440 (search `matchMedia` in `src/test/`).
 **Do / Test:** write these cases (fake timers per conventions):
@@ -1449,7 +1449,7 @@ export function MyRequestsPage() {
 **Commit:** `git commit -m "test(web): My requests behaviour (M09-T19)"`
 
 ### T20 — `ReviewBlock` (S15.E6) and `StatusPanelCard` (S15.E2)
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/review-block.tsx`, `src/features/requests/components/status-panel-card.tsx`
 **Context:** S15 status panel (4px top border in the status dot colour, title `title-md`, body 15 muted, actions; phone actions full width), S15.E6; `statusPanel`, `PANEL_BORDER`, `ContactBlock`, `Stars`, `StatusPill kind="review"`.
 **Do:**
@@ -1487,7 +1487,7 @@ return (
 **Commit:** `git commit -m "feat(web): S15 status panel and review block (M09-T20)"`
 
 ### T21 — `CustomerRequestPage` (S15) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/customer-request-page.tsx`, `src/app/chunks/customer.tsx`, `src/features/requests/pages/request-sent-page.test.tsx`
 **Context:** S15 desktop/phone layouts; §6.4 (other owner → S39 request variant); §6.1 skeletons (`SkeletonSectionCard`); D-5; `useMyRequest`, `NotFoundPage variant="request"`, `BackLink`.
 **Do:**
@@ -1531,7 +1531,7 @@ export function CustomerRequestPage() {
 **Checkpoint after T21:** "Human: `pnpm dev:mock`, Olivia, open FX-2061, FX-2030, FX-2031, FX-2033, FX-2034, FX-2035, FX-2036, FX-2046, FX-2029, FX-2028 at 1440 and 390. Compare each status panel with the SPEC S15 table. Cancel FX-2061 at 390 — the dialog is a bottom sheet."
 
 ### T22 — S15 behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/customer-request-page.test.tsx`
 **Context:** AC4–AC6, AC8; fake timers per conventions.
 **Do / Test:** cases:
@@ -1550,7 +1550,7 @@ export function CustomerRequestPage() {
 **Commit:** `git commit -m "test(web): request detail behaviour (M09-T22)"`
 
 ### T23 — `StarRatingInput`
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/star-rating-input.tsx`
 **Context:** S16 rating field: 5-star radio group, each 44×44, hover/focus preview + label `Poor` … `Excellent`; `RATING_LABELS`; lucide `Star` with `fill="currentColor"` when on; visible focus ring; no hover-only affordance (label also shows for the selected value).
 **Do:**
@@ -1589,7 +1589,7 @@ export function StarRatingInput({ id, value, onChange, onBlur, invalid, describe
 **Commit:** `git commit -m "feat(web): star rating input (M09-T23)"`
 
 ### T24 — `ReviewForm` (S16 card)
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/review-form.tsx`
 **Context:** S16 layout (card max 640, r20, padding 28 / phone 20; provider mini row 48 photo; context line `{FX-2061} · {Service} · completed {date}`; phone sticky `Post review` bar), field table, E2 notice, E3 submit; `CreateReviewBody` via `zodResolver`; `FormField`, `Textarea`, `SubmitButton`, `FormErrorBanner`, `FORM_COPY.saveFailed`; `formatCount`, `formatDateLong`; `useAuth().me.displayName`.
 **Do:**
@@ -1617,7 +1617,7 @@ interface Props {
 **Commit:** `git commit -m "feat(web): leave-a-review form (M09-T24)"`
 
 ### T25 — `LeaveReviewPage` (S16) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/leave-review-page.tsx`, `src/app/chunks/customer.tsx`
 **Context:** S16 (ineligible: already reviewed → redirect S15; window closed / not completed → in-card message; other owner → S39), E3 (→ S15 + toast `Thanks — your review is live.`), §6.7 discard confirm, D-9; `useMyRequest`, `usePostReview`, `useBodyClass`, `DiscardChangesGuard`, `mapApiErrorToForm` not needed (server field errors equal client ones).
 **Do:**
@@ -1672,7 +1672,7 @@ Render:
 **Commit:** `git commit -m "feat(web): leave-a-review page S16 (M09-T25)"`
 
 ### T26 — S16 behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/leave-review-page.test.tsx`
 **Context:** AC7, AC8.
 **Do / Test:** cases (fake timers per conventions):
@@ -1692,7 +1692,7 @@ Render:
 **Checkpoint after T26:** "Human: `pnpm dev:mock`, Olivia, `/requests/FX-2046/review` at 390: sticky `Post review` bar at the bottom, star targets easy to tap, no horizontal scroll; post a review and check `/providers/p01` shows the new count."
 
 ### T27 — Acceptance checks
-- [ ] done
+- [x] done
 **Files:** `docs/plans/PLAN-M09-my-requests-reviews.md` (tick boxes), `docs/milestones/M00-index.md` (mark M09 done, as M08 did)
 **Do:** walk every acceptance criterion; record pass/fail next to each in the commit message body. Anything failing → **STOP**, write a blocker.
 | AC | Check |
@@ -1716,7 +1716,13 @@ Then `pnpm verify` green, tick T27, commit.
 - After T26: "Human: S16 at 390 — sticky bar, star targets, post a review, check `/providers/p01` count."
 
 ## Blockers
-(executor writes here; leave empty)
+- **RESOLVED (user chose option 1; `DataList` now skips the actions wrapper when every actions cell renders nothing, with a test) — T15 — `DataList` does not hide an empty actions row on phone.** T15 step `action` says: if `DataList` renders an empty actions row when the cell returns `null`, check that it hides the row, and if it doesn't, STOP rather than fork `DataList`. In `src/components/data-list.tsx` the phone card renders `<div className="relative z-10 mt-1 flex gap-2 …">` whenever any column has `card: 'actions'`, with one inner `<div className="flex flex-1 gap-2">` per actions column, regardless of what `cell(row)` returns. So every card without a review button (10 of 11 for Olivia) gets an empty `mt-1` row, about 4 px of extra bottom space plus the card's `gap-2` (8 px).
+  Options:
+  1. Allow a small change to `DataList`: skip the actions wrapper when every actions cell renders `null` (needs `cell` results inspected, or an optional `hasActions?: (row) => boolean` on the column). Touches a shared component and its test.
+  2. Drop the phone `action` column and render `reviewButton(r)` inside the `when`/`contact` meta rows (no forced 44 px height from `DataList`, so add `min-h-11` on the button). No change to shared code, but diverges from the plan's column list.
+  3. Accept the cosmetic 12 px gap on cards without a button (keep the plan's column list as written).
+  Executor recommendation: option 1 (smallest, keeps the SPEC layout and 44 px targets).
+  Tasks T1–T14 are done and committed; T15 not started.
 
 ## Nice-to-haves / notes (not tasks)
 - API milestone: D-3 and D-4 are recorded in decision 005 (ARCH §2.5/§4 updated). The API's 409 should carry `details.status` like the mock (D-5).
