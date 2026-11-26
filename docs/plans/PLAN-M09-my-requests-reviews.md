@@ -1415,7 +1415,7 @@ export function MyRequestsPage() {
 **Commit:** `git commit -m "feat(web): S15 contact, details, history and provider cards (M09-T17)"`
 
 ### T18 — Cancel dialog and conflict dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/cancel-request-dialog.tsx`, `src/features/requests/components/conflict-dialog.tsx`
 **Context:** §8.3 cancel dialog copy, A12, §6.10 (bottom sheet on phone, buttons stack, primary/danger first), §6.3 conflict + form-submit failure, D-5; `ResponsiveDialog`, `FormField`, `Textarea`, `SubmitButton`, `FormErrorBanner`, `FORM_COPY.saveFailed`, `mapApiErrorToForm`, `CancelBody` via `zodResolver`.
 **Do:**
