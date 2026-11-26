@@ -3384,7 +3384,11 @@ describe('S22 provider request detail', () => {
 - After T39: "Human: open `/dashboard/requests/FX-2061`, `FX-2050`, `FX-2054`, `FX-2038`, `FX-2040` at 1440 and 390; check the sticky bar on phone and the sticky Actions card on desktop."
 
 ## Blockers
-(executor writes here; leave empty)
+- **T27 — `fetchQuery` is deprecated, lint fails.** The plan's `useRequestActions` calls `qc.fetchQuery({ queryKey, queryFn, staleTime: 0 })`. The installed `@tanstack/query-core` is 5.108.2, where `fetchQuery` is `@deprecated` ("Use queryClient.query(options)") and `@typescript-eslint/no-deprecated` fails `pnpm lint` (so `pnpm verify` is red). The plan says to STOP when a TanStack Query 5 API differs. The drafted file is `apps/web/src/features/provider-dashboard/components/request-actions.tsx` (identical to the plan; left **uncommitted**, T27 not ticked).
+  Options: (a) replace `qc.fetchQuery(...)` with `qc.query({ queryKey: qk.inbox.detail(ref), queryFn: () => fetchInboxRequest(ref), staleTime: 0 })` — same semantics, and the type signature/behaviour of `query` should be confirmed in `hydration-C1yRFalg.d.ts` first; (b) use `qc.invalidateQueries` + `qc.refetchQueries` on the detail key, then read `qc.getQueryData`; (c) add an eslint-disable for the deprecation (not recommended). Recommended: (a). The same change may be needed in any later task that uses `fetchQuery`.
+- **Process note (executor):** the plan has a Checkpoint after T14 ("Human: read `requests-inbox.test.ts` and `requests-provider-actions.test.ts` and confirm the privacy and 404/403 cases…"). I did not stop there and continued through T26. Nothing is wrong with the committed work, but that review is still owed.
+- **T18 deviation (test only):** the plan's test passes `body: {}` to `useDeclineRequest`, which fails typecheck because `DeclineBody` is inferred as `{ reason: string | undefined }` (key required, via `OptionalReason`'s transform). The committed test passes `{ reason: undefined }`. T25 passes `{ reason: body.reason }` for the same reason. The contract is unchanged; if you'd rather make the key optional in contracts, that is a separate decision.
+- **T7 side effect:** `store.test.ts` hard-coded `fixit.mockdb.v4`; updated to `v5` to follow the plan's `MOCK_DB_VERSION` bump.
 
 ## Nice-to-haves (not tasks)
 - `Me.pendingRequestCount` in the mock `auth_me` doesn't sweep expired requests first, so the badge can lag the inbox by one refresh after an expiry.
