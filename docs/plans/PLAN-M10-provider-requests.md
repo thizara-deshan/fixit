@@ -2091,7 +2091,7 @@ export function useRequestActions(): RequestActions {
 **Commit:** `git commit -m "feat(web): request actions controller with conflict handling (M10-T27)"`
 
 ### T28 — `ProviderRequestsList` (table + phone cards)
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/provider-requests-list.tsx`
 **Context:** S20.E9–E10 (columns `Customer · Service · Date · Area · Status`, grid `1.4fr 1.5fr 1fr .9fr 288px`, Pending: `[Check] Accept` + `Decline` before the pill), S20 phone card rows, S21 `Reply by …` (12 `warning-text`), §6.9, D-7, D-8; screenshot `07-provider-dashboard-desktop.png` table. Existing `DataList`, `StatusPill`, `my-requests-list.tsx` (column-set per width).
 **States:** loading → `DataList` skeleton (table rows / phone cards); empty → `empty` prop; flashing rows → `bg-primary-flash`.
