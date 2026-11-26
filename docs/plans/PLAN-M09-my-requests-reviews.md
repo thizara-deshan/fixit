@@ -1692,7 +1692,7 @@ Render:
 **Checkpoint after T26:** "Human: `pnpm dev:mock`, Olivia, `/requests/FX-2046/review` at 390: sticky `Post review` bar at the bottom, star targets easy to tap, no horizontal scroll; post a review and check `/providers/p01` shows the new count."
 
 ### T27 — Acceptance checks
-- [ ] done
+- [x] done
 **Files:** `docs/plans/PLAN-M09-my-requests-reviews.md` (tick boxes), `docs/milestones/M00-index.md` (mark M09 done, as M08 did)
 **Do:** walk every acceptance criterion; record pass/fail next to each in the commit message body. Anything failing → **STOP**, write a blocker.
 | AC | Check |
