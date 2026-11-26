@@ -2876,7 +2876,7 @@ export function DocumentSlot({ type, doc, missingError, onBusyChange, onUploaded
 **Commit:** `git commit -m "feat(web): S26 document slot (M11-T33)"`
 
 ### T34 — Verification status card and submitted list
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/verification-status-card.tsx`, `src/features/provider-business/components/submitted-documents.tsx`
 **Context:** S26 status table (pill, title, body per state; Rejected danger banner `Reason: {reason}` + `Fix the issue below and submit again.`; Verified body `Verified on {date}. If you change your business name or category, we'll check your documents again.`); `StatusPill kind="verification"`, `NoticeBanner`, `formatDateLong`; `SLOT_TITLE` (T33); `formatFileSize`.
 **Do:**
