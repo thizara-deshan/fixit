@@ -1341,7 +1341,7 @@ describe('M10 formats', () => {
 **Commit:** `git commit -m "feat(web): reply-by and month formatters (M10-T16)"`
 
 ### T17 — Provider dashboard API and query hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/api.ts`, `src/features/provider-dashboard/hooks.ts`, `src/features/provider-dashboard/hooks.test.tsx`
 **Context:** ARCH §4.2 (api/hook pattern), SPEC §6.11 (refetch on focus + every 60 s on S20/S21/S22).
 **Do:**
