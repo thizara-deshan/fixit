@@ -1789,7 +1789,7 @@ describe('copy', () => {
 **Commit:** `git commit -m "feat(web): provider dashboard copy helpers (M10-T21)"`
 
 ### T22 — Inbox URL state
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/inbox-search.ts`, `src/features/provider-dashboard/inbox-search.test.ts`
 **Context:** S21 `?status=&q=&page=`; same pattern as `features/requests/list-search.ts`.
 **Do:** Create `inbox-search.ts`:
