@@ -4,7 +4,16 @@ import { isListed } from '../lib/cards';
 import { mockEndpoint } from '../lib/endpoint';
 import { mockError } from '../lib/errors';
 import { eligibilityFor } from '../lib/profile';
-import { customerViewOf, myRequestList, openRequestsOf, transitionOr409 } from '../lib/requests';
+import {
+  customerViewOf,
+  inboxList,
+  myRequestList,
+  openRequestsOf,
+  ownInboxRequest,
+  ownProvider,
+  providerViewOf,
+  transitionOr409,
+} from '../lib/requests';
 
 export const requestsHandlers = [
   mockEndpoint(E.requests_eligibility, ({ db: d, actor, params }) => {
@@ -115,5 +124,19 @@ export const requestsHandlers = [
       reason: body.reason ?? null,
     });
     return customerViewOf(d, r, now);
+  }),
+
+  mockEndpoint(E.requests_inbox_list, ({ db: d, actor, query, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    expireDue(d, now);
+    const p = ownProvider(d, actor.userId);
+    return inboxList(d, p.id, query, now);
+  }),
+
+  mockEndpoint(E.requests_inbox_get, ({ db: d, actor, params, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    expireDue(d, now);
+    const p = ownProvider(d, actor.userId);
+    return providerViewOf(d, ownInboxRequest(d, p.id, params.ref ?? ''), now);
   }),
 ];

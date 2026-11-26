@@ -917,7 +917,7 @@ describe('inboxList (p01)', () => {
 **Commit:** `git commit -m "feat(web): mock helpers for the provider inbox (M10-T8)"`
 
 ### T9 — Mock handlers: inbox list and detail
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-inbox.test.ts`
 **Context:** ARCH §3.4 rows 7–8; mock rules (expiry sweep at the start of reads).
 **Do:** Add to `requestsHandlers` (import `ownInboxRequest, ownProvider, inboxList, providerViewOf` from `../lib/requests`):
