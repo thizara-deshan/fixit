@@ -2400,7 +2400,7 @@ export function OverviewHeader({ firstName, pending, providerId, now }: { firstN
 **Commit:** `git commit -m "feat(web): dashboard greeting header (M10-T30)"`
 
 ### T31 — Recent requests section (S20)
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/recent-requests-section.tsx`
 **Context:** S20.E7–E13 (H2 `Incoming service requests`, tabs `All · Pending · Accepted · Completed · Declined` with counts filtering in place, ≤ 8 rows newest first, `View all requests →` when more than 8, empties), §6.3 section error; screenshot requests card.
 **States:** loading (list skeleton), error (`SectionError` replaces the card), no requests ever (compact `EmptyState`: `Inbox`, `No requests yet`, `When customers send you a request, it shows up here and we email you.`), tab empty (`No requests with this status.` 15 subtle centred, padding 40), default.
