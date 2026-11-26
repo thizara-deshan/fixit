@@ -190,7 +190,7 @@ describe('CancelBody', () => {
 **Commit:** `git commit -m "feat(contracts): provider category id in the customer request view (M09-T2)"`
 
 ### T3 — `CreateReviewBody`, `Review`, `RATING_LABELS`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/reviews/schemas.ts`, `packages/contracts/src/reviews/schemas.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S16 field table; BR-26; ARCH §2.5 excerpt. `PublicReview` in `catalog/schemas.ts`.
 **Do:**
