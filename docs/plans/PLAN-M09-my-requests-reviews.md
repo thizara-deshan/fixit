@@ -346,7 +346,7 @@ describe('reviewEligibility (BR-24/25)', () => {
 **Commit:** `git commit -m "feat(contracts): reviewEligibility, used by the customer view (M09-T4)"`
 
 ### T5 — Endpoint entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.4 rows `GET /me/requests`, `POST /me/requests/:ref/cancel`; §3.5 `POST /me/requests/:ref/review`.
 **Do:**

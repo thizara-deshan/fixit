@@ -20,6 +20,8 @@ import {
   PublicReviewPage,
 } from './catalog/schemas';
 import { PageQuery } from './common/pagination';
+import { CancelBody, MyRequestList, RequestListQuery } from './requests/list';
+import { CreateReviewBody, Review } from './reviews/schemas';
 import { CreateRequestBody, CustomerRequestView, Eligibility } from './requests/schemas';
 
 export type Access = 'public' | 'user' | 'provider' | 'admin';
@@ -276,6 +278,39 @@ export const ENDPOINTS = {
     owner: 'request_customer',
     response: CustomerRequestView,
     refs: ['S13', 'S15'],
+  },
+  requests_list: {
+    id: 'requests_list',
+    domain: 'requests',
+    method: 'GET',
+    path: '/me/requests',
+    access: ['user'],
+    owner: 'self',
+    query: RequestListQuery,
+    response: MyRequestList,
+    refs: ['F-12', 'S14'],
+  },
+  requests_cancel: {
+    id: 'requests_cancel',
+    domain: 'requests',
+    method: 'POST',
+    path: '/me/requests/:ref/cancel',
+    access: ['user'],
+    owner: 'request_customer',
+    body: CancelBody,
+    response: CustomerRequestView,
+    refs: ['F-13', 'S15', 'A12', 'BR-30'],
+  },
+  reviews_create: {
+    id: 'reviews_create',
+    domain: 'reviews',
+    method: 'POST',
+    path: '/me/requests/:ref/review',
+    access: ['user'],
+    owner: 'request_customer',
+    body: CreateReviewBody,
+    response: Review,
+    refs: ['F-28', 'F-29', 'S16', 'A19', 'BR-24', 'BR-25', 'BR-26', 'BR-27'],
   },
 } as const satisfies Record<string, EndpointDef>;
 export type EndpointId = keyof typeof ENDPOINTS;

@@ -89,4 +89,25 @@ describe('ENDPOINTS', () => {
       domain: 'requests',
     });
   });
+  it('M09 rows match ARCHITECTURE §3.4/§3.5', () => {
+    expect(ENDPOINTS.requests_list).toMatchObject({
+      method: 'GET',
+      path: '/me/requests',
+      access: ['user'],
+      domain: 'requests',
+    });
+    expect(ENDPOINTS.requests_cancel).toMatchObject({
+      method: 'POST',
+      path: '/me/requests/:ref/cancel',
+      access: ['user'],
+      owner: 'request_customer',
+    });
+    expect(ENDPOINTS.reviews_create).toMatchObject({
+      method: 'POST',
+      path: '/me/requests/:ref/review',
+      access: ['user'],
+      owner: 'request_customer',
+      domain: 'reviews',
+    });
+  });
 });
