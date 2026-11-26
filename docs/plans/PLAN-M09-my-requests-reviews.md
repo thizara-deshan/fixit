@@ -1531,7 +1531,7 @@ export function CustomerRequestPage() {
 **Checkpoint after T21:** "Human: `pnpm dev:mock`, Olivia, open FX-2061, FX-2030, FX-2031, FX-2033, FX-2034, FX-2035, FX-2036, FX-2046, FX-2029, FX-2028 at 1440 and 390. Compare each status panel with the SPEC S15 table. Cancel FX-2061 at 390 — the dialog is a bottom sheet."
 
 ### T22 — S15 behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/customer-request-page.test.tsx`
 **Context:** AC4–AC6, AC8; fake timers per conventions.
 **Do / Test:** cases:
