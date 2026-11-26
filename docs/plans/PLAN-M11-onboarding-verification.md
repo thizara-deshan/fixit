@@ -2341,7 +2341,7 @@ export function PhotoUploader({ photoUrl, categoryIcon, upload, onUploaded, remo
 **Commit:** `git commit -m "feat(web): shared profile photo uploader (M11-T24)"`
 
 ### T25 — Wizard frame
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/wizard-frame.tsx`
 **Context:** SPEC S19 desktop/phone layout; AC1, AC7; `STEPS` (T20).
 **Do:** Create the presentational frame used by every step:
