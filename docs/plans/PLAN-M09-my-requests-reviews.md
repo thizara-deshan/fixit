@@ -1672,7 +1672,7 @@ Render:
 **Commit:** `git commit -m "feat(web): leave-a-review page S16 (M09-T25)"`
 
 ### T26 — S16 behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/leave-review-page.test.tsx`
 **Context:** AC7, AC8.
 **Do / Test:** cases (fake timers per conventions):

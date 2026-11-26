@@ -100,7 +100,8 @@ export function ReviewForm({ view, displayName, pending, serverError, onSubmit, 
         )}
       </FormField>
       <p className="text-meta text-text-muted">
-        Reviews can&apos;t be edited after posting. Your name shows as {displayName}.
+        Reviews can&apos;t be edited after posting. Your name shows as {displayName}
+        {displayName.endsWith('.') ? '' : '.'}
       </p>
       <div className="border-border bg-surface fixed inset-x-0 bottom-0 z-30 border-t px-4 pb-[calc(12px+env(safe-area-inset-bottom))] pt-3 sm:static sm:z-auto sm:border-0 sm:bg-transparent sm:p-0">
         <SubmitButton size="lg" className="w-full sm:w-auto" pending={pending} pendingLabel="Posting…">
