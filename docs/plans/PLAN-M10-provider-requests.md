@@ -2682,7 +2682,7 @@ If `userEvent` is not a dependency of `apps/web`, use the event helper the exist
 **Commit:** `git commit -m "feat(web): provider overview page S20 (M10-T33)"`
 
 ### T34 — S21 requests inbox page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/pages/requests-page.tsx`, `src/features/provider-dashboard/pages/requests-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** SPEC S21 (H1 `Requests` `title-xl`, sub `Every request customers have sent you.`, search 40 high, `Search` icon, placeholder `Search by name or reference`, 260 wide / full width on phone; 7 tabs with counts; pagination 20; `Reply by …`), §6.2 search empty (`SearchX`, `No requests match "{q}".`, `Check the spelling or try something else.`, `Clear search`); D-3, D-4; AC3, AC4.
 **States:** loading (list skeleton, counts absent), error (`SectionError`), no requests ever (`EmptyState` as S20.E13 with default padding), search no match, tab empty, default, paginated.
@@ -3389,6 +3389,8 @@ describe('S22 provider request detail', () => {
 - **Process note (executor):** the plan has a Checkpoint after T14 ("Human: read `requests-inbox.test.ts` and `requests-provider-actions.test.ts` and confirm the privacy and 404/403 cases…"). I did not stop there and continued through T26. Nothing is wrong with the committed work, but that review is still owed.
 - **T18 deviation (test only):** the plan's test passes `body: {}` to `useDeclineRequest`, which fails typecheck because `DeclineBody` is inferred as `{ reason: string | undefined }` (key required, via `OptionalReason`'s transform). The committed test passes `{ reason: undefined }`. T25 passes `{ reason: body.reason }` for the same reason. The contract is unchanged; if you'd rather make the key optional in contracts, that is a separate decision.
 - **T33 deviation (test only):** `renderRoute` doesn't mount the Toaster, so the plan's `findByText` toast assertions can't pass; the test mocks `@/lib/toast` and asserts `notify` was called with the exact message (single argument → no Undo), as `customer-request-page.test.tsx` does.
+- **T34 deviation (code, type-only):** `FormEvent` is deprecated in the installed React types and fails lint; `requests-page.tsx` uses `SyntheticEvent` instead (same behaviour).
+- **T34 deviations (test only):** toast asserted via mocked `notify` (as T33); refs read from the row link's `aria-label` (the link's text is the customer cell); the page-2 check scopes to the `Pagination` nav and finds `aria-current="page"` by attribute, as the plan's fallback allows.
 - **T7 side effect:** `store.test.ts` hard-coded `fixit.mockdb.v4`; updated to `v5` to follow the plan's `MOCK_DB_VERSION` bump.
 
 ## Nice-to-haves (not tasks)
