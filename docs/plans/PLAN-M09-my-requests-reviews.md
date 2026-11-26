@@ -67,7 +67,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Status groups, `RequestListQuery`, `MyRequestList`, `CancelBody`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/list.ts`, `packages/contracts/src/requests/list.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S14.E2 (groups: Open = Pending + Accepted; Closed = Declined + Cancelled + Expired), S14.E5 (20 per page, `PAGE_SIZE.myRequests`), §8.3 reason ≤ 500 `Keep the reason under 500 characters.`; ARCH §3.4. `PageQuery`, `paginated` in `common/pagination.ts`.
 **Do:**

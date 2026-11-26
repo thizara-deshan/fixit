@@ -20,3 +20,4 @@ export * from './providers/schemas';
 export * from './catalog/profile';
 export * from './requests/eligibility';
 export * from './requests/projections';
+export * from './requests/list';
