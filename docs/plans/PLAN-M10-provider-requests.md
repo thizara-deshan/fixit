@@ -1546,7 +1546,7 @@ describe('provider mutations', () => {
 **Commit:** `git commit -m "feat(web): accept, decline, complete and agreed price mutations (M10-T18)"`
 
 ### T19 — Row flash store and `DataList.rowClassName`
-- [ ] done
+- [x] done
 **Files:** `src/lib/row-flash.ts`, `src/lib/row-flash.test.tsx`, `src/components/data-list.tsx`
 **Context:** SPEC §2.8 (row flash .3 s fade, held 900 ms), §6.11, ARCH §5.5 (`useRowFlash` keyed by ref), D-7.
 **Do:**
