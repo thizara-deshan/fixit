@@ -1657,7 +1657,7 @@ describe('row flash', () => {
 **Commit:** `git commit -m "refactor(web): share conflict dialog, contact block and history (M10-T20)"`
 
 ### T21 — Provider copy helpers
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/copy.ts`, `src/features/provider-dashboard/copy.test.ts`
 **Context:** S20.E2 (morning 05:00–11:59, afternoon 12:00–16:59, evening otherwise; Colombo), S20.E3, S22.E1 notes, S22.E6, S22.E7 actors; D-8, D-9.
 **Do:** Create `copy.ts`:
