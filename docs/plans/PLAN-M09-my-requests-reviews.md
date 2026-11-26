@@ -1617,7 +1617,7 @@ interface Props {
 **Commit:** `git commit -m "feat(web): leave-a-review form (M09-T24)"`
 
 ### T25 — `LeaveReviewPage` (S16) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/leave-review-page.tsx`, `src/app/chunks/customer.tsx`
 **Context:** S16 (ineligible: already reviewed → redirect S15; window closed / not completed → in-card message; other owner → S39), E3 (→ S15 + toast `Thanks — your review is live.`), §6.7 discard confirm, D-9; `useMyRequest`, `usePostReview`, `useBodyClass`, `DiscardChangesGuard`, `mapApiErrorToForm` not needed (server field errors equal client ones).
 **Do:**
