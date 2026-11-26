@@ -3140,7 +3140,14 @@ export function useAccountBanners(area: 'public' | 'dashboard'): ReactNode[] {
 - After T35: "Human: open `/dashboard/verification` as Hank, Grace and Marcus at 1440 and 390; upload a real JPG, a real PDF, a >5 MB file and a .docx; drag-drop a file; cancel a slow upload (DevPanel latency slow); submit."
 
 ## Blockers
-(executor writes here; leave empty)
+### T7 — Node `FormData` stub breaks existing form-submit tests
+- **Problem:** With the T7 stubs in `setup.ts` (`vi.stubGlobal('FormData', NodeFormData)`), `pnpm --filter @fixit/web test` reports all 528 tests passing but **3 unhandled errors**, so vitest exits non-zero. React DOM's form-submit listener calls `new FormData(formElement)`; Node's FormData rejects a jsdom `HTMLFormElement` ("FormData constructor: Argument 1 could not be converted to: undefined"). The plan says to STOP if the stubs break an existing test.
+- **Failing test files (they submit a form):** `src/features/site/pages/home-page.test.tsx`, `src/features/discover/pages/discover-page.test.tsx`, `src/features/provider-dashboard/pages/requests-page.test.tsx`.
+- **Options:**
+  1. Replace the stub with a wrapper class: when the first argument is an `HTMLFormElement`, build the jsdom `FormData` (saved before stubbing), otherwise delegate to Node's `FormData`. Keeps D-8, no test changes.
+  2. Keep jsdom's `FormData` globally and stub Node's `FormData` only in the upload tests and the handler tests that need it (changes D-8's "every test").
+  3. Drop the FormData stub and serialise upload bodies in `http()` itself in the test env (changes T8/T9 design).
+- **Recommendation:** option 1.
 
 ## Nice-to-haves (not tasks)
 - Real byte-level upload progress (XHR `upload.onprogress`) once uploads hit the real API (M17); D-7 uses an indeterminate bar.
