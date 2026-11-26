@@ -3112,25 +3112,21 @@ export function useAccountBanners(area: 'public' | 'dashboard'): ReactNode[] {
 **Commit:** `git commit -m "feat(web): L3 verification banners (M11-T36)"`
 
 ### T37 — M11 acceptance checks
-- [ ] done
+- [x] done
 **Files:** `docs/plans/PLAN-M11-onboarding-verification.md` (this file: tick boxes, fill "Acceptance results")
 **Context:** milestone acceptance criteria 1–9.
-**Do:** Run `pnpm verify`. Then walk each criterion and record ✓/✗ with the evidence under `## Acceptance results`:
-1. AC1 — `become-provider-page.test.tsx › AC1`. Manual: `pnpm dev:mock`, Olivia, `/become-a-provider/1` at 1440: stepper text + 5-segment bar, errors, `Owner: Olivia Martinez`, Continue shows `Saving…` (DevPanel latency "slow") → step 2.
-2. AC2 — `become-provider-page.test.tsx › AC2`, `services-editor.test.tsx`, `areas-picker.test.tsx`, `photo-uploader.test.tsx`, `done-page.test.tsx › AC2/AC4`. Manual: 8 category cards 2 columns at 1440 / 1 at 390; 20-row cap; 9-town cap; `Publishing…` with slow latency.
-3. AC3 — `become-provider-page.test.tsx › AC3 ×2`. Manual: as Olivia save step 3, open `/` then `/become-a-provider/1` → step 4 with values.
-4. AC4 — `providers-onboarding.test.ts › publish`, `done-page.test.tsx › AC2/AC4`. Manual: after publishing, `/discover?q=<business>` shows the card with `Not yet verified`.
-5. AC5 — `verification-page.test.tsx › AC5`, `document-slot.test.tsx` (docx, 6 MB, progress + Cancel, FileText, Replace · Remove).
-6. AC6 — `verification-page.test.tsx › AC6 ×2`.
-7. AC7 — `become-provider-page.test.tsx › AC7`, `verification-page.test.tsx › AC7`. Manual at 390: wizard card has no border, sticky `Back` 1/3 / `Continue` 2/3, slots in 1 column, the file picker offers the camera on a real phone or device emulation, `document.documentElement.scrollWidth === 390`.
-8. AC8 — `become-provider-page.test.tsx › AC8`, `document-slot.test.tsx` forced failure, `verification-page.test.tsx › AC8`. Manual: DevPanel latency slow → wizard skeleton after 150 ms.
-9. AC9 — `become-provider-page.test.tsx › AC9`, `providers-verification.test.ts › files`.
-   If any ✗, write it under `## Blockers` and stop.
-**Verify:** `pnpm verify` green; every AC has a ✓ line.
-**Commit:** `git commit -m "chore: M11 acceptance checks (M11-T37)"`
+**Do:** Run `pnpm verify`. Then walk each criterion and record ✓/✗ with the evidence under `## Acceptance results
+`pnpm verify` green (contracts 373, fixtures 29, web 593 tests). Automated evidence per criterion; the "Manual" items need a browser and were **not run by the executor** (no browser in this session) — they are left for the human.
 
-## Acceptance results
-(executor fills in at T37)
+1. AC1 ✓ (automated) `become-provider-page.test.tsx › AC1`. Manual (1440, slow latency `Saving…`): pending human.
+2. AC2 ✓ (automated) `become-provider-page.test.tsx › AC2`, `services-editor.test.tsx`, `areas-picker.test.tsx`, `photo-uploader.test.tsx`, `done-page.test.tsx › AC2/AC4`. Manual (2/1 column layout, `Publishing…`): pending human.
+3. AC3 ✓ (automated) `become-provider-page.test.tsx › AC3` ×2. Manual (resume to step 4): pending human.
+4. AC4 ✓ (automated) `providers-onboarding.test.ts` publish case, `done-page.test.tsx › AC2/AC4`. Manual (`/discover` card): pending human.
+5. AC5 ✓ (automated) `verification-page.test.tsx › AC5`, `document-slot.test.tsx`.
+6. AC6 ✓ (automated) `verification-page.test.tsx › AC6` ×2.
+7. AC7 ✓ (automated) `become-provider-page.test.tsx › AC7`, `verification-page.test.tsx › AC7`. Manual at 390 (borderless card, sticky bar, 1-column slots, camera picker, `scrollWidth === 390`): pending human.
+8. AC8 ✓ (automated) `become-provider-page.test.tsx › AC8`, `document-slot.test.tsx` forced failure, `verification-page.test.tsx › AC8`. Manual (skeleton after 150 ms): pending human.
+9. AC9 ✓ (automated) `become-provider-page.test.tsx › AC9`, `providers-verification.test.ts` files case.
 
 ## Checkpoints
 - After T16: "Human: read `providers-onboarding.test.ts` and `providers-verification.test.ts` and confirm the 401/403/404/409/422 cases match what you expect from the real API in M17."
