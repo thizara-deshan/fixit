@@ -1433,7 +1433,7 @@ export function MyRequestsPage() {
 **Commit:** `git commit -m "feat(web): cancel and conflict dialogs (M09-T18)"`
 
 ### T19 — S14 behaviour tests
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/my-requests-page.test.tsx`
 **Context:** AC1–AC3; `renderRoute`, `signInAs`, `armForcedError` (`@/mocks/lib/controls`), `setViewport`/media-query mocking — use whatever the existing page tests use for 390 vs 1440 (search `matchMedia` in `src/test/`).
 **Do / Test:** write these cases (fake timers per conventions):
