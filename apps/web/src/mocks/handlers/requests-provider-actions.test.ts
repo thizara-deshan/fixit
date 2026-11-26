@@ -96,3 +96,29 @@ describe('POST …/decline (A14)', () => {
     expect((await call('POST', '/me/provider/requests/FX-2050/decline', 'provider', {})).status).toBe(409);
   });
 });
+
+describe('POST …/complete (A16)', () => {
+  it('accepted on its preferred date → completed, review window open', async () => {
+    const v = await view(
+      await call('POST', '/me/provider/requests/FX-2054/complete', 'provider', { agreedPrice: 4000 }),
+    );
+    expect([v.status, v.agreedPrice, v.completedAt]).toEqual(['completed', 4000, FIXED_NOW.toISOString()]);
+    expect(v.reviewDeadline).toBe(new Date(FIXED_NOW.getTime() + 30 * 86_400_000).toISOString());
+    expect(v.canComplete).toBe(false);
+  });
+  it('no price → keeps the existing price', async () => {
+    const v = await view(await call('POST', '/me/provider/requests/FX-2054/complete', 'provider', {}));
+    expect(v.agreedPrice).toBe(3500);
+  });
+  it('before the preferred date → 409 before_preferred_date (BR-32)', async () => {
+    const res = await call('POST', '/me/provider/requests/FX-2050/complete', 'provider', {});
+    expect(res.status).toBe(409);
+    expect((await err(res)).details?.reason).toBe('before_preferred_date');
+  });
+  it('pending → 409 invalid_transition', async () => {
+    expect(
+      (await err(await call('POST', '/me/provider/requests/FX-2061/complete', 'provider', {}))).details
+        ?.reason,
+    ).toBe('invalid_transition');
+  });
+});

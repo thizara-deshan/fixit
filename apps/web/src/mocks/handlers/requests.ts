@@ -160,4 +160,14 @@ export const requestsHandlers = [
     applyTransition(r, 'declined', 'provider', actor.userId, now, body.reason ?? null);
     return providerViewOf(d, r, now);
   }),
+
+  mockEndpoint(E.requests_complete, ({ db: d, actor, params, body, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    const r = ownInboxRequest(d, p.id, params.ref ?? '');
+    transitionOr409(r, 'completed', { kind: 'provider', userId: actor.userId }, now);
+    if (body.agreedPrice !== undefined) r.agreedPrice = body.agreedPrice; // D-11: omitted = unchanged
+    applyTransition(r, 'completed', 'provider', actor.userId, now);
+    return providerViewOf(d, r, now);
+  }),
 ];

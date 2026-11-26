@@ -1130,7 +1130,7 @@ describe('POST …/decline (A14)', () => {
 **Commit:** `git commit -m "feat(web): mock decline request (M10-T11)"`
 
 ### T12 — Mock handler: complete
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-provider-actions.test.ts`
 **Context:** A16, F-19, BR-32 (`before_preferred_date`); D-11.
 **Do:** Add to `requestsHandlers`:
