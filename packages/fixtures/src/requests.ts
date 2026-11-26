@@ -27,7 +27,7 @@ export interface RequestSeed {
     status: Exclude<RequestStatus, 'pending'>;
     at: Date;
     reason?: string;
-    actor?: 'provider' | 'admin' | 'system'; // default provider (D-2)
+    actor?: 'customer' | 'provider' | 'admin' | 'system'; // default provider (D-2)
   }[];
 }
 
@@ -73,7 +73,14 @@ export function makeRequest(s: RequestSeed): RequestRecord {
           status: st.status,
           at: st.at.toISOString(),
           actor,
-          actorUserId: actor === 'provider' ? s.provider.userId : actor === 'admin' ? 'u-admin' : null,
+          actorUserId:
+            actor === 'provider'
+              ? s.provider.userId
+              : actor === 'admin'
+                ? 'u-admin'
+                : actor === 'customer'
+                  ? s.customer.id
+                  : null,
           reason: st.reason ?? null,
         };
       }),
@@ -409,4 +416,89 @@ export function buildCustomerJourneyRequests(
       });
   }
   return { requests, reviews };
+}
+
+interface InboxClosedRow {
+  ref: string;
+  customerId: string;
+  service: number; // index in p01's services
+  prefDays: number;
+  createdHoursAgo: number;
+  steps: readonly {
+    status: Exclude<RequestStatus, 'pending'>;
+    hoursAgo: number;
+    actor?: 'customer' | 'provider' | 'admin' | 'system';
+    reason?: string;
+  }[];
+}
+
+/** M10 (D-13): p01's closed requests that S22.E6 renders. */
+const INBOX_CLOSED: readonly InboxClosedRow[] = [
+  {
+    ref: 'FX-2038',
+    customerId: 'u-daniel-kim',
+    service: 1,
+    prefDays: 2,
+    createdHoursAgo: 60,
+    steps: [
+      { status: 'cancelled', hoursAgo: 50, actor: 'customer', reason: 'Found someone closer to home.' },
+    ],
+  },
+  {
+    ref: 'FX-2039',
+    customerId: 'u-aisha-rahman',
+    service: 0,
+    prefDays: -4,
+    createdHoursAgo: 240,
+    steps: [
+      { status: 'accepted', hoursAgo: 230 },
+      {
+        status: 'cancelled',
+        hoursAgo: 150,
+        actor: 'admin',
+        reason: 'The customer asked us to cancel this job.',
+      },
+    ],
+  },
+  {
+    ref: 'FX-2040',
+    customerId: 'u-sophia-nguyen',
+    service: 3,
+    prefDays: -8,
+    createdHoursAgo: 500,
+    steps: [{ status: 'expired', hoursAgo: 428, actor: 'system' }], // createdAt + 72 h
+  },
+];
+
+export function buildInboxClosedRequests(
+  now: Date,
+  ctx: { users: readonly FxUser[]; providers: readonly FxProvider[]; services: readonly FxService[] },
+): RequestRecord[] {
+  const today = colomboToday(now);
+  const at = (hoursAgo: number) => new Date(now.getTime() - hoursAgo * HOUR);
+  const p01 = ctx.providers.find((p) => p.id === 'p01');
+  if (!p01) throw new Error('fixtures: p01 missing');
+  return INBOX_CLOSED.map((row) => {
+    const customer = ctx.users.find((u) => u.id === row.customerId);
+    const service = ctx.services.find((s) => s.id === serviceId('p01', row.service));
+    if (!customer || !service) throw new Error(`fixtures: bad inbox request ${row.ref}`);
+    return makeRequest({
+      ref: row.ref,
+      customer,
+      provider: p01,
+      service,
+      townId: 'colombo',
+      preferredDate: addDays(today, row.prefDays),
+      slot: 'morning',
+      addressLine1: '9 Lake Drive',
+      description: 'Please check the pipes under the kitchen sink.',
+      createdAt: at(row.createdHoursAgo),
+      steps: row.steps.map((st) => ({
+        status: st.status,
+        at: at(st.hoursAgo),
+        ...(st.actor ? { actor: st.actor } : {}),
+        ...(st.reason ? { reason: st.reason } : {}),
+      })),
+    });
+  });
 }

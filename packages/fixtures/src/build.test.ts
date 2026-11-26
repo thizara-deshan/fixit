@@ -174,3 +174,23 @@ describe('M07 fixtures', () => {
     expect(open.map((r) => r.ref).sort()).toEqual(['FX-2030', 'FX-2031', 'FX-2032', 'FX-2061']);
   });
 });
+
+describe('M10 inbox fixtures (D-13)', () => {
+  it('p01 has every status, incl. cancelled by the customer and by Fixit, and expired', () => {
+    const p01 = world.requests.filter((r) => r.providerId === 'p01');
+    for (const s of ['pending', 'accepted', 'completed', 'declined', 'cancelled', 'expired'])
+      expect(p01.some((r) => r.status === s)).toBe(true);
+    expect(byRef('FX-2038')).toMatchObject({
+      status: 'cancelled',
+      closedBy: 'customer',
+      reason: 'Found someone closer to home.',
+    });
+    expect(byRef('FX-2038')?.events.at(-1)).toMatchObject({ actor: 'customer', actorUserId: 'u-daniel-kim' });
+    expect(byRef('FX-2039')).toMatchObject({ status: 'cancelled', closedBy: 'admin' });
+    expect(byRef('FX-2040')).toMatchObject({ status: 'expired', closedBy: 'system' });
+  });
+  it('Chathura (p12) is a listed provider with no requests', () => {
+    expect(world.providers.find((p) => p.id === 'p12')?.userId).toBe('u-chathura');
+    expect(world.requests.some((r) => r.providerId === 'p12')).toBe(false);
+  });
+});

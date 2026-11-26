@@ -650,7 +650,7 @@ and `ProviderRequestView` to the `./requests/schemas` import.
 **Commit:** `git commit -m "feat(contracts): provider dashboard and inbox endpoints (M10-T6)"`
 
 ### T7 — Fixtures: closed p01 requests and a provider with no requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/requests.ts`, `packages/fixtures/src/build.ts`, `packages/fixtures/src/users.ts`, `packages/fixtures/src/build.test.ts`, `apps/web/src/mocks/db/schema.ts`
 **Context:** D-13; milestone AC6, AC8. `makeRequest` in `requests.ts`; refs FX-2038–FX-2040 are unused; p12 (owner `u-chathura`) has no requests and no reviews.
 **Do:**
