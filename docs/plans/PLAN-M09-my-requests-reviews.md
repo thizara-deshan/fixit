@@ -1276,7 +1276,7 @@ describe('statusPanel (S15)', () => {
 **Commit:** `git commit -m "feat(web): S15 status panel copy per status (M09-T13)"`
 
 ### T14 — S15 history actor wording
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/history.ts`, `src/features/requests/history.test.ts`
 **Context:** S15.E7: `by you` / `by {Business}` / `by Fixit` / `automatically`.
 **Do:**
