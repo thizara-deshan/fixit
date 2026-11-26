@@ -2,7 +2,7 @@ export interface MultipartPart {
   name: string;
   fileName: string | null;
   mimeType: string | null;
-  bytes: Uint8Array;
+  bytes: Uint8Array<ArrayBuffer>;
   text: string;
 }
 

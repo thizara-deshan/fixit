@@ -70,4 +70,36 @@ describe('GET /me/provider · PUT onboarding/:step', () => {
     expect(res.status).toBe(422);
     expect((await errorOf(res)).details?.rule).toBe('onboarding_incomplete');
   });
+  const upload = (persona: PersonaKey, file: File) => {
+    const form = new FormData();
+    form.append('file', file);
+    return fetch(new URL('/api/me/provider/photo', window.location.origin), {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${signInAs(persona).accessToken}` },
+      body: form,
+    });
+  };
+  it('photo: Kasun uploads (200 + public GET), wrong type 415, too big 413, no draft 404, delete 204', async () => {
+    const ok = await upload(
+      'providerDraft',
+      new File([new Uint8Array(2000)], 'me.png', { type: 'image/png' }),
+    );
+    const { photoUrl } = (await ok.json()) as { photoUrl: string };
+    expect(photoUrl).toMatch(/^\/api\/files\/photos\//);
+    const img = await fetch(new URL(photoUrl, window.location.origin));
+    expect(img.status).toBe(200);
+    expect(img.headers.get('content-type')).toBe('image/png');
+    expect((await upload('providerDraft', new File(['x'], 'a.gif', { type: 'image/gif' }))).status).toBe(415);
+    expect(
+      (
+        await upload(
+          'providerDraft',
+          new File([new Uint8Array(6 * 1024 * 1024)], 'b.jpg', { type: 'image/jpeg' }),
+        )
+      ).status,
+    ).toBe(413);
+    expect((await upload('customer', new File(['x'], 'c.png', { type: 'image/png' }))).status).toBe(404);
+    expect((await call('DELETE', '/me/provider/photo', 'providerDraft')).status).toBe(204);
+    expect((await fetch(new URL(photoUrl, window.location.origin))).status).toBe(404);
+  });
 });

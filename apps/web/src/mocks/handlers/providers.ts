@@ -1,7 +1,16 @@
-import { dashboardStats, ENDPOINTS as E, OnboardingStepParam, parseOnboardingBody } from '@fixit/contracts';
+import {
+  checkUpload,
+  dashboardStats,
+  ENDPOINTS as E,
+  OnboardingStepParam,
+  parseOnboardingBody,
+  UPLOAD_COPY,
+} from '@fixit/contracts';
 import { expireDue } from '../db/expire';
-import { mockEndpoint } from '../lib/endpoint';
+import { mockEndpoint, mockFileEndpoint } from '../lib/endpoint';
 import { mockError } from '../lib/errors';
+import { deleteFile, getFile, placeholderFile, putFile } from '../lib/files';
+import { readMultipart } from '../lib/multipart';
 import { applyOnboardingStep, publishDraft, requireDraft, toOwnProvider } from '../lib/own-provider';
 import { ownProvider } from '../lib/requests';
 
@@ -36,4 +45,37 @@ export const providersHandlers = [
     if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
     return toOwnProvider(d, publishDraft(d, actor.userId, now));
   }),
+  mockEndpoint(E.provider_photo_put, async ({ db: d, actor, request }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = requireDraft(d, actor.userId);
+    const file = (await readMultipart(request)).get('file');
+    if (!file?.fileName)
+      throw mockError(400, 'VALIDATION_FAILED', 'Validation failed', {
+        fieldErrors: { file: ['Choose a file.'] },
+      });
+    const problem = checkUpload('photo', { mimeType: file.mimeType ?? '', sizeBytes: file.bytes.length });
+    if (problem === 'type') throw mockError(415, 'UNSUPPORTED_MEDIA', UPLOAD_COPY.photo.type);
+    if (problem === 'size') throw mockError(413, 'PAYLOAD_TOO_LARGE', UPLOAD_COPY.photo.size);
+    if (p.photoKey) deleteFile(`photo:${p.photoKey}`);
+    const key = `${p.id}-${crypto.randomUUID().slice(0, 8)}`;
+    putFile(`photo:${key}`, new Blob([file.bytes], { type: file.mimeType ?? 'application/octet-stream' }));
+    p.photoKey = key;
+    return { photoUrl: `/api/files/photos/${key}` };
+  }),
+  mockEndpoint(E.provider_photo_delete, ({ db: d, actor }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = requireDraft(d, actor.userId);
+    if (p.photoKey) deleteFile(`photo:${p.photoKey}`);
+    p.photoKey = null;
+  }),
+  mockFileEndpoint(
+    E.files_photo,
+    ({ db: d, params }) => {
+      const key = params.key ?? '';
+      if (!Object.values(d.providers).some((p) => p.photoKey === key))
+        throw mockError(404, 'NOT_FOUND', 'No such photo');
+      return getFile(`photo:${key}`) ?? placeholderFile();
+    },
+    'public, max-age=31536000, immutable',
+  ),
 ];

@@ -1218,7 +1218,7 @@ describe('GET /me/provider · PUT onboarding/:step', () => {
 **Commit:** `git commit -m "feat(web): mock publish listing handler (M11-T12)"`
 
 ### T13 — Handlers: photo upload/remove and `GET /files/photos/:key`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-onboarding.test.ts`
 **Context:** ARCH §3.3 photo rows (`U (has draft or listing)`); S24.E2; D-8, D-12; T8 `readMultipart`, files store; T9 `mockFileEndpoint`.
 **Do:** Add:
