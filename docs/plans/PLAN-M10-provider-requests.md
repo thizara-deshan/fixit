@@ -1984,7 +1984,7 @@ If `mapApiErrorToForm`'s return contract differs from the cancel dialog's usage,
 **Commit:** `git commit -m "feat(web): accept request dialog (M10-T24)"`
 
 ### T25 — Decline dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/decline-dialog.tsx`
 **Context:** §8.3 Decline dialog; S20.E14 toast; D-6, D-8.
 **Form:** `reason` — schema `DeclineBody`; textarea, 3 rows, label `Reason` + `optional`, help `Shown to the customer.`, error `Keep the reason under 500 characters.`.
