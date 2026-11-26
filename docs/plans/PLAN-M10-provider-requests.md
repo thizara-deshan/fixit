@@ -1315,7 +1315,7 @@ export function refreshMe(qc: QueryClient): void {
 **Commit:** `git commit -m "refactor(web): inbox/dashboard query keys and shared refreshMe (M10-T15)"`
 
 ### T16 — Format helpers
-- [ ] done
+- [x] done
 **Files:** `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** S21 `Reply by {Sat 3:42 PM}`; S20.E6 `in {November}`.
 **Do:** Append to `format.ts`:

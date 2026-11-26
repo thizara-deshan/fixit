@@ -88,3 +88,10 @@ export const formatCancelCutoffDay = (preferredDate: string): string =>
 
 /** `1,000` */
 export const formatCount = (n: number): string => grouping.format(n);
+
+/** S21 `Sat 3:42 PM` (Reply by …). */
+export const formatReplyBy = (value: string | Date): string =>
+  formatInColombo(toInstant(value), 'EEE h:mm a');
+
+/** S20.E6 `November` (Colombo month of the instant). */
+export const formatMonthName = (value: string | Date): string => formatInColombo(toInstant(value), 'MMMM');

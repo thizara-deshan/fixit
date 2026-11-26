@@ -7,6 +7,8 @@ import {
   formatDateShort,
   formatDateTime,
   formatLkr,
+  formatMonthName,
+  formatReplyBy,
   formatPhone,
   formatReviewDate,
   formatRating,
@@ -83,5 +85,14 @@ describe('formatCancelCutoffDay', () => {
 describe('formatCount', () => {
   it('groups thousands', () => {
     expect(formatCount(1000)).toBe('1,000');
+  });
+});
+
+describe('M10 formats', () => {
+  it('formatReplyBy', () => {
+    expect(formatReplyBy('2026-11-23T22:30:00.000Z')).toBe('Tue 4:00 AM');
+  });
+  it('formatMonthName uses Colombo', () => {
+    expect(formatMonthName('2026-10-31T18:30:00.000Z')).toBe('November');
   });
 });
