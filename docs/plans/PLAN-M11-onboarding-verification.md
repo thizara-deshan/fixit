@@ -2394,7 +2394,7 @@ export function WizardFooter({ back, primary, extra }: { back: ReactNode; primar
 **Commit:** `git commit -m "feat(web): onboarding wizard frame (M11-T25)"`
 
 ### T26 — Step 1: Business details
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-business.tsx`
 **Context:** SPEC S19 step 1 (fields, read-only `Owner: {account name}` + 13 subtle `Change your name in Account settings.`, bio counter `{n} / 600`); BR-23; D-4; `makeStep1Form` (T1); `useSaveStep` (T20); `mapApiErrorToForm`, `FormErrorBanner`, `SubmitButton`, `FormField`, `PhoneInput`, `Input`, `Textarea`; `MobileField` pattern from `features/requests/components/mobile-field.tsx` (here always the input, since it shows only when missing).
 **Do:** Shared step contract (used by T26–T30), put at the top of `src/features/onboarding/components/step-props.ts`:
