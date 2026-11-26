@@ -555,7 +555,7 @@ describe('own provider contracts', () => {
 **Commit:** `git commit -m "feat(contracts): OwnProvider and VerificationState (M11-T4)"`
 
 ### T5 — Endpoint registry entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.3 rows `GET /me/provider` … `GET /files/photos/:key`; existing `provider_dashboard` entry style; `OwnerRule` already has `provider_or_admin`.
 **Do:**

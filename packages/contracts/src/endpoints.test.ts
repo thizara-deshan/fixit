@@ -127,4 +127,29 @@ describe('ENDPOINTS', () => {
       'PUT /me/provider/requests/:ref/agreed-price': 'requests provider request_provider',
     });
   });
+  it('M11 provider rows match ARCHITECTURE §3.3', () => {
+    const rows = Object.fromEntries(Object.values(ENDPOINTS).map((d) => [`${d.method} ${d.path}`, d.access]));
+    expect(rows).toMatchObject({
+      'GET /me/provider': ['user'],
+      'PUT /me/provider/onboarding/:step': ['user'],
+      'POST /me/provider/publish': ['user'],
+      'PUT /me/provider/photo': ['user'],
+      'DELETE /me/provider/photo': ['user'],
+      'GET /me/provider/verification': ['provider'],
+      'POST /me/provider/verification/documents': ['provider'],
+      'DELETE /me/provider/verification/documents/:id': ['provider'],
+      'POST /me/provider/verification/submit': ['provider'],
+      'GET /files/documents/:id': ['provider', 'admin'],
+      'GET /files/photos/:key': ['public'],
+    });
+    expect(ENDPOINTS.provider_photo_put.multipart).toBe(true);
+    expect(ENDPOINTS.verification_document_upload.multipart).toBe(true);
+    for (const id of [
+      'provider_photo_delete',
+      'verification_document_delete',
+      'files_document',
+      'files_photo',
+    ] as const)
+      expect('response' in ENDPOINTS[id]).toBe(false);
+  });
 });
