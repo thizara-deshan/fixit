@@ -2457,7 +2457,7 @@ export function StepBusiness({ me, own, onBack, onSaved, onDirtyChange }: StepPr
 **Commit:** `git commit -m "feat(web): onboarding step 1 business details (M11-T26)"`
 
 ### T27 — Step 2: Category
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-category.tsx`
 **Context:** SPEC S19 step 2 (radio cards: icon tile, name, blurb; 2 columns desktop, 1 phone; note 13 muted `You can only choose one category. Changing it later means we check your documents again.`); §2.9 Option row (selected `primary` border + `primary-soft` bg); `OnboardingStep2Body` (T1); `CategoryIcon`.
 **Do:** Same skeleton as T26 (`useForm<OnboardingStep2Body>({ resolver: zodResolver(OnboardingStep2Body), defaultValues: { categoryId: own?.category?.id ?? '' } })`, banner, dirty, `useSaveStep` with `{ step: 2, body: v }`, `WizardFooter` with `Continue`/`Saving…`). Fields:
