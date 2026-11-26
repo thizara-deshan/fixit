@@ -183,7 +183,7 @@ export const PROVIDER_SEEDS: readonly ProviderSeed[] = [
     categoryId: 'cleaning',
     baseTownId: 'sri-jayawardenepura-kotte',
     years: 3,
-    verification: 'not_submitted',
+    verification: 'rejected',
     bio: 'New, energetic cleaning service with flexible evening and weekend slots.',
     services: [
       ['Regular cleaning', 1500, 'per_visit'],
@@ -322,6 +322,16 @@ export function buildProviders(now: Date): {
       decidedAt: null,
       rejectionReason: null,
     },
+    {
+      id: 's-p10-1',
+      providerId: 'p10',
+      attempt: 1,
+      trigger: 'provider',
+      status: 'rejected',
+      submittedAt: ago(4),
+      decidedAt: ago(2),
+      rejectionReason: 'The photo of the back of your NIC is blurry. Upload a clearer photo.',
+    },
   ];
   const documents: FxDocument[] = [
     {
@@ -344,6 +354,15 @@ export function buildProviders(now: Date): {
       sizeBytes: 455_902,
       createdAt: ago(1),
     },
+    ...(['nic_front', 'nic_back'] as const).flatMap((type) => {
+      const base = { providerId: 'p10', type, mimeType: 'image/jpeg', createdAt: ago(4) };
+      const fileName = type === 'nic_front' ? 'nic-front.jpg' : 'nic-back.jpg';
+      const sizeBytes = type === 'nic_front' ? 512_004 : 398_771;
+      return [
+        { ...base, id: `d-p10-${type}`, submissionId: 's-p10-1', fileName, sizeBytes },
+        { ...base, id: `d-p10-${type}-r`, submissionId: null, fileName, sizeBytes, createdAt: ago(2) },
+      ];
+    }),
   ];
   return { providers, services, areas, submissions, documents };
 }

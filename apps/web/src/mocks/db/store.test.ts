@@ -9,10 +9,10 @@ describe('mock db store', () => {
     localStorage.clear();
     forgetDbCache();
   });
-  it('seeds when storage is empty and persists under fixit.mockdb.v5', () => {
+  it('seeds when storage is empty and persists under fixit.mockdb.v6', () => {
     expect(db().users['u-olivia']?.email).toBe('olivia@fixit.test');
     expect(localStorage.getItem(MOCK_DB_KEY)).not.toBeNull();
-    expect(MOCK_DB_KEY).toBe('fixit.mockdb.v5');
+    expect(MOCK_DB_KEY).toBe('fixit.mockdb.v6');
   });
   it('commit() persists changes that survive a reload', () => {
     resetDemoData(NOW);

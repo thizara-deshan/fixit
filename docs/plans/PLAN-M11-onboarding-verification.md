@@ -636,7 +636,7 @@ describe('own provider contracts', () => {
 **Commit:** `git commit -m "feat(contracts): M11 provider endpoint registry (M11-T5)"`
 
 ### T6 — Rejected provider fixture
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/providers.ts`, `packages/fixtures/src/users.ts`, `packages/fixtures/src/build.test.ts`, `src/mocks/db/schema.ts`, `src/mocks/db/store.test.ts`
 **Context:** D-11. p10 seed (`ownerId: 'u-grace'`, `verification: 'not_submitted'`); `buildProviders` submissions/documents arrays; `DEMO_PERSONAS`.
 **Do:**

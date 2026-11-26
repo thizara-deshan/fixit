@@ -193,4 +193,17 @@ describe('M10 inbox fixtures (D-13)', () => {
     expect(world.providers.find((p) => p.id === 'p12')?.userId).toBe('u-chathura');
     expect(world.requests.some((r) => r.providerId === 'p12')).toBe(false);
   });
+  it('M11: p10 is rejected with a reason and staged copies', () => {
+    expect(world.providers.find((p) => p.id === 'p10')?.verificationStatus).toBe('rejected');
+    const sub = world.submissions.find((s) => s.providerId === 'p10');
+    expect(sub).toMatchObject({ status: 'rejected', attempt: 1 });
+    expect(sub?.rejectionReason?.length).toBeGreaterThanOrEqual(10);
+    const docs = world.documents.filter((d) => d.providerId === 'p10');
+    expect(
+      docs
+        .filter((d) => d.submissionId === null)
+        .map((d) => d.type)
+        .sort(),
+    ).toEqual(['nic_back', 'nic_front']);
+  });
 });

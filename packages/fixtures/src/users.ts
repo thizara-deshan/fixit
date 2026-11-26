@@ -207,6 +207,12 @@ export const DEMO_PERSONAS = [
     userId: 'u-chathura',
   },
   {
+    key: 'providerRejected',
+    label: 'Provider, rejected (Grace Kim / Sparkle & Shine)',
+    email: 'grace@fixit.test',
+    userId: 'u-grace',
+  },
+  {
     key: 'providerDraft',
     label: 'Provider draft (Kasun Silva, onboarding step 3)',
     email: 'kasun@fixit.test',
