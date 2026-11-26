@@ -1,5 +1,6 @@
 import {
   checkUpload,
+  DocumentUploadFields,
   dashboardStats,
   ENDPOINTS as E,
   OnboardingStepParam,
@@ -13,6 +14,7 @@ import { deleteFile, getFile, placeholderFile, putFile } from '../lib/files';
 import { readMultipart } from '../lib/multipart';
 import { applyOnboardingStep, publishDraft, requireDraft, toOwnProvider } from '../lib/own-provider';
 import { ownProvider } from '../lib/requests';
+import { stageDocument, toDocumentMeta, unstageDocument, verificationStateOf } from '../lib/verification';
 
 export const providersHandlers = [
   mockEndpoint(E.provider_dashboard, ({ db: d, actor, now }) => {
@@ -78,4 +80,30 @@ export const providersHandlers = [
     },
     'public, max-age=31536000, immutable',
   ),
+  mockEndpoint(E.verification_get, ({ db: d, actor }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    return verificationStateOf(d, ownProvider(d, actor.userId));
+  }),
+  mockEndpoint(E.verification_document_upload, async ({ db: d, actor, request, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    const parts = await readMultipart(request);
+    const { type } = DocumentUploadFields.parse({ type: parts.get('type')?.text });
+    const file = parts.get('file');
+    if (!file?.fileName)
+      throw mockError(400, 'VALIDATION_FAILED', 'Validation failed', {
+        fieldErrors: { file: ['Choose a file.'] },
+      });
+    const mimeType = file.mimeType ?? '';
+    const problem = checkUpload('document', { mimeType, sizeBytes: file.bytes.length });
+    if (problem === 'type') throw mockError(415, 'UNSUPPORTED_MEDIA', UPLOAD_COPY.document.type);
+    if (problem === 'size') throw mockError(413, 'PAYLOAD_TOO_LARGE', UPLOAD_COPY.document.size);
+    return toDocumentMeta(
+      stageDocument(d, p, { type, fileName: file.fileName, mimeType, bytes: file.bytes }, now),
+    );
+  }),
+  mockEndpoint(E.verification_document_delete, ({ db: d, actor, params }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    unstageDocument(d, ownProvider(d, actor.userId), params.id ?? '');
+  }),
 ];

@@ -1446,7 +1446,7 @@ describe('verification (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock verification rules (M11-T14)"`
 
 ### T15 — Handlers: verification get / upload / delete
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-verification.test.ts`
 **Context:** ARCH §3.3; T14; `ownProvider(d, userId)` from `../lib/requests` (published listing, else 403 — unreachable after `access: ['provider']`).
 **Do:** Add:
