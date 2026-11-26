@@ -1627,7 +1627,7 @@ describe('uploadErrorCopy', () => {
 **Commit:** `git commit -m "feat(web): upload copy, file size format, provider query keys (M11-T17)"`
 
 ### T18 — `useUpload` hook and image size reader
-- [ ] done
+- [x] done
 **Files:** `src/lib/use-upload.ts`, `src/lib/use-upload.test.tsx`, `src/lib/image-size.ts`
 **Context:** D-7, D-12; S26.E1 states (uploading + Cancel, error); S24.E1.
 **Do:**
