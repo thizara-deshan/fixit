@@ -1,8 +1,6 @@
 import { PlaceholderScreen } from '../placeholder-screen';
 
-export function ProviderOverviewPage() {
-  return <PlaceholderScreen frame="bare" title="Provider overview" />;
-}
+export { ProviderOverviewPage } from '@/features/provider-dashboard/pages/overview-page';
 
 export function ProviderRequestsPage() {
   return <PlaceholderScreen frame="bare" title="Requests" />;

@@ -64,7 +64,9 @@ describe('guards (SPEC §8.4, AC4)', () => {
   it('Marcus reaches /dashboard inside L3', async () => {
     signInAs('provider');
     renderRoute('/dashboard');
-    expect(await screen.findByRole('heading', { level: 1, name: 'Provider overview' })).toBeTruthy();
+    expect(
+      await screen.findByRole('heading', { level: 1, name: /^Good (morning|afternoon|evening), Marcus$/ }),
+    ).toBeTruthy();
     expect(screen.getAllByRole('navigation', { name: 'Dashboard' }).length).toBeGreaterThan(0);
   });
 });

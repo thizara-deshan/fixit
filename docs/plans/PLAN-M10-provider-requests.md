@@ -2519,7 +2519,7 @@ export function MyServicesCard({ services }: { services: readonly Service[] }) {
 **Commit:** `git commit -m "feat(web): dashboard My Services card (M10-T32)"`
 
 ### T33 — S20 overview page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/pages/overview-page.tsx`, `src/features/provider-dashboard/pages/overview-page.test.tsx`, `src/app/chunks/provider.tsx`, `src/app/routes.test.tsx`
 **Context:** SPEC S20 order (header, tiles, requests, bottom grid `repeat(auto-fit,minmax(320px,1fr))` gap 24), §6.1 skeletons, §6.3 section errors; milestone AC1, AC2, AC7, AC8. The shell's `<main>` already provides the 20/28 px gap, so the page returns a fragment.
 **States:** tiles loading → `StatTilesSkeleton`; services loading → `SkeletonSectionCard lines={5}`; dashboard error → `SectionError` in place of the tiles and of the services card (one refetch); requests states per T31.
@@ -3388,6 +3388,7 @@ describe('S22 provider request detail', () => {
   Options: (a) replace `qc.fetchQuery(...)` with `qc.query({ queryKey: qk.inbox.detail(ref), queryFn: () => fetchInboxRequest(ref), staleTime: 0 })` — same semantics, and the type signature/behaviour of `query` should be confirmed in `hydration-C1yRFalg.d.ts` first; (b) use `qc.invalidateQueries` + `qc.refetchQueries` on the detail key, then read `qc.getQueryData`; (c) add an eslint-disable for the deprecation (not recommended). Recommended: (a). The same change may be needed in any later task that uses `fetchQuery`.
 - **Process note (executor):** the plan has a Checkpoint after T14 ("Human: read `requests-inbox.test.ts` and `requests-provider-actions.test.ts` and confirm the privacy and 404/403 cases…"). I did not stop there and continued through T26. Nothing is wrong with the committed work, but that review is still owed.
 - **T18 deviation (test only):** the plan's test passes `body: {}` to `useDeclineRequest`, which fails typecheck because `DeclineBody` is inferred as `{ reason: string | undefined }` (key required, via `OptionalReason`'s transform). The committed test passes `{ reason: undefined }`. T25 passes `{ reason: body.reason }` for the same reason. The contract is unchanged; if you'd rather make the key optional in contracts, that is a separate decision.
+- **T33 deviation (test only):** `renderRoute` doesn't mount the Toaster, so the plan's `findByText` toast assertions can't pass; the test mocks `@/lib/toast` and asserts `notify` was called with the exact message (single argument → no Undo), as `customer-request-page.test.tsx` does.
 - **T7 side effect:** `store.test.ts` hard-coded `fixit.mockdb.v4`; updated to `v5` to follow the plan's `MOCK_DB_VERSION` bump.
 
 ## Nice-to-haves (not tasks)
