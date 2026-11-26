@@ -1449,7 +1449,7 @@ export function MyRequestsPage() {
 **Commit:** `git commit -m "test(web): My requests behaviour (M09-T19)"`
 
 ### T20 — `ReviewBlock` (S15.E6) and `StatusPanelCard` (S15.E2)
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/review-block.tsx`, `src/features/requests/components/status-panel-card.tsx`
 **Context:** S15 status panel (4px top border in the status dot colour, title `title-md`, body 15 muted, actions; phone actions full width), S15.E6; `statusPanel`, `PANEL_BORDER`, `ContactBlock`, `Stars`, `StatusPill kind="review"`.
 **Do:**
