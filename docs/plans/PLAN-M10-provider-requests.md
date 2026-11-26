@@ -2866,7 +2866,7 @@ The `current: 'page'` query needs `@testing-library/dom` ≥ 9; if unsupported, 
 **Commit:** `git commit -m "feat(web): provider requests inbox page S21 (M10-T34)"`
 
 ### T35 — S22 Customer card
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/customer-card.tsx`
 **Context:** S22.E1 (§6.3 privacy; `Lock` note; Accepted/Completed: full name, address lines, mobile with `Call`/`Copy` → toast `Number copied.`), D-8; shared `ContactBlock` (T20).
 **States:** unrevealed + pending note; unrevealed + closed note; revealed.
