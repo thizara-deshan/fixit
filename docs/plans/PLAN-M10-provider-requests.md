@@ -1638,7 +1638,7 @@ describe('row flash', () => {
 **Commit:** `git commit -m "feat(web): row flash store and DataList row classes (M10-T19)"`
 
 ### T20 — Move shared request components
-- [ ] done
+- [x] done
 **Files:** `src/components/conflict-dialog.tsx`, `src/components/contact-block.tsx`, `src/components/request-history.tsx` (moved from `src/features/requests/components/`), `src/features/requests/pages/customer-request-page.tsx`, `src/features/requests/components/status-panel-card.tsx`
 **Context:** D-12; CLAUDE.md "Component shared by 2+ features → `apps/web/src/components/`".
 **Do:**

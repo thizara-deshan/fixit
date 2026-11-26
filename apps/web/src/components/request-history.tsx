@@ -1,16 +1,15 @@
-import type { CustomerRequestView } from '@fixit/contracts';
+import type { RequestActor, StatusEvent } from '@fixit/contracts';
 import { REQUEST_DOT, REQUEST_LABEL } from '@/components/status-pill';
 import { formatDateTime } from '@/lib/format';
 import { cn } from '@/lib/utils';
-import { actorLabel } from '../history';
 
-/** S15.E7, oldest first. */
+/** S15.E7 / S22.E7, oldest first. */
 export function RequestHistory({
   history,
-  businessName,
+  actorLabel,
 }: {
-  history: CustomerRequestView['history'];
-  businessName: string;
+  history: readonly StatusEvent[];
+  actorLabel: (actor: RequestActor) => string;
 }) {
   return (
     <section className="border-border bg-surface flex flex-col gap-4 rounded-2xl border p-5 sm:p-6">
@@ -24,7 +23,7 @@ export function RequestHistory({
             />
             <p className="text-label text-text font-semibold">{REQUEST_LABEL[e.status]}</p>
             <p className="text-meta text-text-subtle">
-              {formatDateTime(e.at)} · {actorLabel(e.actor, businessName)}
+              {formatDateTime(e.at)} · {actorLabel(e.actor)}
             </p>
           </li>
         ))}

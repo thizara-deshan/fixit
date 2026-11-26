@@ -4,7 +4,7 @@ import { formatPhone } from '@/lib/format';
 import { notify, notifyError } from '@/lib/toast';
 
 /** S15.E4. Only rendered while the view carries the mobile (Accepted/Completed). */
-export function ContactBlock({ businessName, mobile }: { businessName: string; mobile: string }) {
+export function ContactBlock({ label, mobile }: { label: string; mobile: string }) {
   const copy = () => {
     void navigator.clipboard.writeText(formatPhone(mobile)).then(
       () => {
@@ -18,7 +18,7 @@ export function ContactBlock({ businessName, mobile }: { businessName: string; m
   return (
     <div className="bg-page flex flex-col gap-3 rounded-xl p-4">
       <div className="flex flex-col gap-0.5">
-        <p className="text-meta text-text-muted">{`${businessName}'s mobile`}</p>
+        <p className="text-meta text-text-muted">{label}</p>
         <p className="text-lead text-text font-bold">{formatPhone(mobile)}</p>
       </div>
       <div className="flex flex-col gap-2 sm:flex-row">
