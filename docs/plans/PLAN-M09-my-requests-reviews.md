@@ -1589,7 +1589,7 @@ export function StarRatingInput({ id, value, onChange, onBlur, invalid, describe
 **Commit:** `git commit -m "feat(web): star rating input (M09-T23)"`
 
 ### T24 — `ReviewForm` (S16 card)
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/review-form.tsx`
 **Context:** S16 layout (card max 640, r20, padding 28 / phone 20; provider mini row 48 photo; context line `{FX-2061} · {Service} · completed {date}`; phone sticky `Post review` bar), field table, E2 notice, E3 submit; `CreateReviewBody` via `zodResolver`; `FormField`, `Textarea`, `SubmitButton`, `FormErrorBanner`, `FORM_COPY.saveFailed`; `formatCount`, `formatDateLong`; `useAuth().me.displayName`.
 **Do:**
