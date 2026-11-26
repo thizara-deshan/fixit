@@ -159,7 +159,7 @@ describe('bodies', () => {
 **Commit:** `git commit -m "feat(contracts): agreed price and provider action bodies (M10-T1)"`
 
 ### T2 — `CustomerContact` and `ProviderRequestView`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`, `packages/contracts/src/requests/provider-view.test.ts`
 **Context:** ARCH §2.5 (`CustomerContact` discriminated union, `ProviderRequestView`), PRODUCT §6.3, D-10.
 **Do:** Append to `packages/contracts/src/requests/schemas.ts`:
