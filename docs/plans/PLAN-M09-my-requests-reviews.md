@@ -1105,7 +1105,7 @@ describe('list-search', () => {
 **Commit:** `git commit -m "feat(web): my-requests URL state (M09-T12)"`
 
 ### T13 — S15 status panel copy
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/status-panel.ts`, `src/features/requests/status-panel.test.ts`, `src/components/status-pill.tsx`
 **Context:** SPEC S15 status panel table; D-6; BR-12; the UI never evaluates rules (uses `canCancel`).
 **Do:**
