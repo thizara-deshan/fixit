@@ -3149,7 +3149,7 @@ If `CONTACT_EMAIL` is not exported from `@/lib/env`, import it from where `lib/e
 **Commit:** `git commit -m "feat(web): S22 actions card (M10-T38)"`
 
 ### T39 — S22 provider request page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/pages/request-page.tsx`, `src/features/provider-dashboard/pages/request-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** SPEC S22 layout (back link `Back to requests`; header: H1 service `title-lg`, ref mono, pill, `Requested {21 Nov 2026, 3:42 PM}`; grid `minmax(0,1fr) 340px` gap 24; aside sticky top 32; phone order header → Actions → Customer → Job details → History; sticky bottom bar `Decline` (secondary) / `Accept` (primary) 50/50 48 high), §5.E S39 request variant (`Go to requests`), D-14; AC5, AC6, AC7, AC9.
 **States:** loading (`SkeletonSectionCard` ×3 + aside), 404 → S39 request variant in L3, other errors → thrown (S41), every status per T35/T38.
@@ -3391,6 +3391,7 @@ describe('S22 provider request detail', () => {
 - **T33 deviation (test only):** `renderRoute` doesn't mount the Toaster, so the plan's `findByText` toast assertions can't pass; the test mocks `@/lib/toast` and asserts `notify` was called with the exact message (single argument → no Undo), as `customer-request-page.test.tsx` does.
 - **T34 deviation (code, type-only):** `FormEvent` is deprecated in the installed React types and fails lint; `requests-page.tsx` uses `SyntheticEvent` instead (same behaviour).
 - **T34 deviations (test only):** toast asserted via mocked `notify` (as T33); refs read from the row link's `aria-label` (the link's text is the customer cell); the page-2 check scopes to the `Pagination` nav and finds `aria-current="page"` by attribute, as the plan's fallback allows.
+- **T39 deviation (test only):** toasts asserted via mocked `notify` (as T33/T34).
 - **T7 side effect:** `store.test.ts` hard-coded `fixit.mockdb.v4`; updated to `v5` to follow the plan's `MOCK_DB_VERSION` bump.
 
 ## Nice-to-haves (not tasks)
