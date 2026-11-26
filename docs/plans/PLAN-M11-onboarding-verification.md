@@ -693,7 +693,7 @@ describe('own provider contracts', () => {
 **Commit:** `git commit -m "feat(fixtures): rejected provider p10 and persona (M11-T6)"`
 
 ### T7 — Test environment for uploads
-- [ ] done
+- [x] done
 **Files:** `src/test/setup.ts`
 **Context:** D-8 (verified during planning: jsdom `FormData` → body `[object FormData]`).
 **Do:**
@@ -3148,6 +3148,7 @@ export function useAccountBanners(area: 'public' | 'dashboard'): ReactNode[] {
   2. Keep jsdom's `FormData` globally and stub Node's `FormData` only in the upload tests and the handler tests that need it (changes D-8's "every test").
   3. Drop the FormData stub and serialise upload bodies in `http()` itself in the test env (changes T8/T9 design).
 - **Recommendation:** option 1.
+- **Resolved (user chose option 1):** `setup.ts` stubs a `TestFormData` wrapper that delegates to jsdom's `FormData` for an `HTMLFormElement` argument.
 
 ## Nice-to-haves (not tasks)
 - Real byte-level upload progress (XHR `upload.onprogress`) once uploads hit the real API (M17); D-7 uses an indeterminate bar.
