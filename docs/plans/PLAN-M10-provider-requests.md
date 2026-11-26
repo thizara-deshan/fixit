@@ -58,7 +58,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Agreed price and action bodies
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/provider-bodies.ts`, `packages/contracts/src/requests/provider-bodies.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S22 field table (`Whole number 1–10,000,000`, `Enter a whole amount in rupees, like 6500.`), §8.3 accept/decline/complete dialogs, reason ≤ 500 `Keep the reason under 500 characters.` (`OptionalReason` in `common/primitives.ts`); ARCH §3.4 bodies; BR-12.
 **Do:**

@@ -22,3 +22,4 @@ export * from './requests/eligibility';
 export * from './requests/projections';
 export * from './requests/list';
 export * from './reviews/schemas';
+export * from './requests/provider-bodies';
