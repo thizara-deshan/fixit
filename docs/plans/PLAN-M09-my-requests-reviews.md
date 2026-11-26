@@ -266,7 +266,7 @@ describe('CreateReviewBody (S16)', () => {
 **Commit:** `git commit -m "feat(contracts): review body and review schemas (M09-T3)"`
 
 ### T4 — `reviewEligibility` and its use in `toCustomerView`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/reviews/rules.ts`, `packages/contracts/src/reviews/rules.test.ts`, `packages/contracts/src/requests/projections.ts`
 **Context:** BR-24, BR-25; D-4; AC9. `RuleCode` already has `review_not_eligible`, `review_window_closed`, `already_reviewed`.
 **Do:**
