@@ -865,7 +865,7 @@ describe('mockFileEndpoint', () => {
 **Commit:** `git commit -m "feat(web): mockFileEndpoint for file responses (M11-T9)"`
 
 ### T10 — Mock own-provider logic
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/own-provider.ts`, `src/mocks/lib/own-provider.test.ts`
 **Context:** D-1, D-3, D-4, D-5; `buildMe` (`mocks/lib/me.ts`) for the `rejectionReason` rule; `computeStartingPrice` (contracts); `isListed` (`mocks/lib/cards.ts`); FxProvider fields (`packages/fixtures/src/types.ts`).
 **Do:** Create `own-provider.ts`:
