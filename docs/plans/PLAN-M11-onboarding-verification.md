@@ -1734,7 +1734,7 @@ describe('useUpload', () => {
 **Commit:** `git commit -m "feat(web): useUpload hook and image size reader (M11-T18)"`
 
 ### T19 — Own-provider and verification API + hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/api.ts`, `src/features/provider-business/hooks.ts`, `src/features/provider-business/hooks.test.tsx`
 **Context:** ARCH §4.2 hooks pattern (`features/provider-dashboard/hooks.ts`); `refreshMe` (`features/auth/hooks.ts`); D-10. `http({ form, signal })` already supports multipart.
 **Do:**

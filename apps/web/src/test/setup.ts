@@ -31,6 +31,31 @@ class TestFormData extends NodeFormDataBase {
 }
 let objectUrlSeq = 0;
 
+/** Node's fetch rejects jsdom's AbortSignal, so honour it here and hand fetch a signal-free init. */
+function withJsdomSignal(realFetch: typeof fetch): typeof fetch {
+  return (input, init) => {
+    const signal = init?.signal;
+    if (!signal) return realFetch(input, init);
+    const rest: RequestInit = { ...init };
+    delete rest.signal;
+    return new Promise<Response>((resolve, reject) => {
+      const onAbort = () => {
+        reject(new DOMException('Aborted', 'AbortError'));
+      };
+      if (signal.aborted) {
+        onAbort();
+        return;
+      }
+      signal.addEventListener('abort', onAbort, { once: true });
+      realFetch(input, rest)
+        .then(resolve, reject)
+        .finally(() => {
+          signal.removeEventListener('abort', onAbort);
+        });
+    });
+  };
+}
+
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'error' });
 });
@@ -39,6 +64,7 @@ beforeEach(() => {
   vi.stubGlobal('FormData', TestFormData);
   vi.stubGlobal('File', NodeFile);
   vi.stubGlobal('Blob', NodeBlob);
+  vi.stubGlobal('fetch', withJsdomSignal(globalThis.fetch));
   Object.assign(URL, {
     createObjectURL: () => `blob:test-${String(++objectUrlSeq)}`,
     revokeObjectURL: () => undefined,
