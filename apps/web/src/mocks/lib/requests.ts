@@ -29,6 +29,7 @@ export function customerViewOf(d: MockDb, r: RequestRecord, now: Date): Customer
     {
       provider: {
         id: p.id,
+        categoryId: category.id,
         businessName: p.businessName ?? '',
         photoUrl: p.photoKey ? `/api/files/photos/${p.photoKey}` : null,
         categoryIcon: category.icon,

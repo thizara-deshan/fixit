@@ -178,7 +178,7 @@ describe('CancelBody', () => {
 **Commit:** `git commit -m "feat(contracts): request list query, status groups and cancel body (M09-T1)"`
 
 ### T2 — `categoryId` in `CustomerRequestView`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`, `packages/contracts/src/requests/projections.ts`, `packages/contracts/src/requests/projections.test.ts`, `src/mocks/lib/requests.ts`
 **Context:** D-3; SPEC S15 `Find another provider` → `/discover?cat={cat}&loc={town}`.
 **Do:**

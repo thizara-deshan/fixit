@@ -10,6 +10,7 @@ const REVEALED: readonly RequestStatus[] = ['accepted', 'completed'];
 export interface CustomerViewContext {
   provider: {
     id: string;
+    categoryId: string;
     businessName: string;
     photoUrl: string | null;
     categoryIcon: CategoryIcon;
