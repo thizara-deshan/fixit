@@ -2523,7 +2523,7 @@ const { errors, isDirty, isSubmitted } = form.formState;
 **Commit:** `git commit -m "feat(web): onboarding step 4 service areas (M11-T29)"`
 
 ### T30 — Step 5: Photo and publish
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-photo.tsx`
 **Context:** S19 step 5 (`Skip for now` link next to the publish button; `Publish listing` → `Publishing…`); A22; D-5, D-6; `PhotoUploader` (T24); `uploadPhoto`, `usePhotoCache`, `useRemovePhoto` (T19); `usePublishListing` (T20).
 **Do:**
