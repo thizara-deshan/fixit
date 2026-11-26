@@ -2790,7 +2790,7 @@ export function OnboardingDonePage() {
 **Commit:** `git commit -m "feat(web): onboarding done screen and route (M11-T32)"`
 
 ### T33 — Document slot
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/document-slot.tsx`, `src/features/provider-business/components/document-slot.test.tsx`
 **Context:** SPEC S26.E1 (empty: dashed `border-strong` drop zone r14, `Upload` icon, button `Choose file`; uploading: progress bar + `Cancel`; uploaded: thumbnail (image) or `FileText` (PDF), filename (ellipsis), size, `Replace` · `Remove`; error: danger border + message; click/tap or drag-drop; phone picker incl. camera), S26 field table; D-7, D-9, D-15; `useUpload` (T18), `checkUpload`, `UPLOAD_COPY`, `UPLOAD_LIMITS` (T3), `uploadDocument`, `useDocumentCache`, `useDeleteDocument` (T19), `formatFileSize` (T17).
 **Do:**
