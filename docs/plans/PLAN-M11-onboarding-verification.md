@@ -722,7 +722,7 @@ let objectUrlSeq = 0;
 **Commit:** `git commit -m "test(web): Node FormData/File in the test environment (M11-T7)"`
 
 ### T8 — Mock multipart reader and in-memory files
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/multipart.ts`, `src/mocks/lib/multipart.test.ts`, `src/mocks/lib/files.ts`
 **Context:** D-8; ARCH §4.3 "Files: uploads are kept as in-memory object URLs; only metadata is persisted".
 **Do:**
