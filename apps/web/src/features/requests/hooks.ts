@@ -1,8 +1,7 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type { CancelBody, CreateRequestBody, CreateReviewBody, RequestListQuery } from '@fixit/contracts';
-import { fetchMe } from '@/features/auth/api';
+import { refreshMe } from '@/features/auth/hooks';
 import { fetchEligibility } from '@/features/provider-profile/api';
-import { authStore } from '@/lib/auth-store';
 import { qk } from '@/lib/query-keys';
 import { cancelMyRequest, createRequest, fetchMyRequest, fetchMyRequests, postReview } from './api';
 
@@ -35,15 +34,6 @@ export const useMyRequests = (q: RequestListQuery) =>
     queryFn: () => fetchMyRequests(q),
     placeholderData: keepPreviousData,
   });
-
-function refreshMe(qc: ReturnType<typeof useQueryClient>) {
-  void fetchMe()
-    .then((me) => {
-      authStore.setMe(me);
-      qc.setQueryData(qk.me, me);
-    })
-    .catch(() => undefined);
-}
 
 /** A12. The view returned by the server replaces the cached detail (contact hidden, history updated). */
 export function useCancelRequest(ref: string) {

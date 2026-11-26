@@ -1285,7 +1285,7 @@ describe('GET /me/provider/dashboard', () => {
 **Commit:** `git commit -m "feat(web): mock provider dashboard (M10-T14)"`
 
 ### T15 — Query keys and a shared `refreshMe`
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/features/auth/hooks.ts`, `src/features/requests/hooks.ts`
 **Context:** ARCH §4.2 (`qk.inbox`, `qk.dashboard`); milestone note "refetch `/auth/me` after accept/decline".
 **Do:**
