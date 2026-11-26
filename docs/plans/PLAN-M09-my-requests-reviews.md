@@ -1400,7 +1400,7 @@ export function MyRequestsPage() {
 **Checkpoint after T16:** "Human: run `pnpm dev:mock`, sign in as Olivia, open `/requests` at 1440 and 390. INFERRED screen (no prototype image): compare with SPEC S14 and the S20 table pattern in `reference/screens/` (provider overview). Check tabs scroll at 390 and there is no horizontal page scroll."
 
 ### T17 — S15 building blocks: contact block, details card, history, provider aside
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/components/contact-block.tsx`, `request-details-card.tsx`, `request-history.tsx`, `provider-aside-card.tsx` (all under `src/features/requests/components/`)
 **Context:** S15.E3, E4, E5, E7; D-8; `formatPhone`, `formatDateLong`, `formatDateTime`, `SLOT_LABEL`, `formatServicePrice`, `REQUEST_DOT`, `REQUEST_LABEL`, `actorLabel`, `VerifiedBadge`, `Stars`, `notify`, `notifyError`.
 **Do:**
