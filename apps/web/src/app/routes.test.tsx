@@ -43,6 +43,13 @@ describe('guards (SPEC §8.4, AC4)', () => {
     });
   });
 
+  it('published provider on /become-a-provider/done stays on the done page', async () => {
+    signInAs('provider');
+    const r = renderRoute('/become-a-provider/done');
+    expect(await screen.findByRole('heading', { level: 1, name: 'Your listing is live' })).toBeTruthy();
+    expect(r.location()).toBe('/become-a-provider/done');
+  });
+
   it('Olivia on /admin sees S40 with her email', async () => {
     signInAs('customer');
     renderRoute('/admin');

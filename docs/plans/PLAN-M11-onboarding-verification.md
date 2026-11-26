@@ -67,7 +67,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Step 1, 2 and 4 schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/onboarding.ts`, `packages/contracts/src/providers/onboarding.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S19 field table; S25 (areas rules); BR-13, BR-14, BR-23; D-1, D-3, D-4. `MobileInput`, `MOBILE_MESSAGE`, `Id` in `common/primitives.ts`.
 **Do:**
@@ -241,7 +241,7 @@ describe('step param and next step', () => {
 **Commit:** `git commit -m "feat(contracts): onboarding step 1/2/4 schemas (M11-T1)"`
 
 ### T2 — Service schemas (step 3, shared with S23)
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/services.ts`, `packages/contracts/src/providers/services.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S23 field table, S19 step 3; BR-14; ARCH §2.5 `ServiceBody` excerpt (this task creates it); D-14. `PriceUnit` in `common/enums.ts`. The text-to-number pattern copies `AgreedPriceText` (`requests/provider-bodies.ts`).
 **Do:**
@@ -354,7 +354,7 @@ describe('service schemas', () => {
 **Commit:** `git commit -m "feat(contracts): service body and step 3 schemas (M11-T2)"`
 
 ### T3 — Upload limits and document rules
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/uploads.ts`, `packages/contracts/src/providers/uploads.test.ts`, `packages/contracts/src/index.ts`
 **Context:** BR-17; SPEC S24.E1/E2, S26 field table, §6.3 "Upload failed", §8.7; ARCH §3.3 photo/doc rows.
 **Do:**
@@ -438,7 +438,7 @@ describe('uploads', () => {
 **Commit:** `git commit -m "feat(contracts): upload limits and document rules (M11-T3)"`
 
 ### T4 — OwnProvider, VerificationState and onboarding body parser
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/own.ts`, `packages/contracts/src/providers/own.test.ts`, `packages/contracts/src/index.ts`
 **Context:** ARCH §3.3 `GET /me/provider`, `PUT /me/provider/photo` → `{photoUrl}`, verification rows; `Me.provider` (auth/schemas.ts) — the same onboarding/verification fields; D-3, D-10. `catalog/schemas.ts` imports `providers/schemas.ts`, so these live in a new file that imports catalog (no cycle).
 **Do:**
@@ -555,7 +555,7 @@ describe('own provider contracts', () => {
 **Commit:** `git commit -m "feat(contracts): OwnProvider and VerificationState (M11-T4)"`
 
 ### T5 — Endpoint registry entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.3 rows `GET /me/provider` … `GET /files/photos/:key`; existing `provider_dashboard` entry style; `OwnerRule` already has `provider_or_admin`.
 **Do:**
@@ -636,7 +636,7 @@ describe('own provider contracts', () => {
 **Commit:** `git commit -m "feat(contracts): M11 provider endpoint registry (M11-T5)"`
 
 ### T6 — Rejected provider fixture
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/providers.ts`, `packages/fixtures/src/users.ts`, `packages/fixtures/src/build.test.ts`, `src/mocks/db/schema.ts`, `src/mocks/db/store.test.ts`
 **Context:** D-11. p10 seed (`ownerId: 'u-grace'`, `verification: 'not_submitted'`); `buildProviders` submissions/documents arrays; `DEMO_PERSONAS`.
 **Do:**
@@ -693,7 +693,7 @@ describe('own provider contracts', () => {
 **Commit:** `git commit -m "feat(fixtures): rejected provider p10 and persona (M11-T6)"`
 
 ### T7 — Test environment for uploads
-- [ ] done
+- [x] done
 **Files:** `src/test/setup.ts`
 **Context:** D-8 (verified during planning: jsdom `FormData` → body `[object FormData]`).
 **Do:**
@@ -722,7 +722,7 @@ let objectUrlSeq = 0;
 **Commit:** `git commit -m "test(web): Node FormData/File in the test environment (M11-T7)"`
 
 ### T8 — Mock multipart reader and in-memory files
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/multipart.ts`, `src/mocks/lib/multipart.test.ts`, `src/mocks/lib/files.ts`
 **Context:** D-8; ARCH §4.3 "Files: uploads are kept as in-memory object URLs; only metadata is persisted".
 **Do:**
@@ -806,7 +806,7 @@ describe('readMultipart', () => {
 **Commit:** `git commit -m "feat(web): mock multipart reader and file store (M11-T8)"`
 
 ### T9 — `mockFileEndpoint` for file responses
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/endpoint.ts`, `src/mocks/lib/endpoint.test.ts`
 **Context:** `mockEndpoint` (same file) always answers JSON or 204; `GET /files/*` answer bytes. Reuse `simulateLatency`, `takeForcedError`, `forcedResponse`, `resolveActor`, `tryResolveActor`, `assertAccess`, `toErrorResponse`.
 **Do:** Add below `mockEndpoint`:
@@ -865,7 +865,7 @@ describe('mockFileEndpoint', () => {
 **Commit:** `git commit -m "feat(web): mockFileEndpoint for file responses (M11-T9)"`
 
 ### T10 — Mock own-provider logic
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/own-provider.ts`, `src/mocks/lib/own-provider.test.ts`
 **Context:** D-1, D-3, D-4, D-5; `buildMe` (`mocks/lib/me.ts`) for the `rejectionReason` rule; `computeStartingPrice` (contracts); `isListed` (`mocks/lib/cards.ts`); FxProvider fields (`packages/fixtures/src/types.ts`).
 **Do:** Create `own-provider.ts`:
@@ -1111,7 +1111,7 @@ describe('own provider (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock onboarding and publish rules (M11-T10)"`
 
 ### T11 — Handlers: `GET /me/provider` and `PUT /me/provider/onboarding/:step`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-onboarding.test.ts`
 **Context:** D-3; T10 helpers; `mockEndpoint` gives `request` in ctx (body is not pre-read because the def has no `body`).
 **Do:** Add to `providersHandlers`:
@@ -1183,7 +1183,7 @@ describe('GET /me/provider · PUT onboarding/:step', () => {
 **Commit:** `git commit -m "feat(web): mock own provider and onboarding step handlers (M11-T11)"`
 
 ### T12 — Handler: `POST /me/provider/publish`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-onboarding.test.ts`
 **Context:** D-5; AC4 (Discover shows `Not yet verified`); `buildMe` roles via `rolesOf`.
 **Do:** Add:
@@ -1218,7 +1218,7 @@ describe('GET /me/provider · PUT onboarding/:step', () => {
 **Commit:** `git commit -m "feat(web): mock publish listing handler (M11-T12)"`
 
 ### T13 — Handlers: photo upload/remove and `GET /files/photos/:key`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-onboarding.test.ts`
 **Context:** ARCH §3.3 photo rows (`U (has draft or listing)`); S24.E2; D-8, D-12; T8 `readMultipart`, files store; T9 `mockFileEndpoint`.
 **Do:** Add:
@@ -1282,7 +1282,7 @@ describe('GET /me/provider · PUT onboarding/:step', () => {
 **Commit:** `git commit -m "feat(web): mock profile photo handlers (M11-T13)"`
 
 ### T14 — Mock verification logic
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/verification.ts`, `src/mocks/lib/verification.test.ts`
 **Context:** D-10; BR-17, BR-18; SPEC §8.5; `isVerificationEditable`, `missingRequiredDocuments` (contracts); `ownProvider` (`mocks/lib/requests.ts`).
 **Do:** Create `verification.ts`:
@@ -1446,7 +1446,7 @@ describe('verification (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock verification rules (M11-T14)"`
 
 ### T15 — Handlers: verification get / upload / delete
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-verification.test.ts`
 **Context:** ARCH §3.3; T14; `ownProvider(d, userId)` from `../lib/requests` (published listing, else 403 — unreachable after `access: ['provider']`).
 **Do:** Add:
@@ -1526,7 +1526,7 @@ describe('verification handlers', () => {
 **Commit:** `git commit -m "feat(web): mock verification document handlers (M11-T15)"`
 
 ### T16 — Handlers: submit and `GET /files/documents/:id`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-verification.test.ts`
 **Context:** A27; BR-17; PRODUCT §6.3 (documents visible only to owner + admins); AC9 (another provider's document → 404).
 **Do:** Add:
@@ -1576,7 +1576,7 @@ describe('verification handlers', () => {
 **Commit:** `git commit -m "feat(web): mock verification submit and document files (M11-T16)"`
 
 ### T17 — Query keys, file size format, upload error copy
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/lib/format.ts`, `src/lib/format.test.ts`, `src/lib/upload-errors.ts`, `src/lib/upload-errors.test.ts`
 **Context:** S26.E1 "filename (ellipsis), size"; S24.E2; §6.3 upload failed; `ApiError` (`lib/http.ts`).
 **Do:**
@@ -1627,7 +1627,7 @@ describe('uploadErrorCopy', () => {
 **Commit:** `git commit -m "feat(web): upload copy, file size format, provider query keys (M11-T17)"`
 
 ### T18 — `useUpload` hook and image size reader
-- [ ] done
+- [x] done
 **Files:** `src/lib/use-upload.ts`, `src/lib/use-upload.test.tsx`, `src/lib/image-size.ts`
 **Context:** D-7, D-12; S26.E1 states (uploading + Cancel, error); S24.E1.
 **Do:**
@@ -1734,7 +1734,7 @@ describe('useUpload', () => {
 **Commit:** `git commit -m "feat(web): useUpload hook and image size reader (M11-T18)"`
 
 ### T19 — Own-provider and verification API + hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/api.ts`, `src/features/provider-business/hooks.ts`, `src/features/provider-business/hooks.test.tsx`
 **Context:** ARCH §4.2 hooks pattern (`features/provider-dashboard/hooks.ts`); `refreshMe` (`features/auth/hooks.ts`); D-10. `http({ form, signal })` already supports multipart.
 **Do:**
@@ -1892,7 +1892,7 @@ describe('provider-business hooks', () => {
 **Commit:** `git commit -m "feat(web): own provider and verification hooks (M11-T19)"`
 
 ### T20 — Onboarding API, hooks and resume rule
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/api.ts`, `src/features/onboarding/hooks.ts`, `src/features/onboarding/hooks.test.tsx`, `src/features/onboarding/step-route.ts`, `src/features/onboarding/step-route.test.ts`, `src/features/onboarding/steps.ts`
 **Context:** D-1, D-2, D-4, D-5; `updateMe` (`features/account/api.ts`); `refreshMe`.
 **Do:**
@@ -2022,7 +2022,7 @@ describe('onboarding hooks', () => {
 **Commit:** `git commit -m "feat(web): onboarding api, hooks and resume rule (M11-T20)"`
 
 ### T21 — Move `AgreedPriceInput` to `components/lkr-input.tsx`
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/agreed-price-input.tsx` (delete), `src/components/lkr-input.tsx` (create), every importer of `AgreedPriceInput`
 **Context:** D-13; CLAUDE.md "Component shared by 2+ features".
 **Do:**
@@ -2032,7 +2032,7 @@ describe('onboarding hooks', () => {
 **Commit:** `git commit -m "refactor(web): share LKR input between features (M11-T21)"`
 
 ### T22 — Services editor (`ServiceRowFields` + `ServicesRepeater`)
-- [ ] done
+- [x] done
 **Files:** `src/components/services-editor.tsx`, `src/components/services-editor.test.tsx`
 **Context:** SPEC S23 field table + live preview `Shows as: from LKR 2,500 / hour`; S19 step 3 (inline rows); D-13, D-14; `formatServicePrice` (`lib/format.ts`); `ServicePriceText`, `ServicesFormValues`, `SERVICES_MAX`, `SERVICES_MAX_MESSAGE` (T2); `FormField`, `LkrInput`, `Input`; radio styling copied from `features/requests/components/slot-control.tsx`.
 **Do:** Create `services-editor.tsx`:
@@ -2181,7 +2181,7 @@ describe('ServicesRepeater', () => {
 **Commit:** `git commit -m "feat(web): shared services editor (M11-T22)"`
 
 ### T23 — Areas picker
-- [ ] done
+- [x] done
 **Files:** `src/components/areas-picker.tsx`, `src/components/areas-picker.test.tsx`
 **Context:** SPEC S25 (3 columns desktop, 1 phone, district heading 14/700, rows 44 high on phone, base unticked automatically), S19 step 4 field table; BR-14; `CatalogResponse` (`districts`, `towns` with `districtId`, `order` on district — towns sorted by name within a district); `AreasFormInput`, `OTHER_TOWNS_MAX`, `OTHER_TOWNS_MAX_MESSAGE` (T1). Native `<select>`/`<input type=checkbox>` (same select class as `features/requests/components/request-form.tsx` `selectClass`).
 **Do:** Create `areas-picker.tsx` — a controlled component (the step form passes `value` and `onChange`):
@@ -2279,7 +2279,7 @@ export function AreasPicker({ catalog, value, onChange, errors = {} }: AreasPick
 **Commit:** `git commit -m "feat(web): shared service areas picker (M11-T23)"`
 
 ### T24 — Photo uploader
-- [ ] done
+- [x] done
 **Files:** `src/components/photo-uploader.tsx`, `src/components/photo-uploader.test.tsx`
 **Context:** SPEC S24.E1/E2 (none: 160 `primary-soft` tile with category icon; uploading: progress bar under the preview; `Upload photo` / `Replace`; `Remove` → confirm `Remove your photo?` → toast `Photo removed.`); A26; D-7, D-12, D-15; `useUpload` (T18), `readImageSize` (T18), `checkUpload`, `UPLOAD_COPY`, `UPLOAD_LIMITS` (T3); `CategoryIcon` component; `ResponsiveDialog`; `notify` (`lib/toast.ts`).
 **Do:** Create `photo-uploader.tsx`:
@@ -2341,7 +2341,7 @@ export function PhotoUploader({ photoUrl, categoryIcon, upload, onUploaded, remo
 **Commit:** `git commit -m "feat(web): shared profile photo uploader (M11-T24)"`
 
 ### T25 — Wizard frame
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/wizard-frame.tsx`
 **Context:** SPEC S19 desktop/phone layout; AC1, AC7; `STEPS` (T20).
 **Do:** Create the presentational frame used by every step:
@@ -2394,7 +2394,7 @@ export function WizardFooter({ back, primary, extra }: { back: ReactNode; primar
 **Commit:** `git commit -m "feat(web): onboarding wizard frame (M11-T25)"`
 
 ### T26 — Step 1: Business details
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-business.tsx`
 **Context:** SPEC S19 step 1 (fields, read-only `Owner: {account name}` + 13 subtle `Change your name in Account settings.`, bio counter `{n} / 600`); BR-23; D-4; `makeStep1Form` (T1); `useSaveStep` (T20); `mapApiErrorToForm`, `FormErrorBanner`, `SubmitButton`, `FormField`, `PhoneInput`, `Input`, `Textarea`; `MobileField` pattern from `features/requests/components/mobile-field.tsx` (here always the input, since it shows only when missing).
 **Do:** Shared step contract (used by T26–T30), put at the top of `src/features/onboarding/components/step-props.ts`:
@@ -2457,7 +2457,7 @@ export function StepBusiness({ me, own, onBack, onSaved, onDirtyChange }: StepPr
 **Commit:** `git commit -m "feat(web): onboarding step 1 business details (M11-T26)"`
 
 ### T27 — Step 2: Category
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-category.tsx`
 **Context:** SPEC S19 step 2 (radio cards: icon tile, name, blurb; 2 columns desktop, 1 phone; note 13 muted `You can only choose one category. Changing it later means we check your documents again.`); §2.9 Option row (selected `primary` border + `primary-soft` bg); `OnboardingStep2Body` (T1); `CategoryIcon`.
 **Do:** Same skeleton as T26 (`useForm<OnboardingStep2Body>({ resolver: zodResolver(OnboardingStep2Body), defaultValues: { categoryId: own?.category?.id ?? '' } })`, banner, dirty, `useSaveStep` with `{ step: 2, body: v }`, `WizardFooter` with `Continue`/`Saving…`). Fields:
@@ -2487,7 +2487,7 @@ export function StepBusiness({ me, own, onBack, onSaved, onDirtyChange }: StepPr
 **Commit:** `git commit -m "feat(web): onboarding step 2 category (M11-T27)"`
 
 ### T28 — Step 3: Services & prices
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-services.tsx`
 **Context:** S19 step 3; D-14; `Step3Form`, `ServicesFormValues` (T2); `ServicesRepeater`, `EMPTY_SERVICE` (T22).
 **Do:** `useForm<ServicesFormValues, unknown, z.output<typeof Step3Form>>({ resolver: zodResolver(Step3Form), defaultValues: { services: own && own.services.length > 0 ? own.services.map((s) => ({ name: s.name, price: String(s.price), unit: s.unit })) : [{ ...EMPTY_SERVICE }] } })`. Wrap the form in `<FormProvider {...form}>`, render `<ServicesRepeater />`, banner, `WizardFooter` (`Continue`/`Saving…`). Submit: `save.mutateAsync({ step: 3, body: { services: v.services } })`, then `onSaved()`. Server field errors (e.g. `services.1.name`) land on the row through `mapApiErrorToForm` (field paths equal the form's).
@@ -2495,7 +2495,7 @@ export function StepBusiness({ me, own, onBack, onSaved, onDirtyChange }: StepPr
 **Commit:** `git commit -m "feat(web): onboarding step 3 services (M11-T28)"`
 
 ### T29 — Step 4: Service areas
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-areas.tsx`
 **Context:** S19 step 4; `AreasBody`, `AreasFormInput` (T1); `AreasPicker` (T23).
 **Do:** Same skeleton as T26 (banner, dirty reporting, `useSaveStep`, `WizardFooter` with `Continue`/`Saving…`).
@@ -2523,7 +2523,7 @@ const { errors, isDirty, isSubmitted } = form.formState;
 **Commit:** `git commit -m "feat(web): onboarding step 4 service areas (M11-T29)"`
 
 ### T30 — Step 5: Photo and publish
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-photo.tsx`
 **Context:** S19 step 5 (`Skip for now` link next to the publish button; `Publish listing` → `Publishing…`); A22; D-5, D-6; `PhotoUploader` (T24); `uploadPhoto`, `usePhotoCache`, `useRemovePhoto` (T19); `usePublishListing` (T20).
 **Do:**
@@ -2554,7 +2554,7 @@ export function StepPhoto({ own, onBack, onSaved }: StepProps) {
 **Commit:** `git commit -m "feat(web): onboarding step 5 photo and publish (M11-T30)"`
 
 ### T31 — S19 page: gate, loading, resume, discard
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/pages/become-provider-page.tsx`, `src/features/onboarding/components/email-gate.tsx`, `src/features/onboarding/pages/become-provider-page.test.tsx`, `src/app/chunks/onboarding.tsx`
 **Context:** S19 Gate; AC1, AC3, AC7 (discard), AC8, AC9; D-2, D-15; `resolveStep` (T20); `useOwnProvider` (T19); `useCatalog` (`features/site/hooks.ts`); `LoadingRegion`, `SkeletonSectionCard`, `SectionError`, `DiscardChangesGuard`; `BlockedCard` (`features/requests/components/blocked-card.tsx`) for the S12 card; request-form-page's "set state, then navigate in an effect" pattern so the discard guard is already off when navigating.
 **Do:**
@@ -2738,7 +2738,7 @@ export function BecomeProviderPage() {
 **Commit:** `git commit -m "feat(web): S19 become-a-provider page (M11-T31)"`
 
 ### T32 — Done screen and route move
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/pages/done-page.tsx`, `src/features/onboarding/pages/done-page.test.tsx`, `src/app/chunks/onboarding.tsx`, `src/app/routes.tsx`, `src/app/routes.test.tsx`
 **Context:** S19 Done row (`CircleCheck` tile; `Your listing is live` / `Customers can now find {Business}. It shows as "Not yet verified" until you upload your ID.`; `Get verified` primary → `/dashboard/verification` · `Go to dashboard` secondary); D-5; AC2 (publish → done), AC4 (nav `Dashboard`, Discover, L3 dot).
 **Do:**
@@ -2790,7 +2790,7 @@ export function OnboardingDonePage() {
 **Commit:** `git commit -m "feat(web): onboarding done screen and route (M11-T32)"`
 
 ### T33 — Document slot
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/document-slot.tsx`, `src/features/provider-business/components/document-slot.test.tsx`
 **Context:** SPEC S26.E1 (empty: dashed `border-strong` drop zone r14, `Upload` icon, button `Choose file`; uploading: progress bar + `Cancel`; uploaded: thumbnail (image) or `FileText` (PDF), filename (ellipsis), size, `Replace` · `Remove`; error: danger border + message; click/tap or drag-drop; phone picker incl. camera), S26 field table; D-7, D-9, D-15; `useUpload` (T18), `checkUpload`, `UPLOAD_COPY`, `UPLOAD_LIMITS` (T3), `uploadDocument`, `useDocumentCache`, `useDeleteDocument` (T19), `formatFileSize` (T17).
 **Do:**
@@ -2876,7 +2876,7 @@ export function DocumentSlot({ type, doc, missingError, onBusyChange, onUploaded
 **Commit:** `git commit -m "feat(web): S26 document slot (M11-T33)"`
 
 ### T34 — Verification status card and submitted list
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/verification-status-card.tsx`, `src/features/provider-business/components/submitted-documents.tsx`
 **Context:** S26 status table (pill, title, body per state; Rejected danger banner `Reason: {reason}` + `Fix the issue below and submit again.`; Verified body `Verified on {date}. If you change your business name or category, we'll check your documents again.`); `StatusPill kind="verification"`, `NoticeBanner`, `formatDateLong`; `SLOT_TITLE` (T33); `formatFileSize`.
 **Do:**
@@ -2939,7 +2939,7 @@ export function SubmittedDocuments({ documents }: { documents: DocumentMeta[] })
 **Commit:** `git commit -m "feat(web): S26 status card and submitted list (M11-T34)"`
 
 ### T35 — S26 Verification page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/pages/verification-page.tsx`, `src/features/provider-business/pages/verification-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** S26 layout (H1 `Verification`, status card, 2×2 slots desktop / 1 column phone, privacy note `[Lock] Only you and Fixit admins can see these documents.`, submit `Submit for review` / `Submit again`, `Submitting…`, disabled while uploading, toast `Documents submitted. We'll email you when they're checked.`); §6.7 discard (D-16); AC5, AC6, AC7, AC8; `missingRequiredDocuments`, `DOCUMENT_MISSING` (T3); `DocumentSlot`, `VerificationStatusCard`, `SubmittedDocuments` (T33–T34); `useVerification`, `useSubmitVerification` (T19); `LoadingRegion`, `SkeletonSectionCard`, `SectionError`, `SubmitButton`, `DiscardChangesGuard`, `FormErrorBanner`, `notify`.
 **Do:**
@@ -3038,7 +3038,7 @@ export function VerificationPage() {
 **Commit:** `git commit -m "feat(web): S26 verification page (M11-T35)"`
 
 ### T36 — L3 provider banners (§6.8 #1, #3, #4, #5)
-- [ ] done
+- [x] done
 **Files:** `src/app/layouts/parts/use-account-banners.tsx`, `src/app/layouts/parts/use-account-banners.test.tsx`, `src/app/layouts/parts/dashboard-shell.tsx`, `src/app/layouts/public-layout.tsx`
 **Context:** SPEC §6.8 rows 1, 3, 4, 5 (copy, variant, action, dismissible); D-17; `NoticeBanner` (supports `action` and `onDismiss`); `Me.provider` (`verificationStatus`, `rejectionReason`, `reverificationReason`).
 **Do:**
@@ -3112,25 +3112,21 @@ export function useAccountBanners(area: 'public' | 'dashboard'): ReactNode[] {
 **Commit:** `git commit -m "feat(web): L3 verification banners (M11-T36)"`
 
 ### T37 — M11 acceptance checks
-- [ ] done
+- [x] done
 **Files:** `docs/plans/PLAN-M11-onboarding-verification.md` (this file: tick boxes, fill "Acceptance results")
 **Context:** milestone acceptance criteria 1–9.
-**Do:** Run `pnpm verify`. Then walk each criterion and record ✓/✗ with the evidence under `## Acceptance results`:
-1. AC1 — `become-provider-page.test.tsx › AC1`. Manual: `pnpm dev:mock`, Olivia, `/become-a-provider/1` at 1440: stepper text + 5-segment bar, errors, `Owner: Olivia Martinez`, Continue shows `Saving…` (DevPanel latency "slow") → step 2.
-2. AC2 — `become-provider-page.test.tsx › AC2`, `services-editor.test.tsx`, `areas-picker.test.tsx`, `photo-uploader.test.tsx`, `done-page.test.tsx › AC2/AC4`. Manual: 8 category cards 2 columns at 1440 / 1 at 390; 20-row cap; 9-town cap; `Publishing…` with slow latency.
-3. AC3 — `become-provider-page.test.tsx › AC3 ×2`. Manual: as Olivia save step 3, open `/` then `/become-a-provider/1` → step 4 with values.
-4. AC4 — `providers-onboarding.test.ts › publish`, `done-page.test.tsx › AC2/AC4`. Manual: after publishing, `/discover?q=<business>` shows the card with `Not yet verified`.
-5. AC5 — `verification-page.test.tsx › AC5`, `document-slot.test.tsx` (docx, 6 MB, progress + Cancel, FileText, Replace · Remove).
-6. AC6 — `verification-page.test.tsx › AC6 ×2`.
-7. AC7 — `become-provider-page.test.tsx › AC7`, `verification-page.test.tsx › AC7`. Manual at 390: wizard card has no border, sticky `Back` 1/3 / `Continue` 2/3, slots in 1 column, the file picker offers the camera on a real phone or device emulation, `document.documentElement.scrollWidth === 390`.
-8. AC8 — `become-provider-page.test.tsx › AC8`, `document-slot.test.tsx` forced failure, `verification-page.test.tsx › AC8`. Manual: DevPanel latency slow → wizard skeleton after 150 ms.
-9. AC9 — `become-provider-page.test.tsx › AC9`, `providers-verification.test.ts › files`.
-   If any ✗, write it under `## Blockers` and stop.
-**Verify:** `pnpm verify` green; every AC has a ✓ line.
-**Commit:** `git commit -m "chore: M11 acceptance checks (M11-T37)"`
+**Do:** Run `pnpm verify`. Then walk each criterion and record ✓/✗ with the evidence under `## Acceptance results
+`pnpm verify` green (contracts 373, fixtures 29, web 593 tests). Automated evidence per criterion; the "Manual" items need a browser and were **not run by the executor** (no browser in this session) — they are left for the human.
 
-## Acceptance results
-(executor fills in at T37)
+1. AC1 ✓ (automated) `become-provider-page.test.tsx › AC1`. Manual (1440, slow latency `Saving…`): pending human.
+2. AC2 ✓ (automated) `become-provider-page.test.tsx › AC2`, `services-editor.test.tsx`, `areas-picker.test.tsx`, `photo-uploader.test.tsx`, `done-page.test.tsx › AC2/AC4`. Manual (2/1 column layout, `Publishing…`): pending human.
+3. AC3 ✓ (automated) `become-provider-page.test.tsx › AC3` ×2. Manual (resume to step 4): pending human.
+4. AC4 ✓ (automated) `providers-onboarding.test.ts` publish case, `done-page.test.tsx › AC2/AC4`. Manual (`/discover` card): pending human.
+5. AC5 ✓ (automated) `verification-page.test.tsx › AC5`, `document-slot.test.tsx`.
+6. AC6 ✓ (automated) `verification-page.test.tsx › AC6` ×2.
+7. AC7 ✓ (automated) `become-provider-page.test.tsx › AC7`, `verification-page.test.tsx › AC7`. Manual at 390 (borderless card, sticky bar, 1-column slots, camera picker, `scrollWidth === 390`): pending human.
+8. AC8 ✓ (automated) `become-provider-page.test.tsx › AC8`, `document-slot.test.tsx` forced failure, `verification-page.test.tsx › AC8`. Manual (skeleton after 150 ms): pending human.
+9. AC9 ✓ (automated) `become-provider-page.test.tsx › AC9`, `providers-verification.test.ts` files case.
 
 ## Checkpoints
 - After T16: "Human: read `providers-onboarding.test.ts` and `providers-verification.test.ts` and confirm the 401/403/404/409/422 cases match what you expect from the real API in M17."
@@ -3140,7 +3136,15 @@ export function useAccountBanners(area: 'public' | 'dashboard'): ReactNode[] {
 - After T35: "Human: open `/dashboard/verification` as Hank, Grace and Marcus at 1440 and 390; upload a real JPG, a real PDF, a >5 MB file and a .docx; drag-drop a file; cancel a slow upload (DevPanel latency slow); submit."
 
 ## Blockers
-(executor writes here; leave empty)
+### T7 — Node `FormData` stub breaks existing form-submit tests
+- **Problem:** With the T7 stubs in `setup.ts` (`vi.stubGlobal('FormData', NodeFormData)`), `pnpm --filter @fixit/web test` reports all 528 tests passing but **3 unhandled errors**, so vitest exits non-zero. React DOM's form-submit listener calls `new FormData(formElement)`; Node's FormData rejects a jsdom `HTMLFormElement` ("FormData constructor: Argument 1 could not be converted to: undefined"). The plan says to STOP if the stubs break an existing test.
+- **Failing test files (they submit a form):** `src/features/site/pages/home-page.test.tsx`, `src/features/discover/pages/discover-page.test.tsx`, `src/features/provider-dashboard/pages/requests-page.test.tsx`.
+- **Options:**
+  1. Replace the stub with a wrapper class: when the first argument is an `HTMLFormElement`, build the jsdom `FormData` (saved before stubbing), otherwise delegate to Node's `FormData`. Keeps D-8, no test changes.
+  2. Keep jsdom's `FormData` globally and stub Node's `FormData` only in the upload tests and the handler tests that need it (changes D-8's "every test").
+  3. Drop the FormData stub and serialise upload bodies in `http()` itself in the test env (changes T8/T9 design).
+- **Recommendation:** option 1.
+- **Resolved (user chose option 1):** `setup.ts` stubs a `TestFormData` wrapper that delegates to jsdom's `FormData` for an `HTMLFormElement` argument.
 
 ## Nice-to-haves (not tasks)
 - Real byte-level upload progress (XHR `upload.onprogress`) once uploads hit the real API (M17); D-7 uses an indeterminate bar.

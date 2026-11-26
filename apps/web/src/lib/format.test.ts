@@ -4,6 +4,7 @@ import {
   formatCount,
   formatDateLong,
   formatDeadline,
+  formatFileSize,
   formatDateShort,
   formatDateTime,
   formatLkr,
@@ -94,5 +95,13 @@ describe('M10 formats', () => {
   });
   it('formatMonthName uses Colombo', () => {
     expect(formatMonthName('2026-10-31T18:30:00.000Z')).toBe('November');
+  });
+});
+
+describe('formatFileSize', () => {
+  it('KB below 1 MB, MB above', () => {
+    expect(formatFileSize(482_113)).toBe('471 KB');
+    expect(formatFileSize(10)).toBe('1 KB');
+    expect(formatFileSize(5 * 1024 * 1024)).toBe('5.0 MB');
   });
 });

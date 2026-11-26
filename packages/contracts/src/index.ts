@@ -25,3 +25,7 @@ export * from './reviews/schemas';
 export * from './requests/provider-bodies';
 export * from './requests/inbox';
 export * from './providers/dashboard';
+export * from './providers/onboarding';
+export * from './providers/services';
+export * from './providers/uploads';
+export * from './providers/own';

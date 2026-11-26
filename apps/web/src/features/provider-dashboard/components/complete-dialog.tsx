@@ -15,7 +15,7 @@ import { notify } from '@/lib/toast';
 import { firstNameOf } from '../copy';
 import { useCompleteRequest } from '../hooks';
 import type { ActionDialogProps } from './accept-dialog';
-import { AgreedPriceInput } from './agreed-price-input';
+import { LkrInput } from '@/components/lkr-input';
 
 /** §8.3 Complete dialog (A16). D-11: prefilled with the current agreed price; empty = unchanged. */
 export function CompleteDialog({ view, open, onOpenChange, onConflict }: ActionDialogProps) {
@@ -98,7 +98,7 @@ export function CompleteDialog({ view, open, onOpenChange, onConflict }: ActionD
       >
         {banner && <FormErrorBanner>{FORM_COPY.saveFailed}</FormErrorBanner>}
         <FormField label="Final agreed price" optional error={form.formState.errors.agreedPrice?.message}>
-          {(p) => <AgreedPriceInput {...p} {...form.register('agreedPrice')} />}
+          {(p) => <LkrInput {...p} {...form.register('agreedPrice')} />}
         </FormField>
       </form>
     </ResponsiveDialog>

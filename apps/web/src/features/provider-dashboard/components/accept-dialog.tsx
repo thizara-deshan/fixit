@@ -15,7 +15,7 @@ import { ApiError } from '@/lib/http';
 import { notify } from '@/lib/toast';
 import { firstNameOf } from '../copy';
 import { useAcceptRequest } from '../hooks';
-import { AgreedPriceInput } from './agreed-price-input';
+import { LkrInput } from '@/components/lkr-input';
 
 export interface ActionDialogProps {
   view: ProviderRequestView;
@@ -111,7 +111,7 @@ export function AcceptDialog({ view, open, onOpenChange, onConflict }: ActionDia
           help="You can change it until the job is completed."
           error={form.formState.errors.agreedPrice?.message}
         >
-          {(p) => <AgreedPriceInput {...p} {...form.register('agreedPrice')} />}
+          {(p) => <LkrInput {...p} {...form.register('agreedPrice')} />}
         </FormField>
       </form>
     </ResponsiveDialog>

@@ -38,7 +38,7 @@ export function DashboardShell({
   children,
 }: DashboardShellProps) {
   const [open, setOpen] = useState(false);
-  const banners = useAccountBanners(); // [] for admins
+  const banners = useAccountBanners('dashboard'); // [] for admins
   const close = () => {
     setOpen(false);
   };

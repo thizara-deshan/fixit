@@ -13,7 +13,7 @@ import { mapApiErrorToForm } from '@/lib/form-errors';
 import { ApiError } from '@/lib/http';
 import { notify } from '@/lib/toast';
 import { useSetAgreedPrice } from '../hooks';
-import { AgreedPriceInput } from './agreed-price-input';
+import { LkrInput } from '@/components/lkr-input';
 
 const asText = (n: number | null) => (n === null ? '' : String(n));
 
@@ -89,7 +89,7 @@ export function AgreedPriceEditor({
         help="For your records only — the customer pays you directly."
         error={form.formState.errors.agreedPrice?.message}
       >
-        {(p) => <AgreedPriceInput {...p} autoFocus {...form.register('agreedPrice')} />}
+        {(p) => <LkrInput {...p} autoFocus {...form.register('agreedPrice')} />}
       </FormField>
       <div className="flex flex-col gap-2 sm:flex-row">
         <SubmitButton className="w-full sm:w-auto" pending={save.isPending} pendingLabel="Saving…">

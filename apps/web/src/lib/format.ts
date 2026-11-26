@@ -95,3 +95,8 @@ export const formatReplyBy = (value: string | Date): string =>
 
 /** S20.E6 `November` (Colombo month of the instant). */
 export const formatMonthName = (value: string | Date): string => formatInColombo(toInstant(value), 'MMMM');
+/** S26 slot size: `482 KB`, `1.2 MB` (1 KB = 1024 B). */
+export function formatFileSize(bytes: number): string {
+  if (bytes < 1024 * 1024) return `${String(Math.max(1, Math.round(bytes / 1024)))} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
