@@ -2279,7 +2279,7 @@ export function AreasPicker({ catalog, value, onChange, errors = {} }: AreasPick
 **Commit:** `git commit -m "feat(web): shared service areas picker (M11-T23)"`
 
 ### T24 — Photo uploader
-- [ ] done
+- [x] done
 **Files:** `src/components/photo-uploader.tsx`, `src/components/photo-uploader.test.tsx`
 **Context:** SPEC S24.E1/E2 (none: 160 `primary-soft` tile with category icon; uploading: progress bar under the preview; `Upload photo` / `Replace`; `Remove` → confirm `Remove your photo?` → toast `Photo removed.`); A26; D-7, D-12, D-15; `useUpload` (T18), `readImageSize` (T18), `checkUpload`, `UPLOAD_COPY`, `UPLOAD_LIMITS` (T3); `CategoryIcon` component; `ResponsiveDialog`; `notify` (`lib/toast.ts`).
 **Do:** Create `photo-uploader.tsx`:
