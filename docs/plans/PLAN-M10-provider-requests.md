@@ -1448,7 +1448,7 @@ If the `as ApiError` cast is rejected by lint, replace the last assertion with `
 **Commit:** `git commit -m "feat(web): provider dashboard api and query hooks (M10-T17)"`
 
 ### T18 — Mutation hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/hooks.ts`, `src/features/provider-dashboard/hooks.test.tsx`
 **Context:** ARCH §4.2 `useAcceptRequest` (setQueryData + domain-wide invalidation), milestone note (refetch `/auth/me` after accept/decline), D-7 (no explicit flash).
 **Do:** Append to `hooks.ts` (merge imports: `useMutation, useQueryClient, type QueryClient`; types `AcceptBody, AgreedPriceBody, CompleteBody, DeclineBody, ProviderRequestView`; `refreshMe` from `@/features/auth/hooks`; `acceptRequest, completeRequest, declineRequest, setAgreedPrice` from `./api`):
