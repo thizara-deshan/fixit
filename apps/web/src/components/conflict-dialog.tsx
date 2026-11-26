@@ -1,7 +1,7 @@
 import { ResponsiveDialog } from '@/components/responsive-dialog';
 import { Button } from '@/components/ui/button';
 
-/** §6.3 conflict: the request changed while the customer was acting on it. */
+/** §6.3 conflict: the request changed while the user was acting on it. */
 export function ConflictDialog({
   open,
   onOpenChange,

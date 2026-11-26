@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 import type { LoginBody, SignupForm, SignupIntent } from '@fixit/contracts';
 import { authStore, useAuth } from '@/lib/auth-store';
@@ -133,4 +133,14 @@ export function useForgotPassword() {
 
 export function useResetPassword() {
   return useMutation({ mutationFn: resetPassword });
+}
+
+/** Re-reads `me` after an action that changes its counters (openRequestCount, pendingRequestCount). Failures are ignored. */
+export function refreshMe(qc: QueryClient): void {
+  void fetchMe()
+    .then((me) => {
+      authStore.setMe(me);
+      qc.setQueryData(qk.me, me);
+    })
+    .catch(() => undefined);
 }

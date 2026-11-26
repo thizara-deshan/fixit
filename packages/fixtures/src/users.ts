@@ -201,6 +201,12 @@ export const DEMO_PERSONAS = [
     userId: 'u-hank',
   },
   {
+    key: 'providerNoRequests',
+    label: 'Provider, no requests (Chathura Ranasinghe)',
+    email: 'chathura@fixit.test',
+    userId: 'u-chathura',
+  },
+  {
     key: 'providerDraft',
     label: 'Provider draft (Kasun Silva, onboarding step 3)',
     email: 'kasun@fixit.test',

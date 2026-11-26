@@ -3,7 +3,7 @@ import type { CustomerRequestView } from '@fixit/contracts';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { PANEL_BORDER, statusPanel } from '../status-panel';
-import { ContactBlock } from './contact-block';
+import { ContactBlock } from '@/components/contact-block';
 import { ReviewBlock } from './review-block';
 
 /** S15.E2. */
@@ -21,7 +21,7 @@ export function StatusPanelCard({ view, onCancel }: { view: CustomerRequestView;
         {p.title}
       </h2>
       {p.showContact && view.provider.mobile && (
-        <ContactBlock businessName={view.provider.businessName} mobile={view.provider.mobile} />
+        <ContactBlock label={`${view.provider.businessName}'s mobile`} mobile={view.provider.mobile} />
       )}
       {p.agreedPrice && (
         <p className="flex flex-col">

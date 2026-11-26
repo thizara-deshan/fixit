@@ -1,6 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { authHandlers } from './auth';
 import { catalogHandlers } from './catalog';
+import { providersHandlers } from './providers';
 import { requestsHandlers } from './requests';
 import { reviewsHandlers } from './reviews';
 import { MOCK_DOMAINS, type MockDomain } from '../domains';
@@ -8,7 +9,7 @@ import { MOCK_DOMAINS, type MockDomain } from '../domains';
 export const handlersByDomain: Record<MockDomain, RequestHandler[]> = {
   auth: authHandlers,
   catalog: catalogHandlers,
-  providers: [],
+  providers: providersHandlers,
   requests: requestsHandlers,
   reviews: reviewsHandlers,
   admin: [],

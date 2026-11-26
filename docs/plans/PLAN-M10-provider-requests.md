@@ -58,7 +58,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Agreed price and action bodies
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/provider-bodies.ts`, `packages/contracts/src/requests/provider-bodies.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S22 field table (`Whole number 1–10,000,000`, `Enter a whole amount in rupees, like 6500.`), §8.3 accept/decline/complete dialogs, reason ≤ 500 `Keep the reason under 500 characters.` (`OptionalReason` in `common/primitives.ts`); ARCH §3.4 bodies; BR-12.
 **Do:**
@@ -159,7 +159,7 @@ describe('bodies', () => {
 **Commit:** `git commit -m "feat(contracts): agreed price and provider action bodies (M10-T1)"`
 
 ### T2 — `CustomerContact` and `ProviderRequestView`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/schemas.ts`, `packages/contracts/src/requests/provider-view.test.ts`
 **Context:** ARCH §2.5 (`CustomerContact` discriminated union, `ProviderRequestView`), PRODUCT §6.3, D-10.
 **Do:** Append to `packages/contracts/src/requests/schemas.ts`:
@@ -212,7 +212,7 @@ describe('CustomerContact', () => {
 **Commit:** `git commit -m "feat(contracts): ProviderRequestView with structural customer privacy (M10-T2)"`
 
 ### T3 — `toProviderView` projection
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/projections.ts`, `packages/contracts/src/requests/projections.test.ts`
 **Context:** ARCH §2.9 (privacy exists once, tests assert absent fields), PRODUCT §6.3, BR-32, D-10; milestone AC10. Existing `toCustomerView` in the same file.
 **Do:**
@@ -342,7 +342,7 @@ describe('toProviderView (§6.3)', () => {
 **Commit:** `git commit -m "feat(contracts): toProviderView privacy projection (M10-T3)"`
 
 ### T4 — Inbox query, counts, search and order
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/inbox.ts`, `packages/contracts/src/requests/inbox.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S21 (7 tabs, `?status=&q=&page=`, Pending by `expiresAt` ascending, otherwise newest first, 20 per page `PAGE_SIZE.providerRequests`), D-3, D-4.
 **Do:**
@@ -458,7 +458,7 @@ describe('compareInbox', () => {
 **Commit:** `git commit -m "feat(contracts): provider inbox query, counts, search and order (M10-T4)"`
 
 ### T5 — `ProviderDashboard` and `dashboardStats`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/schemas.ts`, `packages/contracts/src/providers/dashboard.ts`, `packages/contracts/src/providers/dashboard.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S20.E6 (four tiles; Completed this month in Colombo), D-1, D-2; milestone note on the checklist.
 **Do:**
@@ -540,7 +540,7 @@ describe('dashboardStats', () => {
 **Commit:** `git commit -m "feat(contracts): ProviderDashboard contract and stats (M10-T5)"`
 
 ### T6 — Endpoint registry entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §2.7 (`requests_accept` example), §3.3 dashboard row, §3.4 provider rows (Roles **P**, ownership "providerId = mine else 404").
 **Do:**
@@ -650,7 +650,7 @@ and `ProviderRequestView` to the `./requests/schemas` import.
 **Commit:** `git commit -m "feat(contracts): provider dashboard and inbox endpoints (M10-T6)"`
 
 ### T7 — Fixtures: closed p01 requests and a provider with no requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/requests.ts`, `packages/fixtures/src/build.ts`, `packages/fixtures/src/users.ts`, `packages/fixtures/src/build.test.ts`, `apps/web/src/mocks/db/schema.ts`
 **Context:** D-13; milestone AC6, AC8. `makeRequest` in `requests.ts`; refs FX-2038–FX-2040 are unused; p12 (owner `u-chathura`) has no requests and no reviews.
 **Do:**
@@ -784,7 +784,7 @@ If `byRef` or `world` are named differently in the file, use the file's existing
 **Commit:** `git commit -m "feat(fixtures): closed p01 requests and a provider with no requests (M10-T7)"`
 
 ### T8 — Mock helpers for the provider side
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/requests.ts`, `src/mocks/lib/requests.test.ts`
 **Context:** ARCH §4.3 mock rules; D-3, D-4, D-10. Existing `customerViewOf`, `transitionOr409` in the same file.
 **Do:** Add to `src/mocks/lib/requests.ts` (merge imports: `compareInbox, displayNameOf, matchesInboxSearch, PAGE_SIZE, toProviderView, type InboxCounts, type ProviderRequestList, type ProviderRequestListQuery, type ProviderRequestView, type RequestActor` from `@fixit/contracts`; `type FxProvider` from `@fixit/fixtures`):
@@ -917,7 +917,7 @@ describe('inboxList (p01)', () => {
 **Commit:** `git commit -m "feat(web): mock helpers for the provider inbox (M10-T8)"`
 
 ### T9 — Mock handlers: inbox list and detail
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-inbox.test.ts`
 **Context:** ARCH §3.4 rows 7–8; mock rules (expiry sweep at the start of reads).
 **Do:** Add to `requestsHandlers` (import `ownInboxRequest, ownProvider, inboxList, providerViewOf` from `../lib/requests`):
@@ -1005,7 +1005,7 @@ describe('GET /me/provider/requests/:ref', () => {
 **Commit:** `git commit -m "feat(web): mock provider inbox list and detail (M10-T9)"`
 
 ### T10 — Mock handler: accept
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-provider-actions.test.ts`
 **Context:** A13, F-18, F-27, BR-12; D-5. `transitionOr409` (409 with `details.reason` + `details.status`).
 **Do:** Add to `requestsHandlers` (import `applyTransition`):
@@ -1092,7 +1092,7 @@ describe('POST …/accept (A13)', () => {
 **Commit:** `git commit -m "feat(web): mock accept request (M10-T10)"`
 
 ### T11 — Mock handler: decline
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-provider-actions.test.ts`
 **Context:** A14, F-18; S15 shows the reason to the customer.
 **Do:** Add to `requestsHandlers`:
@@ -1130,7 +1130,7 @@ describe('POST …/decline (A14)', () => {
 **Commit:** `git commit -m "feat(web): mock decline request (M10-T11)"`
 
 ### T12 — Mock handler: complete
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-provider-actions.test.ts`
 **Context:** A16, F-19, BR-32 (`before_preferred_date`); D-11.
 **Do:** Add to `requestsHandlers`:
@@ -1174,7 +1174,7 @@ describe('POST …/complete (A16)', () => {
 **Commit:** `git commit -m "feat(web): mock mark request completed (M10-T12)"`
 
 ### T13 — Mock handler: agreed price
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-provider-actions.test.ts`
 **Context:** A15, F-19, BR-12; ARCH §3.4 "mine; status accepted". Not a status change, so no event.
 **Do:** Add to `requestsHandlers`:
@@ -1208,7 +1208,7 @@ describe('PUT …/agreed-price (A15)', () => {
 **Commit:** `git commit -m "feat(web): mock set agreed price (M10-T13)"`
 
 ### T14 — Mock handler: provider dashboard
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers.test.ts`, `src/mocks/handlers/index.ts`
 **Context:** ARCH §3.3 dashboard row; D-1, D-2.
 **Do:**
@@ -1285,7 +1285,7 @@ describe('GET /me/provider/dashboard', () => {
 **Commit:** `git commit -m "feat(web): mock provider dashboard (M10-T14)"`
 
 ### T15 — Query keys and a shared `refreshMe`
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/features/auth/hooks.ts`, `src/features/requests/hooks.ts`
 **Context:** ARCH §4.2 (`qk.inbox`, `qk.dashboard`); milestone note "refetch `/auth/me` after accept/decline".
 **Do:**
@@ -1315,7 +1315,7 @@ export function refreshMe(qc: QueryClient): void {
 **Commit:** `git commit -m "refactor(web): inbox/dashboard query keys and shared refreshMe (M10-T15)"`
 
 ### T16 — Format helpers
-- [ ] done
+- [x] done
 **Files:** `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** S21 `Reply by {Sat 3:42 PM}`; S20.E6 `in {November}`.
 **Do:** Append to `format.ts`:
@@ -1341,7 +1341,7 @@ describe('M10 formats', () => {
 **Commit:** `git commit -m "feat(web): reply-by and month formatters (M10-T16)"`
 
 ### T17 — Provider dashboard API and query hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/api.ts`, `src/features/provider-dashboard/hooks.ts`, `src/features/provider-dashboard/hooks.test.tsx`
 **Context:** ARCH §4.2 (api/hook pattern), SPEC §6.11 (refetch on focus + every 60 s on S20/S21/S22).
 **Do:**
@@ -1448,7 +1448,7 @@ If the `as ApiError` cast is rejected by lint, replace the last assertion with `
 **Commit:** `git commit -m "feat(web): provider dashboard api and query hooks (M10-T17)"`
 
 ### T18 — Mutation hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/hooks.ts`, `src/features/provider-dashboard/hooks.test.tsx`
 **Context:** ARCH §4.2 `useAcceptRequest` (setQueryData + domain-wide invalidation), milestone note (refetch `/auth/me` after accept/decline), D-7 (no explicit flash).
 **Do:** Append to `hooks.ts` (merge imports: `useMutation, useQueryClient, type QueryClient`; types `AcceptBody, AgreedPriceBody, CompleteBody, DeclineBody, ProviderRequestView`; `refreshMe` from `@/features/auth/hooks`; `acceptRequest, completeRequest, declineRequest, setAgreedPrice` from `./api`):
@@ -1546,7 +1546,7 @@ describe('provider mutations', () => {
 **Commit:** `git commit -m "feat(web): accept, decline, complete and agreed price mutations (M10-T18)"`
 
 ### T19 — Row flash store and `DataList.rowClassName`
-- [ ] done
+- [x] done
 **Files:** `src/lib/row-flash.ts`, `src/lib/row-flash.test.tsx`, `src/components/data-list.tsx`
 **Context:** SPEC §2.8 (row flash .3 s fade, held 900 ms), §6.11, ARCH §5.5 (`useRowFlash` keyed by ref), D-7.
 **Do:**
@@ -1638,7 +1638,7 @@ describe('row flash', () => {
 **Commit:** `git commit -m "feat(web): row flash store and DataList row classes (M10-T19)"`
 
 ### T20 — Move shared request components
-- [ ] done
+- [x] done
 **Files:** `src/components/conflict-dialog.tsx`, `src/components/contact-block.tsx`, `src/components/request-history.tsx` (moved from `src/features/requests/components/`), `src/features/requests/pages/customer-request-page.tsx`, `src/features/requests/components/status-panel-card.tsx`
 **Context:** D-12; CLAUDE.md "Component shared by 2+ features → `apps/web/src/components/`".
 **Do:**
@@ -1657,7 +1657,7 @@ describe('row flash', () => {
 **Commit:** `git commit -m "refactor(web): share conflict dialog, contact block and history (M10-T20)"`
 
 ### T21 — Provider copy helpers
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/copy.ts`, `src/features/provider-dashboard/copy.test.ts`
 **Context:** S20.E2 (morning 05:00–11:59, afternoon 12:00–16:59, evening otherwise; Colombo), S20.E3, S22.E1 notes, S22.E6, S22.E7 actors; D-8, D-9.
 **Do:** Create `copy.ts`:
@@ -1789,7 +1789,7 @@ describe('copy', () => {
 **Commit:** `git commit -m "feat(web): provider dashboard copy helpers (M10-T21)"`
 
 ### T22 — Inbox URL state
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/inbox-search.ts`, `src/features/provider-dashboard/inbox-search.test.ts`
 **Context:** S21 `?status=&q=&page=`; same pattern as `features/requests/list-search.ts`.
 **Do:** Create `inbox-search.ts`:
@@ -1830,7 +1830,7 @@ describe('inbox URL state', () => {
 **Commit:** `git commit -m "feat(web): provider inbox URL state (M10-T22)"`
 
 ### T23 — `AgreedPriceInput`
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/agreed-price-input.tsx`
 **Context:** S22 field table (`number, LKR prefix, step 1`); input text 16px on phone (SPEC §2.3).
 **Do:** Create:
@@ -1858,7 +1858,7 @@ export function AgreedPriceInput({ className, ...props }: ComponentProps<typeof 
 **Commit:** `git commit -m "feat(web): agreed price input (M10-T23)"`
 
 ### T24 — Accept dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/accept-dialog.tsx`
 **Context:** §8.3 Accept dialog copy; S20.E14 toast; §6.10 (sheet on phone via `ResponsiveDialog`); pattern of `features/requests/components/cancel-request-dialog.tsx`; D-6, D-8.
 **Form:** one field `agreedPrice` — schema `AgreedPriceForm`; label `Agreed price` + `optional`; help `You can change it until the job is completed.`; error `Enter a whole amount in rupees, like 6500.`. Server/network failure → `FormErrorBanner` with `FORM_COPY.saveFailed`. 409 → close + `onConflict(ref)`.
@@ -1984,7 +1984,7 @@ If `mapApiErrorToForm`'s return contract differs from the cancel dialog's usage,
 **Commit:** `git commit -m "feat(web): accept request dialog (M10-T24)"`
 
 ### T25 — Decline dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/decline-dialog.tsx`
 **Context:** §8.3 Decline dialog; S20.E14 toast; D-6, D-8.
 **Form:** `reason` — schema `DeclineBody`; textarea, 3 rows, label `Reason` + `optional`, help `Shown to the customer.`, error `Keep the reason under 500 characters.`.
@@ -1998,7 +1998,7 @@ If `mapApiErrorToForm`'s return contract differs from the cancel dialog's usage,
 **Commit:** `git commit -m "feat(web): decline request dialog (M10-T25)"`
 
 ### T26 — Complete dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/complete-dialog.tsx`
 **Context:** §8.3 Complete dialog; A16 toast `Job marked completed.`; D-11.
 **Form:** `agreedPrice` — schema `AgreedPriceForm`; label `Final agreed price` + `optional`; default `view.agreedPrice === null ? '' : String(view.agreedPrice)`; error `Enter a whole amount in rupees, like 6500.`.
@@ -2012,7 +2012,7 @@ If `mapApiErrorToForm`'s return contract differs from the cancel dialog's usage,
 **Commit:** `git commit -m "feat(web): mark completed dialog (M10-T26)"`
 
 ### T27 — Request actions controller
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/request-actions.tsx`
 **Context:** D-6 conflict flow; §6.3 conflict dialog; shared by S20, S21, S22.
 **Do:** Create:
@@ -2091,7 +2091,7 @@ export function useRequestActions(): RequestActions {
 **Commit:** `git commit -m "feat(web): request actions controller with conflict handling (M10-T27)"`
 
 ### T28 — `ProviderRequestsList` (table + phone cards)
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/provider-requests-list.tsx`
 **Context:** S20.E9–E10 (columns `Customer · Service · Date · Area · Status`, grid `1.4fr 1.5fr 1fr .9fr 288px`, Pending: `[Check] Accept` + `Decline` before the pill), S20 phone card rows, S21 `Reply by …` (12 `warning-text`), §6.9, D-7, D-8; screenshot `07-provider-dashboard-desktop.png` table. Existing `DataList`, `StatusPill`, `my-requests-list.tsx` (column-set per width).
 **States:** loading → `DataList` skeleton (table rows / phone cards); empty → `empty` prop; flashing rows → `bg-primary-flash`.
@@ -2273,7 +2273,7 @@ export function ProviderRequestsList({ rows, loading, empty, caption, showReplyB
 **Commit:** `git commit -m "feat(web): provider requests list (M10-T28)"`
 
 ### T29 — Stat tiles
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/stat-tiles.tsx`
 **Context:** S20.E6 (labels, subs, icons, tints, links; rating link only when `features.providerReviews`), SPEC §2.9 stat tile, phone 2×2 gap 12 / padding 16 / icon 36 / sub on its own line; screenshot `07-provider-dashboard-desktop.png` top row.
 **States:** loading → `StatTilesSkeleton` (4 × `SkeletonStatTile` in the same grid); error handled by the page.
@@ -2367,7 +2367,7 @@ export function StatTilesSkeleton() {
 **Commit:** `git commit -m "feat(web): dashboard stat tiles (M10-T29)"`
 
 ### T30 — Overview header
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/overview-header.tsx`
 **Context:** S20.E1–E3, E5 (`[Eye] View public profile`, new tab); availability switch E4 is **not** built (flag `pause` off); screenshot header row.
 **Do:** Create:
@@ -2400,7 +2400,7 @@ export function OverviewHeader({ firstName, pending, providerId, now }: { firstN
 **Commit:** `git commit -m "feat(web): dashboard greeting header (M10-T30)"`
 
 ### T31 — Recent requests section (S20)
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/recent-requests-section.tsx`
 **Context:** S20.E7–E13 (H2 `Incoming service requests`, tabs `All · Pending · Accepted · Completed · Declined` with counts filtering in place, ≤ 8 rows newest first, `View all requests →` when more than 8, empties), §6.3 section error; screenshot requests card.
 **States:** loading (list skeleton), error (`SectionError` replaces the card), no requests ever (compact `EmptyState`: `Inbox`, `No requests yet`, `When customers send you a request, it shows up here and we email you.`), tab empty (`No requests with this status.` 15 subtle centred, padding 40), default.
@@ -2479,7 +2479,7 @@ export function RecentRequestsSection({ onAccept, onDecline }: { onAccept: (v: P
 **Commit:** `git commit -m "feat(web): dashboard incoming requests section (M10-T31)"`
 
 ### T32 — My Services card
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/my-services-card.tsx`
 **Context:** S20.E16 (`My Services`, `[Pencil] Edit` → `/dashboard/services`, rows `{name}` + `from LKR 2,500 / hour` per BR-09 via `formatServicePrice`); screenshot bottom-right card (row padding 11, `divider-subtle` rules).
 **Do:** Create:
@@ -2519,7 +2519,7 @@ export function MyServicesCard({ services }: { services: readonly Service[] }) {
 **Commit:** `git commit -m "feat(web): dashboard My Services card (M10-T32)"`
 
 ### T33 — S20 overview page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/pages/overview-page.tsx`, `src/features/provider-dashboard/pages/overview-page.test.tsx`, `src/app/chunks/provider.tsx`, `src/app/routes.test.tsx`
 **Context:** SPEC S20 order (header, tiles, requests, bottom grid `repeat(auto-fit,minmax(320px,1fr))` gap 24), §6.1 skeletons, §6.3 section errors; milestone AC1, AC2, AC7, AC8. The shell's `<main>` already provides the 20/28 px gap, so the page returns a fragment.
 **States:** tiles loading → `StatTilesSkeleton`; services loading → `SkeletonSectionCard lines={5}`; dashboard error → `SectionError` in place of the tiles and of the services card (one refetch); requests states per T31.
@@ -2682,7 +2682,7 @@ If `userEvent` is not a dependency of `apps/web`, use the event helper the exist
 **Commit:** `git commit -m "feat(web): provider overview page S20 (M10-T33)"`
 
 ### T34 — S21 requests inbox page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/pages/requests-page.tsx`, `src/features/provider-dashboard/pages/requests-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** SPEC S21 (H1 `Requests` `title-xl`, sub `Every request customers have sent you.`, search 40 high, `Search` icon, placeholder `Search by name or reference`, 260 wide / full width on phone; 7 tabs with counts; pagination 20; `Reply by …`), §6.2 search empty (`SearchX`, `No requests match "{q}".`, `Check the spelling or try something else.`, `Clear search`); D-3, D-4; AC3, AC4.
 **States:** loading (list skeleton, counts absent), error (`SectionError`), no requests ever (`EmptyState` as S20.E13 with default padding), search no match, tab empty, default, paginated.
@@ -2866,7 +2866,7 @@ The `current: 'page'` query needs `@testing-library/dom` ≥ 9; if unsupported, 
 **Commit:** `git commit -m "feat(web): provider requests inbox page S21 (M10-T34)"`
 
 ### T35 — S22 Customer card
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/customer-card.tsx`
 **Context:** S22.E1 (§6.3 privacy; `Lock` note; Accepted/Completed: full name, address lines, mobile with `Call`/`Copy` → toast `Number copied.`), D-8; shared `ContactBlock` (T20).
 **States:** unrevealed + pending note; unrevealed + closed note; revealed.
@@ -2918,7 +2918,7 @@ export function CustomerCard({ view }: { view: ProviderRequestView }) {
 **Commit:** `git commit -m "feat(web): S22 customer card (M10-T35)"`
 
 ### T36 — S22 Job details card
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/job-details-card.tsx`
 **Context:** S22.E2 (H2 `Job details`; labels `Service`, `Preferred date`, `Time slot`, `Town`, `Description`); same layout as S15 `request-details-card.tsx`.
 **Do:** Create:
@@ -2950,7 +2950,7 @@ export function JobDetailsCard({ view }: { view: ProviderRequestView }) {
 **Commit:** `git commit -m "feat(web): S22 job details card (M10-T36)"`
 
 ### T37 — Inline agreed price editor
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/agreed-price-editor.tsx`
 **Context:** S22.E4 (H3 `Agreed price`: `LKR 6,500` or `Not set` + `Edit` / `Add`; help `For your records only — the customer pays you directly.`; edit: input + `Save` / `Cancel`; toast `Agreed price saved.`), A15, §6.3 (form submit failure → danger banner), D-6.
 **Form:** `agreedPrice` — schema `AgreedPriceForm`; empty saves `null` (clears); error `Enter a whole amount in rupees, like 6500.`.
@@ -3043,7 +3043,7 @@ export function AgreedPriceEditor({ view, onConflict }: { view: ProviderRequestV
 **Commit:** `git commit -m "feat(web): inline agreed price editor (M10-T37)"`
 
 ### T38 — S22 Actions card
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/actions-card.tsx`
 **Context:** S22.E3–E6; BR-32; D-9, D-10, D-14; `CONTACT_EMAIL` from `@/lib/env`; `View review` link only when `features.providerReviews` (S27 not built).
 **States:** Pending (with/without buttons per D-14), Accepted (complete enabled / disabled + help), Completed (with review / with deadline / neither), Declined, Cancelled (customer / admin / system), Expired.
@@ -3149,7 +3149,7 @@ If `CONTACT_EMAIL` is not exported from `@/lib/env`, import it from where `lib/e
 **Commit:** `git commit -m "feat(web): S22 actions card (M10-T38)"`
 
 ### T39 — S22 provider request page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/pages/request-page.tsx`, `src/features/provider-dashboard/pages/request-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** SPEC S22 layout (back link `Back to requests`; header: H1 service `title-lg`, ref mono, pill, `Requested {21 Nov 2026, 3:42 PM}`; grid `minmax(0,1fr) 340px` gap 24; aside sticky top 32; phone order header → Actions → Customer → Job details → History; sticky bottom bar `Decline` (secondary) / `Accept` (primary) 50/50 48 high), §5.E S39 request variant (`Go to requests`), D-14; AC5, AC6, AC7, AC9.
 **States:** loading (`SkeletonSectionCard` ×3 + aside), 404 → S39 request variant in L3, other errors → thrown (S41), every status per T35/T38.
@@ -3359,7 +3359,7 @@ describe('S22 provider request detail', () => {
 **Commit:** `git commit -m "feat(web): provider request detail page S22 (M10-T39)"`
 
 ### T40 — M10 acceptance checks
-- [ ] done
+- [x] done
 **Files:** this plan (tick boxes), `docs/milestones/M00-index.md` (mark M10 done the way M09 was marked)
 **Context:** milestone acceptance criteria 1–10.
 **Do:** Reset the dev mock db (DevPanel → reset demo data) before each manual check. Walk every criterion; write `✓` or the failure under each in a short "Acceptance results" list appended to this plan:
@@ -3377,6 +3377,20 @@ describe('S22 provider request detail', () => {
 **Verify:** all of the above ✓; `pnpm verify` green.
 **Commit:** `git commit -m "chore: M10 acceptance checks (M10-T40)"`
 
+## Acceptance results
+Automated (`pnpm verify` green: contracts 357, fixtures 28, web 528):
+1. AC1 ✓ `overview-page.test.tsx › AC1`
+2. AC2 ✓ `overview-page.test.tsx › AC2`
+3. AC3 ✓ `requests-page.test.tsx › AC3` (decline with reason, Olivia sees it on S15)
+4. AC4 ✓ `requests-page.test.tsx › AC4 ×3`
+5. AC5 ✓ `request-page.test.tsx › AC5 ×3`
+6. AC6 ✓ `request-page.test.tsx › AC6`
+7. AC7 ✓ `request-page.test.tsx › AC7` (phone sticky bar, bottom sheet)
+8. AC8 ✓ `overview-page.test.tsx › AC8 ×3`
+9. AC9 ✓ `routes.test.tsx` and `request-page.test.tsx › AC9`
+10. AC10 ✓ `projections.test.ts › toProviderView`, `requests-provider-actions.test.ts › lapsed pending`
+Manual (not done by the executor): AC1 pixel comparison with the reference screenshot, AC2 flash timing, AC4 reload of a combined URL, AC7 800 px drawer and no-horizontal-scroll console check, AC8 slow latency / forced 409 / forced 500 in the DevPanel, cross-role check of FX-2061 as Olivia. The human checkpoints after T33, T34 and T39 were passed (S20, S21, S22 at 1440/390/800).
+
 ## Checkpoints
 - After T14: "Human: read `requests-inbox.test.ts` and `requests-provider-actions.test.ts` and confirm the privacy and 404/403 cases match what you expect from the real API in M18."
 - After T33: "Human: run `pnpm dev:mock`, open `/dashboard` as Marcus at 1440 and 390, compare with `reference/screens/07-provider-dashboard-desktop.png` (phone: SPEC S20 phone layout, not the broken prototype phone screenshot). Accept and decline a row and watch the flash."
@@ -3384,7 +3398,15 @@ describe('S22 provider request detail', () => {
 - After T39: "Human: open `/dashboard/requests/FX-2061`, `FX-2050`, `FX-2054`, `FX-2038`, `FX-2040` at 1440 and 390; check the sticky bar on phone and the sticky Actions card on desktop."
 
 ## Blockers
-(executor writes here; leave empty)
+- **T27 — RESOLVED (option a: `qc.query(...)`, approved by the user).** `fetchQuery` is deprecated, lint fails. The plan's `useRequestActions` calls `qc.fetchQuery({ queryKey, queryFn, staleTime: 0 })`. The installed `@tanstack/query-core` is 5.108.2, where `fetchQuery` is `@deprecated` ("Use queryClient.query(options)") and `@typescript-eslint/no-deprecated` fails `pnpm lint` (so `pnpm verify` is red). The plan says to STOP when a TanStack Query 5 API differs. The drafted file is `apps/web/src/features/provider-dashboard/components/request-actions.tsx` (identical to the plan; left **uncommitted**, T27 not ticked).
+  Options: (a) replace `qc.fetchQuery(...)` with `qc.query({ queryKey: qk.inbox.detail(ref), queryFn: () => fetchInboxRequest(ref), staleTime: 0 })` — same semantics, and the type signature/behaviour of `query` should be confirmed in `hydration-C1yRFalg.d.ts` first; (b) use `qc.invalidateQueries` + `qc.refetchQueries` on the detail key, then read `qc.getQueryData`; (c) add an eslint-disable for the deprecation (not recommended). Recommended: (a). The same change may be needed in any later task that uses `fetchQuery`.
+- **Process note (executor):** the plan has a Checkpoint after T14 ("Human: read `requests-inbox.test.ts` and `requests-provider-actions.test.ts` and confirm the privacy and 404/403 cases…"). I did not stop there and continued through T26. Nothing is wrong with the committed work, but that review is still owed.
+- **T18 deviation (test only):** the plan's test passes `body: {}` to `useDeclineRequest`, which fails typecheck because `DeclineBody` is inferred as `{ reason: string | undefined }` (key required, via `OptionalReason`'s transform). The committed test passes `{ reason: undefined }`. T25 passes `{ reason: body.reason }` for the same reason. The contract is unchanged; if you'd rather make the key optional in contracts, that is a separate decision.
+- **T33 deviation (test only):** `renderRoute` doesn't mount the Toaster, so the plan's `findByText` toast assertions can't pass; the test mocks `@/lib/toast` and asserts `notify` was called with the exact message (single argument → no Undo), as `customer-request-page.test.tsx` does.
+- **T34 deviation (code, type-only):** `FormEvent` is deprecated in the installed React types and fails lint; `requests-page.tsx` uses `SyntheticEvent` instead (same behaviour).
+- **T34 deviations (test only):** toast asserted via mocked `notify` (as T33); refs read from the row link's `aria-label` (the link's text is the customer cell); the page-2 check scopes to the `Pagination` nav and finds `aria-current="page"` by attribute, as the plan's fallback allows.
+- **T39 deviation (test only):** toasts asserted via mocked `notify` (as T33/T34).
+- **T7 side effect:** `store.test.ts` hard-coded `fixit.mockdb.v4`; updated to `v5` to follow the plan's `MOCK_DB_VERSION` bump.
 
 ## Nice-to-haves (not tasks)
 - `Me.pendingRequestCount` in the mock `auth_me` doesn't sweep expired requests first, so the badge can lag the inbox by one refresh after an expiry.

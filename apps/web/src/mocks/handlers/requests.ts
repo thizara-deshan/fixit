@@ -4,7 +4,17 @@ import { isListed } from '../lib/cards';
 import { mockEndpoint } from '../lib/endpoint';
 import { mockError } from '../lib/errors';
 import { eligibilityFor } from '../lib/profile';
-import { customerViewOf, myRequestList, openRequestsOf, transitionOr409 } from '../lib/requests';
+import {
+  applyTransition,
+  customerViewOf,
+  inboxList,
+  myRequestList,
+  openRequestsOf,
+  ownInboxRequest,
+  ownProvider,
+  providerViewOf,
+  transitionOr409,
+} from '../lib/requests';
 
 export const requestsHandlers = [
   mockEndpoint(E.requests_eligibility, ({ db: d, actor, params }) => {
@@ -115,5 +125,62 @@ export const requestsHandlers = [
       reason: body.reason ?? null,
     });
     return customerViewOf(d, r, now);
+  }),
+
+  mockEndpoint(E.requests_inbox_list, ({ db: d, actor, query, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    expireDue(d, now);
+    const p = ownProvider(d, actor.userId);
+    return inboxList(d, p.id, query, now);
+  }),
+
+  mockEndpoint(E.requests_inbox_get, ({ db: d, actor, params, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    expireDue(d, now);
+    const p = ownProvider(d, actor.userId);
+    return providerViewOf(d, ownInboxRequest(d, p.id, params.ref ?? ''), now);
+  }),
+
+  mockEndpoint(E.requests_accept, ({ db: d, actor, params, body, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    const r = ownInboxRequest(d, p.id, params.ref ?? '');
+    // D-5: no sweep first — a lapsed Pending is refused `expired` by the state machine.
+    transitionOr409(r, 'accepted', { kind: 'provider', userId: actor.userId }, now);
+    applyTransition(r, 'accepted', 'provider', actor.userId, now);
+    r.agreedPrice = body.agreedPrice ?? null;
+    return providerViewOf(d, r, now);
+  }),
+
+  mockEndpoint(E.requests_decline, ({ db: d, actor, params, body, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    const r = ownInboxRequest(d, p.id, params.ref ?? '');
+    transitionOr409(r, 'declined', { kind: 'provider', userId: actor.userId }, now); // D-5
+    applyTransition(r, 'declined', 'provider', actor.userId, now, body.reason ?? null);
+    return providerViewOf(d, r, now);
+  }),
+
+  mockEndpoint(E.requests_complete, ({ db: d, actor, params, body, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    const r = ownInboxRequest(d, p.id, params.ref ?? '');
+    transitionOr409(r, 'completed', { kind: 'provider', userId: actor.userId }, now);
+    if (body.agreedPrice !== undefined) r.agreedPrice = body.agreedPrice; // D-11: omitted = unchanged
+    applyTransition(r, 'completed', 'provider', actor.userId, now);
+    return providerViewOf(d, r, now);
+  }),
+
+  mockEndpoint(E.requests_agreed_price, ({ db: d, actor, params, body, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    const r = ownInboxRequest(d, p.id, params.ref ?? '');
+    if (r.status !== 'accepted')
+      throw mockError(409, 'INVALID_TRANSITION', 'Agreed price can only change while Accepted', {
+        details: { reason: 'invalid_transition', status: r.status },
+      });
+    r.agreedPrice = body.agreedPrice;
+    r.updatedAt = now.toISOString();
+    return providerViewOf(d, r, now);
   }),
 ];

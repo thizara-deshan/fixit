@@ -7,10 +7,11 @@ import { SkeletonSectionCard } from '@/components/skeletons';
 import { REQUEST_LABEL, StatusPill } from '@/components/status-pill';
 import { ApiError } from '@/lib/http';
 import { CancelRequestDialog } from '../components/cancel-request-dialog';
-import { ConflictDialog } from '../components/conflict-dialog';
+import { ConflictDialog } from '@/components/conflict-dialog';
 import { ProviderAsideCard } from '../components/provider-aside-card';
 import { RequestDetailsCard } from '../components/request-details-card';
-import { RequestHistory } from '../components/request-history';
+import { RequestHistory } from '@/components/request-history';
+import { actorLabel } from '../history';
 import { StatusPanelCard } from '../components/status-panel-card';
 import { useMyRequest } from '../hooks';
 
@@ -89,7 +90,10 @@ export function CustomerRequestPage() {
                   <ProviderAsideCard provider={v.provider} />
                 </div>
                 <RequestDetailsCard view={v} />
-                <RequestHistory history={v.history} businessName={v.provider.businessName} />
+                <RequestHistory
+                  history={v.history}
+                  actorLabel={(a) => actorLabel(a, v.provider.businessName)}
+                />
               </div>
               <div className="hidden lg:block">
                 <ProviderAsideCard provider={v.provider} />

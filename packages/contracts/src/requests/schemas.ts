@@ -144,3 +144,26 @@ export const CustomerRequestView = RequestBase.extend({
     .nullable(), // null unless completed
 });
 export type CustomerRequestView = z.infer<typeof CustomerRequestView>;
+
+/** Privacy (§6.3) is structural: the unrevealed branch has no contact fields at all. */
+export const CustomerContact = z.discriminatedUnion('revealed', [
+  z.object({ revealed: z.literal(false), displayName: z.string() }),
+  z.object({
+    revealed: z.literal(true),
+    displayName: z.string(),
+    fullName: z.string(),
+    mobile: Mobile,
+    addressLine1: z.string(),
+    addressLine2: z.string().nullable(),
+  }),
+]);
+export type CustomerContact = z.infer<typeof CustomerContact>;
+
+export const ProviderRequestView = RequestBase.extend({
+  customer: CustomerContact,
+  canComplete: z.boolean(),
+  completeFrom: IsoDate, // = preferredDate (BR-32)
+  review: z.object({ id: Id, rating: z.number().int(), authorDisplayName: z.string() }).nullable(), // visible review only
+  reviewDeadline: IsoDateTime.nullable(), // D-10
+});
+export type ProviderRequestView = z.infer<typeof ProviderRequestView>;

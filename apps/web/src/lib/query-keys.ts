@@ -1,4 +1,4 @@
-import type { DiscoverQuery, RequestListQuery } from '@fixit/contracts';
+import type { DiscoverQuery, ProviderRequestListQuery, RequestListQuery } from '@fixit/contracts';
 
 /** First segment = mock/API domain, so invalidation can be domain-wide (ARCH §4.2). Milestones add their keys. */
 export const qk = {
@@ -14,5 +14,11 @@ export const qk = {
     detail: (ref: string) => ['requests', 'mine', ref] as const,
     list: (q: RequestListQuery) => ['requests', 'mine', 'list', q] as const,
   },
+  inbox: {
+    all: ['requests', 'inbox'] as const,
+    list: (q: ProviderRequestListQuery) => ['requests', 'inbox', 'list', q] as const,
+    detail: (ref: string) => ['requests', 'inbox', ref] as const,
+  },
+  dashboard: ['providers', 'dashboard'] as const,
   confirmEmail: (token: string) => ['auth', 'confirm', token] as const,
 };

@@ -29,6 +29,8 @@ interface DataListProps<T> {
   loading?: boolean;
   /** Rendered instead of the list when there are no rows. */
   empty?: ReactNode;
+  /** Extra classes per row/card, e.g. the status-change flash. */
+  rowClassName?: (row: T) => string | undefined;
 }
 
 const stretched = "before:absolute before:inset-0 before:content-['']";
@@ -42,6 +44,7 @@ export function DataList<T>({
   rowLabel,
   loading = false,
   empty,
+  rowClassName,
 }: DataListProps<T>) {
   const isTable = useMediaQuery(MQ.sm);
 
@@ -84,7 +87,11 @@ export function DataList<T>({
             {rows.map((row) => (
               <tr
                 key={getRowKey(row)}
-                className={cn('border-border border-t', rowHref && 'hover:bg-page relative')}
+                className={cn(
+                  'border-border border-t transition-colors duration-300',
+                  rowHref && 'hover:bg-page relative',
+                  rowClassName?.(row),
+                )}
               >
                 {columns.map((c) => (
                   <td
@@ -116,7 +123,10 @@ export function DataList<T>({
             return (
               <li
                 key={getRowKey(row)}
-                className="border-border bg-surface relative flex flex-col gap-2 rounded-xl border p-4"
+                className={cn(
+                  'border-border bg-surface relative flex flex-col gap-2 rounded-xl border p-4 transition-colors duration-300',
+                  rowClassName?.(row),
+                )}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="text-body-sm text-text min-w-0 flex-1 font-semibold">
