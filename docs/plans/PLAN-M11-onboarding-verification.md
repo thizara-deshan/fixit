@@ -1183,7 +1183,7 @@ describe('GET /me/provider · PUT onboarding/:step', () => {
 **Commit:** `git commit -m "feat(web): mock own provider and onboarding step handlers (M11-T11)"`
 
 ### T12 — Handler: `POST /me/provider/publish`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-onboarding.test.ts`
 **Context:** D-5; AC4 (Discover shows `Not yet verified`); `buildMe` roles via `rolesOf`.
 **Do:** Add:

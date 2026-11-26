@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ErrorEnvelope, OwnProvider } from '@fixit/contracts';
+import { DiscoverResult, ErrorEnvelope, OwnProvider } from '@fixit/contracts';
 import type { PersonaKey } from '@fixit/fixtures';
 import { FIXED_NOW } from '@/test/fixed-now';
 import { signInAs } from '@/test/sign-in';
@@ -48,5 +48,26 @@ describe('GET /me/provider · PUT onboarding/:step', () => {
     const unconf = await call('PUT', '/me/provider/onboarding/1', 'customerUnconfirmed', step1);
     expect(unconf.status).toBe(422);
     expect((await call('PUT', '/me/provider/onboarding/1', 'admin', step1)).status).toBe(403);
+  });
+  it('publish: Olivia after 4 steps → listed, roles gain provider, Discover shows her unverified', async () => {
+    await call('PUT', '/me/provider/onboarding/1', 'customer', step1);
+    await call('PUT', '/me/provider/onboarding/2', 'customer', { categoryId: 'electrical' });
+    await call('PUT', '/me/provider/onboarding/3', 'customer', {
+      services: [{ name: 'Fan fitting', price: 1800, unit: 'per_visit' }],
+    });
+    await call('PUT', '/me/provider/onboarding/4', 'customer', { baseTownId: 'colombo', otherTownIds: [] });
+    const res = await call('POST', '/me/provider/publish', 'customer');
+    expect(OwnProvider.parse(await res.json()).onboarding.complete).toBe(true);
+    expect(signInAs('customer').user.roles).toEqual(['customer', 'provider']);
+    const found = DiscoverResult.parse(
+      await (await call('GET', `/providers?q=${encodeURIComponent('Martinez Home Fix')}`)).json(),
+    );
+    expect(found.items[0]).toMatchObject({ businessName: 'Martinez Home Fix', verified: false });
+    expect((await call('POST', '/me/provider/publish', 'customer')).status).toBe(409);
+  });
+  it('publish: Kasun incomplete → 422 onboarding_incomplete', async () => {
+    const res = await call('POST', '/me/provider/publish', 'providerDraft');
+    expect(res.status).toBe(422);
+    expect((await errorOf(res)).details?.rule).toBe('onboarding_incomplete');
   });
 });

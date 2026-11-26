@@ -2,7 +2,7 @@ import { dashboardStats, ENDPOINTS as E, OnboardingStepParam, parseOnboardingBod
 import { expireDue } from '../db/expire';
 import { mockEndpoint } from '../lib/endpoint';
 import { mockError } from '../lib/errors';
-import { applyOnboardingStep, requireDraft, toOwnProvider } from '../lib/own-provider';
+import { applyOnboardingStep, publishDraft, requireDraft, toOwnProvider } from '../lib/own-provider';
 import { ownProvider } from '../lib/requests';
 
 export const providersHandlers = [
@@ -31,5 +31,9 @@ export const providersHandlers = [
     // safe: OnboardingStepParam only accepts 1–4
     const input = parseOnboardingBody(step.data as OnboardingStepParam, raw);
     return toOwnProvider(d, applyOnboardingStep(d, actor.userId, input, now));
+  }),
+  mockEndpoint(E.provider_publish, ({ db: d, actor, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    return toOwnProvider(d, publishDraft(d, actor.userId, now));
   }),
 ];
