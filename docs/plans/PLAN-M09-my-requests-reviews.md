@@ -1061,7 +1061,7 @@ describe('usePostReview', () => {
 **Commit:** `git commit -m "feat(web): my-requests, cancel and post-review hooks (M09-T11)"`
 
 ### T12 — S14 URL state helper
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/list-search.ts`, `src/features/requests/list-search.test.ts`
 **Context:** S14.E2 (`?status=`, page resets), S14.E5 (`?page=`); `RequestListQuery`.
 **Do:**
