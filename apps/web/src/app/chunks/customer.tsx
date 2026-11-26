@@ -9,14 +9,7 @@ export function SavedPage() {
   return <CustomerPageHeader title="Saved providers" tabs />;
 }
 export { AccountPage } from '@/features/account/pages/account-page';
-export function CustomerRequestPage() {
-  return (
-    <>
-      <BackLink to="/requests">Back to my requests</BackLink>
-      <PlaceholderScreen frame="bare" title="Request detail" />
-    </>
-  );
-}
+export { CustomerRequestPage } from '@/features/requests/pages/customer-request-page';
 export function LeaveReviewPage() {
   return (
     <>

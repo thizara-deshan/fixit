@@ -1487,7 +1487,7 @@ return (
 **Commit:** `git commit -m "feat(web): S15 status panel and review block (M09-T20)"`
 
 ### T21 — `CustomerRequestPage` (S15) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/customer-request-page.tsx`, `src/app/chunks/customer.tsx`, `src/features/requests/pages/request-sent-page.test.tsx`
 **Context:** S15 desktop/phone layouts; §6.4 (other owner → S39 request variant); §6.1 skeletons (`SkeletonSectionCard`); D-5; `useMyRequest`, `NotFoundPage variant="request"`, `BackLink`.
 **Do:**
