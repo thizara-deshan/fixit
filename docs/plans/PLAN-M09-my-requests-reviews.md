@@ -414,7 +414,7 @@ import { CreateReviewBody, Review } from './reviews/schemas';
 **Commit:** `git commit -m "feat(contracts): my-requests list, cancel and review endpoints (M09-T5)"`
 
 ### T6 — Fixtures: step actors and Olivia's journey requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/requests.ts`, `packages/fixtures/src/build.ts`, `packages/fixtures/src/build.test.ts`, `src/mocks/db/schema.ts`, `src/mocks/handlers/auth.test.ts`
 **Context:** D-1, D-2; AC4–AC8. Existing `makeRequest`, `serviceId` (from `./providers`), `FxReview` type.
 **Do:**

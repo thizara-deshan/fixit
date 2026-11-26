@@ -2,7 +2,7 @@
 import { computeStartingPrice, ratingFrom } from '@fixit/contracts';
 import { CATEGORIES, DISTRICTS, TOWNS } from './catalog';
 import { buildProviders } from './providers';
-import { buildLimitRequests, buildPrototypeRequests } from './requests';
+import { buildCustomerJourneyRequests, buildLimitRequests, buildPrototypeRequests } from './requests';
 import { buildReviews } from './reviews';
 import type { World } from './types';
 import { buildUsers } from './users';
@@ -15,9 +15,12 @@ export function buildWorld(now: Date): World {
   const limitRequests = buildLimitRequests(now, { users, providers, services });
   const { reviews, requests: reviewedRequests } = buildReviews(now, { users, providers, services });
 
+  const journey = buildCustomerJourneyRequests(now, { users, providers, services });
+  const allReviews = [...reviews, ...journey.reviews];
+
   for (const p of providers) {
     const agg = ratingFrom(
-      reviews.filter((r) => r.providerId === p.id && r.visibility === 'visible').map((r) => r.rating),
+      allReviews.filter((r) => r.providerId === p.id && r.visibility === 'visible').map((r) => r.rating),
     );
     p.ratingAvg = agg.rating;
     p.reviewCount = agg.count;
@@ -34,8 +37,8 @@ export function buildWorld(now: Date): World {
     providers,
     services,
     areas,
-    requests: [...prototypeRequests, ...limitRequests, ...reviewedRequests],
-    reviews,
+    requests: [...prototypeRequests, ...limitRequests, ...reviewedRequests, ...journey.requests],
+    reviews: allReviews,
     submissions,
     documents,
   };

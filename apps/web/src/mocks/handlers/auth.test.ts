@@ -59,7 +59,7 @@ describe('POST /auth/login', () => {
   });
   it('Me carries counts and provider state', async () => {
     const olivia = AuthSession.parse(await (await login('olivia@fixit.test')).json()).user;
-    expect([olivia.displayName, olivia.openRequestCount, olivia.provider]).toEqual(['Olivia M.', 1, null]);
+    expect([olivia.displayName, olivia.openRequestCount, olivia.provider]).toEqual(['Olivia M.', 4, null]);
     const marcus = AuthSession.parse(await (await login('marcus@fixit.test')).json()).user;
     expect(marcus.provider).toMatchObject({
       id: 'p01',

@@ -149,4 +149,28 @@ describe('M07 fixtures', () => {
     expect(open).toHaveLength(5);
     expect(open.some((r) => r.providerId === 'p01')).toBe(false);
   });
+  it("Olivia's journey requests cover every S15 state (M09)", () => {
+    const s = (ref: string) => {
+      const r = byRef(ref);
+      return [r?.customerId, r?.status, r?.closedBy];
+    };
+    expect(s('FX-2030')).toEqual(['u-olivia', 'accepted', null]);
+    expect(byRef('FX-2031')?.preferredDate).toBe(today);
+    expect(s('FX-2032')).toEqual(['u-olivia', 'pending', null]);
+    expect(new Date(byRef('FX-2032')?.expiresAt ?? 0).getTime() - NOW.getTime()).toBe(6 * 60_000);
+    expect(s('FX-2033')).toEqual(['u-olivia', 'declined', 'provider']);
+    expect(s('FX-2034')).toEqual(['u-olivia', 'declined', 'system']);
+    expect(s('FX-2035')).toEqual(['u-olivia', 'cancelled', 'admin']);
+    expect(byRef('FX-2035')?.events.at(-1)?.actorUserId).toBe('u-admin');
+    expect(s('FX-2036')).toEqual(['u-olivia', 'expired', 'system']);
+    expect(s('FX-2029')).toEqual(['u-olivia', 'completed', 'provider']);
+    const hidden = world.reviews.find((v) => v.requestId === byRef('FX-2028')?.id);
+    expect(hidden?.visibility).toBe('hidden');
+  });
+  it('Olivia has 4 open requests (under the limit of 5)', () => {
+    const open = world.requests.filter(
+      (r) => r.customerId === 'u-olivia' && (r.status === 'pending' || r.status === 'accepted'),
+    );
+    expect(open.map((r) => r.ref).sort()).toEqual(['FX-2030', 'FX-2031', 'FX-2032', 'FX-2061']);
+  });
 });
