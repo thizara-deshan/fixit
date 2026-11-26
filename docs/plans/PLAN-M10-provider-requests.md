@@ -2479,7 +2479,7 @@ export function RecentRequestsSection({ onAccept, onDecline }: { onAccept: (v: P
 **Commit:** `git commit -m "feat(web): dashboard incoming requests section (M10-T31)"`
 
 ### T32 — My Services card
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/my-services-card.tsx`
 **Context:** S20.E16 (`My Services`, `[Pencil] Edit` → `/dashboard/services`, rows `{name}` + `from LKR 2,500 / hour` per BR-09 via `formatServicePrice`); screenshot bottom-right card (row padding 11, `divider-subtle` rules).
 **Do:** Create:
