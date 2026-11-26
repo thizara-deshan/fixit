@@ -1208,7 +1208,7 @@ describe('PUT …/agreed-price (A15)', () => {
 **Commit:** `git commit -m "feat(web): mock set agreed price (M10-T13)"`
 
 ### T14 — Mock handler: provider dashboard
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers.test.ts`, `src/mocks/handlers/index.ts`
 **Context:** ARCH §3.3 dashboard row; D-1, D-2.
 **Do:**
