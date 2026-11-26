@@ -438,7 +438,7 @@ const RequestBase = z.object({
 
 export const CustomerRequestView = RequestBase.extend({
   provider: z.object({
-    id: Id, businessName: z.string(), photoUrl: z.string().nullable(), categoryIcon: CategoryIcon,
+    id: Id, categoryId: Id, businessName: z.string(), photoUrl: z.string().nullable(), categoryIcon: CategoryIcon,
     verified: z.boolean(), rating: z.number().nullable(), reviewCount: z.number().int(),
     listed: z.boolean(),
     mobile: Mobile.nullable(),                     // only when accepted|completed (§6.3)
@@ -701,7 +701,7 @@ Plus `rules.test.ts`: `expiresAt` picks the 72 h bound vs. the 00:00 bound (both
 ### 2.9 Other pure functions (one test file each)
 - `projections.ts`: `toCustomerView`, `toProviderView`, `toAdminView` take a plain `RequestRecord` (defined in contracts) and apply §6.3 privacy. Both the API mappers (Prisma row → `RequestRecord`) and the mock db use them, so privacy logic exists once. Tests: one per status × view, asserting absent fields.
 - `providers/pricing.ts`: `computeStartingPrice(services)` (lowest price; ties → per_hour < per_visit < fixed), `priceLabel()` (BR-09).
-- `reviews/rules.ts`: `reviewEligibility(request, existingReview, now)` (BR-24/25), `ratingFrom(visibleRatings)` → `{ rating: round1 | null, count }` (BR-27).
+- `reviews/rules.ts`: `reviewEligibility(request, existingReview, actorId, now)` (BR-24/25, decision 005), `ratingFrom(visibleRatings)` → `{ rating: round1 | null, count }` (BR-27).
 - `auth/roles.ts`: `deriveRoles({ isAdmin, providerPublished })`.
 - `common/dates.ts`: `colomboToday(now)`, `colomboStartOfDay(isoDate)`, `addDays`, wrappers on `@date-fns/tz` `TZDate`.
 - `search/*`: `matchCategory`, `compareProviders(sort, loc)` (used by mocks; the API test asserts SQL order equals this comparator on a fixture set).
