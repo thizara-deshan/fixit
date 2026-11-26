@@ -1892,7 +1892,7 @@ describe('provider-business hooks', () => {
 **Commit:** `git commit -m "feat(web): own provider and verification hooks (M11-T19)"`
 
 ### T20 — Onboarding API, hooks and resume rule
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/api.ts`, `src/features/onboarding/hooks.ts`, `src/features/onboarding/hooks.test.tsx`, `src/features/onboarding/step-route.ts`, `src/features/onboarding/step-route.test.ts`, `src/features/onboarding/steps.ts`
 **Context:** D-1, D-2, D-4, D-5; `updateMe` (`features/account/api.ts`); `refreshMe`.
 **Do:**
