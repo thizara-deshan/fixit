@@ -1998,7 +1998,7 @@ If `mapApiErrorToForm`'s return contract differs from the cancel dialog's usage,
 **Commit:** `git commit -m "feat(web): decline request dialog (M10-T25)"`
 
 ### T26 — Complete dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/complete-dialog.tsx`
 **Context:** §8.3 Complete dialog; A16 toast `Job marked completed.`; D-11.
 **Form:** `agreedPrice` — schema `AgreedPriceForm`; label `Final agreed price` + `optional`; default `view.agreedPrice === null ? '' : String(view.agreedPrice)`; error `Enter a whole amount in rupees, like 6500.`.
