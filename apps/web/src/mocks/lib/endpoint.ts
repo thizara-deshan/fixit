@@ -94,3 +94,36 @@ export function mockEndpoint<E extends EndpointDef>(
     return HttpResponse.json(parsed.data as JsonBodyType);
   });
 }
+
+/** Like mockEndpoint, but the impl returns the file to stream (GET /files/…). */
+export function mockFileEndpoint<E extends EndpointDef>(
+  def: E,
+  impl: (ctx: MockCtx<E>) => Blob,
+  cacheControl: string,
+) {
+  const route = http[def.method.toLowerCase() as Lowercase<EndpointDef['method']>];
+  return route(`/api${def.path}`, async ({ request, params }) => {
+    await simulateLatency();
+    const forced = takeForcedError(def.id);
+    if (forced) return forcedResponse(forced);
+    try {
+      const actor = def.access.includes('public') ? tryResolveActor(request) : resolveActor(request);
+      assertAccess(def, actor);
+      const blob = impl({
+        actor,
+        params: toStringParams(params),
+        body: undefined as BodyOf<E>,
+        query: undefined as QueryOf<E>,
+        db: db(),
+        now: new Date(),
+        request,
+      });
+      return new HttpResponse(blob, {
+        status: 200,
+        headers: { 'Content-Type': blob.type || 'application/octet-stream', 'Cache-Control': cacheControl },
+      });
+    } catch (e) {
+      return toErrorResponse(e);
+    }
+  });
+}

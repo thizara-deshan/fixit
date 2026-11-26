@@ -806,7 +806,7 @@ describe('readMultipart', () => {
 **Commit:** `git commit -m "feat(web): mock multipart reader and file store (M11-T8)"`
 
 ### T9 — `mockFileEndpoint` for file responses
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/endpoint.ts`, `src/mocks/lib/endpoint.test.ts`
 **Context:** `mockEndpoint` (same file) always answers JSON or 204; `GET /files/*` answer bytes. Reuse `simulateLatency`, `takeForcedError`, `forcedResponse`, `resolveActor`, `tryResolveActor`, `assertAccess`, `toErrorResponse`.
 **Do:** Add below `mockEndpoint`:
