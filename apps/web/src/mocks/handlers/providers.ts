@@ -14,7 +14,13 @@ import { deleteFile, getFile, placeholderFile, putFile } from '../lib/files';
 import { readMultipart } from '../lib/multipart';
 import { applyOnboardingStep, publishDraft, requireDraft, toOwnProvider } from '../lib/own-provider';
 import { ownProvider } from '../lib/requests';
-import { stageDocument, toDocumentMeta, unstageDocument, verificationStateOf } from '../lib/verification';
+import {
+  stageDocument,
+  submitVerification,
+  toDocumentMeta,
+  unstageDocument,
+  verificationStateOf,
+} from '../lib/verification';
 
 export const providersHandlers = [
   mockEndpoint(E.provider_dashboard, ({ db: d, actor, now }) => {
@@ -106,4 +112,23 @@ export const providersHandlers = [
     if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
     unstageDocument(d, ownProvider(d, actor.userId), params.id ?? '');
   }),
+  mockEndpoint(E.verification_submit, ({ db: d, actor, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    submitVerification(d, p, now);
+    return verificationStateOf(d, p);
+  }),
+  mockFileEndpoint(
+    E.files_document,
+    ({ db: d, actor, params }) => {
+      const doc = d.documents[params.id ?? ''];
+      const isAdmin = actor?.roles.includes('admin') ?? false;
+      const mine =
+        !isAdmin && actor ? Object.values(d.providers).find((p) => p.userId === actor.userId)?.id : undefined;
+      if (!doc || (!isAdmin && doc.providerId !== mine))
+        throw mockError(404, 'NOT_FOUND', 'No such document');
+      return getFile(`doc:${doc.id}`) ?? placeholderFile();
+    },
+    'no-store',
+  ),
 ];

@@ -1526,7 +1526,7 @@ describe('verification handlers', () => {
 **Commit:** `git commit -m "feat(web): mock verification document handlers (M11-T15)"`
 
 ### T16 — Handlers: submit and `GET /files/documents/:id`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-verification.test.ts`
 **Context:** A27; BR-17; PRODUCT §6.3 (documents visible only to owner + admins); AC9 (another provider's document → 404).
 **Do:** Add:

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { DocumentMeta, VerificationState } from '@fixit/contracts';
+import { DocumentMeta, ErrorEnvelope, VerificationState } from '@fixit/contracts';
 import type { PersonaKey } from '@fixit/fixtures';
 import { FIXED_NOW } from '@/test/fixed-now';
 import { signInAs } from '@/test/sign-in';
@@ -71,5 +71,41 @@ describe('verification handlers', () => {
         })
       ).status,
     ).toBe(204);
+  });
+  it('submit: missing back → 422 documents_missing; both → pending_review', async () => {
+    await uploadDoc('providerNotSubmitted', 'nic_front', png());
+    const missing = await fetch(url('/me/provider/verification/submit'), {
+      method: 'POST',
+      headers: auth('providerNotSubmitted'),
+    });
+    expect(missing.status).toBe(422);
+    expect(ErrorEnvelope.parse(await missing.json()).error.details?.rule).toBe('documents_missing');
+    await uploadDoc('providerNotSubmitted', 'nic_back', png());
+    const ok = VerificationState.parse(
+      await (
+        await fetch(url('/me/provider/verification/submit'), {
+          method: 'POST',
+          headers: auth('providerNotSubmitted'),
+        })
+      ).json(),
+    );
+    expect(ok).toMatchObject({ status: 'pending_review', editable: false });
+    expect(signInAs('providerNotSubmitted').user.provider?.verificationStatus).toBe('pending_review');
+  });
+  it('files: owner 200 no-store, other provider 404, admin 200, customer 403, anon 401', async () => {
+    const other = await fetch(url('/files/documents/d-p02-nic-front'), { headers: auth('provider') });
+    expect(other.status).toBe(404); // Marcus asking for Dana's document
+    const grace = await fetch(url('/files/documents/d-p10-nic_front-r'), {
+      headers: auth('providerRejected'),
+    });
+    expect(grace.status).toBe(200);
+    expect(grace.headers.get('cache-control')).toBe('no-store');
+    expect((await fetch(url('/files/documents/d-p02-nic-front'), { headers: auth('admin') })).status).toBe(
+      200,
+    );
+    expect((await fetch(url('/files/documents/d-p02-nic-front'), { headers: auth('customer') })).status).toBe(
+      403,
+    );
+    expect((await fetch(url('/files/documents/d-p02-nic-front'))).status).toBe(401);
   });
 });
