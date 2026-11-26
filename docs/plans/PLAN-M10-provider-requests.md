@@ -540,7 +540,7 @@ describe('dashboardStats', () => {
 **Commit:** `git commit -m "feat(contracts): ProviderDashboard contract and stats (M10-T5)"`
 
 ### T6 — Endpoint registry entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §2.7 (`requests_accept` example), §3.3 dashboard row, §3.4 provider rows (Roles **P**, ownership "providerId = mine else 404").
 **Do:**

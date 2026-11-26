@@ -110,4 +110,21 @@ describe('ENDPOINTS', () => {
       domain: 'reviews',
     });
   });
+  it('M10 provider rows match ARCHITECTURE §3.3 / §3.4', () => {
+    const rows = Object.fromEntries(
+      Object.values(ENDPOINTS).map((d) => [
+        `${d.method} ${d.path}`,
+        `${d.domain} ${d.access.join(',')} ${d.owner}`,
+      ]),
+    );
+    expect(rows).toMatchObject({
+      'GET /me/provider/dashboard': 'providers provider self',
+      'GET /me/provider/requests': 'requests provider self',
+      'GET /me/provider/requests/:ref': 'requests provider request_provider',
+      'POST /me/provider/requests/:ref/accept': 'requests provider request_provider',
+      'POST /me/provider/requests/:ref/decline': 'requests provider request_provider',
+      'POST /me/provider/requests/:ref/complete': 'requests provider request_provider',
+      'PUT /me/provider/requests/:ref/agreed-price': 'requests provider request_provider',
+    });
+  });
 });

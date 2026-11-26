@@ -20,9 +20,12 @@ import {
   PublicReviewPage,
 } from './catalog/schemas';
 import { PageQuery } from './common/pagination';
+import { ProviderDashboard } from './providers/schemas';
+import { ProviderRequestList, ProviderRequestListQuery } from './requests/inbox';
 import { CancelBody, MyRequestList, RequestListQuery } from './requests/list';
+import { AcceptBody, AgreedPriceBody, CompleteBody, DeclineBody } from './requests/provider-bodies';
 import { CreateReviewBody, Review } from './reviews/schemas';
-import { CreateRequestBody, CustomerRequestView, Eligibility } from './requests/schemas';
+import { CreateRequestBody, CustomerRequestView, Eligibility, ProviderRequestView } from './requests/schemas';
 
 export type Access = 'public' | 'user' | 'provider' | 'admin';
 // user = signed-in non-admin (every user is a customer); provider = user with a published listing
@@ -311,6 +314,81 @@ export const ENDPOINTS = {
     body: CreateReviewBody,
     response: Review,
     refs: ['F-28', 'F-29', 'S16', 'A19', 'BR-24', 'BR-25', 'BR-26', 'BR-27'],
+  },
+  provider_dashboard: {
+    id: 'provider_dashboard',
+    domain: 'providers',
+    method: 'GET',
+    path: '/me/provider/dashboard',
+    access: ['provider'],
+    owner: 'self',
+    response: ProviderDashboard,
+    refs: ['F-17', 'F-21', 'S20', 'L3'],
+  },
+  requests_inbox_list: {
+    id: 'requests_inbox_list',
+    domain: 'requests',
+    method: 'GET',
+    path: '/me/provider/requests',
+    access: ['provider'],
+    owner: 'self',
+    query: ProviderRequestListQuery,
+    response: ProviderRequestList,
+    refs: ['F-17', 'F-25', 'S20', 'S21'],
+  },
+  requests_inbox_get: {
+    id: 'requests_inbox_get',
+    domain: 'requests',
+    method: 'GET',
+    path: '/me/provider/requests/:ref',
+    access: ['provider'],
+    owner: 'request_provider',
+    response: ProviderRequestView,
+    refs: ['F-17', 'S22'],
+  },
+  requests_accept: {
+    id: 'requests_accept',
+    domain: 'requests',
+    method: 'POST',
+    path: '/me/provider/requests/:ref/accept',
+    access: ['provider'],
+    owner: 'request_provider',
+    body: AcceptBody,
+    response: ProviderRequestView,
+    refs: ['F-18', 'F-27', 'S20', 'S21', 'S22', 'A13'],
+  },
+  requests_decline: {
+    id: 'requests_decline',
+    domain: 'requests',
+    method: 'POST',
+    path: '/me/provider/requests/:ref/decline',
+    access: ['provider'],
+    owner: 'request_provider',
+    body: DeclineBody,
+    response: ProviderRequestView,
+    refs: ['F-18', 'S20', 'S21', 'S22', 'A14'],
+  },
+  requests_complete: {
+    id: 'requests_complete',
+    domain: 'requests',
+    method: 'POST',
+    path: '/me/provider/requests/:ref/complete',
+    access: ['provider'],
+    owner: 'request_provider',
+    body: CompleteBody,
+    response: ProviderRequestView,
+    refs: ['F-19', 'S22', 'A16', 'BR-32'],
+  },
+  requests_agreed_price: {
+    id: 'requests_agreed_price',
+    domain: 'requests',
+    method: 'PUT',
+    path: '/me/provider/requests/:ref/agreed-price',
+    access: ['provider'],
+    owner: 'request_provider',
+    body: AgreedPriceBody,
+    response: ProviderRequestView,
+    refs: ['F-19', 'S22', 'A15', 'BR-12'],
   },
 } as const satisfies Record<string, EndpointDef>;
 export type EndpointId = keyof typeof ENDPOINTS;
