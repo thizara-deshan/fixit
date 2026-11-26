@@ -1,8 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import type { RequestStatus } from '../common/enums';
 import type { RequestRecord } from './record';
-import { toCustomerView, type CustomerViewContext } from './projections';
-import { CustomerRequestView } from './schemas';
+import {
+  toCustomerView,
+  toProviderView,
+  type CustomerViewContext,
+  type ProviderViewContext,
+} from './projections';
+import { CustomerRequestView, ProviderRequestView } from './schemas';
 
 const now = new Date('2026-11-22T04:30:00.000Z');
 const at = '2026-11-22T04:00:00.000Z';
@@ -91,5 +96,51 @@ describe('toCustomerView', () => {
     expect(view({ status: 'completed', completedAt }, { ...ctx, ownReview: own }).review?.eligible).toBe(
       false,
     );
+  });
+});
+
+const pctx: ProviderViewContext = {
+  customer: { fullName: 'Olivia Martinez' },
+  town: { id: 'colombo', name: 'Colombo' },
+  review: null,
+  reviewed: false,
+};
+const pview = (o: Partial<RequestRecord>, c: ProviderViewContext = pctx) =>
+  ProviderRequestView.parse(toProviderView({ ...base, ...o }, c, now));
+
+describe('toProviderView (§6.3)', () => {
+  it.each<RequestStatus>(['pending', 'declined', 'cancelled', 'expired'])(
+    '%s → Olivia M. only, contact keys absent',
+    (status) => {
+      const c = pview({ status }).customer;
+      expect(c).toEqual({ revealed: false, displayName: 'Olivia M.' });
+      for (const key of ['fullName', 'mobile', 'addressLine1', 'addressLine2']) expect(key in c).toBe(false);
+    },
+  );
+  it.each<RequestStatus>(['accepted', 'completed'])('%s → full contact', (status) => {
+    const completedAt = status === 'completed' ? '2026-11-21T10:00:00.000Z' : null;
+    expect(pview({ status, completedAt }).customer).toEqual({
+      revealed: true,
+      displayName: 'Olivia M.',
+      fullName: 'Olivia Martinez',
+      mobile: '+94770001001',
+      addressLine1: '12 Galle Road',
+      addressLine2: null,
+    });
+  });
+  it('canComplete: accepted from the preferred date only (BR-32)', () => {
+    expect(pview({ status: 'accepted' }).canComplete).toBe(false);
+    expect(pview({ status: 'accepted', preferredDate: '2026-11-22' }).canComplete).toBe(true);
+    expect(pview({ status: 'pending', preferredDate: '2026-11-22' }).canComplete).toBe(false);
+    expect(pview({}).completeFrom).toBe('2026-11-25');
+  });
+  it('reviewDeadline: completed, unreviewed, inside 30 days (D-10)', () => {
+    const completedAt = '2026-11-21T10:00:00.000Z';
+    expect(pview({ status: 'completed', completedAt }).reviewDeadline).toBe('2026-12-21T10:00:00.000Z');
+    expect(
+      pview({ status: 'completed', completedAt }, { ...pctx, reviewed: true }).reviewDeadline,
+    ).toBeNull();
+    expect(pview({ status: 'completed', completedAt: '2026-10-01T10:00:00.000Z' }).reviewDeadline).toBeNull();
+    expect(pview({ status: 'accepted' }).reviewDeadline).toBeNull();
   });
 });

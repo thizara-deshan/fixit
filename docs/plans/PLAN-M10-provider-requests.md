@@ -212,7 +212,7 @@ describe('CustomerContact', () => {
 **Commit:** `git commit -m "feat(contracts): ProviderRequestView with structural customer privacy (M10-T2)"`
 
 ### T3 — `toProviderView` projection
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/projections.ts`, `packages/contracts/src/requests/projections.test.ts`
 **Context:** ARCH §2.9 (privacy exists once, tests assert absent fields), PRODUCT §6.3, BR-32, D-10; milestone AC10. Existing `toCustomerView` in the same file.
 **Do:**
