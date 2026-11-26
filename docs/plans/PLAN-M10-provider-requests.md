@@ -784,7 +784,7 @@ If `byRef` or `world` are named differently in the file, use the file's existing
 **Commit:** `git commit -m "feat(fixtures): closed p01 requests and a provider with no requests (M10-T7)"`
 
 ### T8 — Mock helpers for the provider side
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/requests.ts`, `src/mocks/lib/requests.test.ts`
 **Context:** ARCH §4.3 mock rules; D-3, D-4, D-10. Existing `customerViewOf`, `transitionOr409` in the same file.
 **Do:** Add to `src/mocks/lib/requests.ts` (merge imports: `compareInbox, displayNameOf, matchesInboxSearch, PAGE_SIZE, toProviderView, type InboxCounts, type ProviderRequestList, type ProviderRequestListQuery, type ProviderRequestView, type RequestActor` from `@fixit/contracts`; `type FxProvider` from `@fixit/fixtures`):

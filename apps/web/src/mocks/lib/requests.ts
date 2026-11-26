@@ -1,20 +1,30 @@
 import {
   assertTransition,
+  compareInbox,
+  displayNameOf,
   groupOf,
+  matchesInboxSearch,
   OPEN_STATUSES,
   PAGE_SIZE,
   statusesOf,
   toCustomerView,
+  toProviderView,
   toMachineRequest,
   TransitionError,
   type CustomerRequestView,
+  type InboxCounts,
   type MachineActor,
   type MyRequestList,
+  type ProviderRequestList,
+  type ProviderRequestListQuery,
+  type ProviderRequestView,
+  type RequestActor,
   type RequestListQuery,
   type RequestRecord,
   type RequestStatus,
   type TransitionInput,
 } from '@fixit/contracts';
+import type { FxProvider } from '@fixit/fixtures';
 import type { MockDb } from '../db/schema';
 import { isListed } from './cards';
 import { mockError } from './errors';
@@ -102,4 +112,98 @@ export function myRequestList(d: MockDb, customerId: string, q: RequestListQuery
     totalPages: Math.ceil(filtered.length / pageSize),
     counts,
   };
+}
+
+/** The caller's published listing. assertAccess already required role provider, so a miss is a server bug. */
+export function ownProvider(d: MockDb, userId: string): FxProvider {
+  const p = Object.values(d.providers).find((x) => x.userId === userId && x.onboardingComplete);
+  if (!p) throw mockError(403, 'FORBIDDEN', 'No published listing');
+  return p;
+}
+
+/** Another provider's or an unknown ref → 404, never 403 (ARCH §3). */
+export function ownInboxRequest(d: MockDb, providerId: string, ref: string): RequestRecord {
+  const r = Object.values(d.requests).find((x) => x.ref === ref && x.providerId === providerId);
+  if (!r) throw mockError(404, 'NOT_FOUND', 'Request not found');
+  return r;
+}
+
+export function providerViewOf(d: MockDb, r: RequestRecord, now: Date): ProviderRequestView {
+  const customer = d.users[r.customerId];
+  if (!customer) throw mockError(500, 'INTERNAL', `Request ${r.ref} references a missing customer`);
+  const town = d.towns.find((t) => t.id === r.townId);
+  const reviews = Object.values(d.reviews).filter((x) => x.requestId === r.id);
+  const visible = reviews.find((x) => x.visibility === 'visible');
+  return toProviderView(
+    r,
+    {
+      customer: { fullName: customer.fullName },
+      town: { id: r.townId, name: town?.name ?? r.townId },
+      review: visible
+        ? {
+            id: visible.id,
+            rating: visible.rating,
+            authorDisplayName: displayNameOf(d.users[visible.authorId]?.fullName ?? ''),
+          }
+        : null,
+      reviewed: reviews.length > 0,
+    },
+    now,
+  );
+}
+
+/** GET /me/provider/requests: own rows, search (D-3), counts after search (D-4), S21 order, 20 per page. */
+export function inboxList(
+  d: MockDb,
+  providerId: string,
+  q: ProviderRequestListQuery,
+  now: Date,
+): ProviderRequestList {
+  const nameOf = (r: RequestRecord) => d.users[r.customerId]?.fullName ?? '';
+  const mine = Object.values(d.requests).filter(
+    (r) =>
+      r.providerId === providerId &&
+      matchesInboxSearch(q.q, { ref: r.ref, status: r.status, customerFullName: nameOf(r) }),
+  );
+  const counts: InboxCounts = {
+    all: mine.length,
+    pending: 0,
+    accepted: 0,
+    completed: 0,
+    declined: 0,
+    cancelled: 0,
+    expired: 0,
+  };
+  for (const r of mine) counts[r.status] += 1;
+  const filtered = (q.status === 'all' ? mine : mine.filter((r) => r.status === q.status)).sort(
+    compareInbox(q.status),
+  );
+  const pageSize = PAGE_SIZE.providerRequests;
+  const start = (q.page - 1) * pageSize;
+  return {
+    items: filtered.slice(start, start + pageSize).map((r) => providerViewOf(d, r, now)),
+    page: q.page,
+    pageSize,
+    total: filtered.length,
+    totalPages: Math.ceil(filtered.length / pageSize),
+    counts,
+  };
+}
+
+/** Applies an already-checked transition: status, closedBy, reason, timestamps, history event. */
+export function applyTransition(
+  r: RequestRecord,
+  to: Exclude<RequestStatus, 'pending'>,
+  actor: RequestActor,
+  actorUserId: string | null,
+  now: Date,
+  reason: string | null = null,
+): void {
+  const at = now.toISOString();
+  r.status = to;
+  if (to !== 'accepted') r.closedBy = actor;
+  if (to === 'declined' || to === 'cancelled') r.reason = reason;
+  if (to === 'completed') r.completedAt = at;
+  r.updatedAt = at;
+  r.events.push({ status: to, at, actor, actorUserId, reason });
 }
