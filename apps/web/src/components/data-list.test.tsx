@@ -75,4 +75,27 @@ describe('DataList (SPEC §6.9, AC7)', () => {
     );
     expect(screen.getByText('No requests with this status.')).toBeTruthy();
   });
+  it('phone card: an actions cell that renders nothing adds no action row', () => {
+    setViewportWidth(390);
+    render(
+      <MemoryRouter>
+        <DataList
+          rows={rows}
+          columns={[
+            ...columns,
+            {
+              id: 'action',
+              header: 'Action',
+              card: 'actions',
+              cell: (r) => (r.ref === 'FX-2061' ? <button type="button">Act</button> : null),
+            },
+          ]}
+          getRowKey={(r) => r.ref}
+          caption="Requests"
+        />
+      </MemoryRouter>,
+    );
+    expect(screen.getAllByRole('button')).toHaveLength(1);
+    expect(document.querySelectorAll('li > div.mt-1')).toHaveLength(1);
+  });
 });
