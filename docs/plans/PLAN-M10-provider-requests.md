@@ -1092,7 +1092,7 @@ describe('POST …/accept (A13)', () => {
 **Commit:** `git commit -m "feat(web): mock accept request (M10-T10)"`
 
 ### T11 — Mock handler: decline
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-provider-actions.test.ts`
 **Context:** A14, F-18; S15 shows the reason to the customer.
 **Do:** Add to `requestsHandlers`:

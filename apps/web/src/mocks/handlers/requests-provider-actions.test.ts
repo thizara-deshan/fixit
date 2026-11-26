@@ -71,3 +71,28 @@ describe('POST …/accept (A13)', () => {
     expect((await call('POST', '/me/provider/requests/FX-2061/accept', undefined, {})).status).toBe(401);
   });
 });
+
+describe('POST …/decline (A14)', () => {
+  it('pending → declined with reason; Olivia sees the reason; contact stays hidden', async () => {
+    const v = await view(
+      await call('POST', '/me/provider/requests/FX-2061/decline', 'provider', {
+        reason: 'Not available that week.',
+      }),
+    );
+    expect([v.status, v.reason, v.closedBy]).toEqual(['declined', 'Not available that week.', 'provider']);
+    expect(v.customer).toEqual({ revealed: false, displayName: 'Olivia M.' });
+    const olivia = CustomerRequestView.parse(
+      await (await call('GET', '/me/requests/FX-2061', 'customer')).json(),
+    );
+    expect([olivia.status, olivia.reason]).toEqual(['declined', 'Not available that week.']);
+  });
+  it('empty reason → null', async () => {
+    expect(
+      (await view(await call('POST', '/me/provider/requests/FX-2059/decline', 'provider', { reason: '' })))
+        .reason,
+    ).toBeNull();
+  });
+  it('accepted → 409', async () => {
+    expect((await call('POST', '/me/provider/requests/FX-2050/decline', 'provider', {})).status).toBe(409);
+  });
+});
