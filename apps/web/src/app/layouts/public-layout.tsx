@@ -9,7 +9,7 @@ import { useAccountBanners } from './parts/use-account-banners';
 
 /** L1 (and the L1 frame of L2). `children` is used by guards that render S40 outside the route tree (D-a). */
 export function PublicLayout({ children }: { children?: ReactNode }) {
-  const banners = useAccountBanners();
+  const banners = useAccountBanners('public');
   return (
     <div className="flex min-h-dvh flex-col">
       <SkipLink />

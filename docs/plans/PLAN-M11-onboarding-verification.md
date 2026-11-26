@@ -3038,7 +3038,7 @@ export function VerificationPage() {
 **Commit:** `git commit -m "feat(web): S26 verification page (M11-T35)"`
 
 ### T36 — L3 provider banners (§6.8 #1, #3, #4, #5)
-- [ ] done
+- [x] done
 **Files:** `src/app/layouts/parts/use-account-banners.tsx`, `src/app/layouts/parts/use-account-banners.test.tsx`, `src/app/layouts/parts/dashboard-shell.tsx`, `src/app/layouts/public-layout.tsx`
 **Context:** SPEC §6.8 rows 1, 3, 4, 5 (copy, variant, action, dismissible); D-17; `NoticeBanner` (supports `action` and `onDismiss`); `Me.provider` (`verificationStatus`, `rejectionReason`, `reverificationReason`).
 **Do:**
