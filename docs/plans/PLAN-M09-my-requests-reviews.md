@@ -811,7 +811,7 @@ describe('POST /me/requests/:ref/cancel', () => {
 **Commit:** `git commit -m "feat(web): mock my-requests list and cancel handlers (M09-T8)"`
 
 ### T9 — Mock handler: `POST /me/requests/:ref/review` with rating recompute
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/reviews.ts`, `src/mocks/handlers/reviews.test.ts`, `src/mocks/handlers/index.ts`
 **Context:** A19, BR-24–BR-27, F-29; ARCH §4 (rating recomputed with `ratingFrom()` over visible reviews, not incremented). `displayNameOf` in contracts `auth/names`.
 **Do:**
