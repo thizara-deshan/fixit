@@ -354,7 +354,7 @@ describe('service schemas', () => {
 **Commit:** `git commit -m "feat(contracts): service body and step 3 schemas (M11-T2)"`
 
 ### T3 — Upload limits and document rules
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/uploads.ts`, `packages/contracts/src/providers/uploads.test.ts`, `packages/contracts/src/index.ts`
 **Context:** BR-17; SPEC S24.E1/E2, S26 field table, §6.3 "Upload failed", §8.7; ARCH §3.3 photo/doc rows.
 **Do:**
