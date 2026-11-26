@@ -618,7 +618,7 @@ Use `allReviews` instead of `reviews` in the aggregate loop and in the returned 
 **Commit:** `git commit -m "feat(fixtures): Olivia's requests in every status for S15 (M09-T6)"`
 
 ### T7 — Mock helpers: `transitionOr409` and `myRequestList`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/requests.ts`, `src/mocks/lib/requests.test.ts`
 **Context:** D-5; S14.E4 (most recently updated first), S14.E5 (20 per page); `statusesOf`, `groupOf`, `PAGE_SIZE`.
 **Do:** Add to `src/mocks/lib/requests.ts` (extend the contracts import with `assertTransition, groupOf, PAGE_SIZE, statusesOf, toMachineRequest, TransitionError, type MachineActor, type MyRequestList, type RequestListQuery, type TransitionInput`):

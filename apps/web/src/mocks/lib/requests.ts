@@ -1,9 +1,19 @@
 import {
+  assertTransition,
+  groupOf,
   OPEN_STATUSES,
+  PAGE_SIZE,
+  statusesOf,
   toCustomerView,
+  toMachineRequest,
+  TransitionError,
   type CustomerRequestView,
+  type MachineActor,
+  type MyRequestList,
+  type RequestListQuery,
   type RequestRecord,
   type RequestStatus,
+  type TransitionInput,
 } from '@fixit/contracts';
 import type { MockDb } from '../db/schema';
 import { isListed } from './cards';
@@ -52,4 +62,44 @@ export function customerViewOf(d: MockDb, r: RequestRecord, now: Date): Customer
     },
     now,
   );
+}
+
+/** D-5: refused transition → 409 INVALID_TRANSITION with details.reason and details.status (ARCH error table). */
+export function transitionOr409(
+  r: RequestRecord,
+  to: RequestStatus,
+  actor: MachineActor,
+  now: Date,
+  input: TransitionInput = {},
+): void {
+  try {
+    assertTransition(toMachineRequest(r), to, actor, now, input);
+  } catch (e) {
+    if (e instanceof TransitionError)
+      throw mockError(409, 'INVALID_TRANSITION', e.message, {
+        details: { reason: e.reason, status: r.status },
+      });
+    throw e;
+  }
+}
+
+/** GET /me/requests: own requests only, newest update first, counts per group, 20 per page. */
+export function myRequestList(d: MockDb, customerId: string, q: RequestListQuery, now: Date): MyRequestList {
+  const mine = Object.values(d.requests)
+    .filter((r) => r.customerId === customerId)
+    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || b.ref.localeCompare(a.ref));
+  const counts = { all: mine.length, open: 0, completed: 0, closed: 0 };
+  for (const r of mine) counts[groupOf(r.status)] += 1;
+  const wanted = statusesOf(q.status);
+  const filtered = mine.filter((r) => wanted.includes(r.status));
+  const pageSize = PAGE_SIZE.myRequests;
+  const start = (q.page - 1) * pageSize;
+  return {
+    items: filtered.slice(start, start + pageSize).map((r) => customerViewOf(d, r, now)),
+    page: q.page,
+    pageSize,
+    total: filtered.length,
+    totalPages: Math.ceil(filtered.length / pageSize),
+    counts,
+  };
 }
