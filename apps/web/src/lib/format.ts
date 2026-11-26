@@ -1,4 +1,5 @@
 import {
+  addDays,
   colomboStartOfDay,
   formatInColombo,
   priceLabel,
@@ -80,3 +81,10 @@ export const SLOT_LABEL: Record<TimeSlot, string> = {
   afternoon: 'Afternoon',
   evening: 'Evening',
 };
+
+/** D-6: the last day the customer may cancel, `Sat, 21 Nov` (the day before the preferred date). */
+export const formatCancelCutoffDay = (preferredDate: string): string =>
+  formatDateShort(addDays(preferredDate, -1));
+
+/** `1,000` */
+export const formatCount = (n: number): string => grouping.format(n);

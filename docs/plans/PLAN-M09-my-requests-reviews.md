@@ -943,7 +943,7 @@ describe('POST /me/requests/:ref/review', () => {
 **Checkpoint after T9:** "Human: run `pnpm dev:mock`, open the DevPanel endpoint list and check that `requests_list`, `requests_cancel` and `reviews_create` appear."
 
 ### T10 — Query key, API functions, formatters
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/features/requests/api.ts`, `src/lib/format.ts`, `src/lib/format.test.ts`
 **Context:** ARCH §4.2 key shape; D-6; S16 counter `{n} / 1,000`.
 **Do:**
