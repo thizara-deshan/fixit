@@ -4,7 +4,7 @@ import { isListed } from '../lib/cards';
 import { mockEndpoint } from '../lib/endpoint';
 import { mockError } from '../lib/errors';
 import { eligibilityFor } from '../lib/profile';
-import { customerViewOf, openRequestsOf } from '../lib/requests';
+import { customerViewOf, myRequestList, openRequestsOf, transitionOr409 } from '../lib/requests';
 
 export const requestsHandlers = [
   mockEndpoint(E.requests_eligibility, ({ db: d, actor, params }) => {
@@ -87,6 +87,33 @@ export const requestsHandlers = [
     expireDue(d, now);
     const r = Object.values(d.requests).find((x) => x.ref === params.ref && x.customerId === actor.userId);
     if (!r) throw mockError(404, 'NOT_FOUND', 'Request not found'); // other owner → 404, never 403
+    return customerViewOf(d, r, now);
+  }),
+
+  mockEndpoint(E.requests_list, ({ db: d, actor, query, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    expireDue(d, now);
+    return myRequestList(d, actor.userId, query, now);
+  }),
+
+  mockEndpoint(E.requests_cancel, ({ db: d, actor, params, body, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    expireDue(d, now);
+    const r = Object.values(d.requests).find((x) => x.ref === params.ref && x.customerId === actor.userId);
+    if (!r) throw mockError(404, 'NOT_FOUND', 'Request not found'); // other owner → 404
+    transitionOr409(r, 'cancelled', { kind: 'customer', userId: actor.userId }, now, { reason: body.reason });
+    const at = now.toISOString();
+    r.status = 'cancelled';
+    r.closedBy = 'customer';
+    r.reason = body.reason ?? null;
+    r.updatedAt = at;
+    r.events.push({
+      status: 'cancelled',
+      at,
+      actor: 'customer',
+      actorUserId: actor.userId,
+      reason: body.reason ?? null,
+    });
     return customerViewOf(d, r, now);
   }),
 ];

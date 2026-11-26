@@ -694,7 +694,7 @@ describe('myRequestList', () => {
 **Commit:** `git commit -m "feat(web): mock request list and transition helpers (M09-T7)"`
 
 ### T8 — Mock handlers: `GET /me/requests` and `POST /me/requests/:ref/cancel`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-mine.test.ts`
 **Context:** A12, BR-30, F-25 (sweep at the start of each handler), §6.3 privacy (contact hidden after cancel), AC6, AC8, AC9.
 **Do:** Add to `requestsHandlers` (imports: `myRequestList`, `transitionOr409` from `../lib/requests`):
