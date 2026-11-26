@@ -1576,7 +1576,7 @@ describe('verification handlers', () => {
 **Commit:** `git commit -m "feat(web): mock verification submit and document files (M11-T16)"`
 
 ### T17 — Query keys, file size format, upload error copy
-- [ ] done
+- [x] done
 **Files:** `src/lib/query-keys.ts`, `src/lib/format.ts`, `src/lib/format.test.ts`, `src/lib/upload-errors.ts`, `src/lib/upload-errors.test.ts`
 **Context:** S26.E1 "filename (ellipsis), size"; S24.E2; §6.3 upload failed; `ApiError` (`lib/http.ts`).
 **Do:**
