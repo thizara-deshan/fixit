@@ -170,4 +170,17 @@ export const requestsHandlers = [
     applyTransition(r, 'completed', 'provider', actor.userId, now);
     return providerViewOf(d, r, now);
   }),
+
+  mockEndpoint(E.requests_agreed_price, ({ db: d, actor, params, body, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    const r = ownInboxRequest(d, p.id, params.ref ?? '');
+    if (r.status !== 'accepted')
+      throw mockError(409, 'INVALID_TRANSITION', 'Agreed price can only change while Accepted', {
+        details: { reason: 'invalid_transition', status: r.status },
+      });
+    r.agreedPrice = body.agreedPrice;
+    r.updatedAt = now.toISOString();
+    return providerViewOf(d, r, now);
+  }),
 ];

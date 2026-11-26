@@ -1174,7 +1174,7 @@ describe('POST …/complete (A16)', () => {
 **Commit:** `git commit -m "feat(web): mock mark request completed (M10-T12)"`
 
 ### T13 — Mock handler: agreed price
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-provider-actions.test.ts`
 **Context:** A15, F-19, BR-12; ARCH §3.4 "mine; status accepted". Not a status change, so no event.
 **Do:** Add to `requestsHandlers`:

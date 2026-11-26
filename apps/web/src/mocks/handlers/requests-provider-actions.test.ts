@@ -122,3 +122,28 @@ describe('POST …/complete (A16)', () => {
     ).toBe('invalid_transition');
   });
 });
+
+describe('PUT …/agreed-price (A15)', () => {
+  it('sets and clears the price', async () => {
+    expect(
+      (
+        await view(
+          await call('PUT', '/me/provider/requests/FX-2050/agreed-price', 'provider', { agreedPrice: 8000 }),
+        )
+      ).agreedPrice,
+    ).toBe(8000);
+    expect(
+      (
+        await view(
+          await call('PUT', '/me/provider/requests/FX-2050/agreed-price', 'provider', { agreedPrice: null }),
+        )
+      ).agreedPrice,
+    ).toBeNull();
+  });
+  it('completed → 409', async () => {
+    expect(
+      (await call('PUT', '/me/provider/requests/FX-2046/agreed-price', 'provider', { agreedPrice: 1 }))
+        .status,
+    ).toBe(409);
+  });
+});
