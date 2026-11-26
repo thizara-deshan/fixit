@@ -2950,7 +2950,7 @@ export function JobDetailsCard({ view }: { view: ProviderRequestView }) {
 **Commit:** `git commit -m "feat(web): S22 job details card (M10-T36)"`
 
 ### T37 — Inline agreed price editor
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/agreed-price-editor.tsx`
 **Context:** S22.E4 (H3 `Agreed price`: `LKR 6,500` or `Not set` + `Edit` / `Add`; help `For your records only — the customer pays you directly.`; edit: input + `Save` / `Cancel`; toast `Agreed price saved.`), A15, §6.3 (form submit failure → danger banner), D-6.
 **Form:** `agreedPrice` — schema `AgreedPriceForm`; empty saves `null` (clears); error `Enter a whole amount in rupees, like 6500.`.
