@@ -2495,7 +2495,7 @@ export function StepBusiness({ me, own, onBack, onSaved, onDirtyChange }: StepPr
 **Commit:** `git commit -m "feat(web): onboarding step 3 services (M11-T28)"`
 
 ### T29 — Step 4: Service areas
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-areas.tsx`
 **Context:** S19 step 4; `AreasBody`, `AreasFormInput` (T1); `AreasPicker` (T23).
 **Do:** Same skeleton as T26 (banner, dirty reporting, `useSaveStep`, `WizardFooter` with `Continue`/`Saving…`).
