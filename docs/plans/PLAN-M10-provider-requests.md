@@ -1858,7 +1858,7 @@ export function AgreedPriceInput({ className, ...props }: ComponentProps<typeof 
 **Commit:** `git commit -m "feat(web): agreed price input (M10-T23)"`
 
 ### T24 — Accept dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/accept-dialog.tsx`
 **Context:** §8.3 Accept dialog copy; S20.E14 toast; §6.10 (sheet on phone via `ResponsiveDialog`); pattern of `features/requests/components/cancel-request-dialog.tsx`; D-6, D-8.
 **Form:** one field `agreedPrice` — schema `AgreedPriceForm`; label `Agreed price` + `optional`; help `You can change it until the job is completed.`; error `Enter a whole amount in rupees, like 6500.`. Server/network failure → `FormErrorBanner` with `FORM_COPY.saveFailed`. 409 → close + `onConflict(ref)`.
