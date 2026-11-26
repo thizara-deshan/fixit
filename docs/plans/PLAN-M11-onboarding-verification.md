@@ -2487,7 +2487,7 @@ export function StepBusiness({ me, own, onBack, onSaved, onDirtyChange }: StepPr
 **Commit:** `git commit -m "feat(web): onboarding step 2 category (M11-T27)"`
 
 ### T28 — Step 3: Services & prices
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/components/step-services.tsx`
 **Context:** S19 step 3; D-14; `Step3Form`, `ServicesFormValues` (T2); `ServicesRepeater`, `EMPTY_SERVICE` (T22).
 **Do:** `useForm<ServicesFormValues, unknown, z.output<typeof Step3Form>>({ resolver: zodResolver(Step3Form), defaultValues: { services: own && own.services.length > 0 ? own.services.map((s) => ({ name: s.name, price: String(s.price), unit: s.unit })) : [{ ...EMPTY_SERVICE }] } })`. Wrap the form in `<FormProvider {...form}>`, render `<ServicesRepeater />`, banner, `WizardFooter` (`Continue`/`Saving…`). Submit: `save.mutateAsync({ step: 3, body: { services: v.services } })`, then `onSaved()`. Server field errors (e.g. `services.1.name`) land on the row through `mapApiErrorToForm` (field paths equal the form's).
