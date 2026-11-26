@@ -1830,7 +1830,7 @@ describe('inbox URL state', () => {
 **Commit:** `git commit -m "feat(web): provider inbox URL state (M10-T22)"`
 
 ### T23 — `AgreedPriceInput`
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/agreed-price-input.tsx`
 **Context:** S22 field table (`number, LKR prefix, step 1`); input text 16px on phone (SPEC §2.3).
 **Do:** Create:
