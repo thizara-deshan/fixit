@@ -76,13 +76,11 @@ export const routes: RouteObject[] = [
                   { path: 'account', lazy: page(customer, 'AccountPage') },
                 ],
               },
+              { path: 'become-a-provider/done', lazy: page(onboarding, 'OnboardingDonePage') },
               {
                 path: 'become-a-provider',
                 element: <RedirectPublishedProvider />,
-                children: [
-                  { path: 'done', lazy: page(onboarding, 'OnboardingDonePage') },
-                  { path: ':step', lazy: page(onboarding, 'BecomeProviderPage') },
-                ],
+                children: [{ path: ':step', lazy: page(onboarding, 'BecomeProviderPage') }],
               },
             ],
           },

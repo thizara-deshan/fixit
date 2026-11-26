@@ -2738,7 +2738,7 @@ export function BecomeProviderPage() {
 **Commit:** `git commit -m "feat(web): S19 become-a-provider page (M11-T31)"`
 
 ### T32 — Done screen and route move
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/pages/done-page.tsx`, `src/features/onboarding/pages/done-page.test.tsx`, `src/app/chunks/onboarding.tsx`, `src/app/routes.tsx`, `src/app/routes.test.tsx`
 **Context:** S19 Done row (`CircleCheck` tile; `Your listing is live` / `Customers can now find {Business}. It shows as "Not yet verified" until you upload your ID.`; `Get verified` primary → `/dashboard/verification` · `Go to dashboard` secondary); D-5; AC2 (publish → done), AC4 (nav `Dashboard`, Discover, L3 dot).
 **Do:**
