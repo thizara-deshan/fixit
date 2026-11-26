@@ -1,8 +1,6 @@
 import { PlaceholderScreen } from '../placeholder-screen';
 
-export function BecomeProviderPage() {
-  return <PlaceholderScreen title="Become a provider" />;
-}
+export { BecomeProviderPage } from '@/features/onboarding/pages/become-provider-page';
 
 export function OnboardingDonePage() {
   return <PlaceholderScreen title="Your listing is live" />;

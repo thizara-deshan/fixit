@@ -2554,7 +2554,7 @@ export function StepPhoto({ own, onBack, onSaved }: StepProps) {
 **Commit:** `git commit -m "feat(web): onboarding step 5 photo and publish (M11-T30)"`
 
 ### T31 — S19 page: gate, loading, resume, discard
-- [ ] done
+- [x] done
 **Files:** `src/features/onboarding/pages/become-provider-page.tsx`, `src/features/onboarding/components/email-gate.tsx`, `src/features/onboarding/pages/become-provider-page.test.tsx`, `src/app/chunks/onboarding.tsx`
 **Context:** S19 Gate; AC1, AC3, AC7 (discard), AC8, AC9; D-2, D-15; `resolveStep` (T20); `useOwnProvider` (T19); `useCatalog` (`features/site/hooks.ts`); `LoadingRegion`, `SkeletonSectionCard`, `SectionError`, `DiscardChangesGuard`; `BlockedCard` (`features/requests/components/blocked-card.tsx`) for the S12 card; request-form-page's "set state, then navigate in an effect" pattern so the discard guard is already off when navigating.
 **Do:**
