@@ -2022,7 +2022,7 @@ describe('onboarding hooks', () => {
 **Commit:** `git commit -m "feat(web): onboarding api, hooks and resume rule (M11-T20)"`
 
 ### T21 — Move `AgreedPriceInput` to `components/lkr-input.tsx`
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/agreed-price-input.tsx` (delete), `src/components/lkr-input.tsx` (create), every importer of `AgreedPriceInput`
 **Context:** D-13; CLAUDE.md "Component shared by 2+ features".
 **Do:**
