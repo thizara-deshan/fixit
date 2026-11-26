@@ -2918,7 +2918,7 @@ export function CustomerCard({ view }: { view: ProviderRequestView }) {
 **Commit:** `git commit -m "feat(web): S22 customer card (M10-T35)"`
 
 ### T36 — S22 Job details card
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/job-details-card.tsx`
 **Context:** S22.E2 (H2 `Job details`; labels `Service`, `Preferred date`, `Time slot`, `Town`, `Description`); same layout as S15 `request-details-card.tsx`.
 **Do:** Create:
