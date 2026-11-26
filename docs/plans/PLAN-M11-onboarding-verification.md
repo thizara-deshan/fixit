@@ -2939,7 +2939,7 @@ export function SubmittedDocuments({ documents }: { documents: DocumentMeta[] })
 **Commit:** `git commit -m "feat(web): S26 status card and submitted list (M11-T34)"`
 
 ### T35 — S26 Verification page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/pages/verification-page.tsx`, `src/features/provider-business/pages/verification-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** S26 layout (H1 `Verification`, status card, 2×2 slots desktop / 1 column phone, privacy note `[Lock] Only you and Fixit admins can see these documents.`, submit `Submit for review` / `Submit again`, `Submitting…`, disabled while uploading, toast `Documents submitted. We'll email you when they're checked.`); §6.7 discard (D-16); AC5, AC6, AC7, AC8; `missingRequiredDocuments`, `DOCUMENT_MISSING` (T3); `DocumentSlot`, `VerificationStatusCard`, `SubmittedDocuments` (T33–T34); `useVerification`, `useSubmitVerification` (T19); `LoadingRegion`, `SkeletonSectionCard`, `SectionError`, `SubmitButton`, `DiscardChangesGuard`, `FormErrorBanner`, `notify`.
 **Do:**

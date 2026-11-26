@@ -18,9 +18,7 @@ export function ServiceAreasPage() {
   return <PlaceholderScreen frame="bare" title="Service areas" />;
 }
 
-export function VerificationPage() {
-  return <PlaceholderScreen frame="bare" title="Verification" />;
-}
+export { VerificationPage } from '@/features/provider-business/pages/verification-page';
 
 export function ProviderReviewsPage() {
   return <PlaceholderScreen frame="bare" title="Reviews" />;

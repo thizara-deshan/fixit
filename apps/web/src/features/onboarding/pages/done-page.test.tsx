@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { authStore } from '@/lib/auth-store';
 import { commit, db } from '@/mocks/db/store';
@@ -65,6 +65,10 @@ describe('S19 done', () => {
     await waitFor(() => {
       expect(view.location()).toBe('/dashboard/verification');
     });
+    expect(await screen.findByRole('heading', { level: 1, name: 'Verification' })).toBeInTheDocument();
+    const nav = screen.getAllByRole('link', { name: /Verification/ })[0];
+    if (!nav) throw new Error('no Verification nav link');
+    expect(within(nav).getByText('Needs attention')).toBeInTheDocument();
   });
   it('done for a draft → back to its step', async () => {
     signInAs('providerDraft');
