@@ -1716,7 +1716,13 @@ Then `pnpm verify` green, tick T27, commit.
 - After T26: "Human: S16 at 390 — sticky bar, star targets, post a review, check `/providers/p01` count."
 
 ## Blockers
-(executor writes here; leave empty)
+- **T15 — `DataList` does not hide an empty actions row on phone.** T15 step `action` says: if `DataList` renders an empty actions row when the cell returns `null`, check that it hides the row, and if it doesn't, STOP rather than fork `DataList`. In `src/components/data-list.tsx` the phone card renders `<div className="relative z-10 mt-1 flex gap-2 …">` whenever any column has `card: 'actions'`, with one inner `<div className="flex flex-1 gap-2">` per actions column, regardless of what `cell(row)` returns. So every card without a review button (10 of 11 for Olivia) gets an empty `mt-1` row, about 4 px of extra bottom space plus the card's `gap-2` (8 px).
+  Options:
+  1. Allow a small change to `DataList`: skip the actions wrapper when every actions cell renders `null` (needs `cell` results inspected, or an optional `hasActions?: (row) => boolean` on the column). Touches a shared component and its test.
+  2. Drop the phone `action` column and render `reviewButton(r)` inside the `when`/`contact` meta rows (no forced 44 px height from `DataList`, so add `min-h-11` on the button). No change to shared code, but diverges from the plan's column list.
+  3. Accept the cosmetic 12 px gap on cards without a button (keep the plan's column list as written).
+  Executor recommendation: option 1 (smallest, keeps the SPEC layout and 44 px targets).
+  Tasks T1–T14 are done and committed; T15 not started.
 
 ## Nice-to-haves / notes (not tasks)
 - API milestone: D-3 and D-4 are recorded in decision 005 (ARCH §2.5/§4 updated). The API's 409 should carry `details.status` like the mock (D-5).
