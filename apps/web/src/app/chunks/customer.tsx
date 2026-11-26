@@ -4,9 +4,7 @@ import { PlaceholderScreen } from '../placeholder-screen';
 
 export { RequestFormPage } from '@/features/requests/pages/request-form-page';
 export { RequestSentPage } from '@/features/requests/pages/request-sent-page';
-export function MyRequestsPage() {
-  return <CustomerPageHeader title="My requests" tabs />;
-}
+export { MyRequestsPage } from '@/features/requests/pages/my-requests-page';
 export function SavedPage() {
   return <CustomerPageHeader title="Saved providers" tabs />;
 }

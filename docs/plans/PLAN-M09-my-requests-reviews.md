@@ -1364,7 +1364,7 @@ States: loading → DataList skeletons (table rows ×5 / phone cards ×5, `aria-
 **Commit:** `git commit -m "feat(web): my-requests table and phone cards (M09-T15)"`
 
 ### T16 — `MyRequestsPage` (S14) and route wiring
-- [ ] done
+- [x] done
 **Files:** `src/features/requests/pages/my-requests-page.tsx`, `src/app/chunks/customer.tsx`
 **Context:** S14 layout, E1–E7; L2 header (`CustomerPageHeader`); `SegmentedTabLinks` (S20 pattern), `Pagination`, `EmptyState` (`Inbox`), `SectionError`; `parseListSearch`, `listHref`.
 **Do:**
