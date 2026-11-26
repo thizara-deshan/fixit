@@ -342,7 +342,7 @@ describe('toProviderView (§6.3)', () => {
 **Commit:** `git commit -m "feat(contracts): toProviderView privacy projection (M10-T3)"`
 
 ### T4 — Inbox query, counts, search and order
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/requests/inbox.ts`, `packages/contracts/src/requests/inbox.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S21 (7 tabs, `?status=&q=&page=`, Pending by `expiresAt` ascending, otherwise newest first, 20 per page `PAGE_SIZE.providerRequests`), D-3, D-4.
 **Do:**
