@@ -5,6 +5,7 @@ import { mockEndpoint } from '../lib/endpoint';
 import { mockError } from '../lib/errors';
 import { eligibilityFor } from '../lib/profile';
 import {
+  applyTransition,
   customerViewOf,
   inboxList,
   myRequestList,
@@ -138,5 +139,16 @@ export const requestsHandlers = [
     expireDue(d, now);
     const p = ownProvider(d, actor.userId);
     return providerViewOf(d, ownInboxRequest(d, p.id, params.ref ?? ''), now);
+  }),
+
+  mockEndpoint(E.requests_accept, ({ db: d, actor, params, body, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    const r = ownInboxRequest(d, p.id, params.ref ?? '');
+    // D-5: no sweep first — a lapsed Pending is refused `expired` by the state machine.
+    transitionOr409(r, 'accepted', { kind: 'provider', userId: actor.userId }, now);
+    applyTransition(r, 'accepted', 'provider', actor.userId, now);
+    r.agreedPrice = body.agreedPrice ?? null;
+    return providerViewOf(d, r, now);
   }),
 ];

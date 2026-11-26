@@ -1005,7 +1005,7 @@ describe('GET /me/provider/requests/:ref', () => {
 **Commit:** `git commit -m "feat(web): mock provider inbox list and detail (M10-T9)"`
 
 ### T10 — Mock handler: accept
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/requests.ts`, `src/mocks/handlers/requests-provider-actions.test.ts`
 **Context:** A13, F-18, F-27, BR-12; D-5. `transitionOr409` (409 with `details.reason` + `details.status`).
 **Do:** Add to `requestsHandlers` (import `applyTransition`):
