@@ -1282,7 +1282,7 @@ describe('GET /me/provider · PUT onboarding/:step', () => {
 **Commit:** `git commit -m "feat(web): mock profile photo handlers (M11-T13)"`
 
 ### T14 — Mock verification logic
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/verification.ts`, `src/mocks/lib/verification.test.ts`
 **Context:** D-10; BR-17, BR-18; SPEC §8.5; `isVerificationEditable`, `missingRequiredDocuments` (contracts); `ownProvider` (`mocks/lib/requests.ts`).
 **Do:** Create `verification.ts`:
