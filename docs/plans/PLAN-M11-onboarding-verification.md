@@ -2032,7 +2032,7 @@ describe('onboarding hooks', () => {
 **Commit:** `git commit -m "refactor(web): share LKR input between features (M11-T21)"`
 
 ### T22 — Services editor (`ServiceRowFields` + `ServicesRepeater`)
-- [ ] done
+- [x] done
 **Files:** `src/components/services-editor.tsx`, `src/components/services-editor.test.tsx`
 **Context:** SPEC S23 field table + live preview `Shows as: from LKR 2,500 / hour`; S19 step 3 (inline rows); D-13, D-14; `formatServicePrice` (`lib/format.ts`); `ServicePriceText`, `ServicesFormValues`, `SERVICES_MAX`, `SERVICES_MAX_MESSAGE` (T2); `FormField`, `LkrInput`, `Input`; radio styling copied from `features/requests/components/slot-control.tsx`.
 **Do:** Create `services-editor.tsx`:
