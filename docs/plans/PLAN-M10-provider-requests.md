@@ -2273,7 +2273,7 @@ export function ProviderRequestsList({ rows, loading, empty, caption, showReplyB
 **Commit:** `git commit -m "feat(web): provider requests list (M10-T28)"`
 
 ### T29 — Stat tiles
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/stat-tiles.tsx`
 **Context:** S20.E6 (labels, subs, icons, tints, links; rating link only when `features.providerReviews`), SPEC §2.9 stat tile, phone 2×2 gap 12 / padding 16 / icon 36 / sub on its own line; screenshot `07-provider-dashboard-desktop.png` top row.
 **States:** loading → `StatTilesSkeleton` (4 × `SkeletonStatTile` in the same grid); error handled by the page.
