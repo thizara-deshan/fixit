@@ -67,7 +67,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Step 1, 2 and 4 schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/onboarding.ts`, `packages/contracts/src/providers/onboarding.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S19 field table; S25 (areas rules); BR-13, BR-14, BR-23; D-1, D-3, D-4. `MobileInput`, `MOBILE_MESSAGE`, `Id` in `common/primitives.ts`.
 **Do:**
