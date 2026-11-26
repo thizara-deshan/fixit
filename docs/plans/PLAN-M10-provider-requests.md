@@ -3359,7 +3359,7 @@ describe('S22 provider request detail', () => {
 **Commit:** `git commit -m "feat(web): provider request detail page S22 (M10-T39)"`
 
 ### T40 — M10 acceptance checks
-- [ ] done
+- [x] done
 **Files:** this plan (tick boxes), `docs/milestones/M00-index.md` (mark M10 done the way M09 was marked)
 **Context:** milestone acceptance criteria 1–10.
 **Do:** Reset the dev mock db (DevPanel → reset demo data) before each manual check. Walk every criterion; write `✓` or the failure under each in a short "Acceptance results" list appended to this plan:
@@ -3376,6 +3376,20 @@ describe('S22 provider request detail', () => {
 11. Run `pnpm verify`; it must be green. Mark M10 done in `docs/milestones/M00-index.md`.
 **Verify:** all of the above ✓; `pnpm verify` green.
 **Commit:** `git commit -m "chore: M10 acceptance checks (M10-T40)"`
+
+## Acceptance results
+Automated (`pnpm verify` green: contracts 357, fixtures 28, web 528):
+1. AC1 ✓ `overview-page.test.tsx › AC1`
+2. AC2 ✓ `overview-page.test.tsx › AC2`
+3. AC3 ✓ `requests-page.test.tsx › AC3` (decline with reason, Olivia sees it on S15)
+4. AC4 ✓ `requests-page.test.tsx › AC4 ×3`
+5. AC5 ✓ `request-page.test.tsx › AC5 ×3`
+6. AC6 ✓ `request-page.test.tsx › AC6`
+7. AC7 ✓ `request-page.test.tsx › AC7` (phone sticky bar, bottom sheet)
+8. AC8 ✓ `overview-page.test.tsx › AC8 ×3`
+9. AC9 ✓ `routes.test.tsx` and `request-page.test.tsx › AC9`
+10. AC10 ✓ `projections.test.ts › toProviderView`, `requests-provider-actions.test.ts › lapsed pending`
+Manual (not done by the executor): AC1 pixel comparison with the reference screenshot, AC2 flash timing, AC4 reload of a combined URL, AC7 800 px drawer and no-horizontal-scroll console check, AC8 slow latency / forced 409 / forced 500 in the DevPanel, cross-role check of FX-2061 as Olivia. The human checkpoints after T33, T34 and T39 were passed (S20, S21, S22 at 1440/390/800).
 
 ## Checkpoints
 - After T14: "Human: read `requests-inbox.test.ts` and `requests-provider-actions.test.ts` and confirm the privacy and 404/403 cases match what you expect from the real API in M18."
