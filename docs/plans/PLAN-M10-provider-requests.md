@@ -2367,7 +2367,7 @@ export function StatTilesSkeleton() {
 **Commit:** `git commit -m "feat(web): dashboard stat tiles (M10-T29)"`
 
 ### T30 — Overview header
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-dashboard/components/overview-header.tsx`
 **Context:** S20.E1–E3, E5 (`[Eye] View public profile`, new tab); availability switch E4 is **not** built (flag `pause` off); screenshot header row.
 **Do:** Create:
