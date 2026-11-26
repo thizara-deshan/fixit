@@ -458,7 +458,7 @@ describe('compareInbox', () => {
 **Commit:** `git commit -m "feat(contracts): provider inbox query, counts, search and order (M10-T4)"`
 
 ### T5 — `ProviderDashboard` and `dashboardStats`
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/schemas.ts`, `packages/contracts/src/providers/dashboard.ts`, `packages/contracts/src/providers/dashboard.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S20.E6 (four tiles; Completed this month in Colombo), D-1, D-2; milestone note on the checklist.
 **Do:**
