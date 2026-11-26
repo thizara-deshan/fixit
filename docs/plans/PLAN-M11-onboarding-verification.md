@@ -241,7 +241,7 @@ describe('step param and next step', () => {
 **Commit:** `git commit -m "feat(contracts): onboarding step 1/2/4 schemas (M11-T1)"`
 
 ### T2 — Service schemas (step 3, shared with S23)
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/services.ts`, `packages/contracts/src/providers/services.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S23 field table, S19 step 3; BR-14; ARCH §2.5 `ServiceBody` excerpt (this task creates it); D-14. `PriceUnit` in `common/enums.ts`. The text-to-number pattern copies `AgreedPriceText` (`requests/provider-bodies.ts`).
 **Do:**
