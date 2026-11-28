@@ -1745,7 +1745,7 @@ export const restoreReview = (id: string): Promise<ModerationRow> =>
 **Commit:** `git commit -m "feat(web): admin api calls and query keys (M13-T21)"`
 
 ### T22 — Admin query hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/hooks.ts`, `src/features/admin/hooks.test.tsx`
 **Context:** SPEC §6.11 (S31 + badge 60 s / focus); D-17.
 **Do:** create `hooks.ts` (T23 appends mutations):
