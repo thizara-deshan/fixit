@@ -40,4 +40,11 @@ describe('mock controls', () => {
     expect(body.error.code).toBe('RULE_VIOLATION');
     expect(body.error.details.rule).toBe('provider_paused');
   });
+  it('rule_services_min → 422 with details.rule', async () => {
+    const res = forcedResponse('rule_services_min');
+    expect(res.status).toBe(422);
+    expect(await res.json()).toMatchObject({
+      error: { code: 'RULE_VIOLATION', details: { rule: 'services_min' } },
+    });
+  });
 });

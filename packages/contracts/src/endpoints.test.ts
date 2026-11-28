@@ -152,4 +152,17 @@ describe('ENDPOINTS', () => {
     ] as const)
       expect('response' in ENDPOINTS[id]).toBe(false);
   });
+  it('M12 own-listing rows match ARCHITECTURE §3.3', () => {
+    const rows = Object.fromEntries(Object.values(ENDPOINTS).map((d) => [`${d.method} ${d.path}`, d.access]));
+    expect(rows).toMatchObject({
+      'PATCH /me/provider/business': ['provider'],
+      'POST /me/provider/services': ['provider'],
+      'PATCH /me/provider/services/:id': ['provider'],
+      'DELETE /me/provider/services/:id': ['provider'],
+      'PUT /me/provider/areas': ['provider'],
+    });
+    expect('response' in ENDPOINTS.provider_service_delete).toBe(false); // 204
+    expect(ENDPOINTS.provider_service_update.owner).toBe('resource_provider');
+    expect(ENDPOINTS.provider_service_delete.owner).toBe('resource_provider');
+  });
 });

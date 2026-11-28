@@ -9,6 +9,7 @@ export const SERVICE_UNIT_MESSAGE = 'Choose how this price is charged.';
 export const SERVICES_MIN_MESSAGE = 'Add at least one service.';
 export const SERVICES_MAX = 20;
 export const SERVICES_MAX_MESSAGE = 'You can list up to 20 services.';
+export const SERVICES_LAST_MESSAGE = 'You need at least one service.'; // S23.E2
 
 export const ServiceName = z
   .string()

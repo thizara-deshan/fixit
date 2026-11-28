@@ -6,17 +6,11 @@ export { ProviderRequestsPage } from '@/features/provider-dashboard/pages/reques
 
 export { ProviderRequestPage } from '@/features/provider-dashboard/pages/request-page';
 
-export function ServicesPage() {
-  return <PlaceholderScreen frame="bare" title="My Services" />;
-}
+export { ServicesPage } from '@/features/provider-business/pages/services-page';
 
-export function BusinessProfilePage() {
-  return <PlaceholderScreen frame="bare" title="Business profile" />;
-}
+export { BusinessProfilePage } from '@/features/provider-business/pages/business-profile-page';
 
-export function ServiceAreasPage() {
-  return <PlaceholderScreen frame="bare" title="Service areas" />;
-}
+export { ServiceAreasPage } from '@/features/provider-business/pages/service-areas-page';
 
 export { VerificationPage } from '@/features/provider-business/pages/verification-page';
 

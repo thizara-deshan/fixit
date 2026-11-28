@@ -53,7 +53,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Business schemas and the BR-21 rule
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/business.ts`, `packages/contracts/src/providers/business.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S24.E3/E4, §8.1 A23, §8.5 step 4; PRODUCT BR-13, BR-21; ARCH §3.3 row `PATCH /me/provider/business`; D-1, D-2. Reuses `BusinessName`, `Bio`, `YearsExperience`, `YearsText`, `OnboardingStep2Body` (onboarding.ts) and `OwnProvider` (own.ts).
 **Do:**
@@ -173,7 +173,7 @@ describe('UpdateBusinessBody / Form', () => {
 **Commit:** `git commit -m "feat(contracts): business update schemas and BR-21 rule (M12-T1)"`
 
 ### T2 — Endpoint registry entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`, `packages/contracts/src/providers/services.ts`
 **Context:** ARCH §3.3 rows `PATCH /me/provider/business`, `POST/PATCH/DELETE /me/provider/services…`, `PUT /me/provider/areas` (all **P**).
 **Do:**
@@ -258,7 +258,7 @@ export const SERVICES_LAST_MESSAGE = 'You need at least one service.'; // S23.E2
 **Commit:** `git commit -m "feat(contracts): M12 provider endpoints in the registry (M12-T2)"`
 
 ### T3 — Marcus approved submission fixture
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/providers.ts`, `packages/fixtures/src/build.test.ts`, `apps/web/src/mocks/db/schema.ts`, `apps/web/src/mocks/db/store.test.ts`
 **Context:** D-3, D-4; ARCH §8.1 (re-verification copies the last approved submission's documents).
 **Do:**
@@ -305,7 +305,7 @@ export const SERVICES_LAST_MESSAGE = 'You need at least one service.'; // S23.E2
 **Commit:** `git commit -m "feat(fixtures): approved verification for Marcus (M12-T3)"`
 
 ### T4 — Forced `rule_services_min`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/controls.ts`, `src/mocks/lib/controls.test.ts`, `src/mocks/dev/DevPanel.tsx`
 **Context:** AC6; D-11.
 **Do:**
@@ -329,7 +329,7 @@ export const SERVICES_LAST_MESSAGE = 'You need at least one service.'; // S23.E2
 **Commit:** `git commit -m "feat(web): forced services_min rule in the mock controls (M12-T4)"`
 
 ### T5 — Mock service logic
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/services.ts`, `src/mocks/lib/services.test.ts`
 **Context:** BR-09, BR-10, BR-14, A24; D-5. `ruleError` from `own-provider.ts`; `computeStartingPrice` from contracts.
 **Do:** create `src/mocks/lib/services.ts`:
@@ -462,7 +462,7 @@ describe('mock services', () => {
 **Commit:** `git commit -m "feat(web): mock service create/update/delete with starting price (M12-T5)"`
 
 ### T6 — Mock `replaceAreas`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/own-provider.ts`, `src/mocks/lib/own-provider.test.ts`
 **Context:** BR-04, BR-14, A25; S19 step 4 shares the rule. Pure refactor of `applyOnboardingStep` case 4 plus an export.
 **Do:**
@@ -504,7 +504,7 @@ export function replaceAreas(d: MockDb, p: FxProvider, body: AreasBody): void {
 **Commit:** `git commit -m "refactor(web): share replaceAreas between onboarding and S25 mocks (M12-T6)"`
 
 ### T7 — Mock business update and re-verification
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/verification.ts`, `src/mocks/lib/business.ts`, `src/mocks/lib/business.test.ts`
 **Context:** A23, BR-21, SPEC §8.5 step 4, §10.2 #16; D-2, D-3. AC8.
 **Do:**
@@ -650,7 +650,7 @@ describe('updateBusiness (BR-21, AC8)', () => {
 **Commit:** `git commit -m "feat(web): mock business update with BR-21 re-verification (M12-T7)"`
 
 ### T8 — Handlers: services
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-business.test.ts`
 **Context:** ARCH §3.3; D-5; AC1, AC2, AC7.
 **Do:** in `providers.ts` add `import { createService, deleteService, toService, updateService } from '../lib/services';` and append to `providersHandlers` (after `provider_photo_delete`):
@@ -738,7 +738,7 @@ describe('services handlers', () => {
 **Commit:** `git commit -m "feat(web): mock handlers for provider services (M12-T8)"`
 
 ### T9 — Handlers: business and areas
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-business.test.ts`
 **Context:** A23, A25; D-1–D-3; AC3, AC4, AC8.
 **Do:** in `providers.ts` add `import { updateBusiness } from '../lib/business';`, add `replaceAreas` to the `../lib/own-provider` import, and append:
@@ -817,7 +817,7 @@ describe('business and areas handlers', () => {
 **Commit:** `git commit -m "feat(web): mock handlers for business details and service areas (M12-T9)"`
 
 ### T10 — Error copy and API calls
-- [ ] done
+- [x] done
 **Files:** `src/lib/error-copy.ts`, `src/features/provider-business/api.ts`
 **Context:** S23 field table, §6.3; D-5.
 **Do:**
@@ -856,7 +856,7 @@ export const saveAreas = (body: AreasBody): Promise<OwnProvider> =>
 **Commit:** `git commit -m "feat(web): provider business API calls and rule copy (M12-T10)"`
 
 ### T11 — Mutation hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/hooks.ts`, `src/features/provider-business/hooks.test.tsx`
 **Context:** D-10; ARCH §4.2.
 **Do:** in `hooks.ts` add `import type { QueryClient } from '@tanstack/react-query';`, add `type AreasBody, type ServiceBody, type UpdateBusinessBody` to the contracts import, add `createService, deleteService, saveAreas, updateBusiness, updateService` to the `./api` import, and append:
@@ -951,7 +951,7 @@ export function useSaveAreas() {
 **Commit:** `git commit -m "feat(web): hooks for services, business details and areas (M12-T11)"`
 
 ### T12 — Starting-at preview tile
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/starting-price-tile.tsx`
 **Context:** S23 layout #2 (S20 stat-tile style, one tile); BR-10. Copy `Starting at` / `LKR 2,500 / hour` (no `from`).
 **Do:** create:
@@ -987,7 +987,7 @@ States: value (always for a published provider); `—` when `price` is null. Pho
 **Commit:** `git commit -m "feat(web): S23 starting-at preview tile (M12-T12)"`
 
 ### T13 — Services list (table / phone cards) with last-service tip
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/services-list.tsx`, `src/components/services-editor.tsx`
 **Context:** S23 layout #3, S23.E2, §6.9; D-6, D-7. Reuse `DataList` (`components/data-list.tsx`): table at ≥641, cards below. Actions go in a `card: 'status'` column so phone cards show them on the right of row 1.
 **Do:**
@@ -1085,7 +1085,7 @@ States: rows 1–20; last-row tip (D-7). Loading/empty are handled by the page (
 **Commit:** `git commit -m "feat(web): S23 services table and phone cards (M12-T13)"`
 
 ### T14 — Service dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/service-dialog.tsx`
 **Context:** S23.E3, S23 field table, §6.7, §6.10; D-6, D-8, D-9. Reuse `ServiceRowFields` (one row, no `onRemove`), `Step3Form` (contracts: `{services: [row]}`), `ResponsiveDialog`, `FormErrorBanner`, `SubmitButton`, `mapApiErrorToForm`.
 **Do:** create:
@@ -1207,7 +1207,7 @@ If `mapApiErrorToForm`'s `RuleFields` type rejects `'services.0.name'`, STOP and
 **Commit:** `git commit -m "feat(web): S23 add/edit service dialog (M12-T14)"`
 
 ### T15 — Delete service confirm
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/delete-service-dialog.tsx`
 **Context:** S23.E4; AC2, AC6; D-9.
 **Do:** create:
@@ -1272,7 +1272,7 @@ States: default, submitting (`Deleting…`), rule error (`You need at least one 
 **Commit:** `git commit -m "feat(web): S23 delete service confirm (M12-T15)"`
 
 ### T16 — S23 My Services page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/pages/services-page.tsx`, `src/features/provider-business/pages/services-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** S23 layout, S23.E1; §6.1 (Stat tile + Table row skeletons), §6.3, §6.7; AC1, AC2, AC5, AC6.
 **Do:**
@@ -1477,7 +1477,7 @@ If the `Price` label regex also matches another label in the dialog, use the exa
 **Commit:** `git commit -m "feat(web): S23 My Services page (M12-T16)"`
 
 ### T17 — Re-verify dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/reverify-dialog.tsx`, `src/components/areas-picker.tsx`
 **Context:** S24.E4; D-9.
 **Do:**
@@ -1527,7 +1527,7 @@ export function ReverifyDialog({
 **Commit:** `git commit -m "feat(web): S24 re-verify dialog (M12-T17)"`
 
 ### T18 — Business details form
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/business-details-form.tsx`
 **Context:** S24.E3, S24 fields (= S19 step 1 + Category select); BR-21; D-1, D-2. Copy the field markup of `features/onboarding/components/step-business.tsx` (business name, bio with `{n} / 600`, years) — do not import from the onboarding feature.
 **Do:** create:
@@ -1671,7 +1671,7 @@ States: default (prefilled), field errors (S19 copy + `Choose a category.`), inl
 **Commit:** `git commit -m "feat(web): S24 business details form with BR-21 warning (M12-T18)"`
 
 ### T19 — S24 Business profile page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/pages/business-profile-page.tsx`, `src/features/provider-business/pages/business-profile-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** S24 layout, S24.E1; reuse `PhotoUploader` (it already has `Upload photo`/`Replace`/`Remove`, the `Remove your photo?` confirm and the `Photo removed.` toast) wired exactly like `step-photo.tsx` (`uploadPhoto`, `usePhotoCache`, `useRemovePhoto`); `useCatalog` from `@/features/site/hooks`. AC3, AC5, AC6.
 **Do:**
@@ -1847,7 +1847,7 @@ If the photo `Remove` button and the confirm's `Remove` button clash in `getByRo
 **Commit:** `git commit -m "feat(web): S24 business profile page (M12-T19)"`
 
 ### T20 — S25 Service areas page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/areas-form.tsx`, `src/features/provider-business/pages/service-areas-page.tsx`, `src/features/provider-business/pages/service-areas-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** S25; A25; reuse `AreasPicker` (it already unticks the new base town and shows `{n} of 9 selected` and the 9-town limit) wired like `features/onboarding/components/step-areas.tsx`. AC4, AC5, AC6.
 **Do:**
@@ -2003,7 +2003,7 @@ describe('S25 Service areas', () => {
 **Commit:** `git commit -m "feat(web): S25 service areas page (M12-T20)"`
 
 ### T21 — Access tests for the M12 routes
-- [ ] done
+- [x] done
 **Files:** `src/app/routes.test.tsx`
 **Context:** AC7; D-12; SPEC §6.4.
 **Do:** add to `routes.test.tsx` (reuse its existing imports/helpers; add any missing ones: `screen`, `renderRoute`, `signInAs`, `FIXED_NOW`):
@@ -2032,7 +2032,7 @@ Use the S40 heading text exactly as the existing S40 test in this file asserts i
 **Commit:** `git commit -m "test(web): access to M12 dashboard routes (M12-T21)"`
 
 ### T22 — M12 acceptance checks
-- [ ] done
+- [x] done
 **Files:** this plan (tick boxes), `docs/milestones/M00-index.md` (only if a new idea came up: Ideas inbox)
 **Do:** walk every acceptance criterion; record pass/fail next to each in the commit body. Any failure → STOP, write a blocker.
 | AC | Check |

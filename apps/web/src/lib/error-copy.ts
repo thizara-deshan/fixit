@@ -1,8 +1,12 @@
 import {
   CURRENT_PASSWORD_WRONG,
   EMAIL_TAKEN,
+  OTHER_TOWNS_MAX_MESSAGE,
   PASSWORD_REUSED,
   PROVIDER_MOBILE_REQUIRED,
+  SERVICE_NAME_TAKEN,
+  SERVICES_LAST_MESSAGE,
+  SERVICES_MAX_MESSAGE,
   type RuleCode,
 } from '@fixit/contracts';
 import { CONTACT_EMAIL } from './env';
@@ -26,11 +30,15 @@ export const RULE_FIELD_COPY: Partial<Record<RuleCode, string>> = {
   current_password_wrong: CURRENT_PASSWORD_WRONG,
   password_reused: PASSWORD_REUSED,
   mobile_missing: PROVIDER_MOBILE_REQUIRED,
+  service_name_taken: SERVICE_NAME_TAKEN,
 };
 
 /** Rules shown as the form banner. Later milestones add theirs here. */
 export const RULE_BANNER_COPY: Partial<Record<RuleCode, string>> = {
   invalid_credentials: FORM_COPY.invalidCredentials,
+  services_min: SERVICES_LAST_MESSAGE,
+  services_max: SERVICES_MAX_MESSAGE,
+  towns_max: OTHER_TOWNS_MAX_MESSAGE,
 };
 
 /** S12.E6. Returns the banner for a create-request rule, or null (caller falls back to mapApiErrorToForm → §6.3). */

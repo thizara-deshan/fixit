@@ -1,7 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { authStore } from '@/lib/auth-store';
+import { FIXED_NOW } from '@/test/fixed-now';
 import { renderRoute } from '@/test/render';
 import { signInAs } from '@/test/sign-in';
 
@@ -141,4 +142,30 @@ describe('logout (A4)', () => {
       expect(r.location()).toBe('/admin/login');
     });
   });
+});
+
+describe('M12 dashboard business routes', () => {
+  beforeEach(() => vi.useFakeTimers({ now: FIXED_NOW, toFake: ['Date'] }));
+  afterEach(() => vi.useRealTimers());
+
+  it.each(['/dashboard/services', '/dashboard/profile', '/dashboard/areas'])(
+    'Olivia on %s → /become-a-provider/1',
+    async (path) => {
+      signInAs('customer');
+      const r = renderRoute(path);
+      await waitFor(() => {
+        expect(r.location()).toBe('/become-a-provider/1');
+      });
+    },
+  );
+  it.each(['/dashboard/services', '/dashboard/profile', '/dashboard/areas'])(
+    'Admin on %s → S40',
+    async (path) => {
+      signInAs('admin');
+      renderRoute(path);
+      expect(
+        await screen.findByRole('heading', { level: 1, name: "You don't have access to this page" }),
+      ).toBeTruthy();
+    },
+  );
 });

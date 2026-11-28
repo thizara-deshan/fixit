@@ -2,6 +2,7 @@ import {
   computeStartingPrice,
   nextOnboardingStep,
   OnboardingStep1Body,
+  type AreasBody,
   type OnboardingBody,
   type OwnProvider,
   type RuleCode,
@@ -95,8 +96,19 @@ function newDraft(userId: string, now: Date): FxProvider {
   };
 }
 
-const fieldError = (field: string, message: string) =>
+export const fieldError = (field: string, message: string) =>
   mockError(400, 'VALIDATION_FAILED', 'Validation failed', { fieldErrors: { [field]: [message] } });
+
+/** S19 step 4 and S25 (A25): replaces the provider's towns; validates before writing. */
+export function replaceAreas(d: MockDb, p: FxProvider, body: AreasBody): void {
+  const active = (tid: string) => d.towns.some((t) => t.id === tid && t.active);
+  if (!active(body.baseTownId)) throw fieldError('baseTownId', 'Choose your base town.');
+  if (!body.otherTownIds.every(active)) throw fieldError('otherTownIds', 'Choose your base town.');
+  d.areas = d.areas.filter((a) => a.providerId !== p.id);
+  d.areas.push({ providerId: p.id, townId: body.baseTownId, isBase: true });
+  for (const townId of body.otherTownIds) d.areas.push({ providerId: p.id, townId, isBase: false });
+  p.baseTownId = body.baseTownId;
+}
 
 /** A21. Mutates the db; the handler commits. */
 export function applyOnboardingStep(d: MockDb, userId: string, input: OnboardingBody, now: Date): FxProvider {
@@ -129,16 +141,9 @@ export function applyOnboardingStep(d: MockDb, userId: string, input: Onboarding
         d.services[sid] = { id: sid, providerId: id, ...s };
       }
       break;
-    case 4: {
-      const active = (tid: string) => d.towns.some((t) => t.id === tid && t.active);
-      if (!active(input.body.baseTownId)) throw fieldError('baseTownId', 'Choose your base town.');
-      if (!input.body.otherTownIds.every(active)) throw fieldError('otherTownIds', 'Choose your base town.');
-      d.areas = d.areas.filter((a) => a.providerId !== id);
-      d.areas.push({ providerId: id, townId: input.body.baseTownId, isBase: true });
-      for (const townId of input.body.otherTownIds) d.areas.push({ providerId: id, townId, isBase: false });
-      p.baseTownId = input.body.baseTownId;
+    case 4:
+      replaceAreas(d, p, input.body);
       break;
-    }
   }
   p.onboardingStep = nextOnboardingStep(p.onboardingStep, input.step);
   return p;

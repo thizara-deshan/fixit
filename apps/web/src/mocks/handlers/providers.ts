@@ -8,12 +8,20 @@ import {
   UPLOAD_COPY,
 } from '@fixit/contracts';
 import { expireDue } from '../db/expire';
+import { updateBusiness } from '../lib/business';
 import { mockEndpoint, mockFileEndpoint } from '../lib/endpoint';
 import { mockError } from '../lib/errors';
 import { deleteFile, getFile, placeholderFile, putFile } from '../lib/files';
 import { readMultipart } from '../lib/multipart';
-import { applyOnboardingStep, publishDraft, requireDraft, toOwnProvider } from '../lib/own-provider';
+import {
+  applyOnboardingStep,
+  publishDraft,
+  replaceAreas,
+  requireDraft,
+  toOwnProvider,
+} from '../lib/own-provider';
 import { ownProvider } from '../lib/requests';
+import { createService, deleteService, toService, updateService } from '../lib/services';
 import {
   stageDocument,
   submitVerification,
@@ -75,6 +83,30 @@ export const providersHandlers = [
     const p = requireDraft(d, actor.userId);
     if (p.photoKey) deleteFile(`photo:${p.photoKey}`);
     p.photoKey = null;
+  }),
+  mockEndpoint(E.provider_service_create, ({ db: d, actor, body }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    return toService(createService(d, ownProvider(d, actor.userId), body));
+  }),
+  mockEndpoint(E.provider_service_update, ({ db: d, actor, params, body }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    return toService(updateService(d, ownProvider(d, actor.userId), params.id ?? '', body));
+  }),
+  mockEndpoint(E.provider_service_delete, ({ db: d, actor, params }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    deleteService(d, ownProvider(d, actor.userId), params.id ?? '');
+  }),
+  mockEndpoint(E.provider_business_update, ({ db: d, actor, body, now }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    const reverification = updateBusiness(d, p, body, now);
+    return { provider: toOwnProvider(d, p), reverification };
+  }),
+  mockEndpoint(E.provider_areas_put, ({ db: d, actor, body }) => {
+    if (!actor) throw mockError(401, 'UNAUTHENTICATED', 'Sign in required');
+    const p = ownProvider(d, actor.userId);
+    replaceAreas(d, p, body);
+    return toOwnProvider(d, p);
   }),
   mockFileEndpoint(
     E.files_photo,
