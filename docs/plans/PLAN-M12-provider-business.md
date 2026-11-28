@@ -53,7 +53,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Business schemas and the BR-21 rule
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/providers/business.ts`, `packages/contracts/src/providers/business.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S24.E3/E4, §8.1 A23, §8.5 step 4; PRODUCT BR-13, BR-21; ARCH §3.3 row `PATCH /me/provider/business`; D-1, D-2. Reuses `BusinessName`, `Bio`, `YearsExperience`, `YearsText`, `OnboardingStep2Body` (onboarding.ts) and `OwnProvider` (own.ts).
 **Do:**
