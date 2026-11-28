@@ -10,9 +10,7 @@ export { ServicesPage } from '@/features/provider-business/pages/services-page';
 
 export { BusinessProfilePage } from '@/features/provider-business/pages/business-profile-page';
 
-export function ServiceAreasPage() {
-  return <PlaceholderScreen frame="bare" title="Service areas" />;
-}
+export { ServiceAreasPage } from '@/features/provider-business/pages/service-areas-page';
 
 export { VerificationPage } from '@/features/provider-business/pages/verification-page';
 

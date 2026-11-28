@@ -1847,7 +1847,7 @@ If the photo `Remove` button and the confirm's `Remove` button clash in `getByRo
 **Commit:** `git commit -m "feat(web): S24 business profile page (M12-T19)"`
 
 ### T20 — S25 Service areas page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/areas-form.tsx`, `src/features/provider-business/pages/service-areas-page.tsx`, `src/features/provider-business/pages/service-areas-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** S25; A25; reuse `AreasPicker` (it already unticks the new base town and shows `{n} of 9 selected` and the 9-town limit) wired like `features/onboarding/components/step-areas.tsx`. AC4, AC5, AC6.
 **Do:**
