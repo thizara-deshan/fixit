@@ -503,7 +503,7 @@ If Marcus's real mobile in fixtures differs, the test uses its own literal objec
 **Commit:** `git commit -m "feat(contracts): admin user and review search matchers (M13-T5)"`
 
 ### T6 — Suspension cascade rule (BR-41/42)
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/suspension.ts`, `packages/contracts/src/admin/suspension.test.ts`, `packages/contracts/src/index.ts`
 **Context:** PRODUCT §6.1 system rows, BR-41, BR-42; SPEC A31; ARCH §2.8 (system actor); D-9. Reuses `canTransition`, `toMachineRequest`, `RequestRecord`.
 **Do:**
