@@ -462,7 +462,7 @@ describe('mock services', () => {
 **Commit:** `git commit -m "feat(web): mock service create/update/delete with starting price (M12-T5)"`
 
 ### T6 — Mock `replaceAreas`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/own-provider.ts`, `src/mocks/lib/own-provider.test.ts`
 **Context:** BR-04, BR-14, A25; S19 step 4 shares the rule. Pure refactor of `applyOnboardingStep` case 4 plus an export.
 **Do:**

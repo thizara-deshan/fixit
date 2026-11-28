@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { db } from '@/mocks/db/store';
 import { FIXED_NOW } from '@/test/fixed-now';
-import { applyOnboardingStep, publishDraft, toOwnProvider } from './own-provider';
+import { applyOnboardingStep, publishDraft, replaceAreas, toOwnProvider } from './own-provider';
 import { isListed } from './cards';
 
 const step1 = {
@@ -93,5 +93,25 @@ describe('own provider (mock)', () => {
       status: 422,
       extra: { details: { rule: 'onboarding_incomplete' } },
     });
+  });
+  it('replaceAreas: new base, others kept without the base; unknown town → 400', () => {
+    const d = db();
+    const p = d.providers.p01;
+    if (!p) throw new Error('fixture p01 missing');
+    replaceAreas(d, p, { baseTownId: 'negombo', otherTownIds: ['colombo', 'moratuwa'] });
+    const mine = d.areas.filter((a) => a.providerId === 'p01');
+    expect(mine.find((a) => a.isBase)?.townId).toBe('negombo');
+    expect(
+      mine
+        .filter((a) => !a.isBase)
+        .map((a) => a.townId)
+        .sort(),
+    ).toEqual(['colombo', 'moratuwa']);
+    expect(p.baseTownId).toBe('negombo');
+    expect(
+      thrown(() => {
+        replaceAreas(d, p, { baseTownId: 'atlantis', otherTownIds: [] });
+      }),
+    ).toMatchObject({ status: 400 });
   });
 });
