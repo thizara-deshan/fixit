@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { AdminOverview, HideReviewBody, makeAccountReasonBody, RejectBody, SuspendBody } from './schemas';
+import {
+  AdminOverview,
+  HideReviewBody,
+  makeAccountReasonBody,
+  RejectBody,
+  SuspendBody,
+  VerificationQueueQuery,
+} from './schemas';
 
 const msg = (r: { success: boolean; error?: { issues: { message: string }[] } }) =>
   r.error?.issues[0]?.message;
@@ -32,5 +39,19 @@ describe('AdminOverview', () => {
       metrics: { anything: 1 },
     });
     expect(v).toEqual({ attention: { pendingVerifications: 1, oldestPendingAt: null, suspendedUsers: 0 } });
+  });
+});
+
+describe('VerificationQueueQuery', () => {
+  it('defaults to pending_review, page 1; bad values fall back', () => {
+    expect(VerificationQueueQuery.parse({})).toEqual({ status: 'pending_review', page: 1 });
+    expect(VerificationQueueQuery.parse({ status: 'nope', page: '0' })).toEqual({
+      status: 'pending_review',
+      page: 1,
+    });
+    expect(VerificationQueueQuery.parse({ status: 'rejected', page: '2' })).toEqual({
+      status: 'rejected',
+      page: 2,
+    });
   });
 });

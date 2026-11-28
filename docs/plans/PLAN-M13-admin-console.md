@@ -224,7 +224,7 @@ describe('AdminOverview', () => {
 **Commit:** `git commit -m "feat(contracts): admin reason bodies, audit entry, overview (M13-T2)"`
 
 ### T3 — Verification queue and detail schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/schemas.ts`, `packages/contracts/src/admin/schemas.test.ts`
 **Context:** SPEC S31, S32.E1–E4, §8.5; ARCH §3.6 rows 2–5; D-2, D-3.
 **Do:** append to `schemas.ts`:
