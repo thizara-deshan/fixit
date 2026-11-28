@@ -1654,7 +1654,7 @@ export async function httpBlob(path: string, signal?: AbortSignal): Promise<Blob
 **Commit:** `git commit -m "feat(web): day/month and days-ago formatters, httpBlob (M13-T19)"`
 
 ### T20 — Shared conflict title and document titles
-- [ ] done
+- [x] done
 **Files:** `src/components/conflict-dialog.tsx`, `src/components/document-titles.ts`, `src/features/provider-business/components/document-slot.tsx`
 **Context:** D-6, D-19.
 **Do:**

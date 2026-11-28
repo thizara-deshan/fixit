@@ -7,6 +7,7 @@ import {
   type DocumentMeta,
   type DocumentType,
 } from '@fixit/contracts';
+import { SLOT_TITLE } from '@/components/document-titles';
 import { Button } from '@/components/ui/button';
 import { formatFileSize } from '@/lib/format';
 import { useUpload } from '@/lib/use-upload';
@@ -14,12 +15,7 @@ import { cn } from '@/lib/utils';
 import { uploadDocument } from '../api';
 import { useDeleteDocument, useDocumentCache } from '../hooks';
 
-export const SLOT_TITLE: Record<DocumentType, string> = {
-  nic_front: 'NIC — front',
-  nic_back: 'NIC — back',
-  trade_certificate: 'Trade certificate or NVQ',
-  business_registration: 'Business registration',
-};
+export { SLOT_TITLE } from '@/components/document-titles';
 export const SLOT_REQUIRED: Record<DocumentType, boolean> = {
   nic_front: true,
   nic_back: true,
