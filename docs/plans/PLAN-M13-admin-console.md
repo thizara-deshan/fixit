@@ -1677,7 +1677,7 @@ export const DOCUMENT_ORDER: readonly DocumentType[] = ['nic_front', 'nic_back',
 **Commit:** `git commit -m "refactor(web): conflict dialog title prop, shared document titles (M13-T20)"`
 
 ### T21 — Admin api.ts and query keys
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/api.ts`, `src/lib/query-keys.ts`
 **Context:** ARCH §4.2; T7 entries.
 **Do:**
