@@ -2282,7 +2282,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): wire admin console pages (M13-T40)"`
 
 ### T41 — M13 acceptance checks
-- [ ] done
+- [x] done
 **Files:** this plan (ticks), `docs/milestones/M00-index.md` (only if the index tracks milestone status — follow the M12 acceptance commit)
 **Context:** milestone acceptance criteria 1–10; frontend-complete gate note.
 **Do:** run `pnpm verify`, then `pnpm dev:mock` and walk each criterion. Record pass/fail per item in the commit body. Any failure: fix only if it is a defect in this milestone's tasks (new commit `fix(web): … (M13-T41)` with a failing test first); otherwise write a Blocker.
