@@ -987,7 +987,7 @@ States: value (always for a published provider); `—` when `price` is null. Pho
 **Commit:** `git commit -m "feat(web): S23 starting-at preview tile (M12-T12)"`
 
 ### T13 — Services list (table / phone cards) with last-service tip
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/services-list.tsx`, `src/components/services-editor.tsx`
 **Context:** S23 layout #3, S23.E2, §6.9; D-6, D-7. Reuse `DataList` (`components/data-list.tsx`): table at ≥641, cards below. Actions go in a `card: 'status'` column so phone cards show them on the right of row 1.
 **Do:**

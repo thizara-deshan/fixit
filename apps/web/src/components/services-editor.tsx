@@ -36,7 +36,8 @@ export function ServiceRowFields({
   /* eslint-enable @typescript-eslint/restrict-template-expressions */
   const err = formState.errors.services?.[index];
   const price = ServicePriceText.safeParse(row.price);
-  const preview = price.success ? formatServicePrice(price.data, row.unit) : '—';
+  const unit = PriceUnit.safeParse(row.unit); // the S23 add dialog starts without a unit (M12 D-6)
+  const preview = price.success && unit.success ? formatServicePrice(price.data, unit.data) : '—';
   return (
     <fieldset className="border-border flex flex-col gap-4 border-b pb-5 last:border-b-0 last:pb-0">
       <legend className="sr-only">Service {String(index + 1)}</legend>
