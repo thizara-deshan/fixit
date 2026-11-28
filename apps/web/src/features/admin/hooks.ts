@@ -1,7 +1,22 @@
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import type { AdminUserListQuery, ModerationQuery, VerificationQueueQuery } from '@fixit/contracts';
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+  type QueryClient,
+} from '@tanstack/react-query';
+import type {
+  AdminUserListQuery,
+  HideReviewBody,
+  ModerationQuery,
+  ReactivateBody,
+  RejectBody,
+  SuspendBody,
+  VerificationQueueQuery,
+} from '@fixit/contracts';
 import { qk } from '@/lib/query-keys';
 import {
+  approveVerification,
   fetchDocumentBlob,
   fetchModeration,
   fetchOverview,
@@ -9,6 +24,11 @@ import {
   fetchUser,
   fetchUsers,
   fetchVerification,
+  hideReview,
+  reactivateUser,
+  rejectVerification,
+  restoreReview,
+  suspendUser,
 } from './api';
 
 /** SPEC §6.11: the admin queue and the nav badge refetch on focus and every 60 s. */
@@ -42,3 +62,75 @@ export const useModeration = (q: ModerationQuery) =>
     queryFn: () => fetchModeration(q),
     placeholderData: keepPreviousData,
   });
+
+/** Every admin write: the admin domain (lists, badge) and the public catalog (badge, rating, listing) refetch. */
+function afterAdminChange(qc: QueryClient, extra: readonly (readonly unknown[])[] = []): void {
+  void qc.invalidateQueries({ queryKey: qk.admin.all });
+  void qc.invalidateQueries({ queryKey: ['catalog'] });
+  for (const key of extra) void qc.invalidateQueries({ queryKey: key });
+}
+
+/** A29. */
+export function useApproveVerification() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => approveVerification(id),
+    onSuccess: (res) => {
+      qc.setQueryData(qk.admin.verification(res.detail.id), res.detail);
+      afterAdminChange(qc);
+    },
+  });
+}
+/** A30. */
+export function useRejectVerification() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, body }: { id: string; body: RejectBody }) => rejectVerification(id, body),
+    onSuccess: (res) => {
+      qc.setQueryData(qk.admin.verification(res.detail.id), res.detail);
+      afterAdminChange(qc);
+    },
+  });
+}
+/** A31 — the cascade changes requests too. */
+export function useSuspendUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, body }: { id: string; body: SuspendBody }) => suspendUser(id, body),
+    onSuccess: (v) => {
+      qc.setQueryData(qk.admin.user(v.id), v);
+      afterAdminChange(qc, [['requests']]);
+    },
+  });
+}
+/** A32. */
+export function useReactivateUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, body }: { id: string; body: ReactivateBody }) => reactivateUser(id, body),
+    onSuccess: (v) => {
+      qc.setQueryData(qk.admin.user(v.id), v);
+      afterAdminChange(qc);
+    },
+  });
+}
+/** A33 hide. */
+export function useHideReview() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, body }: { id: string; body: HideReviewBody }) => hideReview(id, body),
+    onSuccess: () => {
+      afterAdminChange(qc);
+    },
+  });
+}
+/** A33 restore. */
+export function useRestoreReview() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => restoreReview(id),
+    onSuccess: () => {
+      afterAdminChange(qc);
+    },
+  });
+}

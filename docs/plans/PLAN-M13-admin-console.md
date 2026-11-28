@@ -1792,7 +1792,7 @@ export const useModeration = (q: ModerationQuery) =>
 **Commit:** `git commit -m "feat(web): admin query hooks (M13-T22)"`
 
 ### T23 — Admin mutation hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/hooks.ts`, `src/features/admin/hooks.test.tsx`
 **Context:** SPEC §6.5 (not optimistic); D-10 of M12 pattern (`['catalog']` holds S1/S2/S3); D-17.
 **Do:** append to `hooks.ts`:
