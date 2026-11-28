@@ -1671,7 +1671,7 @@ States: default (prefilled), field errors (S19 copy + `Choose a category.`), inl
 **Commit:** `git commit -m "feat(web): S24 business details form with BR-21 warning (M12-T18)"`
 
 ### T19 — S24 Business profile page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/pages/business-profile-page.tsx`, `src/features/provider-business/pages/business-profile-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** S24 layout, S24.E1; reuse `PhotoUploader` (it already has `Upload photo`/`Replace`/`Remove`, the `Remove your photo?` confirm and the `Photo removed.` toast) wired exactly like `step-photo.tsx` (`uploadPhoto`, `usePhotoCache`, `useRemovePhoto`); `useCatalog` from `@/features/site/hooks`. AC3, AC5, AC6.
 **Do:**

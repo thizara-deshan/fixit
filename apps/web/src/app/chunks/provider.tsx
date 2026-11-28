@@ -8,9 +8,7 @@ export { ProviderRequestPage } from '@/features/provider-dashboard/pages/request
 
 export { ServicesPage } from '@/features/provider-business/pages/services-page';
 
-export function BusinessProfilePage() {
-  return <PlaceholderScreen frame="bare" title="Business profile" />;
-}
+export { BusinessProfilePage } from '@/features/provider-business/pages/business-profile-page';
 
 export function ServiceAreasPage() {
   return <PlaceholderScreen frame="bare" title="Service areas" />;
