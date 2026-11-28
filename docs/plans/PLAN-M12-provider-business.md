@@ -817,7 +817,7 @@ describe('business and areas handlers', () => {
 **Commit:** `git commit -m "feat(web): mock handlers for business details and service areas (M12-T9)"`
 
 ### T10 — Error copy and API calls
-- [ ] done
+- [x] done
 **Files:** `src/lib/error-copy.ts`, `src/features/provider-business/api.ts`
 **Context:** S23 field table, §6.3; D-5.
 **Do:**
