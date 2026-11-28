@@ -1304,7 +1304,7 @@ describe('suspension cascade (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock suspension cascade and reactivation (M13-T13)"`
 
 ### T14 — Mock review moderation
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-reviews.ts`, `src/mocks/lib/admin-reviews.test.ts`
 **Context:** SPEC S37, A33; BR-27, BR-29; ARCH §7.7 (recompute in the same write); D-5. Reuses `ratingFrom`, `displayNameOf`, `matchesReviewSearch`.
 **Do:** create:
