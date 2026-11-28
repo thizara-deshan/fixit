@@ -1873,7 +1873,7 @@ export function useRestoreReview() {
 **Commit:** `git commit -m "feat(web): admin mutation hooks (M13-T23)"`
 
 ### T24 — Admin URL state
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/url-state.ts`, `src/features/admin/url-state.test.ts`
 **Context:** SPEC S31 (tabs), S33 URL `?q=&role=&status=&page=`, S37 tabs; D-2, D-7.
 **Do:** create:
