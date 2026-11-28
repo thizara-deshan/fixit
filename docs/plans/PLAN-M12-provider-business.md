@@ -1207,7 +1207,7 @@ If `mapApiErrorToForm`'s `RuleFields` type rejects `'services.0.name'`, STOP and
 **Commit:** `git commit -m "feat(web): S23 add/edit service dialog (M12-T14)"`
 
 ### T15 — Delete service confirm
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/delete-service-dialog.tsx`
 **Context:** S23.E4; AC2, AC6; D-9.
 **Do:** create:
