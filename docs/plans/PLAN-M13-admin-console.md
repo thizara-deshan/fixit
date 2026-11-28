@@ -440,7 +440,7 @@ describe('list queries', () => {
 **Commit:** `git commit -m "feat(contracts): admin users and moderation schemas (M13-T4)"`
 
 ### T5 — Admin search matchers
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/search.ts`, `packages/contracts/src/admin/search.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S33 toolbar, S37 search; D-7.
 **Do:**

@@ -31,3 +31,4 @@ export * from './providers/uploads';
 export * from './providers/own';
 export * from './providers/business';
 export * from './admin/schemas';
+export * from './admin/search';
