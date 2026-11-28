@@ -72,4 +72,11 @@ describe('nav config', () => {
     expect(adminSidebarItems().map((i) => i.label)).toEqual(['Overview', 'Verification', 'Users', 'Reviews']);
     expect(adminSidebarItems(allOn)).toHaveLength(6);
   });
+  it('admin sidebar: Verification badge shows the pending count', () => {
+    const withCount = adminSidebarItems(undefined, 3).find((i) => i.label === 'Verification');
+    expect(withCount).toMatchObject({ count: 3, countLabel: '3 waiting for verification' });
+    expect(adminSidebarItems(undefined, 0).find((i) => i.label === 'Verification')).not.toHaveProperty(
+      'count',
+    );
+  });
 });

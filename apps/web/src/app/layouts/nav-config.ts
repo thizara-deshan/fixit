@@ -134,10 +134,15 @@ export function providerSidebarItems(me: Me, f: Flags = defaultFeatures): Sideba
   return items;
 }
 
-export function adminSidebarItems(f: Flags = defaultFeatures): SidebarItem[] {
+export function adminSidebarItems(f: Flags = defaultFeatures, pending = 0): SidebarItem[] {
   return [
     { to: '/admin', label: 'Overview', icon: ChartColumn, end: true },
-    { to: '/admin/verifications', label: 'Verification', icon: ShieldCheck }, // count wired in M13 (D-d)
+    {
+      to: '/admin/verifications',
+      label: 'Verification',
+      icon: ShieldCheck,
+      ...(pending > 0 ? { count: pending, countLabel: `${String(pending)} waiting for verification` } : {}),
+    },
     { to: '/admin/users', label: 'Users', icon: Users },
     ...(f.adminRequests ? [{ to: '/admin/requests', label: 'Requests', icon: ClipboardList }] : []),
     { to: '/admin/reviews', label: 'Reviews', icon: MessageSquare },

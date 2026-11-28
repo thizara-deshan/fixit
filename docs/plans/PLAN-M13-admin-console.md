@@ -2012,7 +2012,7 @@ export const CONFLICT = {
 **Commit:** `git commit -m "feat(web): admin copy helpers (M13-T25)"`
 
 ### T26 — L4 Verification badge
-- [ ] done
+- [x] done
 **Files:** `src/app/layouts/nav-config.ts`, `src/app/layouts/nav-config.test.ts`, `src/app/layouts/admin-layout.tsx`
 **Context:** SPEC L4 (badge = pending review count; phone top bar Verification icon with count); D-17.
 **Do:**
