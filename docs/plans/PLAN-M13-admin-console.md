@@ -846,7 +846,7 @@ export function paginate<T>(rows: readonly T[], page: number) {
 **Commit:** `git commit -m "feat(web): mock admin audit helpers (M13-T10)"`
 
 ### T11 — Mock verification queue, detail and decisions
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-verification.ts`, `src/mocks/lib/admin-verification.test.ts`
 **Context:** SPEC S31, S32, A29, A30, §8.5; D-2, D-5, D-12. Reuses `toDocumentMeta` (`mocks/lib/verification.ts`), `getFile/putFile` (`mocks/lib/files.ts`).
 **Do:** create:
