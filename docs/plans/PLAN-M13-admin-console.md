@@ -1614,7 +1614,7 @@ describe('admin handlers — reviews', () => {
 **Commit:** `git commit -m "feat(web): DevPanel suspended-account banner (M13-T18)"`
 
 ### T19 — Formatters and authenticated blob download
-- [ ] done
+- [x] done
 **Files:** `src/lib/format.ts`, `src/lib/format.test.ts`, `src/lib/http.ts`, `src/lib/http.test.ts`
 **Context:** SPEC S31 Submitted column; D-4, D-15.
 **Do:**

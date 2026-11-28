@@ -7,7 +7,7 @@ import { armForcedError } from '@/mocks/lib/controls';
 import { server } from '@/mocks/node';
 import { signInAs } from '@/test/sign-in';
 import { authStore } from './auth-store';
-import { ApiError, http, pathOf } from './http';
+import { ApiError, http, httpBlob, pathOf } from './http';
 
 const getMe = () => http('/auth/me', { schema: ENDPOINTS.auth_me.response });
 const envelope = (code: string, extra: object = {}) => ({
@@ -126,5 +126,19 @@ describe('pathOf', () => {
     expect(pathOf({ path: '/me/requests/:ref' }, { ref: 'FX-2061' })).toBe('/me/requests/FX-2061');
     expect(pathOf({ path: '/x/:id' }, { id: 'a b' })).toBe('/x/a%20b');
     expect(() => pathOf({ path: '/x/:id' })).toThrow('missing :id');
+  });
+});
+
+describe('httpBlob()', () => {
+  it('admin downloads a verification document as a Blob', async () => {
+    signInAs('admin');
+    const blob = await httpBlob('/files/documents/d-p02-nic-front');
+    expect(blob.size).toBeGreaterThan(0);
+  });
+  it('a customer is refused with an ApiError (403 — customers have no document access)', async () => {
+    signInAs('customer');
+    const e = await caught(httpBlob('/files/documents/d-p02-nic-front'));
+    expect(e).toBeInstanceOf(ApiError);
+    expect((e as ApiError).status).toBe(403);
   });
 });
