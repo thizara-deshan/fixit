@@ -2032,7 +2032,7 @@ export const CONFLICT = {
 **Commit:** `git commit -m "feat(web): L4 verification badge from overview (M13-T26)"`
 
 ### T27 — Admin reason dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/reason-dialog.tsx`
 **Context:** SPEC §6.10, §6.7; S32/S34/S37 field tables; pattern `features/provider-dashboard/components/decline-dialog.tsx` (copy its structure).
 **Do:** one reusable dialog for reject, suspend, reactivate and hide:
