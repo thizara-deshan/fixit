@@ -1419,7 +1419,7 @@ describe('review moderation (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock review moderation with rating recompute (M13-T14)"`
 
 ### T15 — MSW handlers: overview and verification
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/admin.ts`, `src/mocks/handlers/index.ts`, `src/mocks/handlers/admin.test.ts`
 **Context:** ARCH §3.6; mock rules (contracts schemas, roles via `mockEndpoint`); D-1, D-5.
 **Do:**

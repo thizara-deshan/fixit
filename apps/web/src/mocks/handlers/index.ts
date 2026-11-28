@@ -1,4 +1,5 @@
 import type { RequestHandler } from 'msw';
+import { adminHandlers } from './admin';
 import { authHandlers } from './auth';
 import { catalogHandlers } from './catalog';
 import { providersHandlers } from './providers';
@@ -12,6 +13,6 @@ export const handlersByDomain: Record<MockDomain, RequestHandler[]> = {
   providers: providersHandlers,
   requests: requestsHandlers,
   reviews: reviewsHandlers,
-  admin: [],
+  admin: adminHandlers,
 };
 export const allHandlers: RequestHandler[] = MOCK_DOMAINS.flatMap((d) => handlersByDomain[d]);
