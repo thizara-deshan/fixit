@@ -2084,7 +2084,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S30 admin overview needs-attention tiles (M13-T28)"`
 
 ### T29 — S31 Verification queue page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/verification-queue-page.tsx`, `src/features/admin/pages/verification-queue-page.test.tsx`
 **Context:** SPEC S31, §6.2 (S31 empty), §6.9; pattern `provider-dashboard/pages/requests-page.tsx`; D-2, D-3, D-4; AC2.
 **Do:** `export function VerificationQueuePage()`:
