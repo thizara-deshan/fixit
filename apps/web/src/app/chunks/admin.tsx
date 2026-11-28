@@ -1,24 +1,11 @@
 import { PlaceholderScreen } from '../placeholder-screen';
 
-export function AdminOverviewPage() {
-  return <PlaceholderScreen frame="bare" title="Overview" />;
-}
-
-export function VerificationQueuePage() {
-  return <PlaceholderScreen frame="bare" title="Verification" />;
-}
-
-export function VerificationReviewPage() {
-  return <PlaceholderScreen frame="bare" title="Verification review" />;
-}
-
-export function UsersPage() {
-  return <PlaceholderScreen frame="bare" title="Users" />;
-}
-
-export function UserDetailPage() {
-  return <PlaceholderScreen frame="bare" title="User detail" />;
-}
+export { AdminOverviewPage } from '@/features/admin/pages/overview-page';
+export { VerificationQueuePage } from '@/features/admin/pages/verification-queue-page';
+export { VerificationReviewPage } from '@/features/admin/pages/verification-review-page';
+export { UsersPage } from '@/features/admin/pages/users-page';
+export { UserDetailPage } from '@/features/admin/pages/user-detail-page';
+export { ReviewsModerationPage } from '@/features/admin/pages/reviews-moderation-page';
 
 export function AdminRequestsPage() {
   return <PlaceholderScreen frame="bare" title="All requests" />;
@@ -26,10 +13,6 @@ export function AdminRequestsPage() {
 
 export function AdminRequestPage() {
   return <PlaceholderScreen frame="bare" title="Request detail" />;
-}
-
-export function ReviewsModerationPage() {
-  return <PlaceholderScreen frame="bare" title="Reviews" />;
 }
 
 export function CatalogPage() {

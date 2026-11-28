@@ -2272,7 +2272,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): S37 reviews moderation page (M13-T39)"`
 
 ### T40 — Wire admin pages and access tests
-- [ ] done
+- [x] done
 **Files:** `src/app/chunks/admin.tsx`, `src/app/routes.test.tsx`
 **Context:** ARCH §5.1; SPEC L4 access, §6.4; AC9.
 **Do:**
