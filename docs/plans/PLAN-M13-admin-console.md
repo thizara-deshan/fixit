@@ -1211,7 +1211,7 @@ describe('admin users (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock admin users list and detail (M13-T12)"`
 
 ### T13 — Mock suspend and reactivate
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-suspension.ts`, `src/mocks/lib/admin-suspension.test.ts`
 **Context:** BR-40–BR-43, A31, A32; D-5, D-9; AC10. Reuses `expireDue`, `transitionOr409`, `applyTransition`.
 **Do:** create:
