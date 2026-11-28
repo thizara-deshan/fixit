@@ -2211,7 +2211,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S34 suspend and reactivate dialogs (M13-T35)"`
 
 ### T36 — S34 header and section cards
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/user-header-card.tsx`, `src/features/admin/components/user-sections.tsx`
 **Context:** SPEC S34 layout; §6.9; D-8, D-16.
 **Do:**
