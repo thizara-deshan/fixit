@@ -738,7 +738,7 @@ describe('services handlers', () => {
 **Commit:** `git commit -m "feat(web): mock handlers for provider services (M12-T8)"`
 
 ### T9 — Handlers: business and areas
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-business.test.ts`
 **Context:** A23, A25; D-1–D-3; AC3, AC4, AC8.
 **Do:** in `providers.ts` add `import { updateBusiness } from '../lib/business';`, add `replaceAreas` to the `../lib/own-provider` import, and append:

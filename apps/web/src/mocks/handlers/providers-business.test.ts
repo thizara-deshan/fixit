@@ -1,5 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { DiscoverResult, ErrorEnvelope, OwnProvider, ProviderPublicProfile, Service } from '@fixit/contracts';
+import {
+  DiscoverResult,
+  ErrorEnvelope,
+  Me,
+  OwnProvider,
+  ProviderPublicProfile,
+  Service,
+  UpdateBusinessResult,
+} from '@fixit/contracts';
 import type { PersonaKey } from '@fixit/fixtures';
 import { db } from '@/mocks/db/store';
 import { FIXED_NOW } from '@/test/fixed-now';
@@ -64,5 +72,86 @@ describe('services handlers', () => {
     const mine = serviceOf('p01');
     expect((await call('PATCH', `/me/provider/services/${mine.id}`, 'provider', gutter)).status).toBe(200);
     expect((await call('DELETE', `/me/provider/services/${mine.id}`, 'provider')).status).toBe(204);
+  });
+});
+
+const card = {
+  businessName: 'Bell & Sons Plumbing',
+  bio: 'Family-run plumbing business serving Colombo for over a decade. Upfront pricing.',
+  yearsExperience: 14,
+  categoryId: 'plumbing',
+};
+
+describe('business and areas handlers', () => {
+  beforeEach(() => vi.useFakeTimers({ now: FIXED_NOW, toFake: ['Date'] }));
+  afterEach(() => vi.useRealTimers());
+
+  it('roles: anon 401, Olivia 403, admin 403', async () => {
+    for (const [persona, status] of [
+      [undefined, 401],
+      ['customer', 403],
+      ['admin', 403],
+    ] as const) {
+      expect((await call('PATCH', '/me/provider/business', persona, card)).status).toBe(status);
+      expect(
+        (await call('PUT', '/me/provider/areas', persona, { baseTownId: 'colombo', otherTownIds: [] }))
+          .status,
+      ).toBe(status);
+    }
+  });
+  it('AC3: bio only → reverification null; rename → pending, badge gone on S3, Me updated', async () => {
+    const bioOnly = UpdateBusinessResult.parse(
+      await (await call('PATCH', '/me/provider/business', 'provider', card)).json(),
+    );
+    expect(bioOnly.reverification).toBeNull();
+    expect(bioOnly.provider.verificationStatus).toBe('verified');
+    const renamed = UpdateBusinessResult.parse(
+      await (
+        await call('PATCH', '/me/provider/business', 'provider', { ...card, businessName: 'Bell Plumbing' })
+      ).json(),
+    );
+    expect(renamed.reverification).toBe('business_name');
+    expect(renamed.provider).toMatchObject({
+      verificationStatus: 'pending_review',
+      reverificationReason: 'business_name',
+    });
+    const profile = ProviderPublicProfile.parse(await (await call('GET', '/providers/p01')).json());
+    expect(profile.verified).toBe(false);
+    const me = Me.parse(await (await call('GET', '/auth/me', 'provider')).json());
+    expect(me.provider?.verificationStatus).toBe('pending_review');
+  });
+  it('AC4: new base town Negombo, Kesbewa dropped → Discover loc matches', async () => {
+    const res = await call('PUT', '/me/provider/areas', 'provider', {
+      baseTownId: 'negombo',
+      otherTownIds: ['negombo', 'colombo', 'maharagama'],
+    });
+    const own = OwnProvider.parse(await res.json());
+    expect(own.baseTown?.id).toBe('negombo');
+    expect(own.otherTowns.map((t) => t.id)).toEqual(['colombo', 'maharagama']);
+    const ids = async (loc: string) =>
+      DiscoverResult.parse(await (await call('GET', `/providers?cat=plumbing&loc=${loc}`)).json()).items.map(
+        (c) => c.id,
+      );
+    expect(await ids('negombo')).toContain('p01');
+    expect(await ids('kesbewa')).not.toContain('p01');
+  });
+  it('areas: 10 other towns → 400 You can add up to 9 other towns.', async () => {
+    const ten = [
+      'colombo',
+      'maharagama',
+      'moratuwa',
+      'kesbewa',
+      'kaduwela',
+      'homagama',
+      'wattala',
+      'ja-ela',
+      'kelaniya',
+      'panadura',
+    ];
+    const res = await call('PUT', '/me/provider/areas', 'provider', {
+      baseTownId: 'negombo',
+      otherTownIds: ten,
+    });
+    expect((await errorOf(res)).fieldErrors?.otherTownIds).toEqual(['You can add up to 9 other towns.']);
   });
 });
