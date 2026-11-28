@@ -2224,7 +2224,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): S34 header and section cards (M13-T36)"`
 
 ### T37 — S34 User detail page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/user-detail-page.tsx`, `src/features/admin/pages/user-detail-page.test.tsx`
 **Context:** SPEC S34; AC5, AC7, AC8.
 **Do:** `export function UserDetailPage()`: `const { id = '' } = useParams(); const q = useAdminUser(id);` state `dialog: 'suspend' | 'reactivate' | null`, `conflict`.
