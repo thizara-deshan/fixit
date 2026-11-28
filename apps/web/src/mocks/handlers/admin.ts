@@ -9,6 +9,13 @@ import {
 } from '../lib/admin-verification';
 import { reactivateUser, suspendUser } from '../lib/admin-suspension';
 import { managedUserOr404, userDetailOf, userListPage, userOr404 } from '../lib/admin-users';
+import {
+  hideReview,
+  moderationPage,
+  moderationRowOf,
+  restoreReview,
+  reviewOr404,
+} from '../lib/admin-reviews';
 import { mockEndpoint } from '../lib/endpoint';
 import { mockError } from '../lib/errors';
 import type { MockActor } from '../lib/identity';
@@ -59,5 +66,16 @@ export const adminHandlers = [
     const u = managedUserOr404(d, params.id ?? '');
     reactivateUser(d, u, adminIdOf(actor), body.reason, now);
     return userDetailOf(d, u, now);
+  }),
+  mockEndpoint(E.admin_reviews_list, ({ db: d, query }) => moderationPage(d, query)),
+  mockEndpoint(E.admin_review_hide, ({ db: d, params, actor, body, now }) => {
+    const v = reviewOr404(d, params.id ?? '');
+    hideReview(d, v, adminIdOf(actor), body.reason, now);
+    return moderationRowOf(d, v);
+  }),
+  mockEndpoint(E.admin_review_restore, ({ db: d, params, actor, now }) => {
+    const v = reviewOr404(d, params.id ?? '');
+    restoreReview(d, v, adminIdOf(actor), now);
+    return moderationRowOf(d, v);
   }),
 ];

@@ -4,6 +4,9 @@ import {
   AdminUserDetail,
   AdminUserList,
   ErrorEnvelope,
+  ModerationList,
+  ModerationRow,
+  ProviderPublicProfile,
   VerificationDecisionResult,
 } from '@fixit/contracts';
 import { DEMO_PASSWORD, type PersonaKey } from '@fixit/fixtures';
@@ -95,5 +98,29 @@ describe('admin handlers — users', () => {
     expect((await call('POST', '/admin/users/u-hank/suspend', 'admin', { reason: '123456789' })).status).toBe(
       400,
     );
+  });
+});
+
+describe('admin handlers — reviews', () => {
+  it('hide changes the public profile count; restore brings it back', async () => {
+    const profile = async () =>
+      ProviderPublicProfile.parse(
+        await (await fetch(new URL('/api/providers/p01', window.location.origin))).json(),
+      );
+    const before = (await profile()).reviewCount;
+    const list = ModerationList.parse(
+      await (await call('GET', '/admin/reviews?visibility=visible&q=bell', 'admin')).json(),
+    );
+    const row = list.items.find((r) => r.provider.id === 'p01');
+    if (!row) throw new Error('no p01 review');
+    const hidden = ModerationRow.parse(
+      await (
+        await call('POST', `/admin/reviews/${row.id}/hide`, 'admin', { reason: 'Contains a phone number.' })
+      ).json(),
+    );
+    expect(hidden.hidden?.reason).toBe('Contains a phone number.');
+    expect((await profile()).reviewCount).toBe(before - 1);
+    await call('POST', `/admin/reviews/${row.id}/restore`, 'admin');
+    expect((await profile()).reviewCount).toBe(before);
   });
 });

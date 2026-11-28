@@ -1567,7 +1567,7 @@ describe('admin handlers — users', () => {
 **Commit:** `git commit -m "feat(web): admin users mock handlers with suspension (M13-T16)"`
 
 ### T17 — MSW handlers: review moderation
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/admin.ts`, `src/mocks/handlers/admin.test.ts`
 **Context:** ARCH §3.6 reviews rows; AC6.
 **Do:** import from `../lib/admin-reviews` (`hideReview`, `moderationPage`, `moderationRowOf`, `restoreReview`, `reviewOr404`), append:
