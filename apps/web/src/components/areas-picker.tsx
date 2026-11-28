@@ -4,7 +4,7 @@ import { OTHER_TOWNS_MAX, OTHER_TOWNS_MAX_MESSAGE, type AreasFormInput } from '@
 import { FormField } from '@/components/form-field';
 import { cn } from '@/lib/utils';
 
-const selectClass =
+export const selectClass =
   'border-border-control bg-surface text-body text-text focus-visible:ring-ring h-12 w-full rounded-md border px-3 focus-visible:ring-2 focus-visible:outline-none aria-invalid:border-danger';
 
 export interface AreasPickerProps {

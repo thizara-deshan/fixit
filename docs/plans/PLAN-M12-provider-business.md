@@ -1477,7 +1477,7 @@ If the `Price` label regex also matches another label in the dialog, use the exa
 **Commit:** `git commit -m "feat(web): S23 My Services page (M12-T16)"`
 
 ### T17 — Re-verify dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/reverify-dialog.tsx`, `src/components/areas-picker.tsx`
 **Context:** S24.E4; D-9.
 **Do:**
