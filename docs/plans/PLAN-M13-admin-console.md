@@ -2142,7 +2142,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S32 provider card, checklist, previous decisions (M13-T31)"`
 
 ### T32 — S32 approve and reject dialogs
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/approve-dialog.tsx`, `src/features/admin/components/reject-dialog.tsx`
 **Context:** SPEC S32.E5–E6, §8.5; D-6, D-16; `ReasonDialog` (T27); `useApproveVerification`, `useRejectVerification`.
 **Do:**
