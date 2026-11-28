@@ -21,7 +21,7 @@ A published provider keeps their listing current: adds, edits and deletes servic
 5. At 390px: services as cards with 44×44 icon buttons, `Add service` full width under the header, dialogs as bottom sheets, Save buttons full width, area checkboxes 1 column with 44-high rows; no horizontal scroll.
 6. Loading skeletons on each page; forced 500 on save keeps the dialog/form open with values and shows the form banner; forced `RULE_VIOLATION services_min` on delete shows its SPEC copy.
 7. Access: Olivia (not a provider) → redirected to `/become-a-provider/1`; Admin → S40; a service id of another provider via PATCH returns 404 in the mock.
-8. Vitest: `computeStartingPrice` (lowest, tie order), BR-21 rule in the mock (name/category change from verified or pending_review → pending_review with `reverificationReason`; from not_submitted/rejected → no change).
+8. Vitest: `computeStartingPrice` (lowest, tie order), BR-21 rule in the mock (name/category change from verified → pending_review with `reverificationReason`; from pending_review/not_submitted/rejected → no change; decision 006).
 
 ## Notes for the planner
 - Re-verification re-queues the last approved documents without re-upload (SPEC §10.2 #16) — the mock creates a new pending submission with trigger `business_name` / `category`.
