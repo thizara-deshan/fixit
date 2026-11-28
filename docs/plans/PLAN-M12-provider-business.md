@@ -329,7 +329,7 @@ export const SERVICES_LAST_MESSAGE = 'You need at least one service.'; // S23.E2
 **Commit:** `git commit -m "feat(web): forced services_min rule in the mock controls (M12-T4)"`
 
 ### T5 — Mock service logic
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/services.ts`, `src/mocks/lib/services.test.ts`
 **Context:** BR-09, BR-10, BR-14, A24; D-5. `ruleError` from `own-provider.ts`; `computeStartingPrice` from contracts.
 **Do:** create `src/mocks/lib/services.ts`:
