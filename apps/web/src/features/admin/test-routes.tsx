@@ -4,12 +4,14 @@ import { createMemoryRouter, RouterProvider, type RouteObject } from 'react-rout
 import { vi } from 'vitest';
 import { createTestQueryClient } from '@/test/render';
 import { AdminOverviewPage } from './pages/overview-page';
+import { VerificationReviewPage } from './pages/verification-review-page';
 import { VerificationQueuePage } from './pages/verification-queue-page';
 
 /** Test-only: the admin pages on a local router (no guards or layout), so page tests don't depend on app wiring (M13-T40). */
 const ADMIN_TEST_ROUTES: RouteObject[] = [
   { path: '/admin', element: <AdminOverviewPage /> },
   { path: '/admin/verifications', element: <VerificationQueuePage /> },
+  { path: '/admin/verifications/:id', element: <VerificationReviewPage /> },
 ];
 
 export function renderAdminRoute(path: string) {

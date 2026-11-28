@@ -2155,7 +2155,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S32 approve and reject dialogs (M13-T32)"`
 
 ### T33 — S32 Verification review page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/verification-review-page.tsx`, `src/features/admin/pages/verification-review-page.test.tsx`
 **Context:** SPEC S32 layout (desktop grid, phone sticky bar), §6.1 section skeleton, §6.4; AC3, AC7, AC8.
 **Do:** `export function VerificationReviewPage()`:
