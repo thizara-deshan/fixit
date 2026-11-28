@@ -2200,7 +2200,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S33 users list (M13-T34)"`
 
 ### T35 — S34 suspend and reactivate dialogs
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/suspend-dialog.tsx`, `src/features/admin/components/reactivate-dialog.tsx`
 **Context:** SPEC S34.E1–E2; D-10, D-11, D-16; `ReasonDialog`.
 **Do:**
