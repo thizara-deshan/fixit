@@ -2063,7 +2063,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): admin reason dialog (M13-T27)"`
 
 ### T28 — S30 Admin overview page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/overview-page.tsx`, `src/features/admin/pages/overview-page.test.tsx`
 **Context:** SPEC S30 (E1–E2 only; F-36 off), S20.E1 date line, §6.1 stat-tile skeleton, §6.3 section error; AC1, AC8.
 **Do:** `export function AdminOverviewPage()`:
