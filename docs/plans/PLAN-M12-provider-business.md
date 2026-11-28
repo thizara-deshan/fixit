@@ -173,7 +173,7 @@ describe('UpdateBusinessBody / Form', () => {
 **Commit:** `git commit -m "feat(contracts): business update schemas and BR-21 rule (M12-T1)"`
 
 ### T2 — Endpoint registry entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`, `packages/contracts/src/providers/services.ts`
 **Context:** ARCH §3.3 rows `PATCH /me/provider/business`, `POST/PATCH/DELETE /me/provider/services…`, `PUT /me/provider/areas` (all **P**).
 **Do:**

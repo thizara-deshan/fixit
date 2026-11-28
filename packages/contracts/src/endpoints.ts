@@ -20,8 +20,11 @@ import {
   PublicReviewPage,
 } from './catalog/schemas';
 import { PageQuery } from './common/pagination';
+import { UpdateBusinessBody, UpdateBusinessResult } from './providers/business';
+import { AreasBody } from './providers/onboarding';
 import { DocumentMeta, OwnProvider, PhotoResult, VerificationState } from './providers/own';
-import { ProviderDashboard } from './providers/schemas';
+import { ProviderDashboard, Service } from './providers/schemas';
+import { ServiceBody } from './providers/services';
 import { ProviderRequestList, ProviderRequestListQuery } from './requests/inbox';
 import { CancelBody, MyRequestList, RequestListQuery } from './requests/list';
 import { AcceptBody, AgreedPriceBody, CompleteBody, DeclineBody } from './requests/provider-bodies';
@@ -376,6 +379,59 @@ export const ENDPOINTS = {
     access: ['user'],
     owner: 'self',
     refs: ['S24', 'A26'],
+  },
+  provider_business_update: {
+    id: 'provider_business_update',
+    domain: 'providers',
+    method: 'PATCH',
+    path: '/me/provider/business',
+    access: ['provider'],
+    owner: 'self',
+    body: UpdateBusinessBody,
+    response: UpdateBusinessResult,
+    refs: ['F-20', 'S24', 'A23', 'BR-21'],
+  },
+  provider_service_create: {
+    id: 'provider_service_create',
+    domain: 'providers',
+    method: 'POST',
+    path: '/me/provider/services',
+    access: ['provider'],
+    owner: 'self',
+    body: ServiceBody,
+    response: Service,
+    refs: ['F-20', 'S23', 'A24', 'BR-09', 'BR-10', 'BR-14'],
+  },
+  provider_service_update: {
+    id: 'provider_service_update',
+    domain: 'providers',
+    method: 'PATCH',
+    path: '/me/provider/services/:id',
+    access: ['provider'],
+    owner: 'resource_provider',
+    body: ServiceBody,
+    response: Service,
+    refs: ['S23', 'A24', 'BR-10'],
+  },
+  provider_service_delete: {
+    id: 'provider_service_delete',
+    domain: 'providers',
+    method: 'DELETE',
+    path: '/me/provider/services/:id',
+    access: ['provider'],
+    owner: 'resource_provider',
+    refs: ['S23', 'A24', 'BR-10', 'BR-14'],
+  },
+  provider_areas_put: {
+    id: 'provider_areas_put',
+    domain: 'providers',
+    method: 'PUT',
+    path: '/me/provider/areas',
+    access: ['provider'],
+    owner: 'self',
+    body: AreasBody,
+    response: OwnProvider,
+    refs: ['F-20', 'S25', 'A25', 'BR-04', 'BR-14'],
   },
   verification_get: {
     id: 'verification_get',
