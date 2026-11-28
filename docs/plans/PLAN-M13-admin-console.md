@@ -782,7 +782,7 @@ export function buildSuspensionDemoRequests(
 **Commit:** `git commit -m "feat(fixtures): audit rows, decidedById, p08 open requests (M13-T8)"`
 
 ### T9 — Mock db: audit rows and version 8
-- [ ] done
+- [x] done
 **Files:** `src/mocks/db/schema.ts`, `src/mocks/db/seed.ts`, `src/mocks/db/store.test.ts`
 **Context:** CLAUDE.md mock rules (bump version); D-13.
 **Do:**

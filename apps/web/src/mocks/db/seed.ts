@@ -24,7 +24,7 @@ export function seedDb(now: Date): MockDb {
     submissions: byId(w.submissions),
     documents: byId(w.documents),
     saved: [],
-    audit: [],
+    audit: w.audit,
     refSeq: 2062, // ARCH §8.1 request_ref_seq START 2062
     authTokens: [],
     lastEmailLink: null,
