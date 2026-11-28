@@ -5,7 +5,13 @@ import { FIXED_NOW } from '@/test/fixed-now';
 import { createWrapper } from '@/test/render';
 import { signInAs } from '@/test/sign-in';
 import { uploadDocument } from './api';
-import { useOwnProvider, useSubmitVerification, useVerification } from './hooks';
+import {
+  useCreateService,
+  useOwnProvider,
+  useSubmitVerification,
+  useUpdateBusiness,
+  useVerification,
+} from './hooks';
 
 describe('provider-business hooks', () => {
   beforeEach(() => vi.useFakeTimers({ now: FIXED_NOW, toFake: ['Date'] }));
@@ -42,6 +48,42 @@ describe('provider-business hooks', () => {
     });
     await waitFor(() => {
       expect(authStore.getState().me?.provider?.verificationStatus).toBe('pending_review');
+    });
+  });
+  it('useCreateService: own provider refetched with the new starting price before resolve', async () => {
+    signInAs('provider');
+    const wrapper = createWrapper();
+    const h = renderHook(() => ({ own: useOwnProvider(), add: useCreateService() }), { wrapper });
+    await waitFor(() => {
+      expect(h.result.current.own.data?.startingPrice).toEqual({ amount: 2500, unit: 'per_hour' });
+    });
+    await act(async () => {
+      await h.result.current.add.mutateAsync({ name: 'Gutter cleaning', price: 1500, unit: 'per_visit' });
+    });
+    await waitFor(() => {
+      expect(h.result.current.own.data?.startingPrice).toEqual({ amount: 1500, unit: 'per_visit' });
+    });
+  });
+  it('useUpdateBusiness: rename → reverification, Me pending_review with reason', async () => {
+    signInAs('provider');
+    const h = renderHook(() => useUpdateBusiness(), { wrapper: createWrapper() });
+    let reason: string | null = null;
+    await act(async () => {
+      reason = (
+        await h.result.current.mutateAsync({
+          businessName: 'Bell Plumbing',
+          bio: 'Family-run plumbing business serving Colombo for over a decade.',
+          yearsExperience: 14,
+          categoryId: 'plumbing',
+        })
+      ).reverification;
+    });
+    expect(reason).toBe('business_name');
+    await waitFor(() => {
+      expect(authStore.getState().me?.provider).toMatchObject({
+        verificationStatus: 'pending_review',
+        reverificationReason: 'business_name',
+      });
     });
   });
 });
