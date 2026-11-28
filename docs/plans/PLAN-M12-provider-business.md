@@ -504,7 +504,7 @@ export function replaceAreas(d: MockDb, p: FxProvider, body: AreasBody): void {
 **Commit:** `git commit -m "refactor(web): share replaceAreas between onboarding and S25 mocks (M12-T6)"`
 
 ### T7 — Mock business update and re-verification
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/verification.ts`, `src/mocks/lib/business.ts`, `src/mocks/lib/business.test.ts`
 **Context:** A23, BR-21, SPEC §8.5 step 4, §10.2 #16; D-2, D-3. AC8.
 **Do:**

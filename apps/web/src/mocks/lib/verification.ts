@@ -3,12 +3,13 @@ import {
   missingRequiredDocuments,
   type DocumentMeta,
   type DocumentType,
+  type ReverificationReason,
   type VerificationState,
 } from '@fixit/contracts';
 import type { FxDocument, FxProvider } from '@fixit/fixtures';
 import type { MockDb } from '../db/schema';
 import { mockError } from './errors';
-import { deleteFile, putFile } from './files';
+import { deleteFile, getFile, putFile } from './files';
 
 const notEditable = () =>
   mockError(422, 'RULE_VIOLATION', 'Verification not editable', {
@@ -124,4 +125,37 @@ export function submitVerification(d: MockDb, p: FxProvider, now: Date): void {
   for (const doc of staged) doc.submissionId = id;
   p.verificationStatus = 'pending_review';
   p.reverificationReason = null;
+}
+
+/** BR-21 (D-3). Only called for a verified provider: attempt n+1 with copies of the latest approved documents. */
+export function requeueForReverification(
+  d: MockDb,
+  p: FxProvider,
+  reason: ReverificationReason,
+  now: Date,
+): void {
+  const subs = Object.values(d.submissions).filter((s) => s.providerId === p.id);
+  const attempt = Math.max(0, ...subs.map((s) => s.attempt)) + 1;
+  const approved = subs.filter((s) => s.status === 'approved').sort((a, b) => b.attempt - a.attempt)[0];
+  const id = `s-${p.id}-${String(attempt)}`;
+  d.submissions[id] = {
+    id,
+    providerId: p.id,
+    attempt,
+    trigger: reason,
+    status: 'pending_review',
+    submittedAt: now.toISOString(),
+    decidedAt: null,
+    rejectionReason: null,
+  };
+  const originals = approved ? Object.values(d.documents).filter((x) => x.submissionId === approved.id) : [];
+  for (const doc of originals) {
+    const copyId = `d-${crypto.randomUUID().slice(0, 8)}`;
+    d.documents[copyId] = { ...doc, id: copyId, submissionId: id, createdAt: now.toISOString() };
+    const blob = getFile(`doc:${doc.id}`);
+    if (blob) putFile(`doc:${copyId}`, blob);
+  }
+  p.verificationStatus = 'pending_review';
+  p.verifiedAt = null;
+  p.reverificationReason = reason;
 }
