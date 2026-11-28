@@ -2253,7 +2253,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): S37 moderation row, hide and restore dialogs (M13-T38)"`
 
 ### T39 — S37 Reviews moderation page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/reviews-moderation-page.tsx`, `src/features/admin/pages/reviews-moderation-page.test.tsx`
 **Context:** SPEC S37, §6.1 review-row skeleton, §6.2; AC6, AC8.
 **Do:** `ReviewsModerationPage()`: `const q = parseReviewsSearch(sp); const list = useModeration(q);` state `hiding: ModerationRow | null`, `restoring: ModerationRow | null`, `conflict`.
