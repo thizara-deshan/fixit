@@ -2003,7 +2003,7 @@ describe('S25 Service areas', () => {
 **Commit:** `git commit -m "feat(web): S25 service areas page (M12-T20)"`
 
 ### T21 — Access tests for the M12 routes
-- [ ] done
+- [x] done
 **Files:** `src/app/routes.test.tsx`
 **Context:** AC7; D-12; SPEC §6.4.
 **Do:** add to `routes.test.tsx` (reuse its existing imports/helpers; add any missing ones: `screen`, `renderRoute`, `signInAs`, `FIXED_NOW`):
