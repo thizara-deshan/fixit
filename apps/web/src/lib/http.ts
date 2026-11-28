@@ -78,6 +78,19 @@ export async function http<S extends z.ZodType | undefined>(
   return opts.schema.parse(await res.json()) as Out<S>; // contract mismatch → ZodError → S41 (M03)
 }
 
+/** D-15: authenticated file download (S32 viewer). Same auth and single refresh as http(). */
+export async function httpBlob(path: string, signal?: AbortSignal): Promise<Blob> {
+  const opts: HttpOpts<undefined> = { schema: undefined, ...(signal ? { signal } : {}) };
+  const hadToken = authStore.accessToken() !== null;
+  let res = await send(path, opts);
+  if (res.status === 401 && hadToken) {
+    if (await refreshOnce()) res = await send(path, opts);
+    else authStore.signOut(lastRefreshFailure === 'ACCOUNT_SUSPENDED' ? 'suspended' : 'expired');
+  }
+  if (!res.ok) throw await toApiError(res);
+  return res.blob();
+}
+
 async function send(path: string, o: HttpOpts<z.ZodType | undefined>): Promise<Response> {
   const headers = new Headers({ Accept: 'application/json' });
   const token = authStore.accessToken();

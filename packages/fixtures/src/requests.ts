@@ -502,3 +502,43 @@ export function buildInboxClosedRequests(
     });
   });
 }
+
+/** M13 (D-14): open requests on p08 so suspending Hank shows the BR-41 cascade. */
+export function buildSuspensionDemoRequests(
+  now: Date,
+  ctx: { users: readonly FxUser[]; providers: readonly FxProvider[]; services: readonly FxService[] },
+): RequestRecord[] {
+  const today = colomboToday(now);
+  const at = (hoursAgo: number) => new Date(now.getTime() - hoursAgo * HOUR);
+  const p08 = ctx.providers.find((p) => p.id === 'p08');
+  const service = ctx.services.find((s) => s.id === serviceId('p08', 0));
+  const james = ctx.users.find((u) => u.id === 'u-james-carter');
+  const ethan = ctx.users.find((u) => u.id === 'u-ethan-brooks');
+  if (!p08 || !service || !james || !ethan) throw new Error('fixtures: bad p08 demo requests');
+  const base = {
+    provider: p08,
+    service,
+    townId: 'colombo',
+    slot: 'afternoon' as const,
+    addressLine1: '27 Galle Road',
+    description: 'Please mount a 55-inch TV on the living room wall.',
+  };
+  return [
+    makeRequest({
+      ...base,
+      ref: 'FX-2042',
+      customer: james,
+      preferredDate: addDays(today, 3),
+      createdAt: at(6),
+      steps: [],
+    }),
+    makeRequest({
+      ...base,
+      ref: 'FX-2043',
+      customer: ethan,
+      preferredDate: addDays(today, 6),
+      createdAt: at(30),
+      steps: [{ status: 'accepted', at: at(20) }],
+    }),
+  ];
+}

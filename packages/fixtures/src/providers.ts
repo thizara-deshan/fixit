@@ -320,6 +320,7 @@ export function buildProviders(now: Date): {
       status: 'approved',
       submittedAt: ago(372),
       decidedAt: ago(370),
+      decidedById: 'u-admin',
       rejectionReason: null,
     },
     {
@@ -330,6 +331,7 @@ export function buildProviders(now: Date): {
       status: 'pending_review',
       submittedAt: ago(1),
       decidedAt: null,
+      decidedById: null,
       rejectionReason: null,
     },
     {
@@ -340,6 +342,7 @@ export function buildProviders(now: Date): {
       status: 'rejected',
       submittedAt: ago(4),
       decidedAt: ago(2),
+      decidedById: 'u-admin',
       rejectionReason: 'The photo of the back of your NIC is blurry. Upload a clearer photo.',
     },
   ];

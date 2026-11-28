@@ -5,4 +5,5 @@ export * from './users';
 export * from './providers';
 export * from './requests';
 export * from './reviews';
+export * from './audit';
 export * from './build';

@@ -1,5 +1,6 @@
 import {
   addDays,
+  colomboDaysSince,
   colomboStartOfDay,
   formatInColombo,
   priceLabel,
@@ -99,4 +100,15 @@ export const formatMonthName = (value: string | Date): string => formatInColombo
 export function formatFileSize(bytes: number): string {
   if (bytes < 1024 * 1024) return `${String(Math.max(1, Math.round(bytes / 1024)))} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+/** `21 Nov` (S31 Submitted) */
+export const formatDayMonth = (value: string | Date): string => formatInColombo(toInstant(value), 'd MMM');
+
+/** S31 sub line (D-4): `today` · `yesterday` · `3 days ago`. */
+export function formatDaysAgo(value: string | Date, now: Date): string {
+  const n = colomboDaysSince(toInstant(value), now);
+  if (n === 0) return 'today';
+  if (n === 1) return 'yesterday';
+  return `${String(n)} days ago`;
 }

@@ -1,5 +1,7 @@
 import type {
   AccountStatus,
+  AuditAction,
+  AuditTargetType,
   AuthMethod,
   CategoryIcon,
   DocumentType,
@@ -99,7 +101,17 @@ export interface FxSubmission {
   status: SubmissionStatus;
   submittedAt: string;
   decidedAt: string | null;
+  decidedById: string | null;
   rejectionReason: string | null;
+}
+export interface FxAudit {
+  id: string;
+  adminId: string;
+  action: AuditAction;
+  targetType: AuditTargetType;
+  targetId: string;
+  reason: string | null;
+  at: string;
 }
 export interface FxDocument {
   id: string;
@@ -123,4 +135,5 @@ export interface World {
   reviews: FxReview[];
   submissions: FxSubmission[];
   documents: FxDocument[];
+  audit: FxAudit[];
 }

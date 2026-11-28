@@ -7,6 +7,8 @@ import {
   formatFileSize,
   formatDateShort,
   formatDateTime,
+  formatDayMonth,
+  formatDaysAgo,
   formatLkr,
   formatMonthName,
   formatReplyBy,
@@ -103,5 +105,17 @@ describe('formatFileSize', () => {
     expect(formatFileSize(482_113)).toBe('471 KB');
     expect(formatFileSize(10)).toBe('1 KB');
     expect(formatFileSize(5 * 1024 * 1024)).toBe('5.0 MB');
+  });
+});
+
+describe('admin day formatters', () => {
+  const now = new Date('2026-11-24T06:00:00Z');
+  it('formatDayMonth', () => {
+    expect(formatDayMonth('2026-11-21T04:00:00Z')).toBe('21 Nov');
+  });
+  it('formatDaysAgo', () => {
+    expect(formatDaysAgo('2026-11-24T01:00:00Z', now)).toBe('today');
+    expect(formatDaysAgo('2026-11-23T10:00:00Z', now)).toBe('yesterday');
+    expect(formatDaysAgo('2026-11-21T04:00:00Z', now)).toBe('3 days ago');
   });
 });

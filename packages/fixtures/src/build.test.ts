@@ -219,3 +219,20 @@ describe('M10 inbox fixtures (D-13)', () => {
     ).toEqual(['nic_back', 'nic_front']);
   });
 });
+
+describe('M13 fixtures', () => {
+  it('p08 has one pending and one accepted request', () => {
+    const p08 = world.requests.filter(
+      (r) => r.providerId === 'p08' && (r.status === 'pending' || r.status === 'accepted'),
+    );
+    expect(p08.map((r) => [r.ref, r.status]).sort()).toEqual([
+      ['FX-2042', 'pending'],
+      ['FX-2043', 'accepted'],
+    ]);
+  });
+  it('audit rows point at existing targets; decided submissions name an admin', () => {
+    expect(world.audit.map((a) => a.targetId).sort()).toEqual(['s-p01-1', 's-p10-1', 'u-ruwan', 'v-FX-2028']);
+    expect(world.reviews.find((v) => v.id === 'v-FX-2028')?.visibility).toBe('hidden');
+    for (const s of world.submissions) expect(s.decidedById).toBe(s.decidedAt ? 'u-admin' : null);
+  });
+});

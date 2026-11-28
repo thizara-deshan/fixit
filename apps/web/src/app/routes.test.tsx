@@ -14,6 +14,7 @@ describe('guards (SPEC §8.4, AC4)', () => {
   it.each([
     ['guest', '/requests', '/login?next=%2Frequests'],
     ['guest', '/admin', '/admin/login?next=%2Fadmin'],
+    ['guest', '/admin/verifications/s-p02-1', '/admin/login?next=%2Fadmin%2Fverifications%2Fs-p02-1'],
     ['providerDraft', '/dashboard', '/become-a-provider/3'],
     ['customer', '/dashboard', '/become-a-provider/1'],
     ['customer', '/login', '/'],
@@ -58,6 +59,20 @@ describe('guards (SPEC §8.4, AC4)', () => {
       await screen.findByRole('heading', { level: 1, name: "You don't have access to this page" }),
     ).toBeTruthy();
     expect(screen.getByText(/You're signed in as olivia@fixit\.test\./)).toBeTruthy();
+  });
+
+  it('Marcus (provider) on /admin/users sees S40', async () => {
+    signInAs('provider');
+    renderRoute('/admin/users');
+    expect(
+      await screen.findByRole('heading', { level: 1, name: "You don't have access to this page" }),
+    ).toBeTruthy();
+  });
+
+  it('admin on /admin/reviews sees the Reviews page', async () => {
+    signInAs('admin');
+    renderRoute('/admin/reviews');
+    expect(await screen.findByRole('heading', { level: 1, name: 'Reviews' })).toBeTruthy();
   });
 
   it.each(['/requests', '/dashboard'])('Admin on %s sees S40', async (path) => {

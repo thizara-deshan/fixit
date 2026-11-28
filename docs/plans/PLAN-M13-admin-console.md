@@ -67,7 +67,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Audit enums and the Colombo day difference
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/common/enums.ts`, `packages/contracts/src/common/dates.ts`, `packages/contracts/src/common/dates.test.ts`
 **Context:** ARCH §8.1 `enum AuditAction`, `AuditLog.targetType` comment; D-4, D-13.
 **Do:**
@@ -116,7 +116,7 @@ describe('colomboDaysSince', () => {
 **Commit:** `git commit -m "feat(contracts): audit enums and colomboDaysSince (M13-T1)"`
 
 ### T2 — Admin reason bodies, audit entry and overview schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/schemas.ts`, `packages/contracts/src/admin/schemas.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S32 reject field, S34 field, S37 field, S30.E1–E2; ARCH §2.3 `adminReason`; D-1, D-11.
 **Do:**
@@ -224,7 +224,7 @@ describe('AdminOverview', () => {
 **Commit:** `git commit -m "feat(contracts): admin reason bodies, audit entry, overview (M13-T2)"`
 
 ### T3 — Verification queue and detail schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/schemas.ts`, `packages/contracts/src/admin/schemas.test.ts`
 **Context:** SPEC S31, S32.E1–E4, §8.5; ARCH §3.6 rows 2–5; D-2, D-3.
 **Do:** append to `schemas.ts`:
@@ -309,7 +309,7 @@ describe('VerificationQueueQuery', () => {
 **Commit:** `git commit -m "feat(contracts): verification queue and detail schemas (M13-T3)"`
 
 ### T4 — Users and moderation schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/schemas.ts`, `packages/contracts/src/admin/schemas.test.ts`
 **Context:** SPEC S33, S34, S37; ARCH §3.6 rows 6–9, 13–15; D-7, D-8.
 **Do:** append to `schemas.ts`:
@@ -440,7 +440,7 @@ describe('list queries', () => {
 **Commit:** `git commit -m "feat(contracts): admin users and moderation schemas (M13-T4)"`
 
 ### T5 — Admin search matchers
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/search.ts`, `packages/contracts/src/admin/search.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S33 toolbar, S37 search; D-7.
 **Do:**
@@ -503,7 +503,7 @@ If Marcus's real mobile in fixtures differs, the test uses its own literal objec
 **Commit:** `git commit -m "feat(contracts): admin user and review search matchers (M13-T5)"`
 
 ### T6 — Suspension cascade rule (BR-41/42)
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/suspension.ts`, `packages/contracts/src/admin/suspension.test.ts`, `packages/contracts/src/index.ts`
 **Context:** PRODUCT §6.1 system rows, BR-41, BR-42; SPEC A31; ARCH §2.8 (system actor); D-9. Reuses `canTransition`, `toMachineRequest`, `RequestRecord`.
 **Do:**
@@ -611,7 +611,7 @@ If `RequestRecord` has fields not listed (check `requests/record.ts`), add them 
 **Commit:** `git commit -m "feat(contracts): suspension cascade plan BR-41/42 (M13-T6)"`
 
 ### T7 — Admin endpoint registry entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.6 rows 1–9 and 13–15 (requests and catalog rows stay for M23/M26); §2.7.
 **Do:**
@@ -693,7 +693,7 @@ import {
 **Commit:** `git commit -m "feat(contracts): admin endpoint registry entries (M13-T7)"`
 
 ### T8 — Fixtures: decidedById, audit rows, p08 open requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/types.ts`, `packages/fixtures/src/providers.ts`, `packages/fixtures/src/requests.ts`, `packages/fixtures/src/audit.ts`, `packages/fixtures/src/build.ts`, `packages/fixtures/src/index.ts`, `packages/fixtures/src/build.test.ts`, `apps/web/src/mocks/lib/verification.ts`
 **Context:** D-13, D-14; ARCH §8.1 `VerificationSubmission.decidedById`, `AuditLog`.
 **Do:**
@@ -782,7 +782,7 @@ export function buildSuspensionDemoRequests(
 **Commit:** `git commit -m "feat(fixtures): audit rows, decidedById, p08 open requests (M13-T8)"`
 
 ### T9 — Mock db: audit rows and version 8
-- [ ] done
+- [x] done
 **Files:** `src/mocks/db/schema.ts`, `src/mocks/db/seed.ts`, `src/mocks/db/store.test.ts`
 **Context:** CLAUDE.md mock rules (bump version); D-13.
 **Do:**
@@ -793,7 +793,7 @@ export function buildSuspensionDemoRequests(
 **Commit:** `git commit -m "chore(web): mock db seeds audit rows, version 8 (M13-T9)"`
 
 ### T10 — Mock audit helpers
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-audit.ts`
 **Context:** ARCH §7.9; D-5, D-13.
 **Do:** create:
@@ -846,7 +846,7 @@ export function paginate<T>(rows: readonly T[], page: number) {
 **Commit:** `git commit -m "feat(web): mock admin audit helpers (M13-T10)"`
 
 ### T11 — Mock verification queue, detail and decisions
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-verification.ts`, `src/mocks/lib/admin-verification.test.ts`
 **Context:** SPEC S31, S32, A29, A30, §8.5; D-2, D-5, D-12. Reuses `toDocumentMeta` (`mocks/lib/verification.ts`), `getFile/putFile` (`mocks/lib/files.ts`).
 **Do:** create:
@@ -1047,7 +1047,7 @@ describe('admin verification (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock verification queue and decisions (M13-T11)"`
 
 ### T12 — Mock users list and detail
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-users.ts`, `src/mocks/lib/admin-users.test.ts`
 **Context:** SPEC S33, S34; D-7, D-8, D-9. Reuses `isListed` (`cards.ts`), `matchesUserSearch`, `planSuspension`, `suspendImpact`, `OPEN_STATUSES`.
 **Do:** create:
@@ -1211,7 +1211,7 @@ describe('admin users (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock admin users list and detail (M13-T12)"`
 
 ### T13 — Mock suspend and reactivate
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-suspension.ts`, `src/mocks/lib/admin-suspension.test.ts`
 **Context:** BR-40–BR-43, A31, A32; D-5, D-9; AC10. Reuses `expireDue`, `transitionOr409`, `applyTransition`.
 **Do:** create:
@@ -1304,7 +1304,7 @@ describe('suspension cascade (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock suspension cascade and reactivation (M13-T13)"`
 
 ### T14 — Mock review moderation
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-reviews.ts`, `src/mocks/lib/admin-reviews.test.ts`
 **Context:** SPEC S37, A33; BR-27, BR-29; ARCH §7.7 (recompute in the same write); D-5. Reuses `ratingFrom`, `displayNameOf`, `matchesReviewSearch`.
 **Do:** create:
@@ -1419,7 +1419,7 @@ describe('review moderation (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock review moderation with rating recompute (M13-T14)"`
 
 ### T15 — MSW handlers: overview and verification
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/admin.ts`, `src/mocks/handlers/index.ts`, `src/mocks/handlers/admin.test.ts`
 **Context:** ARCH §3.6; mock rules (contracts schemas, roles via `mockEndpoint`); D-1, D-5.
 **Do:**
@@ -1512,7 +1512,7 @@ If the anonymous helper differs in this repo (e.g. `apiUrl`), use the same URL b
 **Commit:** `git commit -m "feat(web): admin overview and verification mock handlers (M13-T15)"`
 
 ### T16 — MSW handlers: users
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/admin.ts`, `src/mocks/handlers/admin.test.ts`
 **Context:** ARCH §3.6 users rows; D-5, D-7; AC4, AC5, AC10.
 **Do:** add imports from `../lib/admin-users` (`managedUserOr404`, `userDetailOf`, `userListPage`, `userOr404`) and `../lib/admin-suspension` (`reactivateUser`, `suspendUser`), then append to `adminHandlers`:
@@ -1567,7 +1567,7 @@ describe('admin handlers — users', () => {
 **Commit:** `git commit -m "feat(web): admin users mock handlers with suspension (M13-T16)"`
 
 ### T17 — MSW handlers: review moderation
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/admin.ts`, `src/mocks/handlers/admin.test.ts`
 **Context:** ARCH §3.6 reviews rows; AC6.
 **Do:** import from `../lib/admin-reviews` (`hideReview`, `moderationPage`, `moderationRowOf`, `restoreReview`, `reviewOr404`), append:
@@ -1606,7 +1606,7 @@ describe('admin handlers — reviews', () => {
 **Commit:** `git commit -m "feat(web): admin review moderation mock handlers (M13-T17)"`
 
 ### T18 — DevPanel shows the suspended banner
-- [ ] done
+- [x] done
 **Files:** `src/mocks/dev/DevPanel.tsx`
 **Context:** AC5 ("DevPanel login shows the suspended banner"); D-18; `FORM_COPY.suspended` (`lib/error-copy.ts`), `NoticeBanner` (`components/notice-banner.tsx`).
 **Do:** in `SessionSection.run`'s catch: if `e instanceof ApiError && e.code === 'ACCOUNT_SUSPENDED'` call `setError(FORM_COPY.suspended)` and set a new state `setSuspended(true)`; otherwise keep the current message and `setSuspended(false)`. Where `error` is rendered, render `<NoticeBanner variant="danger">{error}</NoticeBanner>` when `suspended` is true (check `NoticeBanner`'s prop names in its file and use its danger variant), else the existing element. Reset `suspended` to false at the start of `run`.
@@ -1614,7 +1614,7 @@ describe('admin handlers — reviews', () => {
 **Commit:** `git commit -m "feat(web): DevPanel suspended-account banner (M13-T18)"`
 
 ### T19 — Formatters and authenticated blob download
-- [ ] done
+- [x] done
 **Files:** `src/lib/format.ts`, `src/lib/format.test.ts`, `src/lib/http.ts`, `src/lib/http.test.ts`
 **Context:** SPEC S31 Submitted column; D-4, D-15.
 **Do:**
@@ -1654,7 +1654,7 @@ export async function httpBlob(path: string, signal?: AbortSignal): Promise<Blob
 **Commit:** `git commit -m "feat(web): day/month and days-ago formatters, httpBlob (M13-T19)"`
 
 ### T20 — Shared conflict title and document titles
-- [ ] done
+- [x] done
 **Files:** `src/components/conflict-dialog.tsx`, `src/components/document-titles.ts`, `src/features/provider-business/components/document-slot.tsx`
 **Context:** D-6, D-19.
 **Do:**
@@ -1677,7 +1677,7 @@ export const DOCUMENT_ORDER: readonly DocumentType[] = ['nic_front', 'nic_back',
 **Commit:** `git commit -m "refactor(web): conflict dialog title prop, shared document titles (M13-T20)"`
 
 ### T21 — Admin api.ts and query keys
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/api.ts`, `src/lib/query-keys.ts`
 **Context:** ARCH §4.2; T7 entries.
 **Do:**
@@ -1745,7 +1745,7 @@ export const restoreReview = (id: string): Promise<ModerationRow> =>
 **Commit:** `git commit -m "feat(web): admin api calls and query keys (M13-T21)"`
 
 ### T22 — Admin query hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/hooks.ts`, `src/features/admin/hooks.test.tsx`
 **Context:** SPEC §6.11 (S31 + badge 60 s / focus); D-17.
 **Do:** create `hooks.ts` (T23 appends mutations):
@@ -1792,7 +1792,7 @@ export const useModeration = (q: ModerationQuery) =>
 **Commit:** `git commit -m "feat(web): admin query hooks (M13-T22)"`
 
 ### T23 — Admin mutation hooks
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/hooks.ts`, `src/features/admin/hooks.test.tsx`
 **Context:** SPEC §6.5 (not optimistic); D-10 of M12 pattern (`['catalog']` holds S1/S2/S3); D-17.
 **Do:** append to `hooks.ts`:
@@ -1873,7 +1873,7 @@ export function useRestoreReview() {
 **Commit:** `git commit -m "feat(web): admin mutation hooks (M13-T23)"`
 
 ### T24 — Admin URL state
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/url-state.ts`, `src/features/admin/url-state.test.ts`
 **Context:** SPEC S31 (tabs), S33 URL `?q=&role=&status=&page=`, S37 tabs; D-2, D-7.
 **Do:** create:
@@ -1964,7 +1964,7 @@ describe('admin url state', () => {
 **Commit:** `git commit -m "feat(web): admin URL state helpers (M13-T24)"`
 
 ### T25 — Admin copy helpers
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/copy.ts`, `src/features/admin/copy.test.ts`
 **Context:** SPEC S30.E1, S31, S34.E1; D-3, D-4, D-10.
 **Do:** create:
@@ -2012,7 +2012,7 @@ export const CONFLICT = {
 **Commit:** `git commit -m "feat(web): admin copy helpers (M13-T25)"`
 
 ### T26 — L4 Verification badge
-- [ ] done
+- [x] done
 **Files:** `src/app/layouts/nav-config.ts`, `src/app/layouts/nav-config.test.ts`, `src/app/layouts/admin-layout.tsx`
 **Context:** SPEC L4 (badge = pending review count; phone top bar Verification icon with count); D-17.
 **Do:**
@@ -2032,7 +2032,7 @@ export const CONFLICT = {
 **Commit:** `git commit -m "feat(web): L4 verification badge from overview (M13-T26)"`
 
 ### T27 — Admin reason dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/reason-dialog.tsx`
 **Context:** SPEC §6.10, §6.7; S32/S34/S37 field tables; pattern `features/provider-dashboard/components/decline-dialog.tsx` (copy its structure).
 **Do:** one reusable dialog for reject, suspend, reactivate and hide:
@@ -2063,7 +2063,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): admin reason dialog (M13-T27)"`
 
 ### T28 — S30 Admin overview page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/overview-page.tsx`, `src/features/admin/pages/overview-page.test.tsx`
 **Context:** SPEC S30 (E1–E2 only; F-36 off), S20.E1 date line, §6.1 stat-tile skeleton, §6.3 section error; AC1, AC8.
 **Do:** `export function AdminOverviewPage()`:
@@ -2084,7 +2084,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S30 admin overview needs-attention tiles (M13-T28)"`
 
 ### T29 — S31 Verification queue page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/verification-queue-page.tsx`, `src/features/admin/pages/verification-queue-page.test.tsx`
 **Context:** SPEC S31, §6.2 (S31 empty), §6.9; pattern `provider-dashboard/pages/requests-page.tsx`; D-2, D-3, D-4; AC2.
 **Do:** `export function VerificationQueuePage()`:
@@ -2110,7 +2110,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S31 verification queue (M13-T29)"`
 
 ### T30 — Document tiles and full-screen viewer
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/document-tiles.tsx`, `src/features/admin/components/document-viewer.tsx`, `src/features/admin/components/document-viewer.test.tsx`
 **Context:** SPEC S32.E1; D-15, D-19; `useDocumentBlob` (T22); `components/ui/dialog.tsx` primitives.
 **Do:**
@@ -2131,7 +2131,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S32 document tiles and full-screen viewer (M13-T30)"`
 
 ### T31 — S32 provider card, checklist and previous decisions
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/verification-aside.tsx`, `src/features/admin/components/previous-decisions.tsx`
 **Context:** SPEC S32.E2–E4, BR-19.
 **Do:**
@@ -2142,7 +2142,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S32 provider card, checklist, previous decisions (M13-T31)"`
 
 ### T32 — S32 approve and reject dialogs
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/approve-dialog.tsx`, `src/features/admin/components/reject-dialog.tsx`
 **Context:** SPEC S32.E5–E6, §8.5; D-6, D-16; `ReasonDialog` (T27); `useApproveVerification`, `useRejectVerification`.
 **Do:**
@@ -2155,7 +2155,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S32 approve and reject dialogs (M13-T32)"`
 
 ### T33 — S32 Verification review page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/verification-review-page.tsx`, `src/features/admin/pages/verification-review-page.test.tsx`
 **Context:** SPEC S32 layout (desktop grid, phone sticky bar), §6.1 section skeleton, §6.4; AC3, AC7, AC8.
 **Do:** `export function VerificationReviewPage()`:
@@ -2180,7 +2180,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S32 verification review page (M13-T33)"`
 
 ### T34 — S33 Users page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/role-pills.tsx`, `src/features/admin/pages/users-page.tsx`, `src/features/admin/pages/users-page.test.tsx`
 **Context:** SPEC S33, §6.2 search-no-match, §6.9, §2.2 (role pill styles); D-7; AC4.
 **Do:**
@@ -2200,7 +2200,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S33 users list (M13-T34)"`
 
 ### T35 — S34 suspend and reactivate dialogs
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/suspend-dialog.tsx`, `src/features/admin/components/reactivate-dialog.tsx`
 **Context:** SPEC S34.E1–E2; D-10, D-11, D-16; `ReasonDialog`.
 **Do:**
@@ -2211,7 +2211,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S34 suspend and reactivate dialogs (M13-T35)"`
 
 ### T36 — S34 header and section cards
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/user-header-card.tsx`, `src/features/admin/components/user-sections.tsx`
 **Context:** SPEC S34 layout; §6.9; D-8, D-16.
 **Do:**
@@ -2224,7 +2224,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): S34 header and section cards (M13-T36)"`
 
 ### T37 — S34 User detail page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/user-detail-page.tsx`, `src/features/admin/pages/user-detail-page.test.tsx`
 **Context:** SPEC S34; AC5, AC7, AC8.
 **Do:** `export function UserDetailPage()`: `const { id = '' } = useParams(); const q = useAdminUser(id);` state `dialog: 'suspend' | 'reactivate' | null`, `conflict`.
@@ -2240,7 +2240,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): S34 user detail with suspend/reactivate (M13-T37)"`
 
 ### T38 — S37 moderation row and dialogs
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/moderation-row.tsx`, `src/features/admin/components/hide-review-dialog.tsx`, `src/features/admin/components/restore-review-dialog.tsx`
 **Context:** SPEC S37.E1–E3, S3.E11 review body, S3.E12 reply block; D-6, D-16.
 **Do:**
@@ -2253,7 +2253,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): S37 moderation row, hide and restore dialogs (M13-T38)"`
 
 ### T39 — S37 Reviews moderation page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/pages/reviews-moderation-page.tsx`, `src/features/admin/pages/reviews-moderation-page.test.tsx`
 **Context:** SPEC S37, §6.1 review-row skeleton, §6.2; AC6, AC8.
 **Do:** `ReviewsModerationPage()`: `const q = parseReviewsSearch(sp); const list = useModeration(q);` state `hiding: ModerationRow | null`, `restoring: ModerationRow | null`, `conflict`.
@@ -2272,7 +2272,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): S37 reviews moderation page (M13-T39)"`
 
 ### T40 — Wire admin pages and access tests
-- [ ] done
+- [x] done
 **Files:** `src/app/chunks/admin.tsx`, `src/app/routes.test.tsx`
 **Context:** ARCH §5.1; SPEC L4 access, §6.4; AC9.
 **Do:**
@@ -2282,7 +2282,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): wire admin console pages (M13-T40)"`
 
 ### T41 — M13 acceptance checks
-- [ ] done
+- [x] done
 **Files:** this plan (ticks), `docs/milestones/M00-index.md` (only if the index tracks milestone status — follow the M12 acceptance commit)
 **Context:** milestone acceptance criteria 1–10; frontend-complete gate note.
 **Do:** run `pnpm verify`, then `pnpm dev:mock` and walk each criterion. Record pass/fail per item in the commit body. Any failure: fix only if it is a defect in this milestone's tasks (new commit `fix(web): … (M13-T41)` with a failing test first); otherwise write a Blocker.

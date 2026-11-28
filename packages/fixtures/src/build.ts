@@ -1,12 +1,14 @@
 // packages/fixtures/src/build.ts
 import { computeStartingPrice, ratingFrom } from '@fixit/contracts';
 import { CATEGORIES, DISTRICTS, TOWNS } from './catalog';
+import { buildAudit } from './audit';
 import { buildProviders } from './providers';
 import {
   buildCustomerJourneyRequests,
   buildInboxClosedRequests,
   buildLimitRequests,
   buildPrototypeRequests,
+  buildSuspensionDemoRequests,
 } from './requests';
 import { buildReviews } from './reviews';
 import type { World } from './types';
@@ -21,6 +23,7 @@ export function buildWorld(now: Date): World {
   const limitRequests = buildLimitRequests(now, { users, providers, services });
   const { reviews, requests: reviewedRequests } = buildReviews(now, { users, providers, services });
 
+  const suspensionDemo = buildSuspensionDemoRequests(now, { users, providers, services });
   const journey = buildCustomerJourneyRequests(now, { users, providers, services });
   const allReviews = [...reviews, ...journey.reviews];
 
@@ -49,9 +52,11 @@ export function buildWorld(now: Date): World {
       ...reviewedRequests,
       ...journey.requests,
       ...inboxClosed,
+      ...suspensionDemo,
     ],
     reviews: allReviews,
     submissions,
     documents,
+    audit: buildAudit(now),
   };
 }

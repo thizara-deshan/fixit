@@ -6,17 +6,19 @@ export function ConflictDialog({
   open,
   onOpenChange,
   body,
+  title = 'This request has changed',
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   body: string;
+  title?: string;
 }) {
   return (
     <ResponsiveDialog
       open={open}
       onOpenChange={onOpenChange}
       align="center"
-      title="This request has changed"
+      title={title}
       description={body}
       footer={
         <Button
