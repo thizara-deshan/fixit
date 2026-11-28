@@ -650,7 +650,7 @@ describe('updateBusiness (BR-21, AC8)', () => {
 **Commit:** `git commit -m "feat(web): mock business update with BR-21 re-verification (M12-T7)"`
 
 ### T8 — Handlers: services
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/providers.ts`, `src/mocks/handlers/providers-business.test.ts`
 **Context:** ARCH §3.3; D-5; AC1, AC2, AC7.
 **Do:** in `providers.ts` add `import { createService, deleteService, toService, updateService } from '../lib/services';` and append to `providersHandlers` (after `provider_photo_delete`):
