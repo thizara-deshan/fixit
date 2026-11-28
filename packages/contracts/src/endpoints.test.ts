@@ -165,4 +165,24 @@ describe('ENDPOINTS', () => {
     expect(ENDPOINTS.provider_service_update.owner).toBe('resource_provider');
     expect(ENDPOINTS.provider_service_delete.owner).toBe('resource_provider');
   });
+  it('M13 admin rows match ARCHITECTURE §3.6', () => {
+    const admin = Object.values(ENDPOINTS).filter((d) => d.domain === 'admin');
+    expect(admin.map((d) => `${d.method} ${d.path}`).sort()).toEqual(
+      [
+        'GET /admin/overview',
+        'GET /admin/verifications',
+        'GET /admin/verifications/:id',
+        'POST /admin/verifications/:id/approve',
+        'POST /admin/verifications/:id/reject',
+        'GET /admin/users',
+        'GET /admin/users/:id',
+        'POST /admin/users/:id/suspend',
+        'POST /admin/users/:id/reactivate',
+        'GET /admin/reviews',
+        'POST /admin/reviews/:id/hide',
+        'POST /admin/reviews/:id/restore',
+      ].sort(),
+    );
+    for (const d of admin) expect(d.access).toEqual(['admin']);
+  });
 });

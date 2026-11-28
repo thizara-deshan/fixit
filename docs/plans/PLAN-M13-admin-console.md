@@ -611,7 +611,7 @@ If `RequestRecord` has fields not listed (check `requests/record.ts`), add them 
 **Commit:** `git commit -m "feat(contracts): suspension cascade plan BR-41/42 (M13-T6)"`
 
 ### T7 — Admin endpoint registry entries
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/endpoints.ts`, `packages/contracts/src/endpoints.test.ts`
 **Context:** ARCH §3.6 rows 1–9 and 13–15 (requests and catalog rows stay for M23/M26); §2.7.
 **Do:**
