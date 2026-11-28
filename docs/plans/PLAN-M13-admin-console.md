@@ -2180,7 +2180,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S32 verification review page (M13-T33)"`
 
 ### T34 — S33 Users page
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/role-pills.tsx`, `src/features/admin/pages/users-page.tsx`, `src/features/admin/pages/users-page.test.tsx`
 **Context:** SPEC S33, §6.2 search-no-match, §6.9, §2.2 (role pill styles); D-7; AC4.
 **Do:**

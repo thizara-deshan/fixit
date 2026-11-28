@@ -4,6 +4,7 @@ import { createMemoryRouter, RouterProvider, type RouteObject } from 'react-rout
 import { vi } from 'vitest';
 import { createTestQueryClient } from '@/test/render';
 import { AdminOverviewPage } from './pages/overview-page';
+import { UsersPage } from './pages/users-page';
 import { VerificationReviewPage } from './pages/verification-review-page';
 import { VerificationQueuePage } from './pages/verification-queue-page';
 
@@ -11,6 +12,7 @@ import { VerificationQueuePage } from './pages/verification-queue-page';
 const ADMIN_TEST_ROUTES: RouteObject[] = [
   { path: '/admin', element: <AdminOverviewPage /> },
   { path: '/admin/verifications', element: <VerificationQueuePage /> },
+  { path: '/admin/users', element: <UsersPage /> },
   { path: '/admin/verifications/:id', element: <VerificationReviewPage /> },
 ];
 
