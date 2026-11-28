@@ -1272,7 +1272,7 @@ States: default, submitting (`Deleting…`), rule error (`You need at least one 
 **Commit:** `git commit -m "feat(web): S23 delete service confirm (M12-T15)"`
 
 ### T16 — S23 My Services page
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/pages/services-page.tsx`, `src/features/provider-business/pages/services-page.test.tsx`, `src/app/chunks/provider.tsx`
 **Context:** S23 layout, S23.E1; §6.1 (Stat tile + Table row skeletons), §6.3, §6.7; AC1, AC2, AC5, AC6.
 **Do:**

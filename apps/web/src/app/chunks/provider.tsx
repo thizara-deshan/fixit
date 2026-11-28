@@ -6,9 +6,7 @@ export { ProviderRequestsPage } from '@/features/provider-dashboard/pages/reques
 
 export { ProviderRequestPage } from '@/features/provider-dashboard/pages/request-page';
 
-export function ServicesPage() {
-  return <PlaceholderScreen frame="bare" title="My Services" />;
-}
+export { ServicesPage } from '@/features/provider-business/pages/services-page';
 
 export function BusinessProfilePage() {
   return <PlaceholderScreen frame="bare" title="Business profile" />;
