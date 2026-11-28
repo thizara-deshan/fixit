@@ -2131,7 +2131,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S32 document tiles and full-screen viewer (M13-T30)"`
 
 ### T31 — S32 provider card, checklist and previous decisions
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/verification-aside.tsx`, `src/features/admin/components/previous-decisions.tsx`
 **Context:** SPEC S32.E2–E4, BR-19.
 **Do:**
