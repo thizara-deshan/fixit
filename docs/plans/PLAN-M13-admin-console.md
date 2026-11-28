@@ -67,7 +67,7 @@ Planner's decisions the executor must follow:
 ## Tasks
 
 ### T1 — Audit enums and the Colombo day difference
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/common/enums.ts`, `packages/contracts/src/common/dates.ts`, `packages/contracts/src/common/dates.test.ts`
 **Context:** ARCH §8.1 `enum AuditAction`, `AuditLog.targetType` comment; D-4, D-13.
 **Do:**

@@ -61,3 +61,33 @@ export type SortKey = z.infer<typeof SortKey>;
 
 export const ReverificationReason = z.enum(['business_name', 'category']);
 export type ReverificationReason = z.infer<typeof ReverificationReason>;
+
+export const AuditAction = z.enum([
+  'verification_approve',
+  'verification_reject',
+  'user_suspend',
+  'user_reactivate',
+  'review_hide',
+  'review_restore',
+  'request_cancel',
+  'category_create',
+  'category_update',
+  'category_reorder',
+  'district_create',
+  'district_update',
+  'town_create',
+  'town_update',
+]);
+export type AuditAction = z.infer<typeof AuditAction>;
+
+export const AuditTargetType = z.enum([
+  'user',
+  'provider',
+  'submission',
+  'review',
+  'request',
+  'category',
+  'district',
+  'town',
+]);
+export type AuditTargetType = z.infer<typeof AuditTargetType>;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addDays, colomboStartOfDay, colomboToday, formatInColombo } from './dates';
+import { addDays, colomboDaysSince, colomboStartOfDay, colomboToday, formatInColombo } from './dates';
 
 describe('colomboToday', () => {
   it('is still the 10th at 23:59:59 Colombo (18:29:59 UTC)', () => {
@@ -35,5 +35,21 @@ describe('formatInColombo', () => {
   });
   it('rolls over to the next Colombo day', () => {
     expect(formatInColombo(new Date('2026-11-21T20:00:00.000Z'), 'EEE, d MMM yyyy')).toBe('Sun, 22 Nov 2026');
+  });
+});
+
+describe('colomboDaysSince', () => {
+  const now = new Date('2026-11-24T06:00:00Z'); // 11:30 Colombo, 24 Nov
+  it('same Colombo day → 0', () => {
+    expect(colomboDaysSince(new Date('2026-11-23T19:00:00Z'), now)).toBe(0); // 00:30 Colombo 24 Nov
+  });
+  it('23:59 Colombo the day before → 1', () => {
+    expect(colomboDaysSince(new Date('2026-11-23T18:29:00Z'), now)).toBe(1);
+  });
+  it('three days back → 3', () => {
+    expect(colomboDaysSince(new Date('2026-11-21T04:00:00Z'), now)).toBe(3);
+  });
+  it('future instant → 0', () => {
+    expect(colomboDaysSince(new Date('2026-11-30T00:00:00Z'), now)).toBe(0);
   });
 });

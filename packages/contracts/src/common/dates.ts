@@ -33,3 +33,10 @@ export function addDays(isoDate: string, days: number): string {
 export function formatInColombo(instant: Date, pattern: string): string {
   return format(new TZDate(instant.getTime(), COLOMBO_TZ), pattern);
 }
+
+/** Whole Colombo calendar days from `instant`'s day to `now`'s day (never negative). Colombo has no DST. */
+export function colomboDaysSince(instant: Date, now: Date): number {
+  const a = colomboStartOfDay(colomboToday(instant)).getTime();
+  const b = colomboStartOfDay(colomboToday(now)).getTime();
+  return Math.max(0, Math.round((b - a) / 86_400_000));
+}
