@@ -7,6 +7,8 @@ import {
   submissionOr404,
   verificationDetailOf,
 } from '../lib/admin-verification';
+import { reactivateUser, suspendUser } from '../lib/admin-suspension';
+import { managedUserOr404, userDetailOf, userListPage, userOr404 } from '../lib/admin-users';
 import { mockEndpoint } from '../lib/endpoint';
 import { mockError } from '../lib/errors';
 import type { MockActor } from '../lib/identity';
@@ -43,5 +45,19 @@ export const adminHandlers = [
     const s = submissionOr404(d, params.id ?? '');
     rejectSubmission(d, s, adminIdOf(actor), body.reason, now);
     return { detail: verificationDetailOf(d, s), nextId: nextPendingId(d, s.id) };
+  }),
+  mockEndpoint(E.admin_users_list, ({ db: d, query }) => userListPage(d, query)),
+  mockEndpoint(E.admin_user_get, ({ db: d, params, now }) =>
+    userDetailOf(d, managedUserOr404(d, params.id ?? ''), now),
+  ),
+  mockEndpoint(E.admin_user_suspend, ({ db: d, params, actor, body, now }) => {
+    const u = userOr404(d, params.id ?? ''); // admin target → 422 cannot_suspend_admin inside suspendUser (AC10)
+    suspendUser(d, u, adminIdOf(actor), body.reason, now);
+    return userDetailOf(d, u, now);
+  }),
+  mockEndpoint(E.admin_user_reactivate, ({ db: d, params, actor, body, now }) => {
+    const u = managedUserOr404(d, params.id ?? '');
+    reactivateUser(d, u, adminIdOf(actor), body.reason, now);
+    return userDetailOf(d, u, now);
   }),
 ];

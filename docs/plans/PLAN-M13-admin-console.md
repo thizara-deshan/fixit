@@ -1512,7 +1512,7 @@ If the anonymous helper differs in this repo (e.g. `apiUrl`), use the same URL b
 **Commit:** `git commit -m "feat(web): admin overview and verification mock handlers (M13-T15)"`
 
 ### T16 — MSW handlers: users
-- [ ] done
+- [x] done
 **Files:** `src/mocks/handlers/admin.ts`, `src/mocks/handlers/admin.test.ts`
 **Context:** ARCH §3.6 users rows; D-5, D-7; AC4, AC5, AC10.
 **Do:** add imports from `../lib/admin-users` (`managedUserOr404`, `userDetailOf`, `userListPage`, `userOr404`) and `../lib/admin-suspension` (`reactivateUser`, `suspendUser`), then append to `adminHandlers`:

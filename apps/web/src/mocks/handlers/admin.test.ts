@@ -1,6 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { AdminOverview, ErrorEnvelope, VerificationDecisionResult } from '@fixit/contracts';
-import type { PersonaKey } from '@fixit/fixtures';
+import {
+  AdminOverview,
+  AdminUserDetail,
+  AdminUserList,
+  ErrorEnvelope,
+  VerificationDecisionResult,
+} from '@fixit/contracts';
+import { DEMO_PASSWORD, type PersonaKey } from '@fixit/fixtures';
 import { FIXED_NOW } from '@/test/fixed-now';
 import { signInAs } from '@/test/sign-in';
 
@@ -52,5 +58,42 @@ describe('admin handlers — overview & verification', () => {
   });
   it('unknown submission → 404', async () => {
     expect((await call('GET', '/admin/verifications/s-nope', 'admin')).status).toBe(404);
+  });
+});
+
+describe('admin handlers — users', () => {
+  it('list search marcus', async () => {
+    const body = AdminUserList.parse(await (await call('GET', '/admin/users?q=marcus', 'admin')).json());
+    expect(body.items.map((u) => u.fullName)).toContain('Marcus Bell');
+  });
+  it('admin detail → 404', async () => {
+    expect((await call('GET', '/admin/users/u-admin', 'admin')).status).toBe(404);
+  });
+  it('suspend admin → 422 cannot_suspend_admin', async () => {
+    const res = await call('POST', '/admin/users/u-admin/suspend', 'admin', {
+      reason: 'Trying the guard rail.',
+    });
+    expect(res.status).toBe(422);
+    expect(ErrorEnvelope.parse(await res.json()).error.details?.rule).toBe('cannot_suspend_admin');
+  });
+  it('suspend Hank: detail suspended with history; Hank can no longer log in; profile 404', async () => {
+    const res = await call('POST', '/admin/users/u-hank/suspend', 'admin', {
+      reason: 'Repeated complaints from customers.',
+    });
+    const v = AdminUserDetail.parse(await res.json());
+    expect(v.status).toBe('suspended');
+    expect(v.history[0]?.action).toBe('user_suspend');
+    const login = await fetch(new URL('/api/auth/login', window.location.origin), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: 'hank@fixit.test', password: DEMO_PASSWORD }),
+    });
+    expect(ErrorEnvelope.parse(await login.json()).error.code).toBe('ACCOUNT_SUSPENDED');
+    expect((await fetch(new URL('/api/providers/p08', window.location.origin))).status).toBe(404);
+  });
+  it('reason 9 chars → 400', async () => {
+    expect((await call('POST', '/admin/users/u-hank/suspend', 'admin', { reason: '123456789' })).status).toBe(
+      400,
+    );
   });
 });
