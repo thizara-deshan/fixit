@@ -2240,7 +2240,7 @@ All cards: `border-border bg-surface flex flex-col gap-3 rounded-2xl border p-5 
 **Commit:** `git commit -m "feat(web): S34 user detail with suspend/reactivate (M13-T37)"`
 
 ### T38 — S37 moderation row and dialogs
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/moderation-row.tsx`, `src/features/admin/components/hide-review-dialog.tsx`, `src/features/admin/components/restore-review-dialog.tsx`
 **Context:** SPEC S37.E1–E3, S3.E11 review body, S3.E12 reply block; D-6, D-16.
 **Do:**
