@@ -111,6 +111,7 @@ const FORCED_LABEL: Record<ForcedKind, string> = {
   '401': '401 Unauthenticated',
   network: 'Network failure',
   rule_provider_paused: '422 RULE_VIOLATION provider_paused',
+  rule_services_min: '422 RULE_VIOLATION services_min',
 };
 const selectClass =
   'border-border-control bg-surface text-body text-text focus-visible:ring-ring h-11 w-full rounded-md border px-3 focus-visible:ring-2 focus-visible:outline-none';

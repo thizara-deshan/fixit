@@ -4,7 +4,14 @@ import { errorResponse } from './errors';
 
 export const LATENCIES = ['zero', 'normal', 'slow'] as const;
 export type Latency = (typeof LATENCIES)[number];
-export const FORCED_KINDS = ['500', '409', '401', 'network', 'rule_provider_paused'] as const;
+export const FORCED_KINDS = [
+  '500',
+  '409',
+  '401',
+  'network',
+  'rule_provider_paused',
+  'rule_services_min',
+] as const;
 export type ForcedKind = (typeof FORCED_KINDS)[number];
 export const ANY_ENDPOINT = '*';
 
@@ -78,6 +85,10 @@ export function forcedResponse(kind: ForcedKind): Response {
     case 'rule_provider_paused':
       return errorResponse(422, 'RULE_VIOLATION', 'Forced provider_paused (DevPanel)', {
         details: { rule: 'provider_paused' },
+      });
+    case 'rule_services_min':
+      return errorResponse(422, 'RULE_VIOLATION', 'Forced services_min (DevPanel)', {
+        details: { rule: 'services_min' },
       });
   }
 }

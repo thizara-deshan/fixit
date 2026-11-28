@@ -305,7 +305,7 @@ export const SERVICES_LAST_MESSAGE = 'You need at least one service.'; // S23.E2
 **Commit:** `git commit -m "feat(fixtures): approved verification for Marcus (M12-T3)"`
 
 ### T4 — Forced `rule_services_min`
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/controls.ts`, `src/mocks/lib/controls.test.ts`, `src/mocks/dev/DevPanel.tsx`
 **Context:** AC6; D-11.
 **Do:**
