@@ -2032,7 +2032,7 @@ Use the S40 heading text exactly as the existing S40 test in this file asserts i
 **Commit:** `git commit -m "test(web): access to M12 dashboard routes (M12-T21)"`
 
 ### T22 — M12 acceptance checks
-- [ ] done
+- [x] done
 **Files:** this plan (tick boxes), `docs/milestones/M00-index.md` (only if a new idea came up: Ideas inbox)
 **Do:** walk every acceptance criterion; record pass/fail next to each in the commit body. Any failure → STOP, write a blocker.
 | AC | Check |
