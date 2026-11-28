@@ -2110,7 +2110,7 @@ States: default · field error (SPEC message from the schema) · submitting (lab
 **Commit:** `git commit -m "feat(web): S31 verification queue (M13-T29)"`
 
 ### T30 — Document tiles and full-screen viewer
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/components/document-tiles.tsx`, `src/features/admin/components/document-viewer.tsx`, `src/features/admin/components/document-viewer.test.tsx`
 **Context:** SPEC S32.E1; D-15, D-19; `useDocumentBlob` (T22); `components/ui/dialog.tsx` primitives.
 **Do:**
