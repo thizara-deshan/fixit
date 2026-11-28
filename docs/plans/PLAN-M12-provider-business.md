@@ -1085,7 +1085,7 @@ States: rows 1–20; last-row tip (D-7). Loading/empty are handled by the page (
 **Commit:** `git commit -m "feat(web): S23 services table and phone cards (M12-T13)"`
 
 ### T14 — Service dialog
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/service-dialog.tsx`
 **Context:** S23.E3, S23 field table, §6.7, §6.10; D-6, D-8, D-9. Reuse `ServiceRowFields` (one row, no `onRemove`), `Step3Form` (contracts: `{services: [row]}`), `ResponsiveDialog`, `FormErrorBanner`, `SubmitButton`, `mapApiErrorToForm`.
 **Do:** create:
