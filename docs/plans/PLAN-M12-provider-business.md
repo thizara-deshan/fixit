@@ -951,7 +951,7 @@ export function useSaveAreas() {
 **Commit:** `git commit -m "feat(web): hooks for services, business details and areas (M12-T11)"`
 
 ### T12 — Starting-at preview tile
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/starting-price-tile.tsx`
 **Context:** S23 layout #2 (S20 stat-tile style, one tile); BR-10. Copy `Starting at` / `LKR 2,500 / hour` (no `from`).
 **Do:** create:
