@@ -36,6 +36,18 @@ describe('provider aggregates', () => {
     const p01 = world.providers.find((p) => p.id === 'p01');
     expect([p01?.startingPrice, p01?.startingUnit]).toEqual([2500, 'per_hour']);
   });
+  it('M12: Marcus (p01) has an approved attempt with NIC front and back', () => {
+    expect(world.submissions.find((s) => s.providerId === 'p01')).toMatchObject({
+      status: 'approved',
+      attempt: 1,
+    });
+    expect(
+      world.documents
+        .filter((d) => d.submissionId === 's-p01-1')
+        .map((d) => d.type)
+        .sort(),
+    ).toEqual(['nic_back', 'nic_front']);
+  });
 });
 
 describe('reviews and requests', () => {

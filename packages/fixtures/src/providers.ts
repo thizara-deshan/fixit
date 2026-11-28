@@ -313,6 +313,16 @@ export function buildProviders(now: Date): {
   ]);
   const submissions: FxSubmission[] = [
     {
+      id: 's-p01-1',
+      providerId: 'p01',
+      attempt: 1,
+      trigger: 'provider',
+      status: 'approved',
+      submittedAt: ago(372),
+      decidedAt: ago(370),
+      rejectionReason: null,
+    },
+    {
       id: 's-p02-1',
       providerId: 'p02',
       attempt: 1,
@@ -334,6 +344,16 @@ export function buildProviders(now: Date): {
     },
   ];
   const documents: FxDocument[] = [
+    ...(['nic_front', 'nic_back'] as const).map((type) => ({
+      id: `d-p01-${type}`,
+      providerId: 'p01',
+      submissionId: 's-p01-1',
+      type,
+      fileName: type === 'nic_front' ? 'nic-front.jpg' : 'nic-back.jpg',
+      mimeType: 'image/jpeg',
+      sizeBytes: type === 'nic_front' ? 501_220 : 476_310,
+      createdAt: ago(372),
+    })),
     {
       id: 'd-p02-nic-front',
       providerId: 'p02',

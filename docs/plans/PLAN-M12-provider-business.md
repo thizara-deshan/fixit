@@ -258,7 +258,7 @@ export const SERVICES_LAST_MESSAGE = 'You need at least one service.'; // S23.E2
 **Commit:** `git commit -m "feat(contracts): M12 provider endpoints in the registry (M12-T2)"`
 
 ### T3 — Marcus approved submission fixture
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/providers.ts`, `packages/fixtures/src/build.test.ts`, `apps/web/src/mocks/db/schema.ts`, `apps/web/src/mocks/db/store.test.ts`
 **Context:** D-3, D-4; ARCH §8.1 (re-verification copies the last approved submission's documents).
 **Do:**
