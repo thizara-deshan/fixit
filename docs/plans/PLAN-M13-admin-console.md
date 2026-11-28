@@ -793,7 +793,7 @@ export function buildSuspensionDemoRequests(
 **Commit:** `git commit -m "chore(web): mock db seeds audit rows, version 8 (M13-T9)"`
 
 ### T10 — Mock audit helpers
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-audit.ts`
 **Context:** ARCH §7.9; D-5, D-13.
 **Do:** create:
