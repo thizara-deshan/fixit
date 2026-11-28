@@ -120,6 +120,7 @@ export function submitVerification(d: MockDb, p: FxProvider, now: Date): void {
     status: 'pending_review',
     submittedAt: now.toISOString(),
     decidedAt: null,
+    decidedById: null,
     rejectionReason: null,
   };
   for (const doc of staged) doc.submissionId = id;
@@ -146,6 +147,7 @@ export function requeueForReverification(
     status: 'pending_review',
     submittedAt: now.toISOString(),
     decidedAt: null,
+    decidedById: null,
     rejectionReason: null,
   };
   const originals = approved ? Object.values(d.documents).filter((x) => x.submissionId === approved.id) : [];

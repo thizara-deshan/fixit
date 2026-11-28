@@ -693,7 +693,7 @@ import {
 **Commit:** `git commit -m "feat(contracts): admin endpoint registry entries (M13-T7)"`
 
 ### T8 — Fixtures: decidedById, audit rows, p08 open requests
-- [ ] done
+- [x] done
 **Files:** `packages/fixtures/src/types.ts`, `packages/fixtures/src/providers.ts`, `packages/fixtures/src/requests.ts`, `packages/fixtures/src/audit.ts`, `packages/fixtures/src/build.ts`, `packages/fixtures/src/index.ts`, `packages/fixtures/src/build.test.ts`, `apps/web/src/mocks/lib/verification.ts`
 **Context:** D-13, D-14; ARCH §8.1 `VerificationSubmission.decidedById`, `AuditLog`.
 **Do:**
