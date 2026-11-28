@@ -2,13 +2,18 @@ import { z } from 'zod';
 import {
   AuditAction,
   AuditTargetType,
+  AccountStatus,
   CategoryIcon,
+  RequestStatus,
+  ReviewVisibility,
+  Role,
   SubmissionStatus,
   SubmissionTrigger,
+  TimeSlot,
   VerificationStatus,
 } from '../common/enums';
 import { PageQuery, paginated } from '../common/pagination';
-import { adminReason, Id, IsoDateTime, Mobile } from '../common/primitives';
+import { adminReason, Id, IsoDate, IsoDateTime, Mobile, RequestRef } from '../common/primitives';
 import { DocumentMeta } from '../providers/own';
 
 /* ---------- Reasons (SPEC §8.7: admin reasons 10–500, required) ---------- */
@@ -116,3 +121,111 @@ export type VerificationDetail = z.infer<typeof VerificationDetail>;
 /** approve / reject response: the decided submission + the next pending one (oldest first) or null. */
 export const VerificationDecisionResult = z.object({ detail: VerificationDetail, nextId: Id.nullable() });
 export type VerificationDecisionResult = z.infer<typeof VerificationDecisionResult>;
+
+/* ---------- Users (S33, S34) ---------- */
+const SearchText = z.string().trim().max(80).catch('').default('');
+
+export const AdminUserRoleFilter = z.enum(['all', 'customer', 'provider']);
+export type AdminUserRoleFilter = z.infer<typeof AdminUserRoleFilter>;
+export const AdminUserStatusFilter = z.enum(['all', 'suspended']);
+export type AdminUserStatusFilter = z.infer<typeof AdminUserStatusFilter>;
+
+export const AdminUserListQuery = PageQuery.extend({
+  q: SearchText,
+  role: AdminUserRoleFilter.catch('all').default('all'),
+  status: AdminUserStatusFilter.catch('all').default('all'),
+});
+export type AdminUserListQuery = z.infer<typeof AdminUserListQuery>;
+
+export const AdminUserRow = z.object({
+  id: Id,
+  fullName: z.string(),
+  email: z.string(),
+  mobile: Mobile.nullable(),
+  roles: z.array(Role), // ['customer'] | ['customer','provider']
+  verificationStatus: VerificationStatus.nullable(), // null = no published listing
+  joinedAt: IsoDateTime,
+  status: AccountStatus,
+});
+export type AdminUserRow = z.infer<typeof AdminUserRow>;
+export const AdminUserList = paginated(AdminUserRow);
+export type AdminUserList = z.infer<typeof AdminUserList>;
+
+/** D-8: compact S35-format row for S34's recent lists. */
+export const AdminRequestRow = z.object({
+  ref: RequestRef,
+  status: RequestStatus,
+  customerName: z.string(),
+  businessName: z.string(),
+  serviceName: z.string(),
+  preferredDate: IsoDate,
+  slot: TimeSlot,
+  townName: z.string(),
+});
+export type AdminRequestRow = z.infer<typeof AdminRequestRow>;
+export const AdminRequestSummary = z.object({
+  open: z.number().int().min(0),
+  total: z.number().int().min(0),
+  recent: z.array(AdminRequestRow).max(5),
+});
+export type AdminRequestSummary = z.infer<typeof AdminRequestSummary>;
+
+export const SuspendImpact = z.object({
+  providerPending: z.number().int().min(0),
+  providerAccepted: z.number().int().min(0),
+  customerOpen: z.number().int().min(0),
+});
+export type SuspendImpact = z.infer<typeof SuspendImpact>;
+
+export const AdminUserDetail = z.object({
+  id: Id,
+  fullName: z.string(),
+  email: z.string(),
+  mobile: Mobile.nullable(),
+  joinedAt: IsoDateTime,
+  roles: z.array(Role),
+  status: AccountStatus,
+  provider: z
+    .object({
+      id: Id,
+      businessName: z.string(),
+      categoryName: z.string(),
+      verificationStatus: VerificationStatus,
+      latestSubmissionId: Id.nullable(),
+      rating: z.number().nullable(),
+      reviewCount: z.number().int().min(0),
+      paused: z.boolean(),
+      listed: z.boolean(),
+    })
+    .nullable(), // published listing only
+  asCustomer: AdminRequestSummary,
+  asProvider: AdminRequestSummary.nullable(),
+  history: z.array(AuditEntry), // user_suspend / user_reactivate, newest first
+  impact: SuspendImpact, // what Suspend would do now (zeros when suspended)
+});
+export type AdminUserDetail = z.infer<typeof AdminUserDetail>;
+
+/* ---------- Reviews moderation (S37) ---------- */
+export const ModerationVisibilityFilter = z.enum(['all', 'visible', 'hidden']);
+export type ModerationVisibilityFilter = z.infer<typeof ModerationVisibilityFilter>;
+export const ModerationQuery = PageQuery.extend({
+  q: SearchText,
+  visibility: ModerationVisibilityFilter.catch('all').default('all'),
+});
+export type ModerationQuery = z.infer<typeof ModerationQuery>;
+
+export const ModerationRow = z.object({
+  id: Id,
+  requestRef: RequestRef,
+  provider: z.object({ id: Id, businessName: z.string() }),
+  authorDisplayName: z.string(),
+  rating: z.number().int().min(1).max(5),
+  text: z.string(),
+  createdAt: IsoDateTime,
+  reply: z.object({ text: z.string(), createdAt: IsoDateTime }).nullable(),
+  visibility: ReviewVisibility,
+  hidden: z.object({ at: IsoDateTime, by: z.string(), reason: z.string().nullable() }).nullable(),
+});
+export type ModerationRow = z.infer<typeof ModerationRow>;
+export const ModerationList = paginated(ModerationRow);
+export type ModerationList = z.infer<typeof ModerationList>;

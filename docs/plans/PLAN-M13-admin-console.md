@@ -309,7 +309,7 @@ describe('VerificationQueueQuery', () => {
 **Commit:** `git commit -m "feat(contracts): verification queue and detail schemas (M13-T3)"`
 
 ### T4 — Users and moderation schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/schemas.ts`, `packages/contracts/src/admin/schemas.test.ts`
 **Context:** SPEC S33, S34, S37; ARCH §3.6 rows 6–9, 13–15; D-7, D-8.
 **Do:** append to `schemas.ts`:

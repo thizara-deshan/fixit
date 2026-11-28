@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
   AdminOverview,
+  AdminUserListQuery,
+  ModerationQuery,
   HideReviewBody,
   makeAccountReasonBody,
   RejectBody,
@@ -53,5 +55,20 @@ describe('VerificationQueueQuery', () => {
       status: 'rejected',
       page: 2,
     });
+  });
+});
+
+describe('list queries', () => {
+  it('users: defaults, trims q, bad role/status fall back', () => {
+    expect(AdminUserListQuery.parse({})).toEqual({ q: '', role: 'all', status: 'all', page: 1 });
+    expect(AdminUserListQuery.parse({ q: '  marcus ', role: 'admin', status: 'x' })).toEqual({
+      q: 'marcus',
+      role: 'all',
+      status: 'all',
+      page: 1,
+    });
+  });
+  it('moderation: visibility default all', () => {
+    expect(ModerationQuery.parse({ visibility: 'hidden' })).toEqual({ q: '', visibility: 'hidden', page: 1 });
   });
 });
