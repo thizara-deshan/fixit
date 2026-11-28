@@ -116,7 +116,7 @@ describe('colomboDaysSince', () => {
 **Commit:** `git commit -m "feat(contracts): audit enums and colomboDaysSince (M13-T1)"`
 
 ### T2 — Admin reason bodies, audit entry and overview schemas
-- [ ] done
+- [x] done
 **Files:** `packages/contracts/src/admin/schemas.ts`, `packages/contracts/src/admin/schemas.test.ts`, `packages/contracts/src/index.ts`
 **Context:** SPEC S32 reject field, S34 field, S37 field, S30.E1–E2; ARCH §2.3 `adminReason`; D-1, D-11.
 **Do:**
