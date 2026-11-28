@@ -1964,7 +1964,7 @@ describe('admin url state', () => {
 **Commit:** `git commit -m "feat(web): admin URL state helpers (M13-T24)"`
 
 ### T25 — Admin copy helpers
-- [ ] done
+- [x] done
 **Files:** `src/features/admin/copy.ts`, `src/features/admin/copy.test.ts`
 **Context:** SPEC S30.E1, S31, S34.E1; D-3, D-4, D-10.
 **Do:** create:
