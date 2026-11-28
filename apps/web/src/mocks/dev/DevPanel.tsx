@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from 'react';
 import { Bug } from 'lucide-react';
 import { DEMO_PASSWORD, DEMO_PERSONAS, type PersonaKey } from '@fixit/fixtures';
+import { NoticeBanner } from '@/components/notice-banner';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -13,6 +14,7 @@ import {
 import { signIn } from '@/features/auth/api';
 import { useLogout } from '@/features/auth/hooks';
 import { useAuth } from '@/lib/auth-store';
+import { FORM_COPY } from '@/lib/error-copy';
 import { ApiError } from '@/lib/http';
 import { ENDPOINTS } from '@fixit/contracts';
 import { db, resetDemoData } from '../db/store';
@@ -43,18 +45,25 @@ function SessionSection() {
   const doLogout = useLogout();
   const [busy, setBusy] = useState<PersonaKey | 'logout' | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [suspended, setSuspended] = useState(false);
 
   async function run(key: PersonaKey | 'logout', action: () => Promise<unknown>) {
     setBusy(key);
     setError(null);
+    setSuspended(false);
     try {
       await action();
     } catch (e) {
-      setError(
-        e instanceof ApiError
-          ? `Failed: ${e.code}${e.rule ? ` (${e.rule})` : ''}`
-          : 'Failed: unexpected error',
-      );
+      if (e instanceof ApiError && e.code === 'ACCOUNT_SUSPENDED') {
+        setSuspended(true);
+        setError(FORM_COPY.suspended);
+      } else {
+        setError(
+          e instanceof ApiError
+            ? `Failed: ${e.code}${e.rule ? ` (${e.rule})` : ''}`
+            : 'Failed: unexpected error',
+        );
+      }
     } finally {
       setBusy(null);
     }
@@ -90,7 +99,8 @@ function SessionSection() {
             {busy === p.key ? 'Signing in…' : p.label}
           </Button>
         ))}
-        {error && (
+        {error && suspended && <NoticeBanner variant="danger">{error}</NoticeBanner>}
+        {error && !suspended && (
           <p role="alert" className="text-body-sm text-danger-text">
             {error}
           </p>

@@ -1606,7 +1606,7 @@ describe('admin handlers — reviews', () => {
 **Commit:** `git commit -m "feat(web): admin review moderation mock handlers (M13-T17)"`
 
 ### T18 — DevPanel shows the suspended banner
-- [ ] done
+- [x] done
 **Files:** `src/mocks/dev/DevPanel.tsx`
 **Context:** AC5 ("DevPanel login shows the suspended banner"); D-18; `FORM_COPY.suspended` (`lib/error-copy.ts`), `NoticeBanner` (`components/notice-banner.tsx`).
 **Do:** in `SessionSection.run`'s catch: if `e instanceof ApiError && e.code === 'ACCOUNT_SUSPENDED'` call `setError(FORM_COPY.suspended)` and set a new state `setSuspended(true)`; otherwise keep the current message and `setSuspended(false)`. Where `error` is rendered, render `<NoticeBanner variant="danger">{error}</NoticeBanner>` when `suspended` is true (check `NoticeBanner`'s prop names in its file and use its danger variant), else the existing element. Reset `suspended` to false at the start of `run`.
