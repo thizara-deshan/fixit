@@ -1527,7 +1527,7 @@ export function ReverifyDialog({
 **Commit:** `git commit -m "feat(web): S24 re-verify dialog (M12-T17)"`
 
 ### T18 — Business details form
-- [ ] done
+- [x] done
 **Files:** `src/features/provider-business/components/business-details-form.tsx`
 **Context:** S24.E3, S24 fields (= S19 step 1 + Category select); BR-21; D-1, D-2. Copy the field markup of `features/onboarding/components/step-business.tsx` (business name, bio with `{n} / 600`, years) — do not import from the onboarding feature.
 **Do:** create:
