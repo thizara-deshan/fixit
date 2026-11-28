@@ -1047,7 +1047,7 @@ describe('admin verification (mock)', () => {
 **Commit:** `git commit -m "feat(web): mock verification queue and decisions (M13-T11)"`
 
 ### T12 — Mock users list and detail
-- [ ] done
+- [x] done
 **Files:** `src/mocks/lib/admin-users.ts`, `src/mocks/lib/admin-users.test.ts`
 **Context:** SPEC S33, S34; D-7, D-8, D-9. Reuses `isListed` (`cards.ts`), `matchesUserSearch`, `planSuspension`, `suspendImpact`, `OPEN_STATUSES`.
 **Do:** create:
